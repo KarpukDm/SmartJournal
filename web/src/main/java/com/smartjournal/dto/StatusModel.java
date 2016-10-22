@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class Status implements Serializable {
+public class StatusModel implements Serializable {
 
     private String id;
 
@@ -13,12 +13,12 @@ public class Status implements Serializable {
 
     private String description;
 
-    public Status(String value, String description) {
+    public StatusModel(String value, String description) {
         this.value = value;
         this.description = description;
     }
 
-    public Status() {
+    public StatusModel() {
     }
 
     public String getId() {

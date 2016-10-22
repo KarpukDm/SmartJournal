@@ -6,20 +6,20 @@ import java.util.Date;
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class Statistic implements Serializable {
+public class StatisticModel implements Serializable {
 
     private String id;
 
     private Date date;
 
-    private Status status;
+    private StatusModel statusModel;
 
-    public Statistic(Date date, Status status) {
+    public StatisticModel(Date date, StatusModel statusModel) {
         this.date = date;
-        this.status = status;
+        this.statusModel = statusModel;
     }
 
-    public Statistic() {
+    public StatisticModel() {
     }
 
     public String getId() {
@@ -38,11 +38,11 @@ public class Statistic implements Serializable {
         this.date = date;
     }
 
-    public Status getStatus() {
-        return status;
+    public StatusModel getStatusModel() {
+        return statusModel;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatusModel(StatusModel statusModel) {
+        this.statusModel = statusModel;
     }
 }

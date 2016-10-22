@@ -5,17 +5,17 @@ import java.io.Serializable;
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class JournalTemplateType implements Serializable{
+public class JournalTemplateTypeModel implements Serializable{
 
     private String id;
 
     private String type;
 
-    public JournalTemplateType(String type) {
+    public JournalTemplateTypeModel(String type) {
         this.type = type;
     }
 
-    public JournalTemplateType() {
+    public JournalTemplateTypeModel() {
     }
 
     public String getId() {

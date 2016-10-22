@@ -1,24 +1,21 @@
 package com.smartjournal.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class User implements Serializable{
+public class AtomModel implements Serializable{
 
     private String id;
 
     private String name;
 
-    private List<Atom> atoms;
-
-    public User(String name) {
+    public AtomModel(String name) {
         this.name = name;
     }
 
-    public User() {
+    public AtomModel() {
     }
 
     public String getId() {
@@ -35,13 +32,5 @@ public class User implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Atom> getAtoms() {
-        return atoms;
-    }
-
-    public void setAtoms(List<Atom> atoms) {
-        this.atoms = atoms;
     }
 }
