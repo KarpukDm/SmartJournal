@@ -1,25 +1,38 @@
 package com.smartjournal.dto;
 
+import org.springframework.data.domain.Persistable;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class UserModel implements Serializable{
+@Entity
+public class UserModel implements Serializable, Persistable<String> {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "workplace")
     private String workPlace;
 
+    @Column(name = "specialty")
     private String specialty;
 
+    @Column(name = "profession")
     private String profession;
 
-    private List<AtomModel> atomModels;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<AtomModel> atoms;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<JournalTemplateModel> templates;
 
     public UserModel(String name, String workPlace, String specialty, String profession) {
@@ -36,6 +49,11 @@ public class UserModel implements Serializable{
         return id;
     }
 
+    @Override
+    public boolean isNew() {
+        return false;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -48,12 +66,12 @@ public class UserModel implements Serializable{
         this.name = name;
     }
 
-    public List<AtomModel> getAtomModels() {
-        return atomModels;
+    public List<AtomModel> getAtoms() {
+        return atoms;
     }
 
-    public void setAtomModels(List<AtomModel> atomModels) {
-        this.atomModels = atomModels;
+    public void setAtoms(List<AtomModel> atoms) {
+        this.atoms = atoms;
     }
 
     public List<JournalTemplateModel> getTemplates() {

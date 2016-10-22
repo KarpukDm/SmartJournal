@@ -1,14 +1,22 @@
 package com.smartjournal.dto;
 
+import org.springframework.data.domain.Persistable;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class JournalTemplateTypeModel implements Serializable{
+@Entity
+public class JournalTemplateTypeModel implements Serializable, Persistable<String> {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
 
+    @Column(name = "type")
     private String type;
 
     public JournalTemplateTypeModel(String type) {
@@ -20,6 +28,11 @@ public class JournalTemplateTypeModel implements Serializable{
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public boolean isNew() {
+        return false;
     }
 
     public void setId(String id) {

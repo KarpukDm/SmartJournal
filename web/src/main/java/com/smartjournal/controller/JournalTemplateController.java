@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by KarpukDM on 22.10.2016.
  */
 @RestController
-@RequestMapping(value = {"/template", "templates"})
+@RequestMapping(value = {"/template", "/templates"})
 public class JournalTemplateController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -25,7 +25,7 @@ public class JournalTemplateController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "me", method = RequestMethod.GET)
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
     public ResponseEntity getMyTemplates(){
 
         return new ResponseEntity(HttpStatus.OK);

@@ -1,24 +1,39 @@
 package com.smartjournal.dto;
 
+import org.springframework.data.domain.Persistable;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public class JournalTemplateModel implements Serializable{
+@Entity
+public class JournalTemplateModel implements Serializable, Persistable<String> {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private String id;
 
+    @Column(name = "type")
     private JournalTemplateTypeModel type;
 
+    @Column(name = "level")
+    private Integer level;
+
+    @Column(name = "template_name")
     private String templateName;
 
+    @Column(name = "parent")
     private JournalTemplateModel parent;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<JournalTemplateModel> child;
 
-    private List<AtomModel> atomModel;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<AtomModel> atoms;
 
     public JournalTemplateModel(JournalTemplateTypeModel type, String templateName) {
         this.type = type;
@@ -36,6 +51,11 @@ public class JournalTemplateModel implements Serializable{
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public boolean isNew() {
+        return false;
     }
 
     public void setId(String id) {
@@ -74,11 +94,19 @@ public class JournalTemplateModel implements Serializable{
         this.child = child;
     }
 
-    public List<AtomModel> getAtomModel() {
-        return atomModel;
+    public List<AtomModel> getAtoms() {
+        return atoms;
     }
 
-    public void setAtomModel(List<AtomModel> atomModel) {
-        this.atomModel = atomModel;
+    public void setAtoms(List<AtomModel> atoms) {
+        this.atoms = atoms;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }
