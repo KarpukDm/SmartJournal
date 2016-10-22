@@ -51,7 +51,7 @@ public class UserModel implements Serializable, Persistable<String> {
 
     @Override
     public boolean isNew() {
-        return false;
+        return id == null;
     }
 
     public void setId(String id) {

@@ -32,7 +32,7 @@ public class JournalTemplateTypeModel implements Serializable, Persistable<Strin
 
     @Override
     public boolean isNew() {
-        return false;
+        return id == null;
     }
 
     public void setId(String id) {
