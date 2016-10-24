@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -16,7 +16,7 @@ public class StatusModel implements Serializable, Persistable<String> {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private String value;
 
     @Column(name = "description")

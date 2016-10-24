@@ -1,6 +1,6 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.dto.AtomModel;
+import com.smartjournal.entity.AtomModel;
 import com.smartjournal.repository.AtomRepository;
 import com.smartjournal.service.AtomService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;

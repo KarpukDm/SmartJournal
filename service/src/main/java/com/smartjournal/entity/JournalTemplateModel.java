@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -17,14 +17,17 @@ public class JournalTemplateModel implements Serializable, Persistable<String> {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private JournalTemplateTypeModel type;
 
     @Column(name = "level")
     private Integer level;
 
-    @Column(name = "template_name")
+    @Column(name = "template_name", nullable = false)
     private String templateName;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "parent")
     private JournalTemplateModel parent;
@@ -35,14 +38,16 @@ public class JournalTemplateModel implements Serializable, Persistable<String> {
     @OneToMany(cascade = CascadeType.ALL)
     private List<AtomModel> atoms;
 
-    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName) {
+    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName, String password) {
         this.type = type;
         this.templateName = templateName;
+        this.password = password;
     }
 
-    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName, JournalTemplateModel parent) {
+    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName, String password, JournalTemplateModel parent) {
         this.type = type;
         this.templateName = templateName;
+        this.password = password;
         this.parent = parent;
     }
 
@@ -108,5 +113,13 @@ public class JournalTemplateModel implements Serializable, Persistable<String> {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

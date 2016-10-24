@@ -1,6 +1,6 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.dto.StatusModel;
+import com.smartjournal.entity.StatusModel;
 import com.smartjournal.repository.StatusRepository;
 import com.smartjournal.service.StatusService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;

@@ -1,6 +1,6 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.dto.JournalTemplateModel;
+import com.smartjournal.entity.JournalTemplateModel;
 import com.smartjournal.repository.JournalTemplateRepository;
 import com.smartjournal.service.JournalTemplateService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;

@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -17,8 +17,14 @@ public class UserModel implements Serializable, Persistable<String> {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "workplace")
     private String workPlace;
@@ -35,11 +41,19 @@ public class UserModel implements Serializable, Persistable<String> {
     @OneToMany(cascade = CascadeType.ALL)
     private List<JournalTemplateModel> templates;
 
-    public UserModel(String name, String workPlace, String specialty, String profession) {
+    public UserModel(String name, String email, String password, String workPlace, String specialty, String profession) {
         this.name = name;
+        this.email = email;
+        this.password = password;
         this.workPlace = workPlace;
         this.specialty = specialty;
         this.profession = profession;
+    }
+
+    public UserModel(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public UserModel() {
@@ -104,5 +118,21 @@ public class UserModel implements Serializable, Persistable<String> {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

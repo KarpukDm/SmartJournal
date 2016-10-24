@@ -1,6 +1,6 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.dto.StatisticModel;
+import com.smartjournal.entity.StatisticModel;
 import com.smartjournal.repository.StatisticRepository;
 import com.smartjournal.service.StatisticService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;

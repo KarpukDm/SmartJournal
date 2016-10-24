@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -18,10 +18,10 @@ public class StatisticModel implements Serializable, Persistable<String> {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private StatusModel value;
 
     @OneToMany(cascade = CascadeType.ALL)

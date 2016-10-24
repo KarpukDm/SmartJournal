@@ -1,6 +1,6 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.dto.UserModel;
+import com.smartjournal.entity.UserModel;
 import com.smartjournal.repository.UserRepository;
 import com.smartjournal.service.UserService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;
@@ -14,5 +14,10 @@ public class UserServiceImpl extends GenericServiceImpl<UserModel, String, UserR
 
     public UserServiceImpl(UserRepository repository) {
         super(repository);
+    }
+
+    @Override
+    public UserModel findOneUserModelByEmailAndPassword(String email, String password) {
+        return repository.findOneUserModelByEmailAndPassword(email, password);
     }
 }

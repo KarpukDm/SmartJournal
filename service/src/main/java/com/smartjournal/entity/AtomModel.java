@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -16,7 +16,7 @@ public class AtomModel implements Serializable, Persistable<String> {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public AtomModel(String name) {

@@ -1,4 +1,4 @@
-package com.smartjournal.dto;
+package com.smartjournal.entity;
 
 import org.springframework.data.domain.Persistable;
 
@@ -16,7 +16,7 @@ public class JournalTemplateTypeModel implements Serializable, Persistable<Strin
     @Column(name = "id")
     private String id;
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private String type;
 
     public JournalTemplateTypeModel(String type) {
