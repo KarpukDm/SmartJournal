@@ -13,12 +13,14 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 /**
  * Created by karpukdm on 10/24/16.
  */
 @WebAppConfiguration
 @SpringBootTest
-public class JournalTemplateControllerTest extends AbstractTestNGSpringContextTests {
+public class AuthControllerTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private WebApplicationContext context;
@@ -31,10 +33,11 @@ public class JournalTemplateControllerTest extends AbstractTestNGSpringContextTe
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
-    @Test
-    public void getMyTemplates() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/templates/me"))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-               // .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThanOrEqualTo(0))));
+    @Test()
+    public void loginWithFacebook() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/authenticate/facebook"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(print());
+        // .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(greaterThanOrEqualTo(0))));
     }
 }

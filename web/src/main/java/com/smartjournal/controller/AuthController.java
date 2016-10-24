@@ -1,6 +1,11 @@
 package com.smartjournal.controller;
 
+import com.restfb.types.User;
+import com.smartjournal.bean.FBConnection;
+import com.smartjournal.bean.FacebookClient;
 import com.smartjournal.config.SmartJournalProperties;
+import com.smartjournal.dto.AccessTokenModel;
+import com.smartjournal.dto.AuthLinkModel;
 import com.smartjournal.dto.AuthResponse;
 import com.smartjournal.dto.LoginModel;
 import com.smartjournal.entity.UserModel;
@@ -19,12 +24,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Created by karpukdm on 10/24/16.
  */
 @RestController
+@RequestMapping(value = "/authenticate")
 public class AuthController {
 
     @Autowired
@@ -33,7 +42,13 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @Autowired
+    private FBConnection fbConnection;
+
+    @Autowired
+    private FacebookClient facebookClient;
+
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity authorize(@Valid @RequestBody LoginModel loginModel,
                                     HttpServletRequest request) throws Exception {
 
@@ -57,5 +72,25 @@ public class AuthController {
         }
 
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/facebook", method = RequestMethod.GET)
+    public ResponseEntity loginWithFacebook(HttpServletResponse response) throws URISyntaxException, IOException {
+
+        if(fbConnection.getCode() == null || "".equals(fbConnection.getCode()))
+        {
+            AuthLinkModel authLink = new AuthLinkModel(fbConnection.getFBAuthUrl());
+            response.sendRedirect(authLink.getAuthLink());
+            return new ResponseEntity(HttpStatus.OK);
+        }
+
+        AccessTokenModel accessToken = fbConnection.getAccessToken(fbConnection.getCode());
+        facebookClient.setAccessToken(accessToken);
+
+        User user = facebookClient.getProfileInfo();
+
+        AuthResponse authResponse = new AuthResponse(user.getId(), user.getName(), user.getEmail());
+
+        return new ResponseEntity(authResponse, HttpStatus.OK);
     }
 }

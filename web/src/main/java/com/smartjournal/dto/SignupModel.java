@@ -1,10 +1,13 @@
 package com.smartjournal.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
 /**
  * Created by karpukdm on 10/24/16.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SignupModel implements Serializable{
 
     private String name;

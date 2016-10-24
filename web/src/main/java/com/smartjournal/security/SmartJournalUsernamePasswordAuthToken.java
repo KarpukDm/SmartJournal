@@ -16,6 +16,10 @@ public class SmartJournalUsernamePasswordAuthToken extends UsernamePasswordAuthe
         this.httpServletRequest = httpServletRequest;
     }
 
+    public SmartJournalUsernamePasswordAuthToken(Object principal, Object credentials) {
+        super(principal, credentials);
+    }
+
     public HttpServletRequest getHttpServletRequest() {
         return httpServletRequest;
     }
