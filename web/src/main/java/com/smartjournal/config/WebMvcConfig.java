@@ -1,6 +1,6 @@
 package com.smartjournal.config;
 
-import com.smartjournal.bean.FBConnection;
+import com.smartjournal.auth.facebook.FBConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

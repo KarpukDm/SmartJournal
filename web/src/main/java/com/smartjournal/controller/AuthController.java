@@ -1,8 +1,8 @@
 package com.smartjournal.controller;
 
 import com.restfb.types.User;
-import com.smartjournal.bean.FBConnection;
-import com.smartjournal.bean.FacebookClient;
+import com.smartjournal.auth.facebook.FBConnection;
+import com.smartjournal.auth.facebook.FacebookClient;
 import com.smartjournal.config.SmartJournalProperties;
 import com.smartjournal.dto.AccessTokenModel;
 import com.smartjournal.dto.AuthLinkModel;

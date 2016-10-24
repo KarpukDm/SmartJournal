@@ -1,17 +1,16 @@
-package com.smartjournal.bean;
+package com.smartjournal.auth.facebook;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.User;
 import com.smartjournal.dto.AccessTokenModel;
-
-import javax.annotation.ManagedBean;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by KarpukDM on 11.10.2016.
  */
-@ManagedBean
+@Component
 public class FacebookClient {
 
     private AccessTokenModel accessToken;
