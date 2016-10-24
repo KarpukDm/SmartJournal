@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * Created by karpukdm on 10/24/16.
  */
 @Repository
-public interface AppRepository extends JpaRepository<AppModel, String> {
+public interface AppRepository extends JpaRepository<AppModel, Integer> {
 
     AppModel findOneByName(String name);
 }

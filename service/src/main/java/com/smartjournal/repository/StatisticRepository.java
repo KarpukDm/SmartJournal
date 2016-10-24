@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * Created by KarpukDM on 22.10.2016.
  */
 @Repository
-public interface StatisticRepository extends JpaRepository<StatisticModel, String> {
+public interface StatisticRepository extends JpaRepository<StatisticModel, Integer> {
 
 }

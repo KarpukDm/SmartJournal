@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by KarpukDM on 22.10.2016.
  */
 @Service
-public class JournalTemplateTypeServiceImpl extends GenericServiceImpl<JournalTemplateTypeModel, String, JournalTemplateTypeRepository>
+public class JournalTemplateTypeServiceImpl extends GenericServiceImpl<JournalTemplateTypeModel, Integer, JournalTemplateTypeRepository>
         implements JournalTemplateTypeService {
 
     public JournalTemplateTypeServiceImpl(JournalTemplateTypeRepository repository) {

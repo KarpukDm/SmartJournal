@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by KarpukDM on 22.10.2016.
  */
 @Service
-public class UserServiceImpl extends GenericServiceImpl<UserModel, String, UserRepository> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<UserModel, Integer, UserRepository> implements UserService {
 
     public UserServiceImpl(UserRepository repository) {
         super(repository);

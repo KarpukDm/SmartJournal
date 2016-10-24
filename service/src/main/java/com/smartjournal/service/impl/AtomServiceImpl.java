@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by KarpukDM on 22.10.2016.
  */
 @Service
-public class AtomServiceImpl extends GenericServiceImpl<AtomModel, String, AtomRepository> implements AtomService {
+public class AtomServiceImpl extends GenericServiceImpl<AtomModel, Integer, AtomRepository> implements AtomService {
 
     public AtomServiceImpl(AtomRepository repository) {
         super(repository);

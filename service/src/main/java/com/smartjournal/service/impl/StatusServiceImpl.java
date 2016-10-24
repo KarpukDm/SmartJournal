@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by KarpukDM on 22.10.2016.
  */
 @Service
-public class StatusServiceImpl extends GenericServiceImpl<StatusModel, String, StatusRepository> implements StatusService {
+public class StatusServiceImpl extends GenericServiceImpl<StatusModel, Integer, StatusRepository> implements StatusService {
 
     public StatusServiceImpl(StatusRepository repository) {
         super(repository);

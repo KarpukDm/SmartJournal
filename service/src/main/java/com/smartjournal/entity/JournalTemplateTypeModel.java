@@ -9,12 +9,12 @@ import java.io.Serializable;
  * Created by KarpukDM on 22.10.2016.
  */
 @Entity
-public class JournalTemplateTypeModel implements Serializable, Persistable<String> {
+public class JournalTemplateTypeModel implements Serializable, Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -26,7 +26,7 @@ public class JournalTemplateTypeModel implements Serializable, Persistable<Strin
     public JournalTemplateTypeModel() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class JournalTemplateTypeModel implements Serializable, Persistable<Strin
         return id == null;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

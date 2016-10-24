@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by karpukdm on 10/24/16.
  */
 @Service
-public class AppServiceImpl extends GenericServiceImpl<AppModel, String, AppRepository> implements AppService {
+public class AppServiceImpl extends GenericServiceImpl<AppModel, Integer, AppRepository> implements AppService {
     public AppServiceImpl(AppRepository repository) {
         super(repository);
     }

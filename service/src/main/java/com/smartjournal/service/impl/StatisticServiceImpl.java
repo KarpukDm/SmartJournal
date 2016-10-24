@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by KarpukDM on 22.10.2016.
  */
 @Service
-public class StatisticServiceImpl extends GenericServiceImpl<StatisticModel, String, StatisticRepository> implements StatisticService {
+public class StatisticServiceImpl extends GenericServiceImpl<StatisticModel, Integer, StatisticRepository> implements StatisticService {
 
     public StatisticServiceImpl(StatisticRepository repository) {
         super(repository);

@@ -9,12 +9,12 @@ import java.io.Serializable;
  * Created by karpukdm on 10/24/16.
  */
 @Entity
-public class AppModel implements Serializable, Persistable<String> {
+public class AppModel implements Serializable, Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -50,10 +50,6 @@ public class AppModel implements Serializable, Persistable<String> {
         this.appSecret = appSecret;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -63,8 +59,12 @@ public class AppModel implements Serializable, Persistable<String> {
     }
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

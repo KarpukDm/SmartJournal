@@ -10,12 +10,12 @@ import java.util.List;
  * Created by KarpukDM on 22.10.2016.
  */
 @Entity
-public class UserModel implements Serializable, Persistable<String> {
+public class UserModel implements Serializable, Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -59,7 +59,7 @@ public class UserModel implements Serializable, Persistable<String> {
     public UserModel() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class UserModel implements Serializable, Persistable<String> {
         return id == null;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

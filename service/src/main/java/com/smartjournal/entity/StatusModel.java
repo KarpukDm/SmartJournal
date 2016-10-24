@@ -9,12 +9,12 @@ import java.io.Serializable;
  * Created by KarpukDM on 22.10.2016.
  */
 @Entity
-public class StatusModel implements Serializable, Persistable<String> {
+public class StatusModel implements Serializable, Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "value", nullable = false)
     private String value;
@@ -30,7 +30,7 @@ public class StatusModel implements Serializable, Persistable<String> {
     public StatusModel() {
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class StatusModel implements Serializable, Persistable<String> {
         return id == null;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
