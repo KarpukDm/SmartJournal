@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, Response} from "@angular/http";
 import {UserModel} from "../dto/user.model";
 import {SignUpModel} from "../dto/signup.model";
-import "rxjs/add/operator/toPromise";
+import "../rxjs-extensions";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class SignUpService {
@@ -13,12 +14,17 @@ export class SignUpService {
     constructor(private http: Http) {
     }
 
-    createUser(signUpModel: SignUpModel): Promise<UserModel> {
+    createUser(signUpModel: SignUpModel): Observable<UserModel> {
         return this.http
             .post(this.signUpUrl, JSON.stringify(signUpModel), {headers: this.headers})
-            .toPromise()
-            .then(res => res.json().data)
+            .map(this.extractData)
             .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        console.log(body);
+        return body.data || { };
     }
 
     private handleError(error: any): Promise<any> {

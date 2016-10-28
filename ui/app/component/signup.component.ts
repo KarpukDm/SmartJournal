@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {UserModel} from "../dto/user.model";
 import {SignUpService} from "../service/signup.service";
 import {SignUpModel} from "../dto/signup.model";
+import "../rxjs-extensions";
 
 @Component({
     moduleId: module.id,
@@ -13,6 +14,7 @@ import {SignUpModel} from "../dto/signup.model";
 export class SignUpComponent {
     userModel: UserModel;
     signUpModel: SignUpModel;
+    errorMessage: string;
 
     constructor(private signUpService: SignUpService) {
         this.userModel = new UserModel();
@@ -26,8 +28,11 @@ export class SignUpComponent {
 
     signUp(signUpModel: SignUpModel): void {
         this.signUpService.createUser(signUpModel)
-            .then(userModel => {
-                this.userModel = userModel;
-            });
+            .subscribe(
+                userModel => {
+                    this.userModel = userModel;
+                },
+                error => this.errorMessage = <any>error
+            );
     }
 }
