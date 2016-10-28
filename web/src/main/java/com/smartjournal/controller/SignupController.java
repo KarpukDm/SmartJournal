@@ -39,8 +39,18 @@ public class SignupController {
         }
 
         UserModel userModel = new UserModel(signupModel.getName(), signupModel.getEmail(), signupModel.getPassword());
-        userService.save(userModel);
+        userModel.setId(1);
+        //userService.save(userModel);
 
         return new ResponseEntity(userModel, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public ResponseEntity signup2(){
+
+        UserModel x = new UserModel("fdsfsd", "dfsdfsdf", "dffdsfsdfsd");
+        x.setId(1);
+
+        return new ResponseEntity(x, HttpStatus.OK);
     }
 }

@@ -50,7 +50,7 @@ public class SignupValidator implements Validator {
 
 
     private boolean isValidName(String name){
-        return name.length() > 5;
+        return name.length() > 2;
     }
 
     private boolean isValidPassword(String p1, String p2){

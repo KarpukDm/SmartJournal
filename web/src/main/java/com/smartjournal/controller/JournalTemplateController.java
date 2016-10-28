@@ -28,6 +28,6 @@ public class JournalTemplateController {
     @RequestMapping(value = "/me", method = RequestMethod.GET)
     public ResponseEntity getMyTemplates(){
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("dfdsfsdfsdfdsf", HttpStatus.OK);
     }
 }

@@ -1,5 +1,7 @@
 package com.smartjournal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * Created by karpukdm on 10/24/16.
  */
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AppModel implements Serializable, Persistable<Integer> {
 
     @Id
@@ -67,6 +70,7 @@ public class AppModel implements Serializable, Persistable<Integer> {
         this.id = id;
     }
 
+    @JsonIgnore
     @Override
     public boolean isNew() {
         return id == null;
