@@ -7,6 +7,7 @@ import {Component} from "@angular/core";
     <h1>{{title}}</h1>
     <nav>
       <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+      <a routerLink="/authenticate" routerLinkActive="active">Login</a>
     </nav>
     <router-outlet></router-outlet>
   `

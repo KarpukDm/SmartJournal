@@ -40,7 +40,7 @@ public class SignupController {
 
         UserModel userModel = new UserModel(signupModel.getName(), signupModel.getEmail(), signupModel.getPassword());
         userModel.setId(1);
-        //userService.save(userModel);
+        userService.save(userModel);
 
         return new ResponseEntity(userModel, HttpStatus.OK);
     }
