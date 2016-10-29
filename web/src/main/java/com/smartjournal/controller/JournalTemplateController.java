@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by KarpukDM on 22.10.2016.
  */
 @RestController
-//@RequestMapping(value = "/template")
+@RequestMapping(value = "/template")
 public class JournalTemplateController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

@@ -8,6 +8,7 @@ import {AppComponent} from "./component/app.component";
 import {SignUpComponent} from "./component/signup.component";
 import {SignUpService} from "./service/signup.service";
 import {LoginComponent} from "./component/login.component";
+import {JournalTemplateComponent} from "./component/journal-template.component";
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import {LoginComponent} from "./component/login.component";
     declarations: [
         AppComponent,
         SignUpComponent,
-        LoginComponent
+        LoginComponent,
+        JournalTemplateComponent
     ],
     providers: [ SignUpService, LoginComponent ],
     bootstrap: [ AppComponent ]

@@ -30,6 +30,7 @@ export class SignUpComponent {
         this.signUpService.createUser(signUpModel)
             .subscribe(
                 userModel => {
+                    console.log(userModel.email);
                     this.userModel = userModel;
                 },
                 error => this.errorMessage = <any>error

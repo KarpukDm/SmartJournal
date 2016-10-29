@@ -26,6 +26,10 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
     @Column(name = "level")
     private Integer level;
 
+    @ElementCollection
+    @Column(name = "index")
+    private List<Integer> index;
+
     @Column(name = "template_name", nullable = false)
     private String templateName;
 
@@ -52,6 +56,14 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.templateName = templateName;
         this.password = password;
         this.parent = parent;
+    }
+
+    public JournalTemplateModel(JournalTemplateTypeModel type, List<Integer> index, String templateName, String password, List<JournalTemplateModel> child) {
+        this.type = type;
+        this.index = index;
+        this.templateName = templateName;
+        this.password = password;
+        this.child = child;
     }
 
     public JournalTemplateModel() {
@@ -125,5 +137,13 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Integer> getIndex() {
+        return index;
+    }
+
+    public void setIndex(List<Integer> index) {
+        this.index = index;
     }
 }
