@@ -1,11 +1,10 @@
 package com.smartjournal.service;
 
-import com.smartjournal.entity.UserModel;
-import com.smartjournal.service.common.GenericService;
+import com.smartjournal.datamodel.entity.UserModel;
 
 /**
  * Created by KarpukDM on 22.10.2016.
  */
-public interface UserService extends GenericService<UserModel, Integer>{
+public interface UserService {
     UserModel findOneUserModelByEmailAndPassword(String email, String password);
 }

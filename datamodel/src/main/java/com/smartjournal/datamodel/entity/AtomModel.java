@@ -1,4 +1,4 @@
-package com.smartjournal.entity;
+package com.smartjournal.datamodel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,21 +12,21 @@ import java.io.Serializable;
  */
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JournalTemplateTypeModel implements Serializable, Persistable<Integer> {
+public class AtomModel implements Serializable, Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "type", nullable = false)
-    private String type;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    public JournalTemplateTypeModel(String type) {
-        this.type = type;
+    public AtomModel(String name) {
+        this.name = name;
     }
 
-    public JournalTemplateTypeModel() {
+    public AtomModel() {
     }
 
     public Integer getId() {
@@ -43,11 +43,11 @@ public class JournalTemplateTypeModel implements Serializable, Persistable<Integ
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,6 +1,6 @@
 package com.smartjournal.repository;
 
-import com.smartjournal.entity.UserModel;
+import com.smartjournal.datamodel.entity.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

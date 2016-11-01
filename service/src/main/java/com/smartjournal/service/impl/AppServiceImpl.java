@@ -1,9 +1,9 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.entity.AppModel;
+import com.smartjournal.datamodel.entity.AppModel;
 import com.smartjournal.repository.AppRepository;
 import com.smartjournal.service.AppService;
-import com.smartjournal.service.common.impl.GenericServiceImpl;
+import com.smartjournal.service.common.GenericServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

@@ -3,3 +3,11 @@
 <input [(ngModel)]="journalTemplate.password" placeholder="password" />
 
 <button (click)="createBaseTemplate(journalTemplate)">Create template</button>
+
+<br/>
+
+<input [(ngModel)]="newTemplate.type" placeholder="type" />
+<input [(ngModel)]="newTemplate.templateName" placeholder="templateName" />
+<input [(ngModel)]="newTemplate.password" placeholder="password" />
+
+<button (click)="createNewTemplate(journalTemplate)">Create new template</button>

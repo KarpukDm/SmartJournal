@@ -36,13 +36,20 @@ export class JournalTemplateComponent {
                 },
                 error => this.errorMessage = <any>error
             );
+
+        console.log(this.journalTemplate);
     }
 
     private createNewTemplate(journalTemplate: JournalTemplateModel): void{
 
+        console.log(this.journalTemplate);
+
         this.indexes = journalTemplate.index;
         this.newTemplate = journalTemplate;
-        this.journalTemplate.child = this.createNewLevel(this.journalTemplate, 0);
+        this.journalTemplate.child = [];
+        this.journalTemplate.child = this.createNewLevel(this.newTemplate, 0);
+
+        console.log(this.journalTemplate);
 
         this.journalTemplateService.createTemplate(this.journalTemplate)
             .subscribe(
@@ -54,8 +61,10 @@ export class JournalTemplateComponent {
     }
 
     private createNewLevel(journalTemplate: JournalTemplateModel, level: number): JournalTemplateModel[]{
-        if(level === this.indexes.length){
+        if(journalTemplate.index === undefined){
+            this.journalTemplate.index = [];
             this.newTemplate.index.push(0);
+            journalTemplate.child = [];
             journalTemplate.child.push(this.newTemplate);
             return journalTemplate.child;
         }

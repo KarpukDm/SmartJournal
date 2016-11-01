@@ -21,6 +21,8 @@
 	<modules>
 		<module>web</module>
 		<module>service</module>
+        <module>datamodel</module>
+		<module>repository</module>
 	</modules>
 
 	<properties>

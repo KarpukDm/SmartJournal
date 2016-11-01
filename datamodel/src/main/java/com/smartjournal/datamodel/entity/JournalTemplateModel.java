@@ -1,4 +1,4 @@
-package com.smartjournal.entity;
+package com.smartjournal.datamodel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,7 +21,7 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
     private Integer id;
 
     @Column(name = "type", nullable = false)
-    private JournalTemplateTypeModel type;
+    private String type;
 
     @Column(name = "level")
     private Integer level;
@@ -45,20 +45,20 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
     @OneToMany(cascade = CascadeType.ALL)
     private List<AtomModel> atoms;
 
-    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName, String password) {
+    public JournalTemplateModel(String type, String templateName, String password) {
         this.type = type;
         this.templateName = templateName;
         this.password = password;
     }
 
-    public JournalTemplateModel(JournalTemplateTypeModel type, String templateName, String password, JournalTemplateModel parent) {
+    public JournalTemplateModel(String type, String templateName, String password, JournalTemplateModel parent) {
         this.type = type;
         this.templateName = templateName;
         this.password = password;
         this.parent = parent;
     }
 
-    public JournalTemplateModel(JournalTemplateTypeModel type, List<Integer> index, String templateName, String password, List<JournalTemplateModel> child) {
+    public JournalTemplateModel(String type, List<Integer> index, String templateName, String password, List<JournalTemplateModel> child) {
         this.type = type;
         this.index = index;
         this.templateName = templateName;
@@ -83,11 +83,11 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.id = id;
     }
 
-    public JournalTemplateTypeModel getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(JournalTemplateTypeModel type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -1,4 +1,4 @@
-package com.smartjournal.entity;
+package com.smartjournal.datamodel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

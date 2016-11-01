@@ -6,25 +6,19 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service</artifactId>
+    <artifactId>datamodel</artifactId>
     <packaging>war</packaging>
-    <name>service Maven Webapp</name>
+    <name>datamodel Maven Webapp</name>
     <url>http://maven.apache.org</url>
-
     <dependencies>
         <dependency>
-            <groupId>com.restfb</groupId>
-            <artifactId>restfb</artifactId>
-            <version>1.31.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.smartjournal</groupId>
-            <artifactId>repository</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
-        <finalName>service</finalName>
+        <finalName>datamodel</finalName>
     </build>
 </project>
