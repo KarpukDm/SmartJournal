@@ -3,7 +3,7 @@ package com.smartjournal.service.impl;
 import com.smartjournal.datamodel.entity.StatisticModel;
 import com.smartjournal.repository.StatisticRepository;
 import com.smartjournal.service.StatisticService;
-import com.smartjournal.service.common.GenericServiceImpl;
+import com.smartjournal.service.common.impl.GenericServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

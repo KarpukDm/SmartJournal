@@ -1,7 +1,7 @@
 package com.smartjournal.controller;
 
+import com.smartjournal.datamodel.entity.UserModel;
 import com.smartjournal.dto.SignupModel;
-import com.smartjournal.entity.UserModel;
 import com.smartjournal.service.UserService;
 import com.smartjournal.validator.SignupValidator;
 import org.springframework.beans.factory.annotation.Autowired;

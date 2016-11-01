@@ -1,7 +1,7 @@
 package com.smartjournal.auth.facebook;
 
+import com.smartjournal.datamodel.entity.AppModel;
 import com.smartjournal.dto.AccessTokenModel;
-import com.smartjournal.entity.AppModel;
 import com.smartjournal.service.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.smartjournal.security;
 
-import com.smartjournal.entity.UserModel;
+import com.smartjournal.datamodel.entity.UserModel;
 import com.smartjournal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

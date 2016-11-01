@@ -3,7 +3,7 @@ package com.smartjournal.service.impl;
 import com.smartjournal.datamodel.entity.JournalTemplateModel;
 import com.smartjournal.repository.JournalTemplateRepository;
 import com.smartjournal.service.JournalTemplateService;
-import com.smartjournal.service.common.GenericServiceImpl;
+import com.smartjournal.service.common.impl.GenericServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

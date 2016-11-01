@@ -1,7 +1,7 @@
 package com.smartjournal.validator;
 
+import com.smartjournal.datamodel.entity.UserModel;
 import com.smartjournal.dto.SignupModel;
-import com.smartjournal.entity.UserModel;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -1,6 +1,6 @@
 package com.smartjournal.security;
 
-import com.smartjournal.entity.UserModel;
+import com.smartjournal.datamodel.entity.UserModel;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
