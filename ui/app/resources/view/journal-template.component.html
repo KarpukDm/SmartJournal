@@ -1,5 +1,17 @@
-<input [(ngModel)]="newTemplate.type" placeholder="type" />
-<input [(ngModel)]="newTemplate.templateName" placeholder="templateName" />
-<input [(ngModel)]="newTemplate.password" placeholder="password" />
+<ul>
+    <li *ngFor="let t of templates">
+        <span>{{t.templateName}}</span>
+        <span>{{t.type}}</span>
+        <button (click)="selectTemplate(t.index); $event.stopPropagation()">Create child</button>
+    </li>
+</ul>
 
-<button (click)="createTemplate(0)">Create template</button>
+<br/>
+
+<div *ngIf="templates == null || isSelected == true">
+    <input [(ngModel)]="newTemplate.type" placeholder="type"/>
+    <input [(ngModel)]="newTemplate.templateName" placeholder="templateName"/>
+    <input [(ngModel)]="newTemplate.password" placeholder="password"/>
+
+    <button (click)="createTemplate()">Create</button>
+</div>
