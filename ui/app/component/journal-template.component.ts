@@ -12,23 +12,58 @@ import {JournalTemplateService} from "../service/journal-template.service";
 })
 export class JournalTemplateComponent {
 
-    private journalTemplate: JournalTemplateModel;
+    private template: JournalTemplateModel;
+    private newTemplate: JournalTemplateModel;
+    private templates: Array<JournalTemplateModel>;
     private errorMessage: string;
 
     constructor(private journalTemplateService: JournalTemplateService){
-        this.journalTemplate = new JournalTemplateModel();
+        this.newTemplate = new JournalTemplateModel();
     }
 
-    private creatTemplate(journalTemplate: JournalTemplateModel): void{
+    private createTemplate(index: number): void{
 
-        console.log(journalTemplate);
-    }
+        if(this.template !== undefined) {
 
-    private createNewLevel(journalTemplate: JournalTemplateModel, level: number): JournalTemplateModel[]{
-        if(journalTemplate.index === undefined){
-            return journalTemplate.child;
+            if(this.templates === undefined || this.templates == null) {
+                this.templates = [this.template];
+            }
+
+            let searchedTemplate = this.findTemplate(index, this.templates);
+            if (searchedTemplate != null) {
+                if (searchedTemplate.child === undefined || searchedTemplate.child == null) {
+                    searchedTemplate.child = [];
+                }
+                if(this.newTemplate.child === undefined || this.newTemplate.child == null){
+                    this.newTemplate.child = [];
+                }
+                this.newTemplate.index = (searchedTemplate.index + 1) * 10 + this.newTemplate.child.length;
+                searchedTemplate.child.push(this.newTemplate);
+                this.newTemplate = new JournalTemplateModel();
+            }
+        }
+        else{
+            this.newTemplate.index = 0;
+            this.newTemplate.child = [];
+            this.template = this.newTemplate;
+            this.newTemplate = new JournalTemplateModel();
         }
 
-        //journalTemplate.child = this.createNewLevel(journalTemplate.child[this.indexes[level]], level + 1);
+        console.log(this.template);
+    }
+
+    private findTemplate(index: number, templates: JournalTemplateModel[]): JournalTemplateModel{
+
+        for(let i of templates){
+            if(i.index == index){
+                return i;
+            }
+
+            if(i.child !== undefined || i.child != null){
+                this.findTemplate(index, i.child);
+            }
+        }
+
+        return null;
     }
 }
