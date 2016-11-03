@@ -87,4 +87,14 @@ export class JournalTemplateComponent {
 
         return null;
     }
+
+    private saveTemplate(): void{
+        this.journalTemplateService.createTemplate(this.template)
+            .subscribe(
+                template => {
+                    this.template = template;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
 }

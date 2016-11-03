@@ -23,21 +23,14 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "level")
-    private Integer level;
-
-    @ElementCollection
     @Column(name = "index")
-    private List<Integer> index;
+    private Integer index;
 
     @Column(name = "template_name", nullable = false)
     private String templateName;
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "parent")
-    private JournalTemplateModel parent;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<JournalTemplateModel> child;
@@ -51,19 +44,21 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.password = password;
     }
 
-    public JournalTemplateModel(String type, String templateName, String password, JournalTemplateModel parent) {
-        this.type = type;
-        this.templateName = templateName;
-        this.password = password;
-        this.parent = parent;
-    }
-
-    public JournalTemplateModel(String type, List<Integer> index, String templateName, String password, List<JournalTemplateModel> child) {
+    public JournalTemplateModel(String type, Integer index, String templateName, String password, List<JournalTemplateModel> child) {
         this.type = type;
         this.index = index;
         this.templateName = templateName;
         this.password = password;
         this.child = child;
+    }
+
+    public JournalTemplateModel(String type, Integer index, String templateName, String password, List<JournalTemplateModel> child, List<AtomModel> atoms) {
+        this.type = type;
+        this.index = index;
+        this.templateName = templateName;
+        this.password = password;
+        this.child = child;
+        this.atoms = atoms;
     }
 
     public JournalTemplateModel() {
@@ -99,14 +94,6 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.templateName = templateName;
     }
 
-    public JournalTemplateModel getParent() {
-        return parent;
-    }
-
-    public void setParent(JournalTemplateModel parent) {
-        this.parent = parent;
-    }
-
     public List<JournalTemplateModel> getChild() {
         return child;
     }
@@ -123,14 +110,6 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.atoms = atoms;
     }
 
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -139,11 +118,11 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
         this.password = password;
     }
 
-    public List<Integer> getIndex() {
+    public Integer getIndex() {
         return index;
     }
 
-    public void setIndex(List<Integer> index) {
+    public void setIndex(Integer index) {
         this.index = index;
     }
 }
