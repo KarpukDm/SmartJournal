@@ -3,6 +3,16 @@
         <span>{{t.templateName}}</span>
         <span>{{t.type}}</span>
         <button (click)="selectTemplate(t.index); $event.stopPropagation()">Create child</button>
+        <button (click)="displayChildren(t.index); $event.stopPropagation()">Display children</button>
+
+        <div *ngIf="isDisplay == true">
+    <li *ngFor="let ch of getChildren()">
+        <span>{{ch.templateName}}</span>
+        <span>{{ch.type}}</span>
+        <button (click)="selectTemplate(ch.index); $event.stopPropagation()">Create child</button>
+        <button (click)="displayChildren(ch.index); $event.stopPropagation()">Display children</button>
+    </li>
+    </div>
     </li>
 </ul>
 

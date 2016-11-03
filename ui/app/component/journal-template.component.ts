@@ -17,17 +17,30 @@ export class JournalTemplateComponent {
     private templates: Array<JournalTemplateModel>;
     private index: number;
     private isSelected: boolean;
+    private isDisplay: boolean;
+    private diplayArrayIndex: number;
     private errorMessage: string;
 
     constructor(private journalTemplateService: JournalTemplateService){
         this.newTemplate = new JournalTemplateModel();
         this.index = 0;
         this.isSelected = true;
+        this.isDisplay = false;
     }
 
     private selectTemplate(index: number): void{
         this.index = index;
         this.isSelected = true;
+    }
+
+    private displayChildren(index: number){
+        this.isDisplay = true;
+        this.isSelected = false;
+        this.diplayArrayIndex = index;
+    }
+
+    private getChildren(): JournalTemplateModel[]{
+        return this.findTemplate(this.diplayArrayIndex, this.templates).child;
     }
 
     private createTemplate(): void{
@@ -65,7 +78,10 @@ export class JournalTemplateComponent {
             }
 
             if(i.child !== undefined || i.child != null){
-                this.findTemplate(index, i.child);
+                let temp = this.findTemplate(index, i.child);
+                if(temp != null){
+                    return temp;
+                }
             }
         }
 
