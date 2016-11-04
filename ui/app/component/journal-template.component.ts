@@ -18,14 +18,16 @@ export class JournalTemplateComponent {
     private index: number;
     private isSelected: boolean;
     private isDisplay: boolean;
-    private diplayArrayIndex: number;
     private errorMessage: string;
+    private indexesSequence: number[];
+    private currentType: string;
 
     constructor(private journalTemplateService: JournalTemplateService){
         this.newTemplate = new JournalTemplateModel();
         this.index = 0;
         this.isSelected = true;
         this.isDisplay = false;
+        this.indexesSequence = [];
     }
 
     private selectTemplate(index: number): void{
@@ -34,13 +36,35 @@ export class JournalTemplateComponent {
     }
 
     private displayChildren(index: number){
+        this.indexesSequence.push(index);
+        let t = this.findTemplate(this.indexesSequence.slice(-1)[0], this.templates);
+        if(t != null){
+            this.currentType = t.type;
+        }
         this.isDisplay = true;
         this.isSelected = false;
-        this.diplayArrayIndex = index;
     }
 
-    private getChildren(): JournalTemplateModel[]{
-        return this.findTemplate(this.diplayArrayIndex, this.templates).child;
+    private getTemplates(): JournalTemplateModel[]{
+
+        if(this.indexesSequence.length == 0){
+            if(this.template !== undefined && this.template != null) {
+                this.currentType = this.template.type;
+            }
+            return this.templates;
+        }
+
+        let lastIndex = this.indexesSequence.slice(-1)[0];
+        let children = this.findTemplate(lastIndex, this.templates).child;
+
+        if(children === undefined || children.length == 0){
+            //  показать сообщение об отсутствии дочерних шаблонов
+            this.goBack();
+            return this.getTemplates();
+        }
+        let t = this.findTemplate(lastIndex, this.templates).child;
+        this.currentType = t[0].type;
+        return this.findTemplate(lastIndex, this.templates).child;
     }
 
     private createTemplate(): void{
@@ -86,6 +110,10 @@ export class JournalTemplateComponent {
         }
 
         return null;
+    }
+
+    private goBack(): void {
+        this.indexesSequence.pop();
     }
 
     private saveTemplate(): void{
