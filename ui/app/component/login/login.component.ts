@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
-import "../rxjs-extensions";
-import {LoginModel} from "../dto/login.model";
-import {AuthModel} from "../dto/auth.model";
-import {LoginService} from "../service/login.service";
+import "../../rxjs-extensions";
+import {LoginModel} from "../../dto/login.model";
+import {AuthModel} from "../../dto/auth.model";
+import {LoginService} from "../../service/login.service";
 
 @Component({
     moduleId: module.id,
     selector: 'login',
-    templateUrl: '../resources/view/login.component.html',
+    templateUrl: '../../resources/view/login/login.component.html',
     //styleUrls: [ '../resources/css/signup.component.css' ],
     providers: [LoginService]
 })

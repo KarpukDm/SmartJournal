@@ -1,10 +1,10 @@
 <h2>{{displayType}}</h2>
 <div *ngIf="templates != null">
-    <ul>
-        <li *ngFor="let t of getTemplates()">
+    <ul class="heroes">
+        <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index); " [class.selected]="hero === selectedHero">
+            <span class="badge">{{t.child.length}}</span>
             <span>{{t.templateName}}</span>
-            <button (click)="selectTemplate(t.index); $event.stopPropagation()">Create child</button>
-            <button (click)="displayChildren(t.index); $event.stopPropagation()">Display children</button>
+            <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">+</button>
         </li>
     </ul>
 </div>

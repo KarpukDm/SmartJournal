@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
-import "../rxjs-extensions";
-import {JournalTemplateModel} from "../dto/journal-template.model";
-import {JournalTemplateService} from "../service/journal-template.service";
+import "../../rxjs-extensions";
+import {JournalTemplateModel} from '../../dto/journal-template.model';
+import {JournalTemplateService} from "../../service/journal-template.service";
 
 @Component({
     moduleId: module.id,
-    selector: 'journal-template',
-    templateUrl: '../resources/view/journal-template-creator.component.html',
-    //styleUrls: [ '../resources/css/signup.component.css' ],
+    selector: 'journal-template-creator',
+    templateUrl: '../../resources/view/journal-template/journal-template-creator.component.html',
+    styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
     providers: [JournalTemplateService]
 })
 export class JournalTemplateCreatorComponent {
@@ -78,6 +78,7 @@ export class JournalTemplateCreatorComponent {
                     searchedTemplate.child = [];
                 }
                 this.newTemplate.index = (searchedTemplate.index + 1) * 10 + searchedTemplate.child.length;
+                this.newTemplate.child = [];
                 searchedTemplate.child.push(this.newTemplate);
                 this.currentType = this.newTemplate.type;
                 this.newTemplate = new JournalTemplateModel();
@@ -134,7 +135,7 @@ export class JournalTemplateCreatorComponent {
         this.reset();
     }
 
-    private reset(){
+    private reset(): void {
         this.index = 0;
         this.isSelected = true;
         this.isDisplay = false;
@@ -143,5 +144,6 @@ export class JournalTemplateCreatorComponent {
         this.newTemplate = new JournalTemplateModel();
         this.currentType = "";
         this.displayType = "";
+        this.template = new JournalTemplateModel();
     }
 }

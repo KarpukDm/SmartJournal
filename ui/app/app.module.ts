@@ -5,10 +5,13 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./component/app.component";
-import {SignUpComponent} from "./component/signup.component";
+import {SignUpComponent} from "./component/signup/signup.component";
 import {SignUpService} from "./service/signup.service";
-import {LoginComponent} from "./component/login.component";
-import {JournalTemplateCreatorComponent} from "./component/journal-template-creator.component";
+import {LoginComponent} from "./component/login/login.component";
+import {JournalTemplateCreatorComponent} from "./component/journal-template/journal-template-creator.component";
+import {JournalTemplateViewerComponent} from "./component/journal-template/journal-template-viewer-component";
+import {JournalTemplateFinderComponent} from "./component/journal-template/journal-template-finder.component";
+import {JournalTemplateEditorComponent} from "./component/journal-template/journal-template-editor.component";
 
 @NgModule({
     imports: [
@@ -21,7 +24,10 @@ import {JournalTemplateCreatorComponent} from "./component/journal-template-crea
         AppComponent,
         SignUpComponent,
         LoginComponent,
-        JournalTemplateCreatorComponent
+        JournalTemplateCreatorComponent,
+        JournalTemplateViewerComponent,
+        JournalTemplateFinderComponent,
+        JournalTemplateEditorComponent
     ],
     providers: [ SignUpService, LoginComponent ],
     bootstrap: [ AppComponent ]
