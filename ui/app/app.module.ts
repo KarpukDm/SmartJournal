@@ -8,7 +8,7 @@ import {AppComponent} from "./component/app.component";
 import {SignUpComponent} from "./component/signup.component";
 import {SignUpService} from "./service/signup.service";
 import {LoginComponent} from "./component/login.component";
-import {JournalTemplateComponent} from "./component/journal-template.component";
+import {JournalTemplateCreatorComponent} from "./component/journal-template-creator.component";
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import {JournalTemplateComponent} from "./component/journal-template.component";
         AppComponent,
         SignUpComponent,
         LoginComponent,
-        JournalTemplateComponent
+        JournalTemplateCreatorComponent
     ],
     providers: [ SignUpService, LoginComponent ],
     bootstrap: [ AppComponent ]

@@ -1,11 +1,13 @@
-<h2>{{currentType}}</h2>
-<ul>
-    <li *ngFor="let t of getTemplates()">
-        <span>{{t.templateName}}</span>
-        <button (click)="selectTemplate(t.index); $event.stopPropagation()">Create child</button>
-        <button (click)="displayChildren(t.index); $event.stopPropagation()">Display children</button>
-    </li>
-</ul>
+<h2>{{displayType}}</h2>
+<div *ngIf="templates != null">
+    <ul>
+        <li *ngFor="let t of getTemplates()">
+            <span>{{t.templateName}}</span>
+            <button (click)="selectTemplate(t.index); $event.stopPropagation()">Create child</button>
+            <button (click)="displayChildren(t.index); $event.stopPropagation()">Display children</button>
+        </li>
+    </ul>
+</div>
 
 <br/>
 
