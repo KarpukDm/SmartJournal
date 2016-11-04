@@ -125,6 +125,7 @@ export class JournalTemplateCreatorComponent {
         this.journalTemplateService.createTemplate(this.template)
             .subscribe(
                 template => {
+                    console.log(template);
                     this.template = template;
                 },
                 error => this.errorMessage = <any>error

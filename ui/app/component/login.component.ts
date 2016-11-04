@@ -24,10 +24,11 @@ export class LoginComponent {
         };
     }
 
-    login(loginModel: LoginModel): void {
-        this.loginService.login(loginModel)
+    login(): void {
+        this.loginService.login(this.loginModel)
             .subscribe(
                 authModel => {
+                    console.log(authModel);
                     this.authModel = authModel;
                 },
                 error => this.errorMessage = <any>error

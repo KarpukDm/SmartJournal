@@ -1,6 +1,8 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.datamodel.entity.JournalTemplateModel;
+import com.smartjournal.service.JournalTemplateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/template")
 public class JournalTemplateController {
 
+    @Autowired
+    private JournalTemplateService journalTemplateService;
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity createTemplate(@RequestBody JournalTemplateModel journalTemplateModel){
+
+        //journalTemplateService.save(journalTemplateModel);
 
         return new ResponseEntity(journalTemplateModel, HttpStatus.OK);
     }

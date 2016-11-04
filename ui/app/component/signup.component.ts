@@ -26,11 +26,11 @@ export class SignUpComponent {
         };
     }
 
-    signUp(signUpModel: SignUpModel): void {
-        this.signUpService.createUser(signUpModel)
+    signUp(): void {
+        this.signUpService.createUser(this.signUpModel)
             .subscribe(
                 userModel => {
-                    console.log(userModel.email);
+                    console.log(userModel);
                     this.userModel = userModel;
                 },
                 error => this.errorMessage = <any>error

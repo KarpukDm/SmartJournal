@@ -21,9 +21,7 @@ export class JournalTemplateService {
     }
 
     private extractData(res: Response) {
-        let body = res.json();
-        console.log(body);
-        return body.data || { };
+        return res.json();
     }
 
     private handleError(error: any): Promise<any> {
