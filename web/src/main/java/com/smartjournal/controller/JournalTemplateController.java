@@ -29,11 +29,16 @@ public class JournalTemplateController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getTemplate(
-            @RequestParam(name = "type", required = false) String type){
+            @RequestParam(name = "type", required = false) String type,
+            @RequestParam(name = "id", required = false) Integer id){
 
-        if(type != null && !"".equals(type)) {
+        if(type != null && !"".equals(type) && id == null) {
             JournalTemplateModel template = journalTemplateService.findOneByType(type.toLowerCase());
             return new ResponseEntity(Collections.singletonList(template), HttpStatus.OK);
+        }
+
+        if(id != null){
+            return new ResponseEntity(Collections.singletonList(journalTemplateService.findOneById(id)), HttpStatus.OK);
         }
 
         return new ResponseEntity(journalTemplateService.findAll(), HttpStatus.OK);

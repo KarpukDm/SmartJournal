@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import "../../rxjs-extensions";
 import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {JournalTemplateService} from "../../service/journal-template.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -23,7 +24,8 @@ export class JournalTemplateCreatorComponent {
     private displayType: string; //h2
     private currentType: string; //in input
 
-    constructor(private journalTemplateService: JournalTemplateService){
+    constructor(private router: Router,
+                private journalTemplateService: JournalTemplateService){
         this.newTemplate = new JournalTemplateModel();
         this.index = 0;
         this.isSelected = true;
@@ -139,7 +141,12 @@ export class JournalTemplateCreatorComponent {
                 error => this.errorMessage = <any>error
             );
 
-        this.reset();
+        this.gotoViewTemplate(this.templates[0].id);
+    }
+
+    private gotoViewTemplate(id: number): void {
+        let link = ['/template/view', id];
+        this.router.navigate(link);
     }
 
     private setCurrentType(index: number): void {
@@ -152,17 +159,5 @@ export class JournalTemplateCreatorComponent {
         if(t != null && t.child != null && t.child.length > 0) {
             this.currentType = t.child[0].type;
         }
-    }
-
-    private reset(): void {
-        this.index = 0;
-        this.isSelected = true;
-        this.isDisplay = false;
-        this.indexesSequence = [];
-        this.templates = [];
-        this.newTemplate = new JournalTemplateModel();
-        this.currentType = null;
-        this.displayType = null;
-        this.template = new JournalTemplateModel();
     }
 }

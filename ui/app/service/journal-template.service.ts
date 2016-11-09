@@ -21,9 +21,18 @@ export class JournalTemplateService {
             .catch(this.handleError);
     }
 
-    getTemplates(type: string): Observable<JournalTemplateModel[]>{
+    getTemplatesByType(type: string): Observable<JournalTemplateModel[]>{
         let params = new URLSearchParams();
         params.set('type', type);
+
+        return this.http.get(this.findTemplateUrl, { search: params })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getTemplatesByIndex(id: number): Observable<JournalTemplateModel[]>{
+        let params = new URLSearchParams();
+        params.set('id', "" + id);
 
         return this.http.get(this.findTemplateUrl, { search: params })
             .map(this.extractData)

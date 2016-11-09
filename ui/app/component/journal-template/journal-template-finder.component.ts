@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import "../../rxjs-extensions";
 import {JournalTemplateService} from "../../service/journal-template.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -15,14 +16,20 @@ export class JournalTemplateFinderComponent {
     private errorMessage;
     private templates;
 
-    constructor(private journalTemplateService: JournalTemplateService){
+    constructor( private router: Router,
+                 private journalTemplateService: JournalTemplateService){
         this.type = null;
+    }
+
+    gotoViewTemplate(id: number): void {
+        let link = ['/template/view', id];
+        this.router.navigate(link);
     }
 
     private getTemplates(){
 
         console.log(this.type);
-        this.journalTemplateService.getTemplates(this.type)
+        this.journalTemplateService.getTemplatesByType(this.type)
             .subscribe(
                 templates => {
                     console.log(templates);

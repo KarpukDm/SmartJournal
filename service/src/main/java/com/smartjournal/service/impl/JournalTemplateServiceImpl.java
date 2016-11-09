@@ -21,4 +21,9 @@ public class JournalTemplateServiceImpl  extends GenericServiceImpl<JournalTempl
     public JournalTemplateModel findOneByType(String type) {
         return repository.findOneByType(type);
     }
+
+    @Override
+    public JournalTemplateModel findOneById(Integer index) {
+        return repository.findOneById(index);
+    }
 }

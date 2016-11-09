@@ -10,4 +10,6 @@ import com.smartjournal.service.common.GenericService;
 public interface JournalTemplateService extends GenericService<JournalTemplateModel, Integer>{
 
     JournalTemplateModel findOneByType(String type);
+
+    JournalTemplateModel findOneById(Integer index);
 }
