@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 /**
  * Created by KarpukDM on 22.10.2016.
  */
@@ -20,8 +22,8 @@ public class JournalTemplateController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity createTemplate(@RequestBody JournalTemplateModel journalTemplateModel){
 
-        //journalTemplateService.save(journalTemplateModel);
-
+        journalTemplateModel.setType(journalTemplateModel.getType().toLowerCase());
+        journalTemplateService.save(journalTemplateModel);
         return new ResponseEntity(journalTemplateModel, HttpStatus.OK);
     }
 
@@ -29,12 +31,11 @@ public class JournalTemplateController {
     public ResponseEntity getTemplate(
             @RequestParam(name = "type", required = false) String type){
 
-        return new ResponseEntity(HttpStatus.OK);
-    }
+        if(type != null && !"".equals(type)) {
+            JournalTemplateModel template = journalTemplateService.findOneByType(type.toLowerCase());
+            return new ResponseEntity(Collections.singletonList(template), HttpStatus.OK);
+        }
 
-    @RequestMapping(value = "/me", method = RequestMethod.GET)
-    public ResponseEntity getMyTemplates(){
-
-        return new ResponseEntity("dfdsfsdfsdfdsf", HttpStatus.OK);
+        return new ResponseEntity(journalTemplateService.findAll(), HttpStatus.OK);
     }
 }

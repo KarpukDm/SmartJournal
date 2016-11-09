@@ -11,4 +11,24 @@ import {JournalTemplateService} from "../../service/journal-template.service";
 })
 export class JournalTemplateFinderComponent {
 
+    private type;
+    private errorMessage;
+    private templates;
+
+    constructor(private journalTemplateService: JournalTemplateService){
+        this.type = null;
+    }
+
+    private getTemplates(){
+
+        console.log(this.type);
+        this.journalTemplateService.getTemplates(this.type)
+            .subscribe(
+                templates => {
+                    console.log(templates);
+                    this.templates = templates;
+                },
+                error => this.errorMessage = <any>error
+            );
+    }
 }

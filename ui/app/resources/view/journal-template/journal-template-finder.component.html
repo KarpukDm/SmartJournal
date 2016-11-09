@@ -1,0 +1,13 @@
+<input [(ngModel)]="type" placeholder="type"/>
+
+<button (click)="getTemplates()">Find</button>
+<br/>
+
+<div *ngIf="templates != null && templates[0] != null">
+    <ul class="heroes">
+        <li *ngFor="let t of templates">
+            <span class="badge">{{t.type}}</span>
+            <span>{{t.templateName}}</span>
+        </li>
+    </ul>
+</div>

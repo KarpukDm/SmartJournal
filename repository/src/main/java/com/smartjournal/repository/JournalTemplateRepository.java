@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JournalTemplateRepository extends JpaRepository<JournalTemplateModel, Integer> {
 
+    JournalTemplateModel findOneByType(String type);
 }

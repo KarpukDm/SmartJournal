@@ -16,4 +16,9 @@ public class JournalTemplateServiceImpl  extends GenericServiceImpl<JournalTempl
     public JournalTemplateServiceImpl(JournalTemplateRepository repository) {
         super(repository);
     }
+
+    @Override
+    public JournalTemplateModel findOneByType(String type) {
+        return repository.findOneByType(type);
+    }
 }
