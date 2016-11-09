@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import "../../rxjs-extensions";
-import {JournalTemplateModel} from '../../dto/journal-template.model';
+import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {JournalTemplateService} from "../../service/journal-template.service";
 
 @Component({
@@ -29,22 +29,23 @@ export class JournalTemplateCreatorComponent {
         this.isSelected = true;
         this.isDisplay = false;
         this.indexesSequence = [];
+        this.currentType = null;
+        this.displayType = null;
     }
 
     private selectTemplate(index: number): void{
         console.log(this.currentType);
         console.log(this.displayType);
-        if(String(this.currentType).valueOf() == String(this.displayType).valueOf()){
-            this.newTemplate.type = "";
-        }
         this.index = index;
         this.isSelected = true;
+        this.setCurrentType(index);
     }
 
     private displayChildren(index: number){
         this.indexesSequence.push(index);
         this.isDisplay = true;
         this.isSelected = false;
+        this.setCurrentType(index);
     }
 
     private getTemplates(): JournalTemplateModel[]{
@@ -66,6 +67,7 @@ export class JournalTemplateCreatorComponent {
         }
         let t = this.findTemplate(lastIndex, this.templates).child;
         this.displayType = t[0].type;
+
         return this.findTemplate(lastIndex, this.templates).child;
     }
 
@@ -80,7 +82,11 @@ export class JournalTemplateCreatorComponent {
                 this.newTemplate.index = (searchedTemplate.index + 1) * 10 + searchedTemplate.child.length;
                 this.newTemplate.child = [];
                 searchedTemplate.child.push(this.newTemplate);
-                this.currentType = this.newTemplate.type;
+                if(this.currentType == null) {
+                    this.currentType = this.newTemplate.type;
+                }else{
+                    this.newTemplate.type = this.currentType;
+                }
                 this.newTemplate = new JournalTemplateModel();
             }
         }
@@ -94,7 +100,6 @@ export class JournalTemplateCreatorComponent {
                 this.templates = [this.template];
             }
         }
-        this.newTemplate.type = this.currentType;
         this.isSelected = false;
         console.log(this.template);
     }
@@ -118,8 +123,10 @@ export class JournalTemplateCreatorComponent {
     }
 
     private goBack(): void {
-        this.newTemplate.type = "";
+        this.currentType = null;
         this.indexesSequence.pop();
+        let lastIndex = this.indexesSequence.slice(-1)[0];
+        this.setCurrentType(lastIndex);
     }
 
     private saveTemplate(): void{
@@ -135,6 +142,18 @@ export class JournalTemplateCreatorComponent {
         this.reset();
     }
 
+    private setCurrentType(index: number): void {
+
+        if(index == null) {
+            index = this.indexesSequence.slice(-1)[0];
+        }
+        let t = this.findTemplate(index, this.templates)
+        this.currentType = null;
+        if(t != null && t.child != null && t.child.length > 0) {
+            this.currentType = t.child[0].type;
+        }
+    }
+
     private reset(): void {
         this.index = 0;
         this.isSelected = true;
@@ -142,8 +161,8 @@ export class JournalTemplateCreatorComponent {
         this.indexesSequence = [];
         this.templates = [];
         this.newTemplate = new JournalTemplateModel();
-        this.currentType = "";
-        this.displayType = "";
+        this.currentType = null;
+        this.displayType = null;
         this.template = new JournalTemplateModel();
     }
 }

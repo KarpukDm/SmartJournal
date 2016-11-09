@@ -12,7 +12,7 @@
 <br/>
 
 <div *ngIf="templates == null || isSelected == true">
-    <input [(ngModel)]="newTemplate.type" placeholder="type"/>
+    <input *ngIf="currentType == null" [(ngModel)]="newTemplate.type" placeholder="type"/>
     <input [(ngModel)]="newTemplate.templateName" placeholder="templateName"/>
     <input [(ngModel)]="newTemplate.password" placeholder="password"/>
 
