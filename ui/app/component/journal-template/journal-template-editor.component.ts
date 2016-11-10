@@ -71,7 +71,7 @@ export class JournalTemplateEditorComponent implements OnInit {
 
         if (children === undefined || children.length == 0) {
             //  показать сообщение об отсутствии дочерних шаблонов
-            this.goBack();
+            this.goUp();
             return this.getTemplates();
         }
         let t = this.templateManager.findTemplate(lastIndex, this.templates).child;

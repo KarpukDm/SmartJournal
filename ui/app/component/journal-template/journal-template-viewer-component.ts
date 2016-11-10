@@ -61,13 +61,13 @@ export class JournalTemplateViewerComponent implements OnInit {
 
         if (children === undefined || children.length == 0) {
             //  показать сообщение об отсутствии дочерних шаблонов
-            this.goBack();
+            this.goUp();
             return this.getTemplates();
         }
-        let t = this.templateManager.findTemplate(lastIndex, this.templates).child;
-        this.displayType = t[0].type;
+        let template = this.templateManager.findTemplate(lastIndex, this.templates).child;
+        this.displayType = template[0].type;
 
-        return this.templateManager.findTemplate(lastIndex, this.templates).child;
+        return template;
     }
 
     private goUp(): void {
