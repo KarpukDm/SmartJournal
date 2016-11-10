@@ -9,13 +9,17 @@ import {AppSettings} from "../../constants/app.settings";
 export class JournalTemplateService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
+    private createTemplateURL: string;
+    private findTemplateURL: string;
 
     constructor(private http: Http) {
+        this.createTemplateURL = AppSettings.baseURL + AppSettings.createTemplateURL;
+        this.findTemplateURL = AppSettings.baseURL + AppSettings.findTemplateURL;
     }
 
     createTemplate(journalTemplate: JournalTemplateModel): Observable<JournalTemplateModel> {
         return this.http
-            .post(AppSettings.createTemplateURL, JSON.stringify(journalTemplate), {headers: this.headers})
+            .post(this.createTemplateURL, JSON.stringify(journalTemplate), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -24,7 +28,7 @@ export class JournalTemplateService {
         let params = new URLSearchParams();
         params.set('type', type);
 
-        return this.http.get(AppSettings.findTemplateURL, { search: params })
+        return this.http.get(this.findTemplateURL, { search: params })
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -33,7 +37,7 @@ export class JournalTemplateService {
         let params = new URLSearchParams();
         params.set('id', "" + id);
 
-        return this.http.get(AppSettings.findTemplateURL, { search: params })
+        return this.http.get(this.findTemplateURL, { search: params })
             .map(this.extractData)
             .catch(this.handleError);
     }

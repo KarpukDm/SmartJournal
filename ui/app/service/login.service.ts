@@ -10,13 +10,15 @@ import {AppSettings} from "../constants/app.settings";
 export class LoginService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
+    private loginURL: string;
 
     constructor(private http: Http) {
+        this.loginURL = AppSettings.baseURL + AppSettings.loginURL;
     }
 
     login(loginModel: LoginModel): Observable<AuthModel> {
         return this.http
-            .post(AppSettings.loginURL, JSON.stringify(loginModel), {headers: this.headers})
+            .post(this.loginURL, JSON.stringify(loginModel), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }

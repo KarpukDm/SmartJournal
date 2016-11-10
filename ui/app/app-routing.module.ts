@@ -6,15 +6,16 @@ import {JournalTemplateCreatorComponent} from "./component/journal-template/jour
 import {JournalTemplateViewerComponent} from "./component/journal-template/journal-template-viewer-component";
 import {JournalTemplateFinderComponent} from "./component/journal-template/journal-template-finder.component";
 import {JournalTemplateEditorComponent} from "./component/journal-template/journal-template-editor.component";
+import {AppSettings} from "./constants/app.settings";
 
 const routes: Routes = [
-    { path: '', redirectTo: '/signup', pathMatch: 'full' },
-    { path: 'signup',  component: SignUpComponent },
-    { path: 'authenticate',  component: LoginComponent },
-    { path: 'template/create',  component: JournalTemplateCreatorComponent },
-    { path: 'template/view/:id',  component: JournalTemplateViewerComponent },
-    { path: 'template',  component: JournalTemplateFinderComponent },
-    { path: 'template/edit/:id',  component: JournalTemplateEditorComponent }
+    { path: '', redirectTo: AppSettings.signupURL, pathMatch: 'full' },
+    { path: AppSettings.signupURL,  component: SignUpComponent },
+    { path: AppSettings.loginURL,  component: LoginComponent },
+    { path: AppSettings.createTemplateURL,  component: JournalTemplateCreatorComponent },
+    { path: AppSettings.viewTemplateURL + ':id',  component: JournalTemplateViewerComponent },
+    { path: AppSettings.findTemplateURL,  component: JournalTemplateFinderComponent },
+    { path: AppSettings.editTemplateURL + ':id',  component: JournalTemplateEditorComponent }
 ];
 
 @NgModule({

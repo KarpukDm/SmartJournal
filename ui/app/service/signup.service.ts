@@ -9,14 +9,16 @@ import {AppSettings} from "../constants/app.settings";
 @Injectable()
 export class SignUpService {
 
+    private signupURL: string;
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {
+        this.signupURL = AppSettings.baseURL + AppSettings.signupURL;
     }
 
     createUser(signUpModel: SignUpModel): Observable<UserModel> {
         return this.http
-            .post(AppSettings.signupURL, JSON.stringify(signUpModel), {headers: this.headers})
+            .post(this.signupURL, JSON.stringify(signUpModel), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
