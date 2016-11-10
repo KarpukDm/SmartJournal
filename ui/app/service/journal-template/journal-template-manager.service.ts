@@ -5,9 +5,6 @@ import {JournalTemplateModel} from "../../dto/journal-template.model";
 @Injectable()
 export class JournalTemplateManagerService {
 
-    constructor() {
-    }
-
     findTemplate(index: number, templates: JournalTemplateModel[]): JournalTemplateModel {
         for (let i of templates) {
             if (i.index == index) {

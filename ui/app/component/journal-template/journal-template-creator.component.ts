@@ -4,12 +4,13 @@ import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
 import {Router} from "@angular/router";
 import {JournalTemplateManagerService} from "../../service/journal-template/journal-template-manager.service";
+import {Location} from "@angular/common";
 
 @Component({
     moduleId: module.id,
     selector: 'journal-template-creator',
     templateUrl: '../../resources/view/journal-template/journal-template-creator.component.html',
-    styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
+    styleUrls: ['../../resources/css/journal-template-creator.component.css'],
     providers: [JournalTemplateService, JournalTemplateManagerService]
 })
 export class JournalTemplateCreatorComponent {
@@ -25,9 +26,10 @@ export class JournalTemplateCreatorComponent {
     private displayType: string; //h2
     private currentType: string; //in input
 
-    constructor(private router: Router,
+    constructor(private location: Location,
+                private router: Router,
                 private journalTemplateService: JournalTemplateService,
-                private templateManager: JournalTemplateManagerService){
+                private templateManager: JournalTemplateManagerService) {
         this.newTemplate = new JournalTemplateModel();
         this.index = 0;
         this.isSelected = true;
@@ -37,7 +39,7 @@ export class JournalTemplateCreatorComponent {
         this.displayType = null;
     }
 
-    private selectTemplate(index: number): void{
+    private selectTemplate(index: number): void {
         console.log(this.currentType);
         console.log(this.displayType);
         this.index = index;
@@ -45,17 +47,17 @@ export class JournalTemplateCreatorComponent {
         this.setCurrentType(index);
     }
 
-    private displayChildren(index: number){
+    private displayChildren(index: number) {
         this.indexesSequence.push(index);
         this.isDisplay = true;
         this.isSelected = false;
         this.setCurrentType(index);
     }
 
-    private getTemplates(): JournalTemplateModel[]{
+    private getTemplates(): JournalTemplateModel[] {
 
-        if(this.indexesSequence.length == 0){
-            if(this.template !== undefined && this.template != null) {
+        if (this.indexesSequence.length == 0) {
+            if (this.template !== undefined && this.template != null) {
                 this.displayType = this.template.type;
             }
             return this.templates;
@@ -64,7 +66,7 @@ export class JournalTemplateCreatorComponent {
         let lastIndex = this.indexesSequence.slice(-1)[0];
         let children = this.templateManager.findTemplate(lastIndex, this.templates).child;
 
-        if(children === undefined || children.length == 0){
+        if (children === undefined || children.length == 0) {
             //  показать сообщение об отсутствии дочерних шаблонов
             this.goBack();
             return this.getTemplates();
@@ -75,9 +77,9 @@ export class JournalTemplateCreatorComponent {
         return template;
     }
 
-    private createTemplate(): void{
+    private createTemplate(): void {
 
-        if(this.template !== undefined && this.template != null) {
+        if (this.template !== undefined && this.template != null) {
             let searchedTemplate = this.templateManager.findTemplate(this.index, this.templates);
             if (searchedTemplate != null) {
                 if (searchedTemplate.child === undefined || searchedTemplate.child == null) {
@@ -86,21 +88,21 @@ export class JournalTemplateCreatorComponent {
                 this.newTemplate.index = (searchedTemplate.index + 1) * 10 + searchedTemplate.child.length;
                 this.newTemplate.child = [];
                 searchedTemplate.child.push(this.newTemplate);
-                if(this.currentType == null) {
+                if (this.currentType == null) {
                     this.currentType = this.newTemplate.type;
-                }else{
+                } else {
                     this.newTemplate.type = this.currentType;
                 }
                 this.newTemplate = new JournalTemplateModel();
             }
         }
-        else{
+        else {
             this.newTemplate.index = 0;
             this.newTemplate.child = [];
             this.template = this.newTemplate;
             this.newTemplate = new JournalTemplateModel();
 
-            if(this.templates === undefined || this.templates == null) {
+            if (this.templates === undefined || this.templates == null) {
                 this.templates = [this.template];
             }
         }
@@ -108,14 +110,14 @@ export class JournalTemplateCreatorComponent {
         console.log(this.template);
     }
 
-    private goBack(): void {
+    private goUp(): void {
         this.currentType = null;
         this.indexesSequence.pop();
         let lastIndex = this.indexesSequence.slice(-1)[0];
         this.setCurrentType(lastIndex);
     }
 
-    private saveTemplate(): void{
+    private saveTemplate(): void {
         this.journalTemplateService.createTemplate(this.template)
             .subscribe(
                 template => {
@@ -134,13 +136,17 @@ export class JournalTemplateCreatorComponent {
 
     private setCurrentType(index: number): void {
 
-        if(index == null) {
+        if (index == null) {
             index = this.indexesSequence.slice(-1)[0];
         }
         let t = this.templateManager.findTemplate(index, this.templates)
         this.currentType = null;
-        if(t != null && t.child != null && t.child.length > 0) {
+        if (t != null && t.child != null && t.child.length > 0) {
             this.currentType = t.child[0].type;
         }
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 }

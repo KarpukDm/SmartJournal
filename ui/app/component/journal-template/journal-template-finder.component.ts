@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import "../../rxjs-extensions";
 import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
     moduleId: module.id,
@@ -16,8 +17,9 @@ export class JournalTemplateFinderComponent {
     private errorMessage;
     private templates;
 
-    constructor( private router: Router,
-                 private journalTemplateService: JournalTemplateService){
+    constructor(private location: Location,
+                private router: Router,
+                private journalTemplateService: JournalTemplateService) {
         this.type = null;
     }
 
@@ -26,7 +28,7 @@ export class JournalTemplateFinderComponent {
         this.router.navigate(link);
     }
 
-    private getTemplates(){
+    private getTemplates() {
 
         console.log(this.type);
         this.journalTemplateService.getTemplatesByType(this.type)
@@ -37,5 +39,9 @@ export class JournalTemplateFinderComponent {
                 },
                 error => this.errorMessage = <any>error
             );
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 }
