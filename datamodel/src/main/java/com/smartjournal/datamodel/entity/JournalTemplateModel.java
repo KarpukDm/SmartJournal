@@ -32,6 +32,9 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "accessType")
+    private String accessType;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<JournalTemplateModel> child;
 
@@ -124,5 +127,13 @@ public class JournalTemplateModel implements Serializable, Persistable<Integer> 
 
     public void setIndex(Integer index) {
         this.index = index;
+    }
+
+    public String getAccessType() {
+        return accessType;
+    }
+
+    public void setAccessType(String accessType) {
+        this.accessType = accessType;
     }
 }

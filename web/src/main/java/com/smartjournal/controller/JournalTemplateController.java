@@ -1,6 +1,7 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.datamodel.entity.JournalTemplateModel;
+import com.smartjournal.enums.AccessType;
 import com.smartjournal.service.JournalTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,16 @@ public class JournalTemplateController {
     public ResponseEntity createTemplate(@RequestBody JournalTemplateModel journalTemplateModel){
 
         journalTemplateModel.setType(journalTemplateModel.getType().toLowerCase());
+        journalTemplateModel.setAccessType(AccessType.PUBLIC.toString());
+        journalTemplateService.save(journalTemplateModel);
+        return new ResponseEntity(journalTemplateModel, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ResponseEntity editTemplate(@RequestBody JournalTemplateModel journalTemplateModel){
+
+        journalTemplateModel.setType(journalTemplateModel.getType().toLowerCase());
+        journalTemplateModel.setAccessType(AccessType.PRIVATE.toString());
         journalTemplateService.save(journalTemplateModel);
         return new ResponseEntity(journalTemplateModel, HttpStatus.OK);
     }
@@ -41,6 +52,6 @@ public class JournalTemplateController {
             return new ResponseEntity(Collections.singletonList(journalTemplateService.findOneByIdAndIndex(id, 0)), HttpStatus.OK);
         }
 
-        return new ResponseEntity(journalTemplateService.findAllByIndex(0), HttpStatus.OK);
+        return new ResponseEntity(journalTemplateService.findAllByIndexAndAccessType(0, AccessType.PUBLIC.toString()), HttpStatus.OK);
     }
 }

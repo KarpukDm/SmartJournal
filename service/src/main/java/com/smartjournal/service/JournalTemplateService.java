@@ -15,5 +15,5 @@ public interface JournalTemplateService extends GenericService<JournalTemplateMo
 
     JournalTemplateModel findOneByIdAndIndex(Integer id, Integer index);
 
-    List<JournalTemplateModel> findAllByIndex(Integer index);
+    List<JournalTemplateModel> findAllByIndexAndAccessType(Integer index, String accessType);
 }

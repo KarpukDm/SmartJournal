@@ -30,8 +30,7 @@ public class JournalTemplateServiceImpl  extends GenericServiceImpl<JournalTempl
     }
 
     @Override
-    public List<JournalTemplateModel> findAllByIndex(Integer index) {
-        return repository.findAllByIndex(index);
+    public List<JournalTemplateModel> findAllByIndexAndAccessType(Integer index, String accessType) {
+        return repository.findAllByIndexAndAccessType(index, accessType);
     }
-
 }
