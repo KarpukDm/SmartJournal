@@ -4,6 +4,8 @@ import com.smartjournal.datamodel.entity.JournalTemplateModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by KarpukDM on 22.10.2016.
  */
@@ -12,5 +14,7 @@ public interface JournalTemplateRepository extends JpaRepository<JournalTemplate
 
     JournalTemplateModel findOneByType(String type);
 
-    JournalTemplateModel findOneById(Integer index);
+    JournalTemplateModel findOneByIdAndIndex(Integer id, Integer index);
+
+    List<JournalTemplateModel> findAllByIndex(Integer index);
 }

@@ -6,6 +6,8 @@ import com.smartjournal.service.JournalTemplateService;
 import com.smartjournal.service.common.impl.GenericServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by KarpukDM on 22.10.2016.
  */
@@ -23,7 +25,13 @@ public class JournalTemplateServiceImpl  extends GenericServiceImpl<JournalTempl
     }
 
     @Override
-    public JournalTemplateModel findOneById(Integer index) {
-        return repository.findOneById(index);
+    public JournalTemplateModel findOneByIdAndIndex(Integer id, Integer index) {
+        return repository.findOneByIdAndIndex(id, index);
     }
+
+    @Override
+    public List<JournalTemplateModel> findAllByIndex(Integer index) {
+        return repository.findAllByIndex(index);
+    }
+
 }

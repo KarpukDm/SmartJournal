@@ -38,9 +38,9 @@ public class JournalTemplateController {
         }
 
         if(id != null){
-            return new ResponseEntity(Collections.singletonList(journalTemplateService.findOneById(id)), HttpStatus.OK);
+            return new ResponseEntity(Collections.singletonList(journalTemplateService.findOneByIdAndIndex(id, 0)), HttpStatus.OK);
         }
 
-        return new ResponseEntity(journalTemplateService.findAll(), HttpStatus.OK);
+        return new ResponseEntity(journalTemplateService.findAllByIndex(0), HttpStatus.OK);
     }
 }

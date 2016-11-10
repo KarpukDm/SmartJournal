@@ -4,6 +4,8 @@ package com.smartjournal.service;
 import com.smartjournal.datamodel.entity.JournalTemplateModel;
 import com.smartjournal.service.common.GenericService;
 
+import java.util.List;
+
 /**
  * Created by KarpukDM on 22.10.2016.
  */
@@ -11,5 +13,7 @@ public interface JournalTemplateService extends GenericService<JournalTemplateMo
 
     JournalTemplateModel findOneByType(String type);
 
-    JournalTemplateModel findOneById(Integer index);
+    JournalTemplateModel findOneByIdAndIndex(Integer id, Integer index);
+
+    List<JournalTemplateModel> findAllByIndex(Integer index);
 }
