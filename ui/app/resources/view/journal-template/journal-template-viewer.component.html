@@ -1,10 +1,12 @@
+<h2>{{displayType}}</h2>
 <div *ngIf="templates != null && templates[0] != null">
     <ul class="heroes">
         <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);">
             <span class="badge">{{t.child.length}}</span>
             <span>{{t.templateName}}</span>
-            <button (click)="gotoEditTemplate(t.id)">Edit</button>
         </li>
+
+        <button (click)="gotoEditTemplate(templates[0].id)">Edit</button>
     </ul>
 
     <button (click)="goBack()">GO Back</button>

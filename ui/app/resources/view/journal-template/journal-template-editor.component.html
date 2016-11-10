@@ -1,0 +1,22 @@
+<h2>{{displayType}}</h2>
+<div *ngIf="templates != null && templates[0] != null">
+    <ul class="heroes">
+        <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);">
+            <span class="badge">{{t.child.length}}</span>
+            <span>{{t.templateName}}</span>
+            <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">Edit</button>
+        </li>
+
+    </ul>
+
+    <button (click)="goBack()">GO Back</button>
+    <button (click)="saveTemplate()">Save</button>
+</div>
+
+<div *ngIf="isSelected == true">
+    <input [(ngModel)]="selectedTemplate.type" placeholder="type"/>
+    <input [(ngModel)]="selectedTemplate.templateName" placeholder="templateName"/>
+    <input [(ngModel)]="selectedTemplate.password" placeholder="password"/>
+
+    <button (click)="save()">Save</button>
+</div>

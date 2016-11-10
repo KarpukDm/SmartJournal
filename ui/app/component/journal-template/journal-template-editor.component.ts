@@ -9,15 +9,17 @@ import {JournalTemplateModel} from "../../dto/journal-template.model";
     moduleId: module.id,
     selector: 'journal-template-editor',
     templateUrl: '../../resources/view/journal-template/journal-template-editor.component.html',
-    //styleUrls: [ '../resources/css/signup.component.css' ],
+    styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
     providers: [JournalTemplateService, JournalTemplateManagerService]
 })
 export class JournalTemplateEditorComponent implements OnInit {
 
     private templates: Array<JournalTemplateModel>;
+    private selectedTemplate: JournalTemplateModel;
     private errorMessage: string;
     private indexesSequence: number[];
     private displayType: string;
+    private isSelected: boolean;
 
     constructor(
         private router: Router,
@@ -43,6 +45,15 @@ export class JournalTemplateEditorComponent implements OnInit {
 
     private displayChildren(index: number){
         this.indexesSequence.push(index);
+    }
+
+    private selectTemplate(index: number): void {
+        this.selectedTemplate = this.templateManager.findTemplate(index, this.templates);
+        this.isSelected = true;
+    }
+
+    private save(): void{
+        this.isSelected = false;
     }
 
     private getTemplates(): JournalTemplateModel[]{
