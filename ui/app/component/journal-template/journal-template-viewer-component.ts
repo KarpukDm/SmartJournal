@@ -39,6 +39,10 @@ export class JournalTemplateViewerComponent implements OnInit {
         });
     }
 
+    private displayChildren(index: number){
+        this.indexesSequence.push(index);
+    }
+
     private getTemplates(): JournalTemplateModel[]{
 
         if(this.indexesSequence.length == 0){

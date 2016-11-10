@@ -137,11 +137,10 @@ export class JournalTemplateCreatorComponent {
                 template => {
                     console.log(template);
                     this.template = template;
+                    this.gotoViewTemplate(this.template.id);
                 },
                 error => this.errorMessage = <any>error
             );
-
-        this.gotoViewTemplate(this.templates[0].id);
     }
 
     private gotoViewTemplate(id: number): void {
