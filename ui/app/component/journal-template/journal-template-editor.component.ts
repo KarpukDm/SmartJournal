@@ -5,6 +5,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {JournalTemplateManagerService} from "../../service/journal-template/journal-template-manager.service";
 import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {Location} from "@angular/common";
+import {AppSettings} from "../../constants/app.settings";
 
 @Component({
     moduleId: module.id,
@@ -97,7 +98,7 @@ export class JournalTemplateEditorComponent implements OnInit {
     }
 
     gotoViewTemplate(id: number): void {
-        let link = ['/template/view', id];
+        let link = [AppSettings.viewTemplateURL, id];
         this.router.navigate(link);
     }
 

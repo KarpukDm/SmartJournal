@@ -3,12 +3,11 @@ import {Http, Headers, Response, URLSearchParams} from "@angular/http";
 import "../../rxjs-extensions";
 import {Observable} from "rxjs";
 import {JournalTemplateModel} from "../../dto/journal-template.model";
+import {AppSettings} from "../../constants/app.settings";
 
 @Injectable()
 export class JournalTemplateService {
 
-    private createTemplateUrl = "http://localhost:8080/template/create";
-    private findTemplateUrl = "http://localhost:8080/template";
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {
@@ -16,7 +15,7 @@ export class JournalTemplateService {
 
     createTemplate(journalTemplate: JournalTemplateModel): Observable<JournalTemplateModel> {
         return this.http
-            .post(this.createTemplateUrl, JSON.stringify(journalTemplate), {headers: this.headers})
+            .post(AppSettings.createTemplateURL, JSON.stringify(journalTemplate), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -25,7 +24,7 @@ export class JournalTemplateService {
         let params = new URLSearchParams();
         params.set('type', type);
 
-        return this.http.get(this.findTemplateUrl, { search: params })
+        return this.http.get(AppSettings.findTemplateURL, { search: params })
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -34,7 +33,7 @@ export class JournalTemplateService {
         let params = new URLSearchParams();
         params.set('id', "" + id);
 
-        return this.http.get(this.findTemplateUrl, { search: params })
+        return this.http.get(AppSettings.findTemplateURL, { search: params })
             .map(this.extractData)
             .catch(this.handleError);
     }

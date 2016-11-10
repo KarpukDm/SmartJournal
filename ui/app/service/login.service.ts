@@ -4,11 +4,11 @@ import "../rxjs-extensions";
 import {Observable} from "rxjs";
 import {LoginModel} from "../dto/login.model";
 import {AuthModel} from "../dto/auth.model";
+import {AppSettings} from "../constants/app.settings";
 
 @Injectable()
 export class LoginService {
 
-    private loginUrl = "http://localhost:8080/authenticate";
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {
@@ -16,7 +16,7 @@ export class LoginService {
 
     login(loginModel: LoginModel): Observable<AuthModel> {
         return this.http
-            .post(this.loginUrl, JSON.stringify(loginModel), {headers: this.headers})
+            .post(AppSettings.loginURL, JSON.stringify(loginModel), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }

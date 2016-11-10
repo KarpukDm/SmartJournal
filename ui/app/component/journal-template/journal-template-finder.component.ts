@@ -3,6 +3,7 @@ import "../../rxjs-extensions";
 import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {AppSettings} from "../../constants/app.settings";
 
 @Component({
     moduleId: module.id,
@@ -24,7 +25,7 @@ export class JournalTemplateFinderComponent {
     }
 
     gotoViewTemplate(id: number): void {
-        let link = ['/template/view', id];
+        let link = [AppSettings.viewTemplateURL, id];
         this.router.navigate(link);
     }
 

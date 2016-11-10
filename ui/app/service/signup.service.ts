@@ -4,11 +4,11 @@ import {UserModel} from "../dto/user.model";
 import {SignUpModel} from "../dto/signup.model";
 import "../rxjs-extensions";
 import {Observable} from "rxjs";
+import {AppSettings} from "../constants/app.settings";
 
 @Injectable()
 export class SignUpService {
 
-    private signUpUrl = "http://localhost:8080/signup";
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {
@@ -16,7 +16,7 @@ export class SignUpService {
 
     createUser(signUpModel: SignUpModel): Observable<UserModel> {
         return this.http
-            .post(this.signUpUrl, JSON.stringify(signUpModel), {headers: this.headers})
+            .post(AppSettings.signupURL, JSON.stringify(signUpModel), {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
