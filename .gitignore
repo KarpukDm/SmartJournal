@@ -30,3 +30,4 @@ nbdist/
 **/node_modules
 **/jspm_packages
 **/bower_components
+/ui/dist/

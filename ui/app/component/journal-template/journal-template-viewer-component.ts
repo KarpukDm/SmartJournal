@@ -1,15 +1,16 @@
 import {Component, OnInit} from "@angular/core";
 import "../../rxjs-extensions";
-import {JournalTemplateService} from "../../service/journal-template.service";
-import {JournalTemplateModel} from "../../../dist/app/dto/journal-template.model";
-import {Params, ActivatedRoute} from "@angular/router";
+import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
+import {Params, ActivatedRoute, Router} from "@angular/router";
+import {JournalTemplateManagerService} from "../../service/journal-template/journal-template-manager.service";
+import {JournalTemplateModel} from "../../dto/journal-template.model";
 
 @Component({
     moduleId: module.id,
     selector: 'journal-template-viewer',
     templateUrl: '../../resources/view/journal-template/journal-template-viewer.component.html',
     styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
-    providers: [JournalTemplateService]
+    providers: [JournalTemplateService, JournalTemplateManagerService]
 })
 export class JournalTemplateViewerComponent implements OnInit {
 
@@ -19,8 +20,10 @@ export class JournalTemplateViewerComponent implements OnInit {
     private displayType: string;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
-        private journalTemplateService: JournalTemplateService) {
+        private journalTemplateService: JournalTemplateService,
+        private templateManager: JournalTemplateManagerService) {
 
         this.indexesSequence = [];
     }
@@ -53,38 +56,25 @@ export class JournalTemplateViewerComponent implements OnInit {
         }
 
         let lastIndex = this.indexesSequence.slice(-1)[0];
-        let children = this.findTemplate(lastIndex, this.templates).child;
+        let children = this.templateManager.findTemplate(lastIndex, this.templates).child;
 
         if(children === undefined || children.length == 0){
             //  показать сообщение об отсутствии дочерних шаблонов
             this.goBack();
             return this.getTemplates();
         }
-        let t = this.findTemplate(lastIndex, this.templates).child;
+        let t = this.templateManager.findTemplate(lastIndex, this.templates).child;
         this.displayType = t[0].type;
 
-        return this.findTemplate(lastIndex, this.templates).child;
-    }
-
-    private findTemplate(index: number, templates: JournalTemplateModel[]): JournalTemplateModel{
-
-        for(let i of templates){
-            if(i.index == index){
-                return i;
-            }
-
-            if(i.child !== undefined || i.child != null){
-                let temp = this.findTemplate(index, i.child);
-                if(temp != null){
-                    return temp;
-                }
-            }
-        }
-
-        return null;
+        return this.templateManager.findTemplate(lastIndex, this.templates).child;
     }
 
     private goBack(): void {
         this.indexesSequence.pop();
+    }
+
+    gotoEditTemplate(id: number): void {
+        let link = ['/template/edit', id];
+        this.router.navigate(link);
     }
 }

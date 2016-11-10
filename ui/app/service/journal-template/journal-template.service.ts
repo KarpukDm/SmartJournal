@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, Response, URLSearchParams} from "@angular/http";
-import "../rxjs-extensions";
+import "../../rxjs-extensions";
 import {Observable} from "rxjs";
-import {JournalTemplateModel} from "../dto/journal-template.model";
+import {JournalTemplateModel} from "../../dto/journal-template.model";
 
 @Injectable()
 export class JournalTemplateService {

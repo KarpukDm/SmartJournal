@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import "../../rxjs-extensions";
-import {JournalTemplateService} from "../../service/journal-template.service";
+import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
 
 @Component({
     moduleId: module.id,

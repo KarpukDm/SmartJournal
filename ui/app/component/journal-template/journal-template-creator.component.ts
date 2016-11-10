@@ -1,15 +1,16 @@
 import {Component} from "@angular/core";
 import "../../rxjs-extensions";
 import {JournalTemplateModel} from "../../dto/journal-template.model";
-import {JournalTemplateService} from "../../service/journal-template.service";
+import {JournalTemplateService} from "../../service/journal-template/journal-template.service";
 import {Router} from "@angular/router";
+import {JournalTemplateManagerService} from "../../service/journal-template/journal-template-manager.service";
 
 @Component({
     moduleId: module.id,
     selector: 'journal-template-creator',
     templateUrl: '../../resources/view/journal-template/journal-template-creator.component.html',
     styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
-    providers: [JournalTemplateService]
+    providers: [JournalTemplateService, JournalTemplateManagerService]
 })
 export class JournalTemplateCreatorComponent {
 
@@ -25,7 +26,8 @@ export class JournalTemplateCreatorComponent {
     private currentType: string; //in input
 
     constructor(private router: Router,
-                private journalTemplateService: JournalTemplateService){
+                private journalTemplateService: JournalTemplateService,
+                private templateManager: JournalTemplateManagerService){
         this.newTemplate = new JournalTemplateModel();
         this.index = 0;
         this.isSelected = true;
@@ -60,23 +62,23 @@ export class JournalTemplateCreatorComponent {
         }
 
         let lastIndex = this.indexesSequence.slice(-1)[0];
-        let children = this.findTemplate(lastIndex, this.templates).child;
+        let children = this.templateManager.findTemplate(lastIndex, this.templates).child;
 
         if(children === undefined || children.length == 0){
             //  показать сообщение об отсутствии дочерних шаблонов
             this.goBack();
             return this.getTemplates();
         }
-        let t = this.findTemplate(lastIndex, this.templates).child;
-        this.displayType = t[0].type;
+        let template = this.templateManager.findTemplate(lastIndex, this.templates).child;
+        this.displayType = template[0].type;
 
-        return this.findTemplate(lastIndex, this.templates).child;
+        return template;
     }
 
     private createTemplate(): void{
 
         if(this.template !== undefined && this.template != null) {
-            let searchedTemplate = this.findTemplate(this.index, this.templates);
+            let searchedTemplate = this.templateManager.findTemplate(this.index, this.templates);
             if (searchedTemplate != null) {
                 if (searchedTemplate.child === undefined || searchedTemplate.child == null) {
                     searchedTemplate.child = [];
@@ -104,24 +106,6 @@ export class JournalTemplateCreatorComponent {
         }
         this.isSelected = false;
         console.log(this.template);
-    }
-
-    private findTemplate(index: number, templates: JournalTemplateModel[]): JournalTemplateModel{
-
-        for(let i of templates){
-            if(i.index == index){
-                return i;
-            }
-
-            if(i.child !== undefined || i.child != null){
-                let temp = this.findTemplate(index, i.child);
-                if(temp != null){
-                    return temp;
-                }
-            }
-        }
-
-        return null;
     }
 
     private goBack(): void {
@@ -153,7 +137,7 @@ export class JournalTemplateCreatorComponent {
         if(index == null) {
             index = this.indexesSequence.slice(-1)[0];
         }
-        let t = this.findTemplate(index, this.templates)
+        let t = this.templateManager.findTemplate(index, this.templates)
         this.currentType = null;
         if(t != null && t.child != null && t.child.length > 0) {
             this.currentType = t.child[0].type;
