@@ -1,8 +1,10 @@
 <div *ngIf="templates != null && templates[0] != null">
     <ul class="heroes">
-        <li *ngFor="let t of getTemplates()">
-            <span class="badge">{{t.type}}</span>
+        <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);">
+            <span class="badge">{{t.child.length}}</span>
             <span>{{t.templateName}}</span>
         </li>
     </ul>
+
+    <button (click)="goBack()">GO Back</button>
 </div>

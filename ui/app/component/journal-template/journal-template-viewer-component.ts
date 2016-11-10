@@ -8,7 +8,7 @@ import {Params, ActivatedRoute} from "@angular/router";
     moduleId: module.id,
     selector: 'journal-template-viewer',
     templateUrl: '../../resources/view/journal-template/journal-template-viewer.component.html',
-    //styleUrls: [ '../resources/css/signup.component.css' ],
+    styleUrls: [ '../../resources/css/journal-template-creator.component.css' ],
     providers: [JournalTemplateService]
 })
 export class JournalTemplateViewerComponent implements OnInit {
