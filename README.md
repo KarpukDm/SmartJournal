@@ -1,6 +1,11 @@
 **SmartJournal** - this service for checking attendance of students and for keeping statistics on each student.
 ***
 ###Building  
+####Preparation:  
+```
+docker build -t sj_postgresql .
+docker run --rm -p5432:5432 --name pg_test sj_postgresql
+```
 ####Run server:  
 ```
 cd web/
@@ -24,6 +29,7 @@ npm run start
  + security
 + **Spring boot**
 + **Hazelcast**
++ **Docker**
 
 #### UI:
 * **Angular 2**  
@@ -31,4 +37,8 @@ npm run start
 ### Database:
 - **H2** 
  + http://localhost:8080/console/  
- + jdbc:h2:mem:test
+- **PostgreSQL**  
+***
+If you want use H2 db,you must copy text from file "h2.config" in "application.properties"  
+If you want use PostgreSQL db,you must copy text from file "postgresql.config" in "application.properties"
+
