@@ -15,7 +15,6 @@ cd ui/
 npm install
 npm run start
 ```
-***
 ###Technologies: 
 ####Back end:
 
