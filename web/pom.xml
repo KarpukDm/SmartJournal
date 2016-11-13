@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project-version}</version>
 	<packaging>jar</packaging>
 
 	<name>web</name>
@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>com.smartjournal</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${project-version}</version>
 	</parent>
 
 	<properties>
@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>com.smartjournal</groupId>
 			<artifactId>service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project-version}</version>
 		</dependency>
 
 		<dependency>
@@ -46,15 +46,5 @@
 			<artifactId>hazelcast</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 
 </project>

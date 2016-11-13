@@ -37,7 +37,7 @@ npm run start
 ### Database:
 - **H2** 
  + http://localhost:8080/console/  
-- **PostgreSQL**  
+* **PostgreSQL**  
 ***
 If you want use H2 db,you must copy text from file "h2.config" in "application.properties"  
 If you want use PostgreSQL db,you must copy text from file "postgresql.config" in "application.properties"

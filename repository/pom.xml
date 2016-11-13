@@ -5,7 +5,7 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>com.smartjournal</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${project-version}</version>
     </parent>
     <packaging>war</packaging>
     <modelVersion>4.0.0</modelVersion>
@@ -15,9 +15,8 @@
         <dependency>
             <groupId>com.smartjournal</groupId>
             <artifactId>datamodel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project-version}</version>
         </dependency>
     </dependencies>
-
 
 </project>
