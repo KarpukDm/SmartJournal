@@ -24,14 +24,12 @@
 <br/>
 
 <div *ngIf="isLastElement == true">
-    atoms:
-    <ul class="atoms">
-        <li *ngFor="let a of atoms">
-            <input [(ngModel)]="a.firstName" placeholder="firstName"/>
-            <input [(ngModel)]="a.lastName" placeholder="lastName"/>
-            <input [(ngModel)]="a.middleName" placeholder="middleName"/>
-        </li>
-    </ul>
+    <div *ngFor="let a of atoms">
+        <input [(ngModel)]="a.firstName" placeholder="firstName"/>
+        <input [(ngModel)]="a.lastName" placeholder="lastName"/>
+        <input [(ngModel)]="a.middleName" placeholder="middleName"/>
+    </div>
+    <button (click)="addPlaceForAtom()">Add yet place for atom</button>
 
     <button (click)="goUp()">GO Up</button>
     <button (click)="saveTemplate()">Save</button>

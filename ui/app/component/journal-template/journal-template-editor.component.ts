@@ -67,6 +67,10 @@ export class JournalTemplateEditorComponent implements OnInit {
         t.atoms.concat(this.atoms);
     }
 
+    private addPlaceForAtom(): void {
+        this.atoms.push(new AtomModel());
+    }
+
     private displayChildren(index: number) {
         this.indexesSequence.push(index);
         let t = this.templateManager.findTemplate(index, this.templates);
