@@ -1,4 +1,6 @@
 export class AtomModel {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
 }

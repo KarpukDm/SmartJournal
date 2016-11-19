@@ -6,6 +6,7 @@ import {JournalTemplateManagerService} from "../../service/journal-template/jour
 import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {Location} from "@angular/common";
 import {AppSettings} from "../../constants/app.settings";
+import {AtomModel} from "../../dto/atom.model";
 
 @Component({
     moduleId: module.id,
@@ -17,11 +18,13 @@ import {AppSettings} from "../../constants/app.settings";
 export class JournalTemplateEditorComponent implements OnInit {
 
     private templates: Array<JournalTemplateModel>;
-    private selectedTemplate: JournalTemplateModel;
+    private selectedTemplate    : JournalTemplateModel;
     private errorMessage: string;
     private indexesSequence: number[];
     private displayType: string;
     private isSelected: boolean;
+    private atoms: Array<AtomModel>;
+    private isLastElement: boolean;
 
     constructor(private location: Location,
                 private router: Router,
@@ -29,6 +32,8 @@ export class JournalTemplateEditorComponent implements OnInit {
                 private journalTemplateService: JournalTemplateService,
                 private templateManager: JournalTemplateManagerService) {
         this.indexesSequence = [];
+        this.atoms = [];
+        this.isLastElement = false;
     }
 
     ngOnInit(): void {
@@ -43,10 +48,29 @@ export class JournalTemplateEditorComponent implements OnInit {
                     error => this.errorMessage = <any>error
                 );
         });
+
+        this.initArray();
+    }
+
+    private initArray(): void {
+        let number = 10;
+        for (let i = 0; i < number; i++) {
+            this.atoms.push(new AtomModel());
+        }
+    }
+
+    private addAtoms(index: number): void {
+        let t = this.templateManager.findTemplate(index, this.templates);
+        if(t.atoms == null || t.atoms === undefined){
+            t.atoms = [];
+        }
+        t.atoms.concat(this.atoms);
     }
 
     private displayChildren(index: number) {
         this.indexesSequence.push(index);
+        let t = this.templateManager.findTemplate(index, this.templates);
+        this.isLastElement = t.child == null || t.child.length == 0;
     }
 
     private selectTemplate(index: number): void {

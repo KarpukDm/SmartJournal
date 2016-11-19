@@ -6,7 +6,6 @@
             <span>{{t.templateName}}</span>
             <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">Edit</button>
         </li>
-
     </ul>
 
     <button (click)="goUp()">GO Up</button>
@@ -21,3 +20,19 @@
     <button (click)="save()">Save</button>
 </div>
 <button (click)="goBack()">GO Back</button>
+
+<br/>
+
+<div *ngIf="isLastElement == true">
+    atoms:
+    <ul class="atoms">
+        <li *ngFor="let a of atoms">
+            <input [(ngModel)]="a.firstName" placeholder="firstName"/>
+            <input [(ngModel)]="a.lastName" placeholder="lastName"/>
+            <input [(ngModel)]="a.middleName" placeholder="middleName"/>
+        </li>
+    </ul>
+
+    <button (click)="goUp()">GO Up</button>
+    <button (click)="saveTemplate()">Save</button>
+</div>
