@@ -25,6 +25,7 @@ export class JournalTemplateEditorComponent implements OnInit {
     private isSelected: boolean;
     private atoms: Array<AtomModel>;
     private isLastElement: boolean;
+    private currentIndex: number;
 
     constructor(private location: Location,
                 private router: Router,
@@ -48,23 +49,33 @@ export class JournalTemplateEditorComponent implements OnInit {
                     error => this.errorMessage = <any>error
                 );
         });
-
-        this.initArray();
     }
 
-    private initArray(): void {
+    private initArray(index: number): void {
         let number = 10;
+        let t = this.templateManager.findTemplate(index, this.templates);
         for (let i = 0; i < number; i++) {
-            this.atoms.push(new AtomModel());
+            if(t.atoms.length < i || t.atoms[i] === undefined){
+                this.atoms.push(new AtomModel());
+            }else{
+                this.atoms[i] = t.atoms[i];
+            }
         }
     }
 
-    private addAtoms(index: number): void {
-        let t = this.templateManager.findTemplate(index, this.templates);
+    private addAtoms(): void {
+        let t = this.templateManager.findTemplate(this.currentIndex, this.templates);
         if(t.atoms == null || t.atoms === undefined){
             t.atoms = [];
         }
-        t.atoms.concat(this.atoms);
+
+        for(let atom of this.atoms){
+            if(atom.firstName != null && atom.firstName !== "" &&
+            atom.lastName != null && atom.lastName !== "" &&
+            atom.middleName != null && atom.middleName !== ""){
+                t.atoms.push(atom);
+            }
+        }
     }
 
     private addPlaceForAtom(): void {
@@ -73,8 +84,10 @@ export class JournalTemplateEditorComponent implements OnInit {
 
     private displayChildren(index: number) {
         this.indexesSequence.push(index);
+        this.initArray(index);
         let t = this.templateManager.findTemplate(index, this.templates);
         this.isLastElement = t.child == null || t.child.length == 0;
+        this.currentIndex = index;
     }
 
     private selectTemplate(index: number): void {
