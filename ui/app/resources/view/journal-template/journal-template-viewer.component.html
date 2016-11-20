@@ -12,3 +12,11 @@
     <button (click)="goUp()">GO Up</button>
 </div>
 <button (click)="goBack()">GO Back</button>
+
+<div *ngIf="isLastElement == true">
+    <div *ngFor="let a of atoms">
+        <h3>{{a.firstName}}</h3>
+        <h3>{{a.lastName}}</h3>
+        <h3>{{a.middleName}}</h3>
+    </div>
+</div>

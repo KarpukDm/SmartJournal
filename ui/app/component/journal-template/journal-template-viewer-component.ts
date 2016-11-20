@@ -6,6 +6,7 @@ import {JournalTemplateManagerService} from "../../service/journal-template/jour
 import {JournalTemplateModel} from "../../dto/journal-template.model";
 import {Location} from "@angular/common";
 import {AppSettings} from "../../constants/app.settings";
+import {AtomModel} from "../../dto/atom.model";
 
 @Component({
     moduleId: module.id,
@@ -20,6 +21,8 @@ export class JournalTemplateViewerComponent implements OnInit {
     private errorMessage: string;
     private indexesSequence: number[];
     private displayType: string;
+    private isLastElement: boolean;
+    private atoms: AtomModel[];
 
     constructor(private location: Location,
                 private router: Router,
@@ -46,6 +49,11 @@ export class JournalTemplateViewerComponent implements OnInit {
 
     private displayChildren(index: number) {
         this.indexesSequence.push(index);
+        let t = this.templateManager.findTemplate(index, this.templates);
+        this.isLastElement = t.child == null || t.child.length == 0;
+        if(this.isLastElement == true){
+            this.atoms = t.atoms;
+        }
     }
 
     private getTemplates(): JournalTemplateModel[] {
