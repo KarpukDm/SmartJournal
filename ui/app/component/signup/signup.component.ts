@@ -8,7 +8,7 @@ import "../../rxjs-extensions";
     moduleId: module.id,
     selector: 'signup',
     templateUrl: '../../resources/view/signup/signup.component.html',
-    //styleUrls: [ '../resources/css/signup.component.css' ],
+    styleUrls: [ '../../resources/css/signup/signup.component.css' ],
     providers: [SignUpService]
 })
 export class SignUpComponent {

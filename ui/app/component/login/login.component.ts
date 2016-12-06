@@ -8,7 +8,7 @@ import {LoginService} from "../../service/login.service";
     moduleId: module.id,
     selector: 'login',
     templateUrl: '../../resources/view/login/login.component.html',
-    //styleUrls: [ '../resources/css/signup.component.css' ],
+    styleUrls: [ '../../resources/css/login/login.component.css' ],
     providers: [LoginService]
 })
 export class LoginComponent {

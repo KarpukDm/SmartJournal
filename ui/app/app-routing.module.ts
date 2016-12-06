@@ -9,7 +9,7 @@ import {JournalTemplateEditorComponent} from "./component/journal-template/journ
 import {AppSettings} from "./constants/app.settings";
 
 const routes: Routes = [
-    { path: '', redirectTo: AppSettings.signupURL, pathMatch: 'full' },
+    { path: '', redirectTo: AppSettings.loginURL, pathMatch: 'full' },
     { path: AppSettings.signupURL,  component: SignUpComponent },
     { path: AppSettings.loginURL,  component: LoginComponent },
     { path: AppSettings.createTemplateURL,  component: JournalTemplateCreatorComponent },
