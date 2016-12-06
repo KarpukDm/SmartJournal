@@ -36,17 +36,21 @@ import java.net.URISyntaxException;
 @RequestMapping(value = "/authenticate")
 public class AuthController {
 
-    @Autowired
-    private SmartJournalProperties smartJournalProperties;
+    private final SmartJournalProperties smartJournalProperties;
+
+    private final AuthenticationManager authenticationManager;
+
+    private final FBConnection fbConnection;
+
+    private final FacebookClient facebookClient;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private FBConnection fbConnection;
-
-    @Autowired
-    private FacebookClient facebookClient;
+    public AuthController(SmartJournalProperties smartJournalProperties, AuthenticationManager authenticationManager, FBConnection fbConnection, FacebookClient facebookClient) {
+        this.smartJournalProperties = smartJournalProperties;
+        this.authenticationManager = authenticationManager;
+        this.fbConnection = fbConnection;
+        this.facebookClient = facebookClient;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity authorize(@Valid @RequestBody LoginModel loginModel,

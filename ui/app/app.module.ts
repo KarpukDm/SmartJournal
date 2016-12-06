@@ -12,6 +12,7 @@ import {JournalTemplateCreatorComponent} from "./component/journal-template/jour
 import {JournalTemplateViewerComponent} from "./component/journal-template/journal-template-viewer-component";
 import {JournalTemplateFinderComponent} from "./component/journal-template/journal-template-finder.component";
 import {JournalTemplateEditorComponent} from "./component/journal-template/journal-template-editor.component";
+import {MDL} from "./component/mdl";
 
 @NgModule({
     imports: [
@@ -27,9 +28,10 @@ import {JournalTemplateEditorComponent} from "./component/journal-template/journ
         JournalTemplateCreatorComponent,
         JournalTemplateViewerComponent,
         JournalTemplateFinderComponent,
-        JournalTemplateEditorComponent
+        JournalTemplateEditorComponent,
+        MDL
     ],
-    providers: [ SignUpService, LoginComponent ],
+    providers: [ MDL ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

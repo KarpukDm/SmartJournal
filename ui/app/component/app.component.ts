@@ -4,7 +4,6 @@ import {Component} from "@angular/core";
     moduleId: module.id,
     selector: 'my-app',
     template: `
-    <h1>{{title}}</h1>
     <nav>
       <a routerLink="/signup" routerLinkActive="active">Sign up</a>
       <a routerLink="/authenticate" routerLinkActive="active">Login</a>
@@ -16,5 +15,4 @@ import {Component} from "@angular/core";
     //styleUrls: ['../resources/css/app.component.css']
 })
 export class AppComponent {
-    title = 'SmartJournal';
 }
