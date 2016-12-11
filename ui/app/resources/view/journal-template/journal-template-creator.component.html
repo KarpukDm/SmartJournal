@@ -1,28 +1,31 @@
-<h2>{{displayType}}</h2>
-<div *ngIf="templates != null">
-    <ul class="heroes">
-        <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);" [class.selected]="hero === selectedHero">
-            <span class="badge">{{t.child.length}}</span>
-            <span>{{t.templateName}}</span>
-            <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">+</button>
-        </li>
-    </ul>
+<div id="page-wrapper">
+    <h2>{{displayType}}</h2>
+    <div *ngIf="templates != null">
+        <ul class="heroes">
+            <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);"
+                [class.selected]="hero === selectedHero">
+                <span class="badge">{{t.child.length}}</span>
+                <span>{{t.templateName}}</span>
+                <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">+</button>
+            </li>
+        </ul>
+    </div>
+
+    <br/>
+
+    <div *ngIf="templates == null || isSelected == true">
+        <input *ngIf="currentType == null" [(ngModel)]="newTemplate.type" placeholder="type"/>
+        <input [(ngModel)]="newTemplate.templateName" placeholder="templateName"/>
+        <input [(ngModel)]="newTemplate.password" placeholder="password"/>
+
+        <button (click)="createTemplate()">Create</button>
+    </div>
+
+    <br/>
+
+    <div *ngIf="templates != null">
+        <button (click)="goUp()">GO Up</button>
+        <button (click)="saveTemplate()">Save template</button>
+    </div>
+    <button (click)="goBack()">GO Back</button>
 </div>
-
-<br/>
-
-<div *ngIf="templates == null || isSelected == true">
-    <input *ngIf="currentType == null" [(ngModel)]="newTemplate.type" placeholder="type"/>
-    <input [(ngModel)]="newTemplate.templateName" placeholder="templateName"/>
-    <input [(ngModel)]="newTemplate.password" placeholder="password"/>
-
-    <button (click)="createTemplate()">Create</button>
-</div>
-
-<br/>
-
-<div *ngIf="templates != null">
-    <button (click)="goUp()">GO Up</button>
-    <button (click)="saveTemplate()">Save template</button>
-</div>
-<button (click)="goBack()">GO Back</button>

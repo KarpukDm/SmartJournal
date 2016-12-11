@@ -6,13 +6,12 @@ import {HttpModule} from "@angular/http";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./component/app.component";
 import {SignUpComponent} from "./component/signup/signup.component";
-import {SignUpService} from "./service/signup.service";
 import {LoginComponent} from "./component/login/login.component";
 import {JournalTemplateCreatorComponent} from "./component/journal-template/journal-template-creator.component";
 import {JournalTemplateViewerComponent} from "./component/journal-template/journal-template-viewer-component";
 import {JournalTemplateFinderComponent} from "./component/journal-template/journal-template-finder.component";
 import {JournalTemplateEditorComponent} from "./component/journal-template/journal-template-editor.component";
-import {MDL} from "./component/mdl";
+import {ProfileComponent} from "./component/profile/profile.component";
 
 @NgModule({
     imports: [
@@ -29,9 +28,8 @@ import {MDL} from "./component/mdl";
         JournalTemplateViewerComponent,
         JournalTemplateFinderComponent,
         JournalTemplateEditorComponent,
-        MDL
+        ProfileComponent
     ],
-    providers: [ MDL ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

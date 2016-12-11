@@ -1,74 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <base href="/"/>
-    <title>Angular QuickStart</title>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Polyfill(s) for older browsers -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="/">
+    <title>SmartJournal</title>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.teal-green.min.css"/>
-    <script src="./node_modules/material-design-lite/material.min.js"></script>
-    <link rel="stylesheet" href="node_modules/material-design-icons/iconfont/material-icons.css">
+    <!-- Bootstrap Core CSS -->
+    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="resources/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
     <script>
         System.import('app').catch(function (err) {
             console.error(err);
         });
     </script>
 </head>
-<!-- 3. Display the application -->
+
 <body>
-<div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title">SmartJournal</span>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="/authenticate">Authenticate</a>
-                <a class="mdl-navigation__link" href="/signup">Sign up</a>
-            </nav>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">SmartJournal</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-        </nav>
-    </div>
 
-    <main class="mdl-layout__content mdl-grid">
-        <div class="page-content mdl-cell mdl-cell--4-col">
+<div id="wrapper">
 
-            <my-app id="p1" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></my-app>
+    <my-app>
+        <div class="jumbotron vertical-center">
+
+            <div class="text-center">
+                <div class="loader"></div>
+            </div>
 
         </div>
-        <script>
-            document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
-                this.MaterialProgress.setProgress(44);
-            });
-        </script>
-    </main>
-
-    <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-            <div class="mdl-logo">Title</div>
-            <ul class="mdl-mini-footer__link-list">
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Privacy & Terms</a></li>
-            </ul>
-        </div>
-    </footer>
+    </my-app>
 
 </div>
+
+<!-- jQuery -->
+<script src="resources/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="resources/vendor/raphael/raphael.min.js"></script>
+<script src="resources/vendor/morrisjs/morris.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="resources/dist/js/sb-admin-2.js"></script>
+
 </body>
+
 </html>

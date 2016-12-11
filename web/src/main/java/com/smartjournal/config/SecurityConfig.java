@@ -23,8 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public final static String AUTHORIZATION_HEADER = "x-auth-token";
 
+    private final SmartJournalAuthenticationProvider smartJournalAuthenticationProvider;
+
     @Autowired
-    private SmartJournalAuthenticationProvider smartJournalAuthenticationProvider;
+    public SecurityConfig(SmartJournalAuthenticationProvider smartJournalAuthenticationProvider) {
+        this.smartJournalAuthenticationProvider = smartJournalAuthenticationProvider;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -40,7 +44,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll();
+                .antMatchers("/authenticate").authenticated()
+                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/authenticate")
+                .defaultSuccessUrl("/")
+                .failureUrl("/authenticate?error=true")
+                .and()
+                .logout().logoutSuccessUrl("/logout");
     }
 
     @Bean
