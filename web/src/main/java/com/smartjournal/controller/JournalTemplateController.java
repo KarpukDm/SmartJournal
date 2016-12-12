@@ -13,12 +13,17 @@ import java.util.Collections;
 /**
  * Created by KarpukDM on 22.10.2016.
  */
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping(value = "/template")
 public class JournalTemplateController {
 
+    private final JournalTemplateService journalTemplateService;
+
     @Autowired
-    private JournalTemplateService journalTemplateService;
+    public JournalTemplateController(JournalTemplateService journalTemplateService) {
+        this.journalTemplateService = journalTemplateService;
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity createTemplate(@RequestBody JournalTemplateModel journalTemplateModel){

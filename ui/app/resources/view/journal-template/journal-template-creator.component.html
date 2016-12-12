@@ -1,31 +1,69 @@
 <div id="page-wrapper">
-    <h2>{{displayType}}</h2>
-    <div *ngIf="templates != null">
-        <ul class="heroes">
-            <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);"
-                [class.selected]="hero === selectedHero">
-                <span class="badge">{{t.child.length}}</span>
-                <span>{{t.templateName}}</span>
-                <button class="delete" (click)="selectTemplate(t.index); $event.stopPropagation()">+</button>
-            </li>
-        </ul>
+    <div class="col-lg-12">
+        <div class="col-md-12">
+            <h2 style="text-align: center;">
+                Create your own template
+            </h2>
+            <hr class="clearfix">
+        </div>
+
+        <div class="col-md-1">
+            <button class="glyphicon glyphicon-arrow-left btn btn-danger" (click)="goBack()"></button>
+        </div>
+
+        <div class="col-md-5">
+
+            <div class="form-group">
+                <input [disabled]="!((templates == null || isSelected == true) && currentType == null)"
+                       [(ngModel)]="newTemplate.type" class="form-control" placeholder="Type"/>
+            </div>
+
+            <div class="form-group">
+                <input [disabled]="!(templates == null || isSelected == true)" [(ngModel)]="newTemplate.templateName"
+                       class="form-control" placeholder="Template name"/>
+            </div>
+
+            <div class="form-group">
+                <input [disabled]="!(templates == null || isSelected == true)" [(ngModel)]="newTemplate.password"
+                       class="form-control" placeholder="Password"/>
+            </div>
+
+            <button [disabled]="!(templates == null || isSelected == true)" (click)="createTemplate()"
+                    class="btn btn-primary col-md-12">Add
+            </button>
+        </div>
+
+        <div class="col-md-1" *ngIf="templates != null">
+            <button class="glyphicon glyphicon-arrow-up btn btn-danger" (click)="goUp()"></button>
+        </div>
+
+        <div class="col-md-5">
+
+            <div *ngIf="templates != null">
+                <div class="col-md-12">
+                    <h3 style="text-align: center;">
+                        Type: {{displayType}}
+                    </h3>
+                    <hr class="clearfix col-md-12">
+                </div>
+
+                <ul class="atoms col-md-12">
+                    <li *ngFor="let t of getTemplates()" (click)="displayChildren(t.index);">
+                        <span class="length btn btn-default">{{t.child.length}}</span>
+                        <span class="templateName">{{t.templateName}}</span>
+                        <button class="add btn btn-primary" (click)="selectTemplate(t.index); $event.stopPropagation()">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="col-md-12">
+            <hr class="clearfix col-md-12">
+            <div *ngIf="templates != null">
+                <button class="btn btn-primary" (click)="saveTemplate()" style="float: right;">Save template</button>
+            </div>
+        </div>
     </div>
-
-    <br/>
-
-    <div *ngIf="templates == null || isSelected == true">
-        <input *ngIf="currentType == null" [(ngModel)]="newTemplate.type" placeholder="type"/>
-        <input [(ngModel)]="newTemplate.templateName" placeholder="templateName"/>
-        <input [(ngModel)]="newTemplate.password" placeholder="password"/>
-
-        <button (click)="createTemplate()">Create</button>
-    </div>
-
-    <br/>
-
-    <div *ngIf="templates != null">
-        <button (click)="goUp()">GO Up</button>
-        <button (click)="saveTemplate()">Save template</button>
-    </div>
-    <button (click)="goBack()">GO Back</button>
 </div>

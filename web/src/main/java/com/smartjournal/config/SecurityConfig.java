@@ -44,15 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authenticate").authenticated()
-                .antMatchers("/**").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/authenticate")
-                .defaultSuccessUrl("/")
-                .failureUrl("/authenticate?error=true")
-                .and()
-                .logout().logoutSuccessUrl("/logout");
+                .antMatchers("/**").permitAll();
     }
 
     @Bean
