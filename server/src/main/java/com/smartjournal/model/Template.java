@@ -2,7 +2,6 @@ package com.smartjournal.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
 import java.io.Serializable;
