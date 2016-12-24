@@ -3,14 +3,27 @@ package com.smartjournal.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 @Data
 @Entity
+@Table
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Template {
+public class Template implements Serializable {
 
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "id")
     private Long id;
+
+    @ManyToMany
+    private ArrayList<Observer> observers;
+
+    @OneToMany
+    private ArrayList<Student> students;
+
+    @OneToMany
+    private ArrayList<Discipline> disciplines;
+
 }
