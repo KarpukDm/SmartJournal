@@ -13,7 +13,7 @@ mvn spring boot:run
 mvn clean install  
 java -jar target/*.jar
 ```
-or execute method main() in WebApplication.class from your IDE
+or execute method main() in ServerApplication.class from your IDE
 ####Client run:  
 ```
 cd ui/
