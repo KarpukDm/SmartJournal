@@ -7,11 +7,13 @@ import { AppComponent } from './component/app/app.component';
 import { TemplateCreatorComponent } from './component/template-creator/template-creator.component';
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
+import {MDL} from "./mdl";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateCreatorComponent
+    TemplateCreatorComponent,
+    MDL
   ],
   imports: [
     BrowserModule,
