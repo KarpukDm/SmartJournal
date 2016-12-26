@@ -19,6 +19,9 @@ public class Template implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "template_name")
+    private String templateName;
+
     @Column(name = "layout")
     private Layout layout;
 
@@ -36,6 +39,8 @@ public class Template implements Serializable {
     public static class Layout implements Serializable{
 
         private String layoutName;
+
+        private String layoutType;
 
         private List<Layout> layouts;
 

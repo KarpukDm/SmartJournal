@@ -1,3 +1,27 @@
 <p>
   template-builder works!
 </p>
+
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" [(ngModel)]="template.templateName" type="text" id="templateName">
+  <label class="mdl-textfield__label" for="templateName">Template name</label>
+</div>
+
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" [(ngModel)]="layout.layoutName" type="text" id="layoutName">
+  <label class="mdl-textfield__label" for="layoutName">Layout name</label>
+</div>
+
+<div class="mdl-textfield mdl-js-textfield">
+  <input class="mdl-textfield__input" [(ngModel)]="layout.layoutType" type="text" id="layoutType">
+  <label class="mdl-textfield__label" for="layoutType">Layout type</label>
+</div>
+
+<button (click)="addLayout()"
+        class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+  <i class="material-icons">add</i>
+</button>
+
+<div *ngFor="let l of getLayouts()">
+  {{l.layoutName}} {{l.layoutType}}
+</div>
