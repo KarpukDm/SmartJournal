@@ -4,16 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './component/app/app.component';
-import { TemplateCreatorComponent } from './component/template-creator/template-creator.component';
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {MDL} from "./mdl";
+import { TemplateBuilderComponent } from './component/template-builder/template-builder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateCreatorComponent,
-    MDL
+    MDL,
+    TemplateBuilderComponent
   ],
   imports: [
     BrowserModule,
