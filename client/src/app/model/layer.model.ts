@@ -5,6 +5,8 @@ export class Layer {
 
   layerType: string;
 
+  hash: string;
+
   layers: Layer[];
 
   students: Student[];

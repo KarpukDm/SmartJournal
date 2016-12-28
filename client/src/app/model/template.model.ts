@@ -4,6 +4,6 @@ export class Template {
 
   templateName: string;
 
-  layers: Layer[];
+  layer: Layer;
 
 }
