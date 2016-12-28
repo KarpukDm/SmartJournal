@@ -23,7 +23,7 @@ public class Template implements Serializable {
     private String templateName;
 
     @Column(name = "layout")
-    private Layout layout;
+    private Layer layer;
 
     @ManyToMany
     private ArrayList<Observer> observers;
@@ -36,13 +36,13 @@ public class Template implements Serializable {
 
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Layout implements Serializable{
+    public static class Layer implements Serializable{
 
-        private String layoutName;
+        private String layerName;
 
-        private String layoutType;
+        private String layerType;
 
-        private List<Layout> layouts;
+        private List<Layer> layers;
 
         private List<Student> students;
 

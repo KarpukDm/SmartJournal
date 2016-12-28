@@ -1,9 +1,9 @@
-import {Layout} from "./layout.model";
+import {Layer} from "./layer.model";
 
 export class Template {
 
   templateName: string;
 
-  layouts: Layout[];
+  layers: Layer[];
 
 }

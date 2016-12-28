@@ -8,5 +8,5 @@ import java.io.Serializable;
 @Data
 public class TemplateDTO implements Serializable {
 
-    private Template.Layout layout;
+    private Template.Layer layer;
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Template} from "../../model/template.model";
-import {Layout} from "../../model/layout.model";
+import {Layer} from "../../model/layer.model";
 import {isNullOrUndefined} from "util";
 
 @Component({
@@ -11,41 +11,42 @@ import {isNullOrUndefined} from "util";
 export class TemplateBuilderComponent implements OnInit {
 
   private template: Template;
-  private layout: Layout;
-  private selectedLayout: Layout;
+  private layer: Layer;
+  private selectedLayer: Layer;
+  private layerHistory: Layer[];
 
   constructor() {
     this.template = new Template();
-    this.layout = new Layout();
+    this.layer = new Layer();
   }
 
   ngOnInit() {
   }
 
-  private addLayout(layout: Layout) {
+  private addLayout(layer: Layer) {
 
-    if(isNullOrUndefined(layout)) {
-      this.selectedLayout = layout;
+    if(isNullOrUndefined(layer)) {
+      this.selectedLayer = layer;
 
-      if (isNullOrUndefined(this.template.layouts)) {
-        this.template.layouts = [];
+      if (isNullOrUndefined(this.template.layers)) {
+        this.template.layers = [];
       }
 
-      if ((!isNullOrUndefined(this.layout.layoutName) || this.layout.layoutName != "") &&
-        (!isNullOrUndefined(this.layout.layoutType) || this.layout.layoutType != "")) {
-        if(isNullOrUndefined(this.selectedLayout.layouts)){
-          this.selectedLayout.layouts = [];
+      if ((!isNullOrUndefined(this.layer.layerName) || this.layer.layerName != "") &&
+        (!isNullOrUndefined(this.layer.layerType) || this.layer.layerType != "")) {
+        if(isNullOrUndefined(this.layer.layers)){
+          this.selectedLayer.layers = [];
         }
-        this.selectedLayout.layouts.push(this.layout);
-        this.layout = new Layout();
+        this.selectedLayer.layers.push(this.layer);
+        this.layer = new Layer();
       }
     }
   }
 
 
   private getLayouts(){
-    if(!isNullOrUndefined(this.template) && !isNullOrUndefined(this.template.layouts)) {
-      return this.template.layouts;
+    if(!isNullOrUndefined(this.template) && !isNullOrUndefined(this.template.layers)) {
+      return this.template.layers;
     }
   }
 

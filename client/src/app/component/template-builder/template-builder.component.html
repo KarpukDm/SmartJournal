@@ -24,4 +24,8 @@
 
 <div *ngFor="let l of getLayouts()">
   {{l.layoutName}} {{l.layoutType}}
+  <button (click)="addLayout()"
+          class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+    <i class="material-icons">add</i>
+  </button>
 </div>
