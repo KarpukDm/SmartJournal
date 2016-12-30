@@ -1,6 +1,7 @@
 package com.smartjournal.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.smartjournal.model.Template;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,20 +13,6 @@ public class TemplateDTO implements Serializable {
 
     private String templateName;
 
-    private LayerDTO layer;
+    private Template.Layer layer;
 
-    @Data
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private static class LayerDTO implements Serializable {
-
-        private Long id;
-
-        private String layerName;
-
-        private String layerType;
-
-        private List<LayerDTO> layers;
-
-        private List<StudentDTO> students;
-    }
 }

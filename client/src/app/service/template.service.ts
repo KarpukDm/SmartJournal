@@ -35,7 +35,7 @@ export class TemplateService {
       .catch(TemplateService.handleError);
   }
 
-  getTemplatesByIndex(id: number): Observable<Template[]> {
+  getTemplatesById(id: number): Observable<Template> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
 

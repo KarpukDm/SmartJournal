@@ -1,6 +1,7 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.dto.TemplateDTO;
+import com.smartjournal.model.Template;
 import com.smartjournal.repository.TemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,13 @@ public class TemplateController {
     public DeferredResult createTemplate(@RequestBody TemplateDTO templateDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
-        deferredResult.setResult(new ResponseEntity(templateDTO, HttpStatus.OK));
+        Template template = new Template();
+        template.setTemplateName(templateDTO.getTemplateName());
+        template.setLayer(templateDTO.getLayer());
+
+        template = templateRepository.save(template);
+
+        deferredResult.setResult(new ResponseEntity(template, HttpStatus.OK));
         return deferredResult;
     }
 }

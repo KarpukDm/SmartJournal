@@ -17,7 +17,6 @@ export class TemplateBuilderComponent implements OnInit {
 
   private template: Template;
   private layer: Layer;
-  private selectedLayer: Layer;
   private layerHistory: Layer[];
   private errorMessage: string;
 
@@ -27,7 +26,6 @@ export class TemplateBuilderComponent implements OnInit {
     this.template = new Template();
     this.layer = new Layer();
     this.layerHistory = [];
-    this.selectedLayer = new Layer();
   }
 
   ngOnInit() {
@@ -54,7 +52,6 @@ export class TemplateBuilderComponent implements OnInit {
   }
 
   private selectLayer(layer: Layer) {
-    this.selectedLayer = layer;
     this.layerHistory.push(layer);
   }
 
@@ -73,14 +70,13 @@ export class TemplateBuilderComponent implements OnInit {
   }
 
   private saveTemplate(){
-    console.log(this.template);
 
     this.templateService.createTemplate(this.template)
       .subscribe(
         template => {
           console.log(template);
           this.template = template;
-          //this.gotoViewTemplate(this.template.id);
+          this.gotoViewTemplate(this.template.id);
         },
         error => this.errorMessage = <any>error
       );

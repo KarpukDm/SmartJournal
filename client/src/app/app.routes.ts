@@ -5,4 +5,5 @@ import {TemplateBuilderComponent} from "./component/template-builder/template-bu
 export const appRoutes: Routes = [
   { path: '', component: AppComponent },
   { path: 'template/create', component: TemplateBuilderComponent },
+  { path: 'template/view/:id', component: TemplateBuilderComponent },
 ];
