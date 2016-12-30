@@ -1,11 +1,11 @@
 package com.smartjournal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,14 +25,17 @@ public class Template implements Serializable {
     @Column(name = "layout")
     private Layer layer;
 
+    @JsonIgnore
     @ManyToMany
-    private ArrayList<Observer> observers;
+    private List<Observer> observers;
 
+    @JsonIgnore
     @OneToMany
-    private ArrayList<Student> students;
+    private List<Student> students;
 
+    @JsonIgnore
     @OneToMany
-    private ArrayList<Discipline> disciplines;
+    private List<Discipline> disciplines;
 
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
