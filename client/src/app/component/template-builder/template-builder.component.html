@@ -22,6 +22,10 @@
   <i class="material-icons">add</i>
 </button>
 
+<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Go UP
+</button>
+
 <div *ngFor="let l of getLayers()">
-  {{l.layerName}} {{l.layerType}}
+  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
 </div>

@@ -51,7 +51,7 @@ export class TemplateBuilderComponent implements OnInit {
   }
 
   private goUp(){
-    if(this.layerHistory.length > 0) {
+    if(this.layerHistory.length > 1) {
       this.layerHistory.pop();
     }
   }
