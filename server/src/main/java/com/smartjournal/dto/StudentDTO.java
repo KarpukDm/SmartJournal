@@ -7,9 +7,7 @@ import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LoginDTO implements Serializable {
+public class StudentDTO implements Serializable {
 
-    private String login;
-
-    private String password;
+    private Long id;
 }

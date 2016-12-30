@@ -1,11 +1,12 @@
 package com.smartjournal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,10 +19,12 @@ public class Observer implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToMany
-    private ArrayList<Template> templates;
+    private List<Template> templates;
 
+    @JsonIgnore
     @OneToMany
-    private ArrayList<Schedule> schedules;
+    private List<Schedule> schedules;
 
 }
