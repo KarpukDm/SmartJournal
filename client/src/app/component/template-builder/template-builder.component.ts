@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
   selector: 'app-template-builder',
   templateUrl: './template-builder.component.html',
   styleUrls: ['./template-builder.component.css'],
-  providers: [TemplateService, ]
+  providers: [TemplateService]
 })
 export class TemplateBuilderComponent implements OnInit {
 

@@ -1,5 +1,6 @@
 package com.smartjournal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -18,10 +19,12 @@ public class Observer implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Template> templates;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
 }

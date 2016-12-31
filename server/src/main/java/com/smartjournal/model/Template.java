@@ -1,5 +1,6 @@
 package com.smartjournal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -24,13 +25,16 @@ public class Template implements Serializable {
     @Column(name = "layout")
     private Layer layer;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Observer> observers;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Student> students;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Discipline> disciplines;
 
     @Data
