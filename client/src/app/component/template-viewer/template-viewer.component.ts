@@ -4,6 +4,7 @@ import {TemplateService} from "../../service/template.service";
 import {Template} from "../../model/template.model";
 import {isNullOrUndefined} from "util";
 import {Layer} from "../../model/layer.model";
+import {Constrains} from "../../constraints";
 
 @Component({
   selector: 'app-template-viewer',
@@ -57,6 +58,11 @@ export class TemplateViewerComponent implements OnInit {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
+  }
+
+  private gotoEditTemplate(id: number): void {
+    let link = [Constrains.editTemplateURL, id];
+    this.router.navigate(link);
   }
 
 }

@@ -11,6 +11,10 @@
   Go UP
 </button>
 
+<button (click)="gotoEditTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Edit
+</button>
+
 <div *ngFor="let l of getLayers()">
   <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
 </div>
