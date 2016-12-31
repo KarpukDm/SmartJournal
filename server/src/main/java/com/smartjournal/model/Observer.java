@@ -20,11 +20,11 @@ public class Observer implements Serializable {
     private Long id;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Template> templates;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Schedule> schedules;
 
 }

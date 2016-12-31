@@ -1,0 +1,20 @@
+<p>
+  template-viewer works!
+</p>
+
+<button (click)="addLayer()"
+        class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+  <i class="material-icons">add</i>
+</button>
+
+<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Go UP
+</button>
+
+<button (click)="gotoEditTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Edit
+</button>
+
+<div *ngFor="let l of getLayers()">
+  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
+</div>

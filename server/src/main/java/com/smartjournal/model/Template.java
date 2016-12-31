@@ -26,30 +26,33 @@ public class Template implements Serializable {
     private Layer layer;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Observer> observers;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Student> students;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Discipline> disciplines;
 
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Layer implements Serializable{
+    public static class Layer implements Serializable {
 
+        @Column(name = "layerName")
         private String layerName;
 
+        @Column(name = "layerType")
         private String layerType;
 
+        @Column(name = "layers")
         private List<Layer> layers;
 
+        @Column(name = "students")
         private List<Student> students;
 
-        private Boolean isLast;
     }
 
 }

@@ -8,14 +8,16 @@ import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {MDL} from "./mdl";
 import { TemplateBuilderComponent } from './component/template-builder/template-builder.component';
-import { TemplateViewerComponent } from './template-viewer/template-viewer.component';
+import { TemplateViewerComponent } from './component/template-viewer/template-viewer.component';
+import { TemplateEditorComponent } from './component/template-editor/template-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MDL,
     TemplateBuilderComponent,
-    TemplateViewerComponent
+    TemplateViewerComponent,
+    TemplateEditorComponent
   ],
   imports: [
     BrowserModule,
