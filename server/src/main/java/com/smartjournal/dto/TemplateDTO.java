@@ -11,6 +11,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TemplateDTO implements Serializable {
 
+    private Long id;
+
     private String templateName;
 
     private Template.Layer layer;

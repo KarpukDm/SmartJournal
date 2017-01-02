@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {Params, ActivatedRoute, Router} from "@angular/router";
-import {TemplateService} from "../../service/template.service";
-import {Template} from "../../model/template.model";
-import {isNullOrUndefined} from "util";
+import { Component, OnInit } from '@angular/core';
 import {Layer} from "../../model/layer.model";
+import {Template} from "../../model/template.model";
+import {TemplateService} from "../../service/template.service";
+import {ActivatedRoute, Router, Params} from "@angular/router";
+import {isNullOrUndefined} from "util";
 import {Constrains} from "../../constraints";
 
 @Component({
-  selector: 'app-template-viewer',
-  templateUrl: './template-viewer.component.html',
-  styleUrls: ['./template-viewer.component.css'],
+  selector: 'app-template-editor',
+  templateUrl: './template-editor.component.html',
+  styleUrls: ['./template-editor.component.css'],
   providers: [TemplateService]
 })
-export class TemplateViewerComponent implements OnInit {
+export class TemplateEditorComponent implements OnInit {
 
   private errorMessage: string;
   private template: Template;
@@ -22,9 +22,11 @@ export class TemplateViewerComponent implements OnInit {
               private route: ActivatedRoute,
               private templateService: TemplateService) {
     this.layerHistory = [];
+    this.template = new Template();
   }
 
   ngOnInit() {
+    console.log(this.template);
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.templateService.getTemplatesById(id)
@@ -37,7 +39,6 @@ export class TemplateViewerComponent implements OnInit {
           error => this.errorMessage = <any>error
         );
     });
-
   }
 
   private selectLayer(layer: Layer) {
@@ -60,8 +61,21 @@ export class TemplateViewerComponent implements OnInit {
     }
   }
 
-  private gotoEditTemplate(): void {
-    let link = [Constrains.editTemplateURL, this.template.id];
+  private saveTemplate(){
+
+    this.templateService.createTemplate(this.template)
+      .subscribe(
+        template => {
+          console.log(template);
+          this.template = template;
+          this.gotoViewTemplate(this.template.id);
+        },
+        error => this.errorMessage = <any>error
+      );
+  }
+
+  private gotoViewTemplate(id: number): void {
+    let link = [Constrains.viewTemplateURL, id];
     this.router.navigate(link);
   }
 
