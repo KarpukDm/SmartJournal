@@ -1,0 +1,30 @@
+<p>
+  template-editor works!
+</p>
+
+<button (click)="addLayer()"
+        class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+  <i class="material-icons">add</i>
+</button>
+
+<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Go UP
+</button>
+
+<button (click)="saveTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Save template
+</button>
+
+<div *ngFor="let l of getLayers()">
+  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
+
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" [(ngModel)]="l.layerName" type="text" id="layerName">
+    <label class="mdl-textfield__label" for="layerName">Layer name</label>
+  </div>
+
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" [(ngModel)]="l.layerType" type="text" id="layerType">
+    <label class="mdl-textfield__label" for="layerType">Layer type</label>
+  </div>
+</div>

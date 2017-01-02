@@ -23,6 +23,7 @@ public class TemplateController {
     public ResponseEntity createTemplate(@RequestBody TemplateDTO templateDTO) {
 
         Template template = new Template();
+        template.setId(templateDTO.getId());
         template.setTemplateName(templateDTO.getTemplateName());
         template.setLayer(templateDTO.getLayer());
 
