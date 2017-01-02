@@ -19,6 +19,8 @@ export class TemplateBuilderComponent implements OnInit {
   private layer: Layer;
   private layerHistory: Layer[];
   private errorMessage: string;
+  private isShowStep1: boolean;
+  private isShowStep2: boolean;
 
   constructor(private templateService: TemplateService,
               private location: Location,
@@ -26,6 +28,8 @@ export class TemplateBuilderComponent implements OnInit {
     this.template = new Template();
     this.layer = new Layer();
     this.layerHistory = [];
+    this.isShowStep1 = true;
+    this.isShowStep2 = false;
   }
 
   ngOnInit() {
@@ -67,6 +71,11 @@ export class TemplateBuilderComponent implements OnInit {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
+  }
+
+  private showStep2(){
+    this.isShowStep1 = false;
+    this.isShowStep2 = true;
   }
 
   private saveTemplate(){

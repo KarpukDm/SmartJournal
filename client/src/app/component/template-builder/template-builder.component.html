@@ -1,31 +1,70 @@
-<div class="mdl-textfield mdl-js-textfield">
-  <input class="mdl-textfield__input" [(ngModel)]="template.templateName" type="text" id="templateName">
-  <label class="mdl-textfield__label" for="templateName">Template name</label>
+<div *ngIf="isShowStep1 == true" class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Please, enter the template name</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <input class="mdl-textfield__input" [(ngModel)]="template.templateName" type="text" id="templateName">
+        <label class="mdl-textfield__label" for="templateName">Template name</label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <input class="mdl-textfield__input" type="text" id="password">
+        <label class="mdl-textfield__label" for="password">Password</label>
+      </div>
+    </div>
+    <div (click)="showStep2()" class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Continue
+      </a>
+    </div>
+  </div>
+  <div class="mdl-layout-spacer"></div>
 </div>
 
-<div class="mdl-textfield mdl-js-textfield">
-  <input class="mdl-textfield__input" [(ngModel)]="layer.layerName" type="text" id="layerName">
-  <label class="mdl-textfield__label" for="layerName">Layer name</label>
-</div>
+<div *ngIf="isShowStep2 == true" class="demo-grid-ruler mdl-grid container mdl-grid--no-spacing">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp container1">
+    <div class="mdl-card__title mdl-card--expand mdl-color--primary">
+      Create new layer
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" [(ngModel)]="layer.layerName" type="text" id="layerName">
+        <label class="mdl-textfield__label" for="layerName">Layer name</label>
+      </div>
 
-<div class="mdl-textfield mdl-js-textfield">
-  <input class="mdl-textfield__input" [(ngModel)]="layer.layerType" type="text" id="layerType">
-  <label class="mdl-textfield__label" for="layerType">Layer type</label>
-</div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" [(ngModel)]="layer.layerType" type="text" id="layerType">
+        <label class="mdl-textfield__label" for="layerType">Layer type</label>
+      </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <button (click)="addLayer()"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored  mdl-cell mdl-cell--12-col">
+        <i class="material-icons">add</i>
+      </button>
+    </div>
+  </div>
 
-<button (click)="addLayer()"
-        class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-card--expand mdl-color--warning">
+      Layers
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div *ngFor="let l of getLayers()">
+        <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
+      </div>
 
-<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-  Go UP
-</button>
+      <button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        Go UP
+      </button>
+    </div>
+  </div>
 
-<button (click)="saveTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Save template
-</button>
-
-<div *ngFor="let l of getLayers()">
-  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
+  <button (click)="saveTemplate()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    Save template
+  </button>
 </div>
