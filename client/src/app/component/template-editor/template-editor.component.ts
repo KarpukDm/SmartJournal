@@ -17,12 +17,16 @@ export class TemplateEditorComponent implements OnInit {
   private errorMessage: string;
   private template: Template;
   private layerHistory: Layer[];
+  private isEdit: boolean;
+  private editedLayer: Layer;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private templateService: TemplateService) {
     this.layerHistory = [];
     this.template = new Template();
+    this.isEdit = false;
+    this.editedLayer = new Layer();
   }
 
   ngOnInit() {
@@ -59,6 +63,11 @@ export class TemplateEditorComponent implements OnInit {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
+  }
+
+  private edit(layer: Layer){
+    this.isEdit = true;
+    this.editedLayer = layer;
   }
 
   private saveTemplate(){
