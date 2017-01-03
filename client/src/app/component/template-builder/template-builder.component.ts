@@ -6,6 +6,7 @@ import {TemplateService} from "../../service/template.service";
 import {Router} from "@angular/router";
 import {Constrains} from "../../constraints";
 import {Location} from "@angular/common";
+import {isEmpty} from "rxjs/operator/isEmpty";
 
 @Component({
   selector: 'app-template-builder',
@@ -19,8 +20,7 @@ export class TemplateBuilderComponent implements OnInit {
   private layer: Layer;
   private layerHistory: Layer[];
   private errorMessage: string;
-  private isShowStep1: boolean;
-  private isShowStep2: boolean;
+  private isNamed: boolean;
 
   constructor(private templateService: TemplateService,
               private location: Location,
@@ -28,8 +28,7 @@ export class TemplateBuilderComponent implements OnInit {
     this.template = new Template();
     this.layer = new Layer();
     this.layerHistory = [];
-    this.isShowStep1 = true;
-    this.isShowStep2 = false;
+    this.isNamed = false;
   }
 
   ngOnInit() {
@@ -59,26 +58,21 @@ export class TemplateBuilderComponent implements OnInit {
     this.layerHistory.push(layer);
   }
 
-  private goUp(){
-    if(this.layerHistory.length > 1) {
+  private goUp() {
+    if (this.layerHistory.length > 1) {
       this.layerHistory.pop();
     }
   }
 
   private getLayers() {
     if (!isNullOrUndefined(this.layerHistory)) {
-      if(!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
+      if (!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
   }
 
-  private showStep2(){
-    this.isShowStep1 = false;
-    this.isShowStep2 = true;
-  }
-
-  private saveTemplate(){
+  private saveTemplate() {
 
     this.templateService.createTemplate(this.template)
       .subscribe(
@@ -89,6 +83,17 @@ export class TemplateBuilderComponent implements OnInit {
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  private enterName() {
+    if (this.template.templateName != null &&
+      this.template.templateName != "") {
+      this.isNamed = true;
+    }
+  }
+
+  private edit() {
+    this.isNamed = false;
   }
 
   private gotoViewTemplate(id: number): void {
