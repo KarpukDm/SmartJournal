@@ -1,33 +1,71 @@
-<button (click)="addLayer()"
-        class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
+<div class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+    <div class="mdl-card__title container3">
+      <h2 class="mdl-card__title-text">Layers list</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+        <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">Type</th>
+          <th>Name</th>
+          <th>Length</th>
+          <th>Edit</th>
+        </tr>
+        </thead>
 
-<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-  Go UP
-</button>
+        <tbody>
+        <tr *ngFor="let l of getLayers()">
+          <td (click)="selectLayer(l)" class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
+          <td (click)="selectLayer(l)">{{l.layerName}}</td>
+          <td (click)="selectLayer(l)">{{l.layers.length}}</td>
+          <td>
+            <button (click)="edit(l)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+              <i class="material-icons">edit</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mdl-card__menu">
+      <button (click)="goUp()"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Go UP
+      </button>
+    </div>
 
-<button (click)="saveTemplate()"
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Save template
-</button>
+    <div (click)="saveTemplate()" class="mdl-card__actions mdl-card--border">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--12-col">
+        Save template
+      </button>
+    </div>
 
-<div *ngFor="let l of getLayers()">
-  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}
-    <button (click)="edit(l)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-      <i class="material-icons">edit</i>
+  </div>
+  <div class="mdl-layout-spacer"></div>
+
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+    <div class="mdl-card__title container3">
+      <h2 class="mdl-card__title-text">Editing</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        Type:
+        <input class="mdl-textfield__input" [(ngModel)]="editedLayer.layerName" type="text" id="layerName">
+        <label class="mdl-textfield__label" for="layerName"></label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        Name:
+        <input class="mdl-textfield__input" [(ngModel)]="editedLayer.layerType" type="text" id="layerType">
+        <label class="mdl-textfield__label" for="layerType"></label>
+      </div>
+    </div>
+    <button (click)="addLayer()"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-cell mdl-cell--12-col">
+      Add as new layer
     </button>
-  </h4>
-</div>
-
-<div *ngIf="isEdit == true">
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" [(ngModel)]="editedLayer.layerName" type="text" id="layerName">
-    <label class="mdl-textfield__label" for="layerName">Layer name</label>
   </div>
-
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" [(ngModel)]="editedLayer.layerType" type="text" id="layerType">
-    <label class="mdl-textfield__label" for="layerType">Layer type</label>
-  </div>
+  <div class="mdl-layout-spacer"></div>
 </div>
