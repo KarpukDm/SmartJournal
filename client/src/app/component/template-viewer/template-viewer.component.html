@@ -1,11 +1,41 @@
-<button (click)="goUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-  Go UP
-</button>
+<div class="mdl-grid">
+<div class="mdl-layout-spacer"></div>
+<div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+  <div class="mdl-card__title container3">
+    <h2 class="mdl-card__title-text">Layers list</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+      <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Type</th>
+        <th>Name</th>
+        <th>Length</th>
+      </tr>
+      </thead>
 
-<button (click)="gotoEditTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Edit
-</button>
+      <tbody>
+      <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+        <td class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
+        <td>{{l.layerName}}</td>
+        <td>{{l.layers.length}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mdl-card__menu">
+    <button (click)="goUp()"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Go UP
+    </button>
+  </div>
 
-<div *ngFor="let l of getLayers()">
-  <h4 (click)="selectLayer(l)">{{l.layerName}} {{l.layerType}}</h4>
+  <div (click)="gotoEditTemplate()" class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Edit
+    </a>
+  </div>
+
+</div>
+<div class="mdl-layout-spacer"></div>
 </div>
