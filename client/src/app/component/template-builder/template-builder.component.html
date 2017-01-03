@@ -54,8 +54,9 @@
       <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
         <thead>
         <tr>
-          <th class="mdl-data-table__cell--non-numeric">Layer Type</th>
-          <th>Layer Name</th>
+          <th class="mdl-data-table__cell--non-numeric">Type</th>
+          <th>Name</th>
+          <th>Length</th>
         </tr>
         </thead>
 
@@ -63,6 +64,7 @@
         <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
           <td class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
           <td>{{l.layerName}}</td>
+          <td>{{l.layers.length}}</td>
         </tr>
         </tbody>
       </table>

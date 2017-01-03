@@ -49,6 +49,7 @@ export class TemplateBuilderComponent implements OnInit {
       if (isNullOrUndefined(layer.layers)) {
         layer.layers = [];
       }
+      this.layer.layers = [];
       layer.layers.push(this.layer);
       this.layer = new Layer();
     }
