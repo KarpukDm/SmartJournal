@@ -7,4 +7,5 @@ export class Constrains {
   public static get findTemplateURL(): string { return "template"; }
   public static get viewTemplateURL(): string { return "template/view/"; }
   public static get editTemplateURL(): string { return "template/edit/"; }
+  public static get fillTemplateURL(): string { return "template/fill/"; }
 }

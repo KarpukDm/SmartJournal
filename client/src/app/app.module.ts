@@ -10,6 +10,7 @@ import {MDL} from "./mdl";
 import { TemplateBuilderComponent } from './component/template-builder/template-builder.component';
 import { TemplateViewerComponent } from './component/template-viewer/template-viewer.component';
 import { TemplateEditorComponent } from './component/template-editor/template-editor.component';
+import { TemplateFillerComponent } from './component/template-filler/template-filler.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TemplateEditorComponent } from './component/template-editor/template-ed
     MDL,
     TemplateBuilderComponent,
     TemplateViewerComponent,
-    TemplateEditorComponent
+    TemplateEditorComponent,
+    TemplateFillerComponent
   ],
   imports: [
     BrowserModule,

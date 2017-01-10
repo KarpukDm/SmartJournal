@@ -5,7 +5,24 @@
     <h2 class="mdl-card__title-text">Layers list</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+
+    <div *ngIf="isLastLevel == true">
+      <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+        <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">Name</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let l of getStudents()">
+          <td class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <table *ngIf="isLastLevel == false" class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
       <thead>
       <tr>
         <th class="mdl-data-table__cell--non-numeric">Type</th>
@@ -33,6 +50,11 @@
   <div (click)="gotoEditTemplate()" class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
       Edit
+    </a>
+  </div>
+  <div (click)="gotoFillTemplate()" class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Fill
     </a>
   </div>
 
