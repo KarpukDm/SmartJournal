@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Constrains} from "../../constraints";
-
-export class MenuElementModel{
-  private name: string;
-  private link: string;
-
-  constructor(name: string, link: string){
-    this.name = name;
-    this.link = link;
-  }
-}
+import {Constrains} from "../../../constraints";
+import {MenuElementModel} from "../menu-element.model";
 
 @Component({
   selector: 'app-vertical-menu',
@@ -19,11 +10,9 @@ export class MenuElementModel{
 export class VerticalMenuComponent implements OnInit {
 
   private verticalMenu: MenuElementModel[];
-  private horizontalMenu: MenuElementModel[];
 
   constructor() {
     this.verticalMenu = [];
-    this.horizontalMenu = [];
   }
 
   ngOnInit() {
@@ -34,10 +23,6 @@ export class VerticalMenuComponent implements OnInit {
 
   private getVerticalMenu(){
     return this.verticalMenu;
-  }
-
-  private getHorizontalMenu(){
-    return this.horizontalMenu;
   }
 
 }
