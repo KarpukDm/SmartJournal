@@ -16,4 +16,7 @@ public class Student implements Serializable {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
+    private String name;
 }

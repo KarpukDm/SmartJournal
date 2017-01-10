@@ -1,29 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {Params, ActivatedRoute, Router} from "@angular/router";
-import {TemplateService} from "../../service/template.service";
+import { Component, OnInit } from '@angular/core';
 import {Template} from "../../model/template.model";
-import {isNullOrUndefined} from "util";
 import {Layer} from "../../model/layer.model";
+import {Router, ActivatedRoute, Params} from "@angular/router";
+import {TemplateService} from "../../service/template.service";
+import {isNullOrUndefined} from "util";
 import {Constrains} from "../../constraints";
+import {Student} from "../../model/student.model";
 
 @Component({
-  selector: 'app-template-viewer',
-  templateUrl: './template-viewer.component.html',
-  styleUrls: ['./template-viewer.component.css'],
+  selector: 'app-template-filler',
+  templateUrl: './template-filler.component.html',
+  styleUrls: ['./template-filler.component.css'],
   providers: [TemplateService]
 })
-export class TemplateViewerComponent implements OnInit {
+export class TemplateFillerComponent implements OnInit {
 
   private errorMessage: string;
   private template: Template;
   private layerHistory: Layer[];
   private isLastLevel: boolean;
+  private student: Student;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private templateService: TemplateService) {
     this.layerHistory = [];
     this.isLastLevel = false;
+    this.student = new Student();
   }
 
   ngOnInit() {
@@ -42,10 +45,28 @@ export class TemplateViewerComponent implements OnInit {
 
   }
 
+  private addStudent(){
+    let layer = this.layerHistory.slice(-1)[0];
+    layer.students.push(this.student);
+    this.student = new Student();
+  }
+
+  private getStudents(){
+    let layer = this.layerHistory.slice(-1)[0];
+    return layer.students;
+  }
+
   private selectLayer(layer: Layer) {
     if(!isNullOrUndefined(layer.layers)) {
+      if(layer.layers.length == 0){
+        this.isLastLevel = true;
+        if(isNullOrUndefined(layer.students)) {
+          layer.students = [];
+        }
+      }else{
+        this.isLastLevel = false;
+      }
       this.layerHistory.push(layer);
-      this.isLastLevel = layer.layers.length == 0;
     }
   }
 
@@ -63,18 +84,21 @@ export class TemplateViewerComponent implements OnInit {
     }
   }
 
-  private getStudents(){
-    let layer = this.layerHistory.slice(-1)[0];
-    return layer.students;
+  private saveTemplate(){
+
+    this.templateService.createTemplate(this.template)
+      .subscribe(
+        template => {
+          console.log(template);
+          this.template = template;
+          this.gotoViewTemplate(this.template.id);
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
-  private gotoEditTemplate(): void {
-    let link = [Constrains.editTemplateURL, this.template.id];
-    this.router.navigate(link);
-  }
-
-  private gotoFillTemplate(): void {
-    let link = [Constrains.fillTemplateURL, this.template.id];
+  private gotoViewTemplate(id: number): void {
+    let link = [Constrains.viewTemplateURL, id];
     this.router.navigate(link);
   }
 

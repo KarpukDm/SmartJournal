@@ -10,4 +10,6 @@ import java.io.Serializable;
 public class StudentDTO implements Serializable {
 
     private Long id;
+
+    private String name;
 }
