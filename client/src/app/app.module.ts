@@ -11,6 +11,8 @@ import { TemplateBuilderComponent } from './component/template-builder/template-
 import { TemplateViewerComponent } from './component/template-viewer/template-viewer.component';
 import { TemplateEditorComponent } from './component/template-editor/template-editor.component';
 import { TemplateFillerComponent } from './component/template-filler/template-filler.component';
+import { VerticalMenuComponent } from './component/menu/vertical-menu/vertical-menu.component';
+import { HorizontalMenuComponent } from './component/menu/horizontal-menu/horizontal-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { TemplateFillerComponent } from './component/template-filler/template-fi
     TemplateBuilderComponent,
     TemplateViewerComponent,
     TemplateEditorComponent,
-    TemplateFillerComponent
+    TemplateFillerComponent,
+    VerticalMenuComponent,
+    HorizontalMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,6 @@ import { TemplateFillerComponent } from './component/template-filler/template-fi
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, VerticalMenuComponent, HorizontalMenuComponent]
 })
 export class AppModule { }
