@@ -6,7 +6,6 @@ import {TemplateService} from "../../service/template.service";
 import {Router} from "@angular/router";
 import {Constrains} from "../../constraints";
 import {Location} from "@angular/common";
-import {isEmpty} from "rxjs/operator/isEmpty";
 
 @Component({
   selector: 'app-template-builder',
