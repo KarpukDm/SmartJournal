@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/template")
 public class TemplateController {
@@ -37,5 +39,12 @@ public class TemplateController {
 
         Template template = templateRepository.findOne(id);
         return new ResponseEntity(template, HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/myTemplates")
+    public ResponseEntity getMyTemplates(){
+
+        List<Template> templates = templateRepository.findAll();
+        return new ResponseEntity(templates, HttpStatus.OK);
     }
 }

@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Template} from "../model/template.model";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
+import {type} from "os";
 
 @Injectable()
 export class TemplateService {
@@ -13,10 +14,12 @@ export class TemplateService {
   });
   private createTemplateURL: string;
   private findTemplateURL: string;
+  private getMyTemplatesURL: string;
 
   constructor(private http: Http) {
     this.createTemplateURL = Constrains.baseURL + Constrains.createTemplateURL;
     this.findTemplateURL = Constrains.baseURL + Constrains.findTemplateURL;
+    this.getMyTemplatesURL = Constrains.baseURL + Constrains.myTemplatesURL;
   }
 
   createTemplate(template: Template): Observable<Template> {
@@ -31,6 +34,12 @@ export class TemplateService {
     params.set('type', type);
 
     return this.http.get(this.findTemplateURL, {search: params})
+      .map(TemplateService.extractData)
+      .catch(TemplateService.handleError);
+  }
+
+  getMyTemplates(): Observable<Template[]> {
+    return this.http.get(this.getMyTemplatesURL)
       .map(TemplateService.extractData)
       .catch(TemplateService.handleError);
   }
