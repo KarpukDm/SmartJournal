@@ -32,6 +32,6 @@ import { HorizontalMenuComponent } from './component/menu/horizontal-menu/horizo
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent, VerticalMenuComponent, HorizontalMenuComponent]
+  bootstrap: [AppComponent, VerticalMenuComponent]
 })
 export class AppModule { }
