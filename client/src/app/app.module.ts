@@ -13,6 +13,7 @@ import { TemplateEditorComponent } from './component/template-editor/template-ed
 import { TemplateFillerComponent } from './component/template-filler/template-filler.component';
 import { VerticalMenuComponent } from './component/menu/vertical-menu/vertical-menu.component';
 import { HorizontalMenuComponent } from './component/menu/horizontal-menu/horizontal-menu.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HorizontalMenuComponent } from './component/menu/horizontal-menu/horizo
     TemplateEditorComponent,
     TemplateFillerComponent,
     VerticalMenuComponent,
-    HorizontalMenuComponent
+    HorizontalMenuComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
