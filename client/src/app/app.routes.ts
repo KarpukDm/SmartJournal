@@ -4,11 +4,13 @@ import {TemplateBuilderComponent} from "./component/template-builder/template-bu
 import {TemplateViewerComponent} from "./component/template-viewer/template-viewer.component";
 import {TemplateEditorComponent} from "./component/template-editor/template-editor.component";
 import {TemplateFillerComponent} from "./component/template-filler/template-filler.component";
+import {ProfileComponent} from "./component/profile/profile.component";
 
 export const appRoutes: Routes = [
   { path: '', component: AppComponent },
   { path: 'template/create', component: TemplateBuilderComponent },
   { path: 'template/view/:id', component: TemplateViewerComponent },
   { path: 'template/edit/:id', component: TemplateEditorComponent },
-  { path: 'template/fill/:id', component: TemplateFillerComponent }
+  { path: 'template/fill/:id', component: TemplateFillerComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
