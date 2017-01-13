@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Params, ActivatedRoute, Router} from "@angular/router";
 import {TemplateService} from "../../service/template.service";
 import {Template} from "../../model/template.model";
@@ -53,6 +53,7 @@ export class TemplateViewerComponent implements OnInit {
     if(this.layerHistory.length > 1) {
       this.layerHistory.pop();
     }
+    this.isLastLevel = false;
   }
 
   private getLayers() {
