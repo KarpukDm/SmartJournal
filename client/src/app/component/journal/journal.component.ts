@@ -17,6 +17,7 @@ export class JournalComponent implements OnInit {
   private templates: Template[];
   private template: Template;
   private layerHistory: Layer[];
+  private isSelected: boolean;
   private isLastLevel: boolean;
 
   constructor(private router: Router,
@@ -24,6 +25,7 @@ export class JournalComponent implements OnInit {
               private templateService: TemplateService) {
     this.layerHistory = [];
     this.isLastLevel = false;
+    this.isSelected = false;
   }
 
   ngOnInit() {
@@ -41,7 +43,22 @@ export class JournalComponent implements OnInit {
 
   private selectTemplate(template: Template){
     this.template = template;
+    console.log(template);
     this.layerHistory.push(this.template.layer);
+    this.isSelected = true;
+  }
+
+  private getLayers() {
+    if (!isNullOrUndefined(this.layerHistory) && this.layerHistory.length > 0) {
+      if(!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
+        return this.layerHistory.slice(-1)[0].layers;
+      }
+    }
+  }
+
+  private getStudents(){
+    let layer = this.layerHistory.slice(-1)[0];
+    return layer.students;
   }
 
   private selectLayer(layer: Layer) {
@@ -54,6 +71,8 @@ export class JournalComponent implements OnInit {
   private goUp(){
     if(this.layerHistory.length > 1) {
       this.layerHistory.pop();
+    }else{
+      this.isSelected = false;
     }
     this.isLastLevel = false;
   }

@@ -6,8 +6,46 @@
     </div>
     <div class="mdl-card__supporting-text">
 
-      <div *ngFor="let i of templates">
-        <h3 (onclick)="selectTemplate()">{{i.templateName}}</h3>
+      <div *ngIf="isSelected == false">
+        <div *ngFor="let t of templates">
+          <h3 (click)="selectTemplate(t)">{{t.templateName}}</h3>
+        </div>
+      </div>
+
+      <div *ngIf="isSelected == true">
+        <div *ngIf="isLastLevel == true">
+          <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+            <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let l of getStudents()">
+              <td class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <table *ngIf="isLastLevel == false" class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+          <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">Type</th>
+            <th>Name</th>
+            <th>Length</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+            <td class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
+            <td>{{l.layerName}}</td>
+            <td>{{l.layers.length}}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
