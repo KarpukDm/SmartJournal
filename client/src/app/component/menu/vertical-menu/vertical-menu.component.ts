@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Constrains} from "../../../constraints";
 import {MenuElementModel} from "../menu-element.model";
 
@@ -19,6 +19,7 @@ export class VerticalMenuComponent implements OnInit {
     this.verticalMenu.push(new MenuElementModel("Profile", Constrains.profileURL));
     this.verticalMenu.push(new MenuElementModel("Create template", Constrains.createTemplateURL));
     this.verticalMenu.push(new MenuElementModel("My templates", Constrains.myTemplatesURL));
+    this.verticalMenu.push(new MenuElementModel("Journal", Constrains.journalURL));
   }
 
   private getVerticalMenu(){

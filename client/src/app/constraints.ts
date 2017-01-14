@@ -9,5 +9,7 @@ export class Constrains {
   public static get editTemplateURL(): string { return "template/edit/"; }
   public static get fillTemplateURL(): string { return "template/fill/"; }
   public static get myTemplatesURL(): string { return "myTemplates"; }
+  public static get getMyTemplatesURL(): string { return "getMyTemplates"; }
   public static get profileURL(): string { return "profile"; }
+  public static get journalURL(): string { return "journal"; }
 }

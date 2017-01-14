@@ -5,6 +5,7 @@ import {TemplateViewerComponent} from "./component/template-viewer/template-view
 import {TemplateEditorComponent} from "./component/template-editor/template-editor.component";
 import {TemplateFillerComponent} from "./component/template-filler/template-filler.component";
 import {ProfileComponent} from "./component/profile/profile.component";
+import {JournalComponent} from "./component/journal/journal.component";
 
 export const appRoutes: Routes = [
   { path: '', component: AppComponent },
@@ -12,5 +13,6 @@ export const appRoutes: Routes = [
   { path: 'template/view/:id', component: TemplateViewerComponent },
   { path: 'template/edit/:id', component: TemplateEditorComponent },
   { path: 'template/fill/:id', component: TemplateFillerComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'journal', component: JournalComponent }
 ];

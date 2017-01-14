@@ -13,6 +13,7 @@ import {TemplateFillerComponent} from "./component/template-filler/template-fill
 import {VerticalMenuComponent} from "./component/menu/vertical-menu/vertical-menu.component";
 import {HorizontalMenuComponent} from "./component/menu/horizontal-menu/horizontal-menu.component";
 import {JournalComponent} from "./component/journal/journal.component";
+import {ProfileComponent} from "./component/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {JournalComponent} from "./component/journal/journal.component";
     TemplateFillerComponent,
     VerticalMenuComponent,
     HorizontalMenuComponent,
-    JournalComponent
+    JournalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class TemplateService {
   constructor(private http: Http) {
     this.createTemplateURL = Constrains.baseURL + Constrains.createTemplateURL;
     this.findTemplateURL = Constrains.baseURL + Constrains.findTemplateURL;
-    this.getMyTemplatesURL = Constrains.baseURL + Constrains.myTemplatesURL;
+    this.getMyTemplatesURL = Constrains.baseURL + Constrains.getMyTemplatesURL;
   }
 
   createTemplate(template: Template): Observable<Template> {
