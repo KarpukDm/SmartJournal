@@ -19,6 +19,9 @@ public class Observer implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Template> templates;

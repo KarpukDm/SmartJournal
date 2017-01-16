@@ -16,4 +16,26 @@ public class Statistics implements Serializable{
     @GeneratedValue
     @Column(name = "id")
     private Long id;
+
+    @OneToOne
+    private Discipline discipline;
+
+    @OneToOne
+    private Observer observer;
+
+    @OneToOne
+    private Student student;
+
+    @Column(name = "status")
+    private Status status;
+
+    @Table
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private static class Status implements Serializable {
+
+        private Boolean isThere;
+
+        private Integer mark;
+    }
+
 }
