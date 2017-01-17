@@ -8,4 +8,8 @@ export class Template {
 
   layer: Layer;
 
+  constructor(){
+    this.layer = new Layer();
+  }
+
 }

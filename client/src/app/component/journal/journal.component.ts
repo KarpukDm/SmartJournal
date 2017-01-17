@@ -4,6 +4,7 @@ import {Template} from "../../model/template.model";
 import {Layer} from "../../model/layer.model";
 import {TemplateService} from "../../service/template.service";
 import {isNullOrUndefined} from "util";
+import {Statistics} from "../../model/statistics.model";
 
 @Component({
   selector: 'app-journal',
@@ -65,6 +66,21 @@ export class JournalComponent implements OnInit {
     if(!isNullOrUndefined(layer.layers)) {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
+      if(this.isLastLevel == true){
+        this.createNewRecord(); // remove later
+      }
+    }
+  }
+
+  private createNewRecord(){
+    for(let st of this.getStudents()){
+      if(isNullOrUndefined(st.statistics)){
+        st.statistics = [];
+        let x = new Statistics();
+        x.status.mark = 8;
+        st.statistics.push(x);
+      }
+
     }
   }
 

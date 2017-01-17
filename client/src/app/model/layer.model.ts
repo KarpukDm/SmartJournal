@@ -9,4 +9,8 @@ export class Layer {
 
   students: Student[];
 
+  constructor(){
+    this.students = [];
+    this.layers = [];
+  }
 }

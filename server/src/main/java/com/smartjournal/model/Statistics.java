@@ -23,9 +23,6 @@ public class Statistics implements Serializable{
     @OneToOne
     private Observer observer;
 
-    @OneToOne
-    private Student student;
-
     @Column(name = "status")
     private Status status;
 
