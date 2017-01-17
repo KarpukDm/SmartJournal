@@ -15,12 +15,14 @@
       <thead>
       <tr>
         <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th>Status</th>
       </tr>
       </thead>
 
       <tbody>
       <tr *ngFor="let l of getStudents()">
         <td class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+        <td>{{l.statistics[0].status.mark}}</td>
       </tr>
       </tbody>
     </table>
