@@ -5,6 +5,8 @@ import {Layer} from "../../model/layer.model";
 import {TemplateService} from "../../service/template.service";
 import {isNullOrUndefined} from "util";
 import {Statistics} from "../../model/statistics.model";
+import {Student} from "../../model/student.model";
+import {Constrains} from "../../constraints";
 
 @Component({
   selector: 'app-journal',
@@ -76,12 +78,16 @@ export class JournalComponent implements OnInit {
     for(let st of this.getStudents()){
       if(isNullOrUndefined(st.statistics)){
         st.statistics = [];
-        let x = new Statistics();
-        x.status.mark = 8;
-        st.statistics.push(x);
       }
-
+      let x = new Statistics();
+      st.statistics.push(x);
     }
+  }
+
+  private setAbsent(student: Student){
+    let stat = student.statistics.slice(-1)[0];
+    stat.status.mark = null;
+    stat.status.isAbsent = !stat.status.isAbsent;
   }
 
   private goUp(){
@@ -95,6 +101,29 @@ export class JournalComponent implements OnInit {
 
   private getTemplate(id: number){
     return this.templates[id];
+  }
+
+  private isAbsent(student: Student){
+    let stat = student.statistics.slice(-1)[0];
+    return stat.status.isAbsent;
+  }
+
+  private gotoJournalPage(): void {
+    let link = [Constrains.journalURL];
+    this.router.navigate(link);
+  }
+
+  private saveTemplate() {
+
+    this.templateService.saveTemplate(this.template)
+      .subscribe(
+        template => {
+          console.log(template);
+          this.template = template;
+          this.gotoJournalPage();
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

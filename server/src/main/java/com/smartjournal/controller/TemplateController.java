@@ -19,7 +19,7 @@ public class TemplateController {
         this.templateRepository = templateRepository;
     }
 
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @RequestMapping(path = {"/create", "/save"}, method = RequestMethod.POST)
     public ResponseEntity createTemplate(@RequestBody TemplateDTO templateDTO) {
 
         Template template = new Template();

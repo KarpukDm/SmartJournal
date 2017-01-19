@@ -13,11 +13,13 @@ export class TemplateService {
     'Content-Type': 'application/json'
   });
   private createTemplateURL: string;
+  private saveTemplateURL: string;
   private findTemplateURL: string;
   private getMyTemplatesURL: string;
 
   constructor(private http: Http) {
     this.createTemplateURL = Constrains.baseURL + Constrains.createTemplateURL;
+    this.saveTemplateURL = Constrains.baseURL + Constrains.saveTemplateURL;
     this.findTemplateURL = Constrains.baseURL + Constrains.findTemplateURL;
     this.getMyTemplatesURL = Constrains.baseURL + Constrains.getMyTemplatesURL;
   }
@@ -25,6 +27,13 @@ export class TemplateService {
   createTemplate(template: Template): Observable<Template> {
     return this.http
       .post(this.createTemplateURL, JSON.stringify(template), {headers: this.headers})
+      .map(TemplateService.extractData)
+      .catch(TemplateService.handleError);
+  }
+
+  saveTemplate(template: Template): Observable<Template> {
+    return this.http
+      .post(this.saveTemplateURL, JSON.stringify(template), {headers: this.headers})
       .map(TemplateService.extractData)
       .catch(TemplateService.handleError);
   }

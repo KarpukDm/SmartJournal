@@ -14,3 +14,17 @@
 .demo-card-square.mdl-card {
 }
 
+.absent{
+  background-color: #bdbdbd;
+}
+
+.mark{
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  font-size: 18pt;
+}
+
+.name{
+  font-size: 18pt;
+}
