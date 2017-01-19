@@ -22,4 +22,7 @@ class Status {
   isThere: boolean;
 
   mark: number;
+
+  constructor(){
+  }
 }

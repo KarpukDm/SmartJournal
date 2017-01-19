@@ -15,14 +15,24 @@
       <thead>
       <tr>
         <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th>Mark</th>
         <th>Status</th>
       </tr>
       </thead>
 
       <tbody>
       <tr *ngFor="let l of getStudents()">
-        <td class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
-        <td>{{l.statistics[0].status.mark}}</td>
+        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+        <td [class.absent]="isAbsent(l) == true">
+          <div>
+            <input [readonly]="isAbsent(l) == true" class="mark" type="text" [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+          </div>
+        </td>
+        <td [class.absent]="isAbsent(l) == true">
+          <button (click)="setAbsent(l)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+            H
+          </button>
+        </td>
       </tr>
       </tbody>
     </table>
