@@ -6,6 +6,7 @@ import {TemplateService} from "../../service/template.service";
 import {isNullOrUndefined} from "util";
 import {Statistics} from "../../model/statistics.model";
 import {Student} from "../../model/student.model";
+import {Constrains} from "../../constraints";
 
 @Component({
   selector: 'app-journal',
@@ -86,7 +87,7 @@ export class JournalComponent implements OnInit {
   private setAbsent(student: Student){
     let stat = student.statistics.slice(-1)[0];
     stat.status.mark = null;
-    stat.status.isThere = !stat.status.isThere;
+    stat.status.isAbsent = !stat.status.isAbsent;
   }
 
   private goUp(){
@@ -104,7 +105,25 @@ export class JournalComponent implements OnInit {
 
   private isAbsent(student: Student){
     let stat = student.statistics.slice(-1)[0];
-    return stat.status.isThere;
+    return stat.status.isAbsent;
+  }
+
+  private gotoJournalPage(): void {
+    let link = [Constrains.journalURL];
+    this.router.navigate(link);
+  }
+
+  private saveTemplate() {
+
+    this.templateService.saveTemplate(this.template)
+      .subscribe(
+        template => {
+          console.log(template);
+          this.template = template;
+          this.gotoJournalPage();
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

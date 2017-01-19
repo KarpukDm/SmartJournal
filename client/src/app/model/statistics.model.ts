@@ -19,10 +19,11 @@ export class Statistics {
 
 class Status {
 
-  isThere: boolean;
+  isAbsent: boolean;
 
   mark: number;
 
   constructor(){
+    this.isAbsent = false;
   }
 }

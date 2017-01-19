@@ -3,6 +3,10 @@
   Go UP
 </button>
 
+<button (click)="saveTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Save
+</button>
+
 <div *ngIf="isSelected == false">
   <div *ngFor="let t of templates">
     <h3 (click)="selectTemplate(t)">{{t.templateName}}</h3>
@@ -22,7 +26,7 @@
 
       <tbody>
       <tr *ngFor="let l of getStudents()">
-        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name">{{l.name}}</td>
         <td [class.absent]="isAbsent(l) == true">
           <div>
             <input [readonly]="isAbsent(l) == true" class="mark" type="text" [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
@@ -49,8 +53,8 @@
 
     <tbody>
     <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
-      <td class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
-      <td>{{l.layerName}}</td>
+      <td class="mdl-data-table__cell--non-numeric name">{{l.layerType}}</td>
+      <td class="name">{{l.layerName}}</td>
       <td>{{l.layers.length}}</td>
     </tr>
     </tbody>
