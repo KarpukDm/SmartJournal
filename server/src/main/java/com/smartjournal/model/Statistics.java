@@ -17,14 +17,17 @@ public class Statistics implements Serializable{
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "status")
+    private Status status;
+
+    @Column(name = "date")
+    private String date;
+
     @OneToOne
     private Discipline discipline;
 
     @OneToOne
     private Observer observer;
-
-    @Column(name = "status")
-    private Status status;
 
     @Table
     @JsonInclude(JsonInclude.Include.NON_NULL)

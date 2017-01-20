@@ -28,3 +28,7 @@
 .name{
   font-size: 18pt;
 }
+
+.td-column{
+  text-align: left;
+}
