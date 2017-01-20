@@ -108,6 +108,28 @@ export class JournalComponent implements OnInit {
     return stat.status.isAbsent;
   }
 
+  private getLastStatistics(){
+    let layer = this.layerHistory.slice(-1)[0];
+    return layer.students[0].statistics.slice(-5);
+  }
+
+  private getStatusForSomeDate(statistics: Statistics){
+    console.log(statistics);
+    if(isNullOrUndefined(statistics.status.mark)){
+      if(statistics.status.isAbsent == false){
+        return "-";
+      }else{
+        return "H";
+      }
+    }
+  }
+
+  private getStatisticsForLastFewDays(statistics: Statistics[]){
+    let st = statistics.pop();
+    console.log(st);
+    return st;
+  }
+
   private gotoJournalPage(): void {
     let link = [Constrains.journalURL];
     this.router.navigate(link);

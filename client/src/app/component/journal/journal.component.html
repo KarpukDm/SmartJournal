@@ -18,24 +18,29 @@
     <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
       <thead>
       <tr>
-        <th class="mdl-data-table__cell--non-numeric">Name</th>
-        <th>Mark</th>
-        <th>Status</th>
+        <th class="td-column">Status</th>
+        <th class="mdl-data-table__cell--non-numeric td-column">Name</th>
+        <th *ngFor="let st of getLastStatistics()">
+          {{st.date}}
+        </th>
       </tr>
       </thead>
 
       <tbody>
       <tr *ngFor="let l of getStudents()">
-        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name">{{l.name}}</td>
+        <td [class.absent]="isAbsent(l) == true" class="td-column">
+          <button (click)="setAbsent(l)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+            H
+          </button>
+        </td>
+        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name td-column">{{l.name}}</td>
+        <th *ngFor="let st of l.statistics.slice(-5).slice(4)">
+          {{getStatusForSomeDate(st)}}
+        </th>
         <td [class.absent]="isAbsent(l) == true">
           <div>
             <input [readonly]="isAbsent(l) == true" class="mark" type="text" [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
           </div>
-        </td>
-        <td [class.absent]="isAbsent(l) == true">
-          <button (click)="setAbsent(l)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-            H
-          </button>
         </td>
       </tr>
       </tbody>

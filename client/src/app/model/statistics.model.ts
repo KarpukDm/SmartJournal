@@ -14,6 +14,8 @@ export class Statistics {
     this.discipline = new Discipline();
     this.observer = new Observer();
     this.status = new Status();
+    let date = new Date();
+    this.date = ('0' + date.getDate()).slice(-2) + "." + ('0' + (date.getMonth() + 1)).slice(-2) + "." + date.getFullYear();
   }
 }
 
