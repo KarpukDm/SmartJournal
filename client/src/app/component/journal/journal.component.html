@@ -23,6 +23,7 @@
         <th *ngFor="let st of getLastStatistics()">
           {{st.date}}
         </th>
+        <th>Today</th>
       </tr>
       </thead>
 
@@ -34,7 +35,7 @@
           </button>
         </td>
         <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name td-column">{{l.name}}</td>
-        <th *ngFor="let st of l.statistics.slice(-5).slice(4)">
+        <th *ngFor="let st of l.statistics.slice(-5)">
           {{getStatusForSomeDate(st)}}
         </th>
         <td [class.absent]="isAbsent(l) == true">
