@@ -110,7 +110,14 @@ export class JournalComponent implements OnInit {
 
   private getLastStatistics(){
     let layer = this.layerHistory.slice(-1)[0];
-    return layer.students[0].statistics.slice(-5);
+    console.log(layer);
+    if(!isNullOrUndefined(layer.students) && (layer.students.length > 0)
+    && !isNullOrUndefined(layer.students[0].statistics)) {
+      console.log("!!!");
+      console.log(layer.students[0].statistics.slice(-5));
+      return layer.students[0].statistics.slice(-5);
+    }
+    return [];
   }
 
   private getStatusForSomeDate(statistics: Statistics){
@@ -124,10 +131,20 @@ export class JournalComponent implements OnInit {
     }
   }
 
-  private getStatisticsForLastFewDays(statistics: Statistics[]){
-    let st = statistics.pop();
-    console.log(st);
-    return st;
+  private getStatisticsForLastFewDays(student: Student){
+    if(isNullOrUndefined(student.statistics)){
+      return [];
+    }
+    let statistics = student.statistics.slice(-5);
+    if(!isNullOrUndefined(statistics)) {
+      if (statistics.length > 1) {
+        statistics.pop();
+      } else {
+        statistics = [];
+      }
+    }
+    console.log(statistics);
+    return statistics;
   }
 
   private gotoJournalPage(): void {

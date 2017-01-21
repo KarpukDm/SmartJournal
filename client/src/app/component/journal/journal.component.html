@@ -3,7 +3,8 @@
   Go UP
 </button>
 
-<button (click)="saveTemplate()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+<button (click)="saveTemplate()"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
   Save
 </button>
 
@@ -23,7 +24,6 @@
         <th *ngFor="let st of getLastStatistics()">
           {{st.date}}
         </th>
-        <th>Today</th>
       </tr>
       </thead>
 
@@ -34,13 +34,15 @@
             H
           </button>
         </td>
-        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name td-column">{{l.name}}</td>
-        <th *ngFor="let st of l.statistics.slice(-5)">
+        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric name td-column">{{l.name}}
+        </td>
+        <td *ngFor="let st of getStatisticsForLastFewDays(l)">
           {{getStatusForSomeDate(st)}}
-        </th>
+        </td>
         <td [class.absent]="isAbsent(l) == true">
           <div>
-            <input [readonly]="isAbsent(l) == true" class="mark" type="text" [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+            <input [readonly]="isAbsent(l) == true" class="mark" type="text"
+                   [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
           </div>
         </td>
       </tr>
