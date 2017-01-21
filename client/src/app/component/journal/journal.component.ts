@@ -22,6 +22,8 @@ export class JournalComponent implements OnInit {
   private layerHistory: Layer[];
   private isSelected: boolean;
   private isLastLevel: boolean;
+  private amountOfDays: number;
+  private columnWidth: number;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class JournalComponent implements OnInit {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
+    this.columnWidth = 136;
   }
 
   ngOnInit() {
@@ -42,6 +45,9 @@ export class JournalComponent implements OnInit {
       );
 
     this.layerHistory = [];
+    let screenResolution = window.screen.availWidth;
+    console.log(screenResolution);
+    this.amountOfDays = screenResolution / -this.columnWidth;
   }
 
   private selectTemplate(template: Template){
@@ -86,8 +92,8 @@ export class JournalComponent implements OnInit {
 
   private setAbsent(student: Student){
     let stat = student.statistics.slice(-1)[0];
-    stat.status.mark = null;
     stat.status.isAbsent = !stat.status.isAbsent;
+    stat.status.mark = stat.status.isAbsent == true ? "H" : "";
   }
 
   private goUp(){
@@ -110,12 +116,9 @@ export class JournalComponent implements OnInit {
 
   private getLastStatistics(){
     let layer = this.layerHistory.slice(-1)[0];
-    console.log(layer);
     if(!isNullOrUndefined(layer.students) && (layer.students.length > 0)
     && !isNullOrUndefined(layer.students[0].statistics)) {
-      console.log("!!!");
-      console.log(layer.students[0].statistics.slice(-5));
-      return layer.students[0].statistics.slice(-5);
+      return layer.students[0].statistics.slice(this.amountOfDays);
     }
     return [];
   }
@@ -128,6 +131,8 @@ export class JournalComponent implements OnInit {
       }else{
         return "H";
       }
+    }else{
+      return statistics.status.mark.toString();
     }
   }
 
@@ -135,7 +140,7 @@ export class JournalComponent implements OnInit {
     if(isNullOrUndefined(student.statistics)){
       return [];
     }
-    let statistics = student.statistics.slice(-5);
+    let statistics = student.statistics.slice(this.amountOfDays);
     if(!isNullOrUndefined(statistics)) {
       if (statistics.length > 1) {
         statistics.pop();

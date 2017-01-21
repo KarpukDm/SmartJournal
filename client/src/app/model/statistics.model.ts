@@ -23,7 +23,7 @@ class Status {
 
   isAbsent: boolean;
 
-  mark: number;
+  mark: string;
 
   constructor(){
     this.isAbsent = false;

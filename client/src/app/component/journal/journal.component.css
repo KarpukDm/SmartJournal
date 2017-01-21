@@ -15,7 +15,7 @@
 }
 
 .absent{
-  background-color: #bdbdbd;
+  background-color: #dfdfdf;
 }
 
 .mark{
@@ -25,12 +25,21 @@
   font-size: 18pt;
 }
 
+.td-column-left{
+  text-align: left;
+}
+
+.td-column{
+  text-align: center;
+  width: 30px;
+}
+
 .name{
   font-size: 18pt;
 }
 
-.td-column{
-  text-align: left;
+.mark{
+  font-size: 12pt;
 }
 
 .today-column{
