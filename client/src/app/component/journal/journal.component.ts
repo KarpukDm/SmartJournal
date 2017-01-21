@@ -22,6 +22,8 @@ export class JournalComponent implements OnInit {
   private layerHistory: Layer[];
   private isSelected: boolean;
   private isLastLevel: boolean;
+  private amountOfDays: number;
+  private columnWidth: number;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class JournalComponent implements OnInit {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
+    this.columnWidth = 136;
   }
 
   ngOnInit() {
@@ -42,6 +45,9 @@ export class JournalComponent implements OnInit {
       );
 
     this.layerHistory = [];
+    let screenResolution = window.screen.availWidth;
+    console.log(screenResolution);
+    this.amountOfDays = screenResolution / -this.columnWidth;
   }
 
   private selectTemplate(template: Template){
@@ -86,8 +92,8 @@ export class JournalComponent implements OnInit {
 
   private setAbsent(student: Student){
     let stat = student.statistics.slice(-1)[0];
-    stat.status.mark = null;
     stat.status.isAbsent = !stat.status.isAbsent;
+    stat.status.mark = stat.status.isAbsent == true ? "H" : null;
   }
 
   private goUp(){
@@ -110,7 +116,11 @@ export class JournalComponent implements OnInit {
 
   private getLastStatistics(){
     let layer = this.layerHistory.slice(-1)[0];
-    return layer.students[0].statistics.slice(-5);
+    if(!isNullOrUndefined(layer.students) && (layer.students.length > 0)
+    && !isNullOrUndefined(layer.students[0].statistics)) {
+      return layer.students[0].statistics.slice(this.amountOfDays);
+    }
+    return [];
   }
 
   private getStatusForSomeDate(statistics: Statistics){
@@ -121,18 +131,35 @@ export class JournalComponent implements OnInit {
       }else{
         return "H";
       }
+    }else{
+      return statistics.status.mark.toString();
     }
   }
 
-  private getStatisticsForLastFewDays(statistics: Statistics[]){
-    let st = statistics.pop();
-    console.log(st);
-    return st;
+  private getStatisticsForLastFewDays(student: Student){
+    if(isNullOrUndefined(student.statistics)){
+      return [];
+    }
+    let statistics = student.statistics.slice(this.amountOfDays);
+    if(!isNullOrUndefined(statistics)) {
+      if (statistics.length > 1) {
+        statistics.pop();
+      } else {
+        statistics = [];
+      }
+    }
+    console.log(statistics);
+    return statistics;
   }
 
   private gotoJournalPage(): void {
     let link = [Constrains.journalURL];
     this.router.navigate(link);
+  }
+
+  private getSelectedLayer(){
+    let layer = this.layerHistory.slice(-1)[0];
+    return layer.layerType + ": " + layer.layerName;
   }
 
   private saveTemplate() {
