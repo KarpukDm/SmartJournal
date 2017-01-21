@@ -93,7 +93,7 @@ export class JournalComponent implements OnInit {
   private setAbsent(student: Student){
     let stat = student.statistics.slice(-1)[0];
     stat.status.isAbsent = !stat.status.isAbsent;
-    stat.status.mark = stat.status.isAbsent == true ? "H" : "";
+    stat.status.mark = stat.status.isAbsent == true ? "H" : null;
   }
 
   private goUp(){
@@ -155,6 +155,11 @@ export class JournalComponent implements OnInit {
   private gotoJournalPage(): void {
     let link = [Constrains.journalURL];
     this.router.navigate(link);
+  }
+
+  private getSelectedLayer(){
+    let layer = this.layerHistory.slice(-1)[0];
+    return layer.layerType + ": " + layer.layerName;
   }
 
   private saveTemplate() {

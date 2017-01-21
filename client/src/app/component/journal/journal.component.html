@@ -1,12 +1,19 @@
-<button (click)="goUp()"
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Go UP
-</button>
+<div class="mdl-tabs__tab-bar" style="margin-bottom: 15px;">
+  <button (click)="goUp()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent menu-button">
+    Go UP
+  </button>
 
-<button (click)="saveTemplate()"
-        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Save
-</button>
+  <button *ngIf="isSelected == true && isLastLevel == true"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored menu-button">
+    {{getSelectedLayer()}}
+  </button>
+
+  <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent menu-button">
+    Save
+  </button>
+</div>
 
 <div *ngIf="isSelected == false">
   <div *ngFor="let t of templates">

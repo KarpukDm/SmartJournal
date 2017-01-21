@@ -45,3 +45,8 @@
 .today-column{
   text-align: right;
 }
+
+.menu-button{
+  margin-left: 5px;
+  margin-right: 5px;
+}
