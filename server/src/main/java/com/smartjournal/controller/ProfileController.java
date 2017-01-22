@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/api")
 public class ProfileController {
 
     private final TemplateRepository templateRepository;
