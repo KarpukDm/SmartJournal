@@ -35,7 +35,10 @@ export class JournalComponent implements OnInit {
     this.isLastLevel = false;
     this.isSelected = false;
     this.columnWidth = 136;
-    this.disciplines = [ new Discipline("Sdaddsadasdasdas"), new Discipline("adsadfafdfdsfdsfsd"), new Discipline("dsadsadsadsadasda")];
+    this.disciplines = [ new Discipline(), new Discipline(), new Discipline()];
+    this.disciplines[0].name = "SDsadsadasdas";
+    this.disciplines[1].name = "SDsadsadasdas";
+    this.disciplines[2].name = "SDsadsadasdas";
   }
 
   ngOnInit() {
