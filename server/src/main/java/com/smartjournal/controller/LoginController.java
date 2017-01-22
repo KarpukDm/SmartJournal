@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("api/login")
 public class LoginController {
 
     private final UserRepository userRepository;

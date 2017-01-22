@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 @RestController
-@RequestMapping("/signUp")
+@RequestMapping("api/signUp")
 public class SignUpController {
 
     private final UserRepository userRepository;

@@ -15,8 +15,7 @@ export class LoginService {
     'Content-Type': 'application/json'
   });
 
-  constructor(private http: Http,
-              private loginService: LoginService) {
+  constructor(private http: Http) {
     this.loginURL = Constrains.baseURL + Constrains.loginURL
   }
 
