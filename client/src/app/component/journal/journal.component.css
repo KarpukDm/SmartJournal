@@ -35,7 +35,7 @@
 }
 
 .name{
-  font-size: 18pt;
+  width: 300px;
 }
 
 .mark{
@@ -49,4 +49,24 @@
 .menu-button{
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.menu-info{
+  margin-top: -10px;
+}
+
+.template-top{
+  text-align: center;
+}
+
+.demo-list-item {
+  width: 300px;
+}
+
+li:hover{
+  background-color: #c1e4e2;
+}
+
+.layer-type-name{
+  font-size: 14pt;
 }

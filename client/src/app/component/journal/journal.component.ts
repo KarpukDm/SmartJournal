@@ -7,6 +7,7 @@ import {isNullOrUndefined} from "util";
 import {Statistics} from "../../model/statistics.model";
 import {Student} from "../../model/student.model";
 import {Constrains} from "../../constraints";
+import {Discipline} from "../../model/discipline.model";
 
 @Component({
   selector: 'app-journal',
@@ -24,6 +25,8 @@ export class JournalComponent implements OnInit {
   private isLastLevel: boolean;
   private amountOfDays: number;
   private columnWidth: number;
+  private disciplines: Discipline[];
+  private discipline: Discipline;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -32,6 +35,7 @@ export class JournalComponent implements OnInit {
     this.isLastLevel = false;
     this.isSelected = false;
     this.columnWidth = 136;
+    this.disciplines = [ new Discipline("Sdaddsadasdasdas"), new Discipline("adsadfafdfdsfdsfsd"), new Discipline("dsadsadsadsadasda")];
   }
 
   ngOnInit() {
@@ -80,6 +84,10 @@ export class JournalComponent implements OnInit {
     }
   }
 
+  private setDiscipline(discipline: Discipline){
+    this.discipline = discipline;
+  }
+
   private createNewRecord(){
     for(let st of this.getStudents()){
       if(isNullOrUndefined(st.statistics)){
@@ -101,6 +109,7 @@ export class JournalComponent implements OnInit {
       this.layerHistory.pop();
     }else{
       this.isSelected = false;
+      this.discipline = null;
     }
     this.isLastLevel = false;
   }
@@ -159,7 +168,7 @@ export class JournalComponent implements OnInit {
 
   private getSelectedLayer(){
     let layer = this.layerHistory.slice(-1)[0];
-    return layer.layerType + ": " + layer.layerName;
+    return layer.layerName + ": " + this.discipline.name;
   }
 
   private saveTemplate() {
