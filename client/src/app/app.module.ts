@@ -14,6 +14,7 @@ import {VerticalMenuComponent} from "./component/menu/vertical-menu/vertical-men
 import {HorizontalMenuComponent} from "./component/menu/horizontal-menu/horizontal-menu.component";
 import {JournalComponent} from "./component/journal/journal.component";
 import {ProfileComponent} from "./component/profile/profile.component";
+import {LoginComponent} from "./component/login/login.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ProfileComponent} from "./component/profile/profile.component";
     VerticalMenuComponent,
     HorizontalMenuComponent,
     JournalComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
