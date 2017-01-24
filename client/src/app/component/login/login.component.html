@@ -1,0 +1,13 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="text" id="login" [(ngModel)]="login">
+  <label class="mdl-textfield__label" for="login">Login</label>
+</div>
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="text" id="password" [(ngModel)]="password">
+  <label class="mdl-textfield__label" for="password">Password</label>
+</div>
+
+<button (click)="authenticate()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Login
+</button>
