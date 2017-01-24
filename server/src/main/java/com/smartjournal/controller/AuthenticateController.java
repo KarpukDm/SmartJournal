@@ -12,21 +12,30 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 @RestController
-@RequestMapping("api/login")
-public class LoginController {
+@RequestMapping("/api")
+public class AuthenticateController {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public LoginController(UserRepository userRepository) {
+    public AuthenticateController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public DeferredResult login(@RequestBody LoginDTO loginDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
         deferredResult.setResult(new ResponseEntity(loginDTO, HttpStatus.OK));
+
+        return deferredResult;
+    }
+
+    @RequestMapping(path = "/test", method = RequestMethod.POST)
+    public DeferredResult test() {
+
+        DeferredResult deferredResult = new DeferredResult();
+        deferredResult.setResult(new ResponseEntity("Test successful", HttpStatus.OK));
 
         return deferredResult;
     }
