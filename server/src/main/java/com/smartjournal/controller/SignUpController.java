@@ -23,7 +23,7 @@ public class SignUpController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(path = "/signUp", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public DeferredResult signUp(@RequestBody SignUpDTO signUpDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
@@ -32,7 +32,7 @@ public class SignUpController {
         user.setPassword(signUpDTO.getPassword());
         userRepository.save(user);
 
-        deferredResult.setResult(new ResponseEntity("Test successful", HttpStatus.OK));
+        deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
 
         return deferredResult;
     }

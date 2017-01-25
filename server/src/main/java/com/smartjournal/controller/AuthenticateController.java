@@ -2,7 +2,7 @@ package com.smartjournal.controller;
 
 import com.smartjournal.config.SmartJournalProperties;
 import com.smartjournal.dto.LoginDTO;
-import com.smartjournal.dto.UserDTO;
+import com.smartjournal.model.User;
 import com.smartjournal.repository.UserRepository;
 import com.smartjournal.util.SecurityUtils;
 import com.smartjournal.util.SmartJournalUsernamePasswordAuthToken;
@@ -55,9 +55,9 @@ public class AuthenticateController {
             request.getSession().setMaxInactiveInterval(smartJournalProperties.getSessionTimeout()); //1800 = 30 min;
         }*/
 
-        UserDTO userDTO = SecurityUtils.getCurrentUser();
-        if (userDTO != null) {
-            deferredResult.setResult(new ResponseEntity(userDTO, HttpStatus.OK));
+        User user = SecurityUtils.getCurrentUser();
+        if (user != null) {
+            deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
         }else{
             deferredResult.setResult(new ResponseEntity(HttpStatus.UNAUTHORIZED));
         }

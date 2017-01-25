@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table
+@Table(name = "SJUser")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
 
@@ -17,7 +17,9 @@ public class User implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 }

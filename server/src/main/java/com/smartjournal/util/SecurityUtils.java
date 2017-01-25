@@ -1,6 +1,6 @@
 package com.smartjournal.util;
 
-import com.smartjournal.dto.UserDTO;
+import com.smartjournal.model.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -12,11 +12,11 @@ public class SecurityUtils {
     private SecurityUtils() {
     }
 
-    public static UserDTO getCurrentUser() {
+    public static User getCurrentUser() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null && authentication instanceof UsernamePasswordAuthenticationToken) {
-            return (UserDTO) authentication.getDetails();
+            return (User) authentication.getDetails();
         }
         return null;
     }
