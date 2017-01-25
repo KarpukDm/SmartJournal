@@ -16,4 +16,8 @@ public class User implements Serializable {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
+
+    private String email;
+
+    private String password;
 }
