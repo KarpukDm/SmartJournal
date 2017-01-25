@@ -15,6 +15,7 @@ import {HorizontalMenuComponent} from "./component/menu/horizontal-menu/horizont
 import {JournalComponent} from "./component/journal/journal.component";
 import {ProfileComponent} from "./component/profile/profile.component";
 import {LoginComponent} from "./component/login/login.component";
+import {SignUpComponent} from "./component/sign-up/sign-up.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {LoginComponent} from "./component/login/login.component";
     HorizontalMenuComponent,
     JournalComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

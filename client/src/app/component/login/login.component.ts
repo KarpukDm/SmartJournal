@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {LoginModel} from "../../model/login.model";
-import {Observer} from "../../model/observer.model";
+import {User} from "../../model/user.model";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   private password: string;
 
-  private observer: Observer;
+  private user: User;
 
   constructor(private loginService: LoginService) { }
 
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   private authenticate(){
     this.loginService.login(new LoginModel(this.login, this.password))
       .subscribe(
-        observer => {
-          console.log(observer);
-          this.observer = observer;
+        user => {
+          console.log(user);
+          this.user = user;
         },
         error => this.errorMessage = <any>error
       );

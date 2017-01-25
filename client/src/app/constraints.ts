@@ -12,7 +12,7 @@ export class Constrains {
   public static get getMyTemplatesURL(): string { return "api/getMyTemplates"; }
   public static get saveTemplateURL(): string { return "api/template/save"; }
   public static get findTemplateURL(): string { return "api/template"; }
-  public static get signupURL(): string { return "api/signUp"; }
+  public static get signUpURL(): string { return "api/signUp"; }
   public static get loginURL(): string { return "api/login"; }
 
 }

@@ -7,6 +7,7 @@ import {TemplateFillerComponent} from "./component/template-filler/template-fill
 import {ProfileComponent} from "./component/profile/profile.component";
 import {JournalComponent} from "./component/journal/journal.component";
 import {LoginComponent} from "./component/login/login.component";
+import {SignUpComponent} from "./component/sign-up/sign-up.component";
 
 export const appRoutes: Routes = [
   { path: '', component: AppComponent },
@@ -16,5 +17,6 @@ export const appRoutes: Routes = [
   { path: 'template/fill/:id', component: TemplateFillerComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'journal', component: JournalComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'signUp', component: SignUpComponent }
 ];

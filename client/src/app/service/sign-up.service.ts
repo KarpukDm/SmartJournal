@@ -3,27 +3,27 @@ import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
-import {LoginModel} from "../model/login.model";
 import {User} from "../model/user.model";
+import {SignUpModel} from "../model/sign-up.model";
 
 @Injectable()
-export class LoginService {
+export class SignUpService {
 
-  private loginURL: string;
+  private signUpURL: string;
 
   private headers = new Headers({
     'Content-Type': 'application/json'
   });
 
   constructor(private http: Http) {
-    this.loginURL = Constrains.baseURL + Constrains.loginURL
+    this.signUpURL = Constrains.baseURL + Constrains.signUpURL;
   }
 
-  login(loginModel: LoginModel): Observable<User> {
+  signUp(signUpModel: SignUpModel): Observable<User> {
     return this.http
-      .post(this.loginURL, JSON.stringify(loginModel), {headers: this.headers})
-      .map(LoginService.extractData)
-      .catch(LoginService.handleError);
+      .post(this.signUpURL, JSON.stringify(signUpModel), {headers: this.headers})
+      .map(SignUpService.extractData)
+      .catch(SignUpService.handleError);
   }
 
   private static extractData(res: Response) {
