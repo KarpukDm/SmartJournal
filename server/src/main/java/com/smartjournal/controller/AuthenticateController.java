@@ -49,6 +49,8 @@ public class AuthenticateController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(authentication);
 
+        request.getSession().setMaxInactiveInterval(smartJournalProperties.getRememberMeSessionTimeout()); //2592000 = 30 days;
+
         /*if ((loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe()) {
             request.getSession().setMaxInactiveInterval(smartJournalProperties.getRememberMeSessionTimeout()); //2592000 = 30 days;
         } else {

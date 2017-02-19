@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Layer} from "../../model/layer.model";
 import {Template} from "../../model/template.model";
 import {TemplateService} from "../../service/template.service";
@@ -75,8 +75,8 @@ export class TemplateEditorComponent implements OnInit {
     this.templateService.createTemplate(this.template)
       .subscribe(
         template => {
-          console.log(template);
           this.template = template;
+          console.log(this.template);
           this.gotoViewTemplate(this.template.id);
         },
         error => this.errorMessage = <any>error
@@ -84,6 +84,7 @@ export class TemplateEditorComponent implements OnInit {
   }
 
   private gotoViewTemplate(id: number): void {
+    console.log(id);
     let link = [Constrains.viewTemplateURL, id];
     this.router.navigate(link);
   }

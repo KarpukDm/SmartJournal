@@ -40,7 +40,8 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
             ((SmartJournalUsernamePasswordAuthToken) authentication).setDetails(user);
 
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
-            return new UsernamePasswordAuthenticationToken(username, null, grantedAuthorities);
+
+            return new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
         } catch (Exception e) {
             throw new BadCredentialsException("Login is incorrect", e);
         }

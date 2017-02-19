@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
 import {LoginModel} from "../model/login.model";
-import {User} from "../model/user.model";
 
 @Injectable()
 export class LoginService {
@@ -19,11 +18,13 @@ export class LoginService {
     this.loginURL = Constrains.baseURL + Constrains.loginURL
   }
 
-  login(loginModel: LoginModel): Observable<User> {
+  login(loginModel: LoginModel): Observable<any> {
     return this.http
       .post(this.loginURL, JSON.stringify(loginModel), {headers: this.headers})
-      .map(LoginService.extractData)
-      .catch(LoginService.handleError);
+      .do(resp => {
+        console.log(resp.headers.get('x-auth-token'));
+        localStorage.setItem('x-auth-token', resp.headers.get('x-auth-token'));
+      });
   }
 
   private static extractData(res: Response) {
