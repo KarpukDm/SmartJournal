@@ -77,7 +77,6 @@ export class TemplateBuilderComponent implements OnInit {
     this.templateService.createTemplate(this.template)
       .subscribe(
         template => {
-          console.log(template);
           this.template = template;
           this.gotoViewTemplate(this.template.id);
         },

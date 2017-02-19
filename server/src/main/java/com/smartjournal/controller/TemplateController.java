@@ -20,7 +20,7 @@ public class TemplateController {
     }
 
     @RequestMapping(path = {"/create", "/save"}, method = RequestMethod.POST)
-    public ResponseEntity createTemplate(@RequestBody TemplateDTO templateDTO) {
+    public ResponseEntity createTemplate(@RequestBody(required = false) TemplateDTO templateDTO) {
 
         Template template = new Template();
         template.setId(templateDTO.getId());
