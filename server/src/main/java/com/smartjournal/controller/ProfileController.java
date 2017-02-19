@@ -1,7 +1,7 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.model.Template;
-import com.smartjournal.repository.TemplateRepository;
+import com.smartjournal.service.impl.TemplateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +14,18 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class ProfileController {
 
-    private final TemplateRepository templateRepository;
+    private final TemplateServiceImpl templateService;
 
     @Autowired
-    public ProfileController(TemplateRepository templateRepository) {
-        this.templateRepository = templateRepository;
+    public ProfileController(TemplateServiceImpl templateService) {
+
+        this.templateService = templateService;
     }
 
     @RequestMapping(path = "/getMyTemplates")
     public ResponseEntity getMyTemplates(){
 
-        List<Template> templates = templateRepository.findAll();
+        List<Template> templates = templateService.findAll();
         return new ResponseEntity(templates, HttpStatus.OK);
     }
 }

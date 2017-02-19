@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .headers().frameOptions().sameOrigin() // disable loading of content in other domains (prevent clickjacking)
+                .headers().frameOptions().sameOrigin()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
                 .and()

@@ -3,7 +3,6 @@ package com.smartjournal.controller;
 import com.smartjournal.config.SmartJournalProperties;
 import com.smartjournal.dto.LoginDTO;
 import com.smartjournal.model.User;
-import com.smartjournal.repository.UserRepository;
 import com.smartjournal.util.SecurityUtils;
 import com.smartjournal.util.SmartJournalUsernamePasswordAuthToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +24,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api")
 public class AuthenticateController {
 
-    private final UserRepository userRepository;
-
     private final SmartJournalProperties smartJournalProperties;
 
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticateController(UserRepository userRepository, SmartJournalProperties smartJournalProperties, AuthenticationManager authenticationManager) {
-        this.userRepository = userRepository;
+    public AuthenticateController(SmartJournalProperties smartJournalProperties, AuthenticationManager authenticationManager) {
         this.smartJournalProperties = smartJournalProperties;
         this.authenticationManager = authenticationManager;
     }
@@ -65,5 +61,13 @@ public class AuthenticateController {
         }
 
         return deferredResult;
+    }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public ResponseEntity logout(HttpServletRequest request) {
+
+        request.getSession().invalidate();
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

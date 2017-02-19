@@ -2,7 +2,7 @@ package com.smartjournal.controller;
 
 import com.smartjournal.dto.SignUpDTO;
 import com.smartjournal.model.User;
-import com.smartjournal.repository.UserRepository;
+import com.smartjournal.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +16,12 @@ import org.springframework.web.context.request.async.DeferredResult;
 @RequestMapping("api/signUp")
 public class SignUpController {
 
-    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public SignUpController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public SignUpController(UserServiceImpl userService) {
+
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -30,7 +31,7 @@ public class SignUpController {
         User user = new User();
         user.setEmail(signUpDTO.getEmail());
         user.setPassword(signUpDTO.getPassword());
-        userRepository.save(user);
+        userService.save(user);
 
         deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
 
