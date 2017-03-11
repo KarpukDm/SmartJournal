@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {MenuElementModel} from "../menu-element.model";
 import {Constrains} from "../../../constraints";
 
@@ -16,8 +16,8 @@ export class HorizontalMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.horizontalMenu.push(new MenuElementModel("Menu", Constrains.createTemplateURL));
-    this.horizontalMenu.push(new MenuElementModel("Menu", Constrains.myTemplatesURL));
+    this.horizontalMenu.push(new MenuElementModel("Login", Constrains.loginPage));
+    this.horizontalMenu.push(new MenuElementModel("Sign up", Constrains.signUpPage));
 
   }
 

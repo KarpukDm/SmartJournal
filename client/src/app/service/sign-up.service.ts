@@ -16,7 +16,7 @@ export class SignUpService {
   });
 
   constructor(private http: Http) {
-    this.signUpURL = Constrains.baseURL + Constrains.signUpURL;
+    this.signUpURL = Constrains.baseURL + Constrains.signUpApi;
   }
 
   signUp(signUpModel: SignUpModel): Observable<User> {

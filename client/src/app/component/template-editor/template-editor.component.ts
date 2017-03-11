@@ -85,7 +85,7 @@ export class TemplateEditorComponent implements OnInit {
 
   private gotoViewTemplate(id: number): void {
     console.log(id);
-    let link = [Constrains.viewTemplateURL, id];
+    let link = [Constrains.viewTemplatePage, id];
     this.router.navigate(link);
   }
 

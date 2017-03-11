@@ -96,7 +96,7 @@ export class TemplateBuilderComponent implements OnInit {
   }
 
   private gotoViewTemplate(id: number): void {
-    let link = [Constrains.viewTemplateURL, id];
+    let link = [Constrains.viewTemplatePage, id];
     this.router.navigate(link);
   }
 

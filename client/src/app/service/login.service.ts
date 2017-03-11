@@ -15,7 +15,7 @@ export class LoginService {
   });
 
   constructor(private http: Http) {
-    this.loginURL = Constrains.baseURL + Constrains.loginURL
+    this.loginURL = Constrains.baseURL + Constrains.loginApi
   }
 
   login(loginModel: LoginModel): Observable<any> {

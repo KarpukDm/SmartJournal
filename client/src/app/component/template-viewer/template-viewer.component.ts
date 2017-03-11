@@ -70,12 +70,12 @@ export class TemplateViewerComponent implements OnInit {
   }
 
   private gotoEditTemplate(): void {
-    let link = [Constrains.editTemplateURL, this.template.id];
+    let link = [Constrains.editTemplatePage, this.template.id];
     this.router.navigate(link);
   }
 
   private gotoFillTemplate(): void {
-    let link = [Constrains.fillTemplateURL, this.template.id];
+    let link = [Constrains.fillTemplatePage, this.template.id];
     this.router.navigate(link);
   }
 

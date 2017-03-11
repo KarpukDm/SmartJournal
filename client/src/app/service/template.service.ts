@@ -15,10 +15,10 @@ export class TemplateService {
   private getMyTemplatesURL: string;
 
   constructor(private http: Http) {
-    this.createTemplateURL = Constrains.baseURL + Constrains.createTemplateURL;
-    this.saveTemplateURL = Constrains.baseURL + Constrains.saveTemplateURL;
-    this.findTemplateURL = Constrains.baseURL + Constrains.findTemplateURL;
-    this.getMyTemplatesURL = Constrains.baseURL + Constrains.getMyTemplatesURL;
+    this.createTemplateURL = Constrains.baseURL + Constrains.createTemplateApi;
+    this.saveTemplateURL = Constrains.baseURL + Constrains.saveTemplateApi;
+    this.findTemplateURL = Constrains.baseURL + Constrains.findTemplateApi;
+    this.getMyTemplatesURL = Constrains.baseURL + Constrains.getMyTemplatesApi;
   }
 
   prepareHeaders() {

@@ -165,7 +165,7 @@ export class JournalComponent implements OnInit {
   }
 
   private gotoJournalPage(): void {
-    let link = [Constrains.journalURL];
+    let link = [Constrains.journalPage];
     this.router.navigate(link);
   }
 

@@ -22,7 +22,7 @@ public class ProfileController {
         this.templateService = templateService;
     }
 
-    @RequestMapping(path = "/getMyTemplates")
+    @RequestMapping(path = "/myTemplates")
     public ResponseEntity getMyTemplates(){
 
         List<Template> templates = templateService.findAll();

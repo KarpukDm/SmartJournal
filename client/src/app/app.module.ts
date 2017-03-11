@@ -39,6 +39,6 @@ import {SignUpComponent} from "./component/sign-up/sign-up.component";
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
-  bootstrap: [AppComponent, VerticalMenuComponent]
+  bootstrap: [AppComponent, VerticalMenuComponent, HorizontalMenuComponent]
 })
 export class AppModule { }
