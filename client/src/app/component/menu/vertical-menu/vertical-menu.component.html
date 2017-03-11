@@ -1,3 +1,5 @@
-<div *ngFor="let m of getVerticalMenu()">
-  <a class="mdl-navigation__link" href={{m.link}}>{{m.name}}</a>
-</div>
+<ul class="nav nav-list bs-docs-sidenav">
+  <li *ngFor="let m of getVerticalMenu()">
+    <a href="{{m.link}}">{{m.name}}</a>
+  </li>
+</ul>

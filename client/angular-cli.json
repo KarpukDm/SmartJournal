@@ -19,11 +19,9 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "../node_modules/material-design-lite/dist/material.teal-orange.min.css",
-        "../node_modules/material-design-icons/iconfont/material-icons.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [
-        "../node_modules/material-design-lite/material.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
