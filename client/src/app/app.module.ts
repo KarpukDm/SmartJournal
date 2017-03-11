@@ -5,7 +5,6 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./component/app/app.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
-import {MDL} from "./mdl";
 import {TemplateBuilderComponent} from "./component/template-builder/template-builder.component";
 import {TemplateViewerComponent} from "./component/template-viewer/template-viewer.component";
 import {TemplateEditorComponent} from "./component/template-editor/template-editor.component";
@@ -20,7 +19,6 @@ import {SignUpComponent} from "./component/sign-up/sign-up.component";
 @NgModule({
   declarations: [
     AppComponent,
-    MDL,
     TemplateBuilderComponent,
     TemplateViewerComponent,
     TemplateEditorComponent,
