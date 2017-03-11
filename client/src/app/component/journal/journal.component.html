@@ -1,104 +1,104 @@
-<div class="mdl-tabs__tab-bar" style="margin-bottom: 15px;">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
 
-  <h3 class="menu-info" *ngIf="isSelected == false">Select discipline and journal</h3>
+      <div *ngIf="isSelected == false" class="alert alert-warning" role="alert">Select discipline and journal</div>
 
-  <button *ngIf="isSelected == true" (click)="goUp()"
-          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent menu-button">
-    Go UP
-  </button>
+      <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info" role="alert">
+      <button *ngIf="isSelected == true" (click)="goUp()"
+                class="btn glyphicon glyphicon-arrow-up">
+        </button>
 
-  <button *ngIf="isSelected == true && isLastLevel == true"
-          class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored menu-button">
-    {{getSelectedLayer()}}
-  </button>
+        <button *ngIf="isSelected == true && isLastLevel == true"
+                class="btn btn-primary">
+          {{getSelectedLayer()}}
+        </button>
 
-  <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
-          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent menu-button">
-    Save
-  </button>
-</div>
+        <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
+                class="btn brn-success">
+          Save
+        </button>
+      </div>
 
-<div *ngIf="isSelected == false" class="mdl-grid">
+      <div *ngIf="isSelected == false" class="col-md-12">
+        <div class="col-md-6">
+          <div class="alert alert-info" role="alert">Disciplines:</div>
+          <ul>
+            <li *ngFor="let d of disciplines" (click)="setDiscipline(d)">
+                <span>
+                  {{d.name}}
+                </span>
+            </li>
+          </ul>
+        </div>
 
-  <div class="mdl-layout-spacer"></div>
-  <div>
-    <h3>Disciplines:</h3>
-    <ul class="demo-list-item mdl-list">
-      <li *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="mdl-list__item">
-        <span class="mdl-list__item-primary-content">
-          {{d.name}}
-        </span>
-      </li>
-    </ul>
-  </div>
+        <div class="col-md-6" *ngIf="discipline != null">
+          <div class="alert alert-success" role="alert">Journals:</div>
+          <ul *ngFor="let t of templates">
+            <li (click)="selectTemplate(t)">
+                <span>
+                  {{t.templateName}}
+                </span>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <div class="mdl-layout-spacer"></div>
-  <div *ngIf="discipline != null">
-    <h3>Journals:</h3>
-    <ul class="demo-list-item mdl-list" *ngFor="let t of templates">
-      <li class="mdl-list__item" (click)="selectTemplate(t)">
-    <span class="mdl-list__item-primary-content">
-      {{t.templateName}}
-    </span>
-      </li>
-    </ul>
-  </div>
+      <div class="col-md-12">
+        <div *ngIf="isSelected == true">
+          <div *ngIf="isLastLevel == false">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Length</th>
+              </tr>
+              </thead>
 
-  <div class="mdl-layout-spacer"></div>
-</div>
-
-<div *ngIf="isSelected == true">
-  <div  *ngIf="isLastLevel == false" class="mdl-grid">
-    <div class="mdl-layout-spacer"></div>
-    <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--6-col">
-      <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Type</th>
-        <th>Name</th>
-        <th>Length</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
-        <td class="mdl-data-table__cell--non-numeric layer-type-name">{{l.layerType}}</td>
-        <td class="layer-type-name">{{l.layerName}}</td>
-        <td>{{l.layers.length}}</td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="mdl-layout-spacer"></div>
-  </div>
-
-  <div *ngIf="isLastLevel == true">
-    <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-      <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric td-column-left">Name</th>
-        <th *ngFor="let st of getLastStatistics()" class="td-column">
-          {{st.date}}
-        </th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let l of getStudents()">
-        <td [class.absent]="isAbsent(l) == true" class="mdl-data-table__cell--non-numeric td-column-left">
-          <button (click)="setAbsent(l)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored name">
-            {{l.name}}
-          </button>
-        </td>
-        <td *ngFor="let st of getStatisticsForLastFewDays(l)" class="td-column mark">
-          {{getStatusForSomeDate(st)}}
-        </td>
-        <td class="td-column">
-          <div>
-            <input [readonly]="isAbsent(l) == true" class="mark" type="text"
-                   [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+              <tbody>
+              <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+                <td>{{l.layerType}}</td>
+                <td>{{l.layerName}}</td>
+                <td>{{l.layers.length}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+
+          <div *ngIf="isLastLevel == true">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th *ngFor="let st of getLastStatistics()">
+                  {{st.date}}
+                </th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let l of getStudents()">
+                <td [class.absent]="isAbsent(l) == true">
+                  <button (click)="setAbsent(l)">
+                    {{l.name}}
+                  </button>
+                </td>
+                <td *ngFor="let st of getStatisticsForLastFewDays(l)">
+                  {{getStatusForSomeDate(st)}}
+                </td>
+                <td class="td-column">
+                  <div>
+                    <input [readonly]="isAbsent(l) == true" class="mark" type="text"
+                           [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
