@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {LoginModel} from "../../model/login.model";
 import {User} from "../../model/user.model";
+import {Router} from "@angular/router";
+import {Constrains} from "../../constraints";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   private user: User;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,9 +33,16 @@ export class LoginComponent implements OnInit {
         user => {
           console.log(user);
           this.user = user;
+          if(this.user){
+            this.gotoProfile();
+          }
         },
         error => this.errorMessage = <any>error
       );
   }
 
+  private gotoProfile(): void {
+    let link = [Constrains.profilePage];
+    this.router.navigate(link);
+  }
 }
