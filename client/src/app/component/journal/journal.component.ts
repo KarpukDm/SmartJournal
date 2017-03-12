@@ -85,10 +85,6 @@ export class JournalComponent implements OnInit {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
       if(this.isLastLevel == true){
-        if(this.getStudents()[0].statistics.length == 0) {
-          console.log("!!!!!!!!!!!");
-          this.createNewRecord(); // remove later
-        }
       }
     }
   }

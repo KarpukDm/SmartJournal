@@ -36,11 +36,11 @@
         <div class="col-md-6" *ngIf="discipline != null">
           <div class="alert alert-success" role="alert">Journals:</div>
 
-          <template ngFor let-t [ngForOf]="templates">
-            <div class="list-group">
+          <div class="list-group">
+            <template ngFor let-t [ngForOf]="templates">
               <a (click)="selectTemplate(t)" class="list-group-item">{{t.templateName}}</a>
-            </div>
-          </template>
+            </template>
+          </div>
 
         </div>
       </div>
@@ -80,8 +80,12 @@
                       <h4 class="modal-title">To start a new lesson?</h4>
                     </div>
                     <div class="modal-footer">
-                      <button (click)="setFlagIsNewLesson(false)" type="button" class="btn btn-default" data-dismiss="modal">Continue previous</button>
-                      <button (click)="setFlagIsNewLesson(true)" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                      <button (click)="setFlagIsNewLesson(false)" type="button" class="btn btn-default"
+                              data-dismiss="modal">Continue previous
+                      </button>
+                      <button (click)="setFlagIsNewLesson(true)" type="button" class="btn btn-primary"
+                              data-dismiss="modal">Yes
+                      </button>
                     </div>
                   </div>
 
@@ -106,7 +110,8 @@
                     {{l.name}}
                   </button>
                 </td>
-                <td [class.absent]="isAbsent(l) == true" class="td-column" *ngFor="let st of getStatisticsForLastFewDays(l)">
+                <td [class.absent]="isAbsent(l) == true" class="td-column"
+                    *ngFor="let st of getStatisticsForLastFewDays(l)">
                   {{getStatusForSomeDate(st)}}
                 </td>
                 <td [class.absent]="isAbsent(l) == true" class="td-column">
