@@ -17,9 +17,9 @@ export class VerticalMenuComponent implements OnInit {
 
   ngOnInit() {
     this.verticalMenu.push(new MenuElementModel("Profile", Constrains.profilePage));
-    this.verticalMenu.push(new MenuElementModel("Create template", Constrains.createTemplatePage));
-    this.verticalMenu.push(new MenuElementModel("My templates", Constrains.myTemplatesPage));
     this.verticalMenu.push(new MenuElementModel("Journal", Constrains.journalPage));
+    this.verticalMenu.push(new MenuElementModel("My templates", Constrains.myTemplatesPage));
+    this.verticalMenu.push(new MenuElementModel("Create template", Constrains.createTemplatePage));
   }
 
   private getVerticalMenu(){

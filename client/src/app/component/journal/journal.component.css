@@ -1,5 +1,5 @@
 .absent{
-  background-color: #dfdfdf;
+  background-color: #f4f4f4;
 }
 
 .mark{
@@ -19,7 +19,7 @@
 }
 
 .name{
-  width: 300px;
+  width: 150px;
 }
 
 .mark{
@@ -45,4 +45,8 @@
 
 .layer-type-name{
   font-size: 14pt;
+}
+
+.align-center{
+  text-align: center;
 }

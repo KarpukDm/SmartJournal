@@ -15,6 +15,7 @@ import {JournalComponent} from "./component/journal/journal.component";
 import {ProfileComponent} from "./component/profile/profile.component";
 import {LoginComponent} from "./component/login/login.component";
 import {SignUpComponent} from "./component/sign-up/sign-up.component";
+import {ModalComponent} from "./component/modal/modal.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {SignUpComponent} from "./component/sign-up/sign-up.component";
     JournalComponent,
     ProfileComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

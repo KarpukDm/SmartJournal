@@ -4,20 +4,23 @@
 
       <div *ngIf="isSelected == false" class="alert alert-warning" role="alert">Select discipline and journal</div>
 
-      <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info" role="alert">
-      <button *ngIf="isSelected == true" (click)="goUp()"
-                class="btn glyphicon glyphicon-arrow-up">
-        </button>
+      <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info"
+           role="alert">
+        <div class="align-center">
+          <button *ngIf="isSelected == true" (click)="goUp()"
+                  class="btn glyphicon glyphicon-arrow-up">
+          </button>
 
-        <button *ngIf="isSelected == true && isLastLevel == true"
-                class="btn btn-primary">
-          {{getSelectedLayer()}}
-        </button>
+          <button *ngIf="isSelected == true && isLastLevel == true"
+                  class="btn btn-primary">
+            {{getSelectedLayer()}}
+          </button>
 
-        <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
-                class="btn brn-success">
-          Save
-        </button>
+          <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
+                  class="btn brn-success">
+            Save
+          </button>
+        </div>
       </div>
 
       <div *ngIf="isSelected == false" class="col-md-12">
@@ -46,6 +49,7 @@
 
       <div class="col-md-12">
         <div *ngIf="isSelected == true">
+
           <div *ngIf="isLastLevel == false">
             <table class="table table-hover">
               <thead>
@@ -67,7 +71,27 @@
           </div>
 
           <div *ngIf="isLastLevel == true">
-            <table class="table table-hover">
+            <app-modal>
+              <div id="myModal" class="modal fade in" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">To start a new lesson?</h4>
+                    </div>
+                    <div class="modal-footer">
+                      <button (click)="setFlagIsNewLesson(false)" type="button" class="btn btn-default" data-dismiss="modal">Continue previous</button>
+                      <button (click)="setFlagIsNewLesson(true)" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </app-modal>
+
+            <table *ngIf="isNewLesson != null" class="table table-hover">
               <thead>
               <tr>
                 <th>Name</th>
@@ -80,14 +104,14 @@
               <tbody>
               <tr *ngFor="let l of getStudents()">
                 <td [class.absent]="isAbsent(l) == true">
-                  <button (click)="setAbsent(l)">
+                  <button (click)="setAbsent(l)" class="name btn btn-default">
                     {{l.name}}
                   </button>
                 </td>
-                <td *ngFor="let st of getStatisticsForLastFewDays(l)">
+                <td [class.absent]="isAbsent(l) == true" class="td-column" *ngFor="let st of getStatisticsForLastFewDays(l)">
                   {{getStatusForSomeDate(st)}}
                 </td>
-                <td class="td-column">
+                <td [class.absent]="isAbsent(l) == true" class="td-column">
                   <div>
                     <input [readonly]="isAbsent(l) == true" class="mark" type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
