@@ -1,63 +1,52 @@
-<div class="mdl-grid">
-<div class="mdl-layout-spacer"></div>
-<div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-  <div class="mdl-card__title container3">
-    <h2 class="mdl-card__title-text">Layers list</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info" role="alert">Layers list</div>
 
-    <div *ngIf="isLastLevel == true">
-      <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
+      <div *ngIf="isLastLevel == true">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let l of getStudents()">
+            <td>{{l.name}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <table *ngIf="isLastLevel == false" class="table table-hover">
         <thead>
         <tr>
-          <th class="mdl-data-table__cell--non-numeric">Name</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Length</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr *ngFor="let l of getStudents()">
-          <td class="mdl-data-table__cell--non-numeric">{{l.name}}</td>
+        <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+          <td>{{l.layerType}}</td>
+          <td>{{l.layerName}}</td>
+          <td>{{l.layers.length}}</td>
         </tr>
         </tbody>
       </table>
+
+      <div>
+        <button (click)="goUp()"
+                class="btn glyphicon glyphicon-arrow-up">
+        </button>
+
+        <div class="pull-right">
+          <a (click)="gotoEditTemplate()" class="btn glyphicon glyphicon-pencil"></a>
+          <a (click)="gotoFillTemplate()" class="btn btn-primary">Fill</a>
+        </div>
+      </div>
     </div>
-
-    <table *ngIf="isLastLevel == false" class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-      <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Type</th>
-        <th>Name</th>
-        <th>Length</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
-        <td class="mdl-data-table__cell--non-numeric">{{l.layerType}}</td>
-        <td>{{l.layerName}}</td>
-        <td>{{l.layers.length}}</td>
-      </tr>
-      </tbody>
-    </table>
   </div>
-  <div class="mdl-card__menu">
-    <button (click)="goUp()"
-            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Go UP
-    </button>
-  </div>
-
-  <div (click)="gotoEditTemplate()" class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Edit
-    </a>
-  </div>
-  <div (click)="gotoFillTemplate()" class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Fill
-    </a>
-  </div>
-
-</div>
-<div class="mdl-layout-spacer"></div>
 </div>

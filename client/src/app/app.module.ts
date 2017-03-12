@@ -5,7 +5,6 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./component/app/app.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
-import {MDL} from "./mdl";
 import {TemplateBuilderComponent} from "./component/template-builder/template-builder.component";
 import {TemplateViewerComponent} from "./component/template-viewer/template-viewer.component";
 import {TemplateEditorComponent} from "./component/template-editor/template-editor.component";
@@ -16,11 +15,11 @@ import {JournalComponent} from "./component/journal/journal.component";
 import {ProfileComponent} from "./component/profile/profile.component";
 import {LoginComponent} from "./component/login/login.component";
 import {SignUpComponent} from "./component/sign-up/sign-up.component";
+import {ModalComponent} from "./component/modal/modal.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MDL,
     TemplateBuilderComponent,
     TemplateViewerComponent,
     TemplateEditorComponent,
@@ -30,7 +29,8 @@ import {SignUpComponent} from "./component/sign-up/sign-up.component";
     JournalComponent,
     ProfileComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,7 @@ export class JournalComponent implements OnInit {
   private layerHistory: Layer[];
   private isSelected: boolean;
   private isLastLevel: boolean;
+  private isNewLesson: boolean;
   private amountOfDays: number;
   private columnWidth: number;
   private disciplines: Discipline[];
@@ -34,6 +35,7 @@ export class JournalComponent implements OnInit {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
+    this.isNewLesson = null;
     this.columnWidth = 136;
     this.disciplines = [ new Discipline(), new Discipline(), new Discipline()];
     this.disciplines[0].name = "SDsadsadasdas";
@@ -42,6 +44,7 @@ export class JournalComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.templateService.getMyTemplates()
       .subscribe(
         templates => {
@@ -82,7 +85,10 @@ export class JournalComponent implements OnInit {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
       if(this.isLastLevel == true){
-        this.createNewRecord(); // remove later
+        if(this.getStudents()[0].statistics.length == 0) {
+          console.log("!!!!!!!!!!!");
+          this.createNewRecord(); // remove later
+        }
       }
     }
   }
@@ -115,6 +121,7 @@ export class JournalComponent implements OnInit {
       this.discipline = null;
     }
     this.isLastLevel = false;
+    this.isNewLesson = null;
   }
 
   private getTemplate(id: number){
@@ -145,6 +152,15 @@ export class JournalComponent implements OnInit {
       }
     }else{
       return statistics.status.mark.toString();
+    }
+  }
+
+  private setFlagIsNewLesson(flag: boolean){
+    console.log(flag);
+    this.isNewLesson = flag;
+
+    if(this.isNewLesson){
+      this.createNewRecord(); // remove later
     }
   }
 

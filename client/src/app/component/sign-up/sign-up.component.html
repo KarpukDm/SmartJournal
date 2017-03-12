@@ -1,13 +1,11 @@
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-  <input class="mdl-textfield__input" type="text" id="login" [(ngModel)]="email">
-  <label class="mdl-textfield__label" for="login">Login</label>
+<div class="row">
+  <div class="center-block col-md-3">
+    <div class="input-group col-md-12 input-offset">
+      <input class="form-control" type="text" [(ngModel)]="email" name="user" placeholder="Email">
+    </div>
+    <div class="input-group col-md-12 input-offset">
+      <input class="form-control" type="password" [(ngModel)]="password" name="pass" placeholder="Password">
+    </div>
+    <input (click)="signUp()" type="submit" name="signUp" class="btn btn-primary col-md-12" value="Sign Up">
+  </div>
 </div>
-
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-  <input class="mdl-textfield__input" type="text" id="password" [(ngModel)]="password">
-  <label class="mdl-textfield__label" for="password">Password</label>
-</div>
-
-<button (click)="signUp()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-  Sign Up
-</button>

@@ -1,3 +1,5 @@
-<nav class="mdl-navigation mdl-layout--large-screen-only">
-  <a *ngFor="let m of getHorizontalMenu()" class="mdl-navigation__link" href={{m.link}}>{{m.name}}</a>
-</nav>
+<ul class="nav navbar-nav navbar-right">
+  <li *ngFor="let m of getHorizontalMenu()">
+    <a href={{m.link}}>{{m.name}}</a>
+  </li>
+</ul>

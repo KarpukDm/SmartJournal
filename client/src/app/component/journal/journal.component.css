@@ -1,21 +1,5 @@
-.demo-card-wide.mdl-card {
-  width: 600px;
-  float: left;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('../../../assets/images/3.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
-}
-
-.demo-card-square.mdl-card {
-}
-
 .absent{
-  background-color: #dfdfdf;
+  background-color: #f4f4f4;
 }
 
 .mark{
@@ -35,7 +19,7 @@
 }
 
 .name{
-  width: 300px;
+  width: 150px;
 }
 
 .mark{
@@ -59,14 +43,10 @@
   text-align: center;
 }
 
-.demo-list-item {
-  width: 300px;
-}
-
-li:hover{
-  background-color: #c1e4e2;
-}
-
 .layer-type-name{
   font-size: 14pt;
+}
+
+.align-center{
+  text-align: center;
 }
