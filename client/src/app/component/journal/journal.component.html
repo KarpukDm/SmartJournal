@@ -26,24 +26,22 @@
       <div *ngIf="isSelected == false" class="col-md-12">
         <div class="col-md-6">
           <div class="alert alert-info" role="alert">Disciplines:</div>
-          <ul>
-            <li *ngFor="let d of disciplines" (click)="setDiscipline(d)">
-                <span>
-                  {{d.name}}
-                </span>
-            </li>
-          </ul>
+
+          <div class="list-group">
+            <a *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="list-group-item"> {{d.name}}</a>
+          </div>
+
         </div>
 
         <div class="col-md-6" *ngIf="discipline != null">
           <div class="alert alert-success" role="alert">Journals:</div>
-          <ul *ngFor="let t of templates">
-            <li (click)="selectTemplate(t)">
-                <span>
-                  {{t.templateName}}
-                </span>
-            </li>
-          </ul>
+
+          <template ngFor let-t [ngForOf]="templates">
+            <div class="list-group">
+              <a (click)="selectTemplate(t)" class="list-group-item">{{t.templateName}}</a>
+            </div>
+          </template>
+
         </div>
       </div>
 
