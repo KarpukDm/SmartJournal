@@ -1,6 +1,6 @@
 package com.smartjournal.controller;
 
-import com.smartjournal.model.Template;
+import com.smartjournal.model.Journal;
 import com.smartjournal.service.impl.TemplateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class ProfileController {
     @RequestMapping(path = "/myTemplates")
     public ResponseEntity getMyTemplates(){
 
-        List<Template> templates = templateService.findAll();
-        return new ResponseEntity(templates, HttpStatus.OK);
+        List<Journal> journals = templateService.findAll();
+        return new ResponseEntity(journals, HttpStatus.OK);
     }
 }

@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Entity
@@ -21,6 +20,9 @@ public class Student implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
-    private List<Statistics> statistics;
+    @ManyToOne
+    private Journal journal;
+
+    @OneToOne
+    private Statistics statistics;
 }

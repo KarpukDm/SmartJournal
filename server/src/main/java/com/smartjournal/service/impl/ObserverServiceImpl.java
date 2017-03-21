@@ -1,6 +1,5 @@
 package com.smartjournal.service.impl;
 
-import com.smartjournal.model.Observer;
 import com.smartjournal.repository.ObserverRepository;
 import com.smartjournal.service.common.impl.AbstractServiceImpl;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.dto.TemplateDTO;
-import com.smartjournal.model.Template;
+import com.smartjournal.model.Journal;
 import com.smartjournal.service.impl.TemplateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,20 +22,20 @@ public class TemplateController {
     @RequestMapping(path = {"/create", "/save"}, method = RequestMethod.POST)
     public ResponseEntity createTemplate(@RequestBody(required = false) TemplateDTO templateDTO) {
 
-        Template template = new Template();
-        template.setId(templateDTO.getId());
-        template.setTemplateName(templateDTO.getTemplateName());
-        template.setLayer(templateDTO.getLayer());
+        Journal journal = new Journal();
+        journal.setId(templateDTO.getId());
+        journal.setTemplateName(templateDTO.getTemplateName());
+        journal.setLayer(templateDTO.getLayer());
 
-        template = templateService.save(template);
+        journal = templateService.save(journal);
 
-        return new ResponseEntity(template, HttpStatus.OK);
+        return new ResponseEntity(journal, HttpStatus.OK);
     }
 
     @RequestMapping
     public ResponseEntity findTemplateById(@RequestParam(name = "id", required = false) Long id){
 
-        Template template = templateService.findOne(id);
-        return new ResponseEntity(template, HttpStatus.OK);
+        Journal journal = templateService.findOne(id);
+        return new ResponseEntity(journal, HttpStatus.OK);
     }
 }

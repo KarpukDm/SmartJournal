@@ -1,6 +1,6 @@
 package com.smartjournal.util;
 
-import com.smartjournal.model.User;
+import com.smartjournal.model.Account;
 import com.smartjournal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -31,13 +31,13 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
         String password = (String) authentication.getCredentials();
 
         try {
-            User user = userRepository.findOneUserByEmailAndPassword(username, password);
+            Account account = userRepository.findOneUserByEmailAndPassword(username, password);
 
-            if (authentication.getCredentials() == null || user == null) {
+            if (authentication.getCredentials() == null || account == null) {
                 throw new BadCredentialsException("No pre-authenticated credentials found in request.");
             }
 
-            ((SmartJournalUsernamePasswordAuthToken) authentication).setDetails(user);
+            ((SmartJournalUsernamePasswordAuthToken) authentication).setDetails(account);
 
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
 

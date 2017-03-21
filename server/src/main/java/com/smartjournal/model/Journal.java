@@ -1,6 +1,5 @@
 package com.smartjournal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Entity
 @Table
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Template implements Serializable {
+public class Journal implements Serializable {
 
     @Id
     @GeneratedValue
@@ -24,18 +23,6 @@ public class Template implements Serializable {
 
     @Column(name = "layout")
     private Layer layer;
-
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Observer> observers;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Student> students;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Discipline> disciplines;
 
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -55,4 +42,12 @@ public class Template implements Serializable {
 
     }
 
+    @ManyToMany
+    private List<Account> accounts;
+
+    @ManyToOne
+    private Discipline discipline;
+
+    @OneToMany
+    private List<Student> students;
 }

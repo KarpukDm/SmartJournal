@@ -1,7 +1,7 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.dto.SignUpDTO;
-import com.smartjournal.model.User;
+import com.smartjournal.model.Account;
 import com.smartjournal.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,12 +28,12 @@ public class SignUpController {
     public DeferredResult signUp(@RequestBody SignUpDTO signUpDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
-        User user = new User();
-        user.setEmail(signUpDTO.getEmail());
-        user.setPassword(signUpDTO.getPassword());
-        userService.save(user);
+        Account account = new Account();
+        account.setEmail(signUpDTO.getEmail());
+        account.setPassword(signUpDTO.getPassword());
+        userService.save(account);
 
-        deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
+        deferredResult.setResult(new ResponseEntity(account, HttpStatus.OK));
 
         return deferredResult;
     }

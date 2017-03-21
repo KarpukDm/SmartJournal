@@ -5,12 +5,13 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "SJUser")
+@Table(name = "account")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User implements Serializable {
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue
@@ -25,4 +26,10 @@ public class User implements Serializable {
 
     @Column(name = "password")
     private String password;
+
+    @ManyToMany
+    private List<Journal> journals;
+
+    @ManyToOne
+    private Schedule schedule;
 }

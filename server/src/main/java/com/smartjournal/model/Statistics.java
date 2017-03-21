@@ -23,12 +23,6 @@ public class Statistics implements Serializable{
     @Column(name = "date")
     private String date;
 
-    @OneToOne
-    private Discipline discipline;
-
-    @OneToOne
-    private Observer observer;
-
     @Table
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private static class Status implements Serializable {

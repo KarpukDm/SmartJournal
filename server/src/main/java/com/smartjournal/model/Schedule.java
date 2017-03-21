@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,4 +17,13 @@ public class Schedule implements Serializable {
     @GeneratedValue
     @Column(name = "id")
     private Long id;
+
+    @OneToMany
+    private List<Account> accounts;
+
+    @OneToOne
+    private Journal journal;
+
+    @OneToOne
+    private Discipline discipline;
 }

@@ -3,10 +3,10 @@
     <div class="col-md-12">
 
       <div class="col-md-4">
-        <div class="alert alert-warning" role="alert">Please, enter the template name</div>
+        <div class="alert alert-warning" role="alert">Please, enter the journal name</div>
 
         <div class="input-group col-md-12 input-offset">
-          <input class="form-control" [(ngModel)]="template.templateName" type="text"
+          <input class="form-control" [(ngModel)]="journal.templateName" type="text"
                  id="templateName"
                  [disabled]="isNamed == true" placeholder="Template name">
         </div>
@@ -69,7 +69,7 @@
           <button (click)="saveTemplate()"
                   class="btn btn-success"
                   [disabled]="isNamed == false">
-            Save template
+            Save journal
           </button>
         </div>
       </div>

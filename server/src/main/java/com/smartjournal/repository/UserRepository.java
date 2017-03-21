@@ -1,9 +1,9 @@
 package com.smartjournal.repository;
 
-import com.smartjournal.model.User;
+import com.smartjournal.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<Account,Long> {
 
-    User findOneUserByEmailAndPassword(String email, String password);
+    Account findOneUserByEmailAndPassword(String email, String password);
 }

@@ -155,7 +155,7 @@ export class JournalComponent implements OnInit {
     console.log(flag);
     this.isNewLesson = flag;
 
-    if(this.isNewLesson){
+    if(this.isNewLesson || this.getLastStatistics().length == 0){
       this.createNewRecord(); // remove later
     }
   }
