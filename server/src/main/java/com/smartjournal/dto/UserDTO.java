@@ -9,9 +9,8 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO implements Serializable {
 
-    private String login;
+    private String id;
 
-    private String email;
-
-    private String password;
+    private String name;
 }
+

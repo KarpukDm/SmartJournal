@@ -18,8 +18,8 @@ public class Journal implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "template_name")
-    private String templateName;
+    @Column(name = "journal_name")
+    private String journalName;
 
     @Column(name = "layout")
     private Layer layer;

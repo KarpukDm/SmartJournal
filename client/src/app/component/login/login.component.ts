@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {LoginModel} from "../../model/login.model";
-import {User} from "../../model/user.model";
 import {Router} from "@angular/router";
 import {Constrains} from "../../constraints";
+import {UserModel} from "../../model/user.model";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   private password: string;
 
-  private user: User;
+  private account: UserModel;
 
   constructor(private loginService: LoginService,
               private router: Router) { }
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         user => {
           console.log(user);
-          this.user = user;
-          if(this.user){
+          this.account = user;
+          if(this.account){
             this.gotoProfile();
           }
         },

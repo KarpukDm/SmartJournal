@@ -1,15 +1,15 @@
 package com.smartjournal.service.impl;
 
 import com.smartjournal.model.Journal;
-import com.smartjournal.repository.TemplateRepository;
+import com.smartjournal.repository.JournalRepository;
 import com.smartjournal.service.common.impl.AbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TemplateServiceImpl extends AbstractServiceImpl<Journal, Long, TemplateRepository> {
+public class JournalServiceImpl extends AbstractServiceImpl<Journal, Long, JournalRepository> {
 
 
-    public TemplateServiceImpl(TemplateRepository repository) {
+    public JournalServiceImpl(JournalRepository repository) {
         super(repository);
     }
 

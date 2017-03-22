@@ -1,43 +1,43 @@
 import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
-import {Template} from "../../model/template.model";
-import {Layer} from "../../model/layer.model";
-import {TemplateService} from "../../service/template.service";
+import {JournalService} from "../../service/journal.service";
 import {isNullOrUndefined} from "util";
-import {Statistics} from "../../model/statistics.model";
-import {Student} from "../../model/student.model";
 import {Constrains} from "../../constraints";
-import {Discipline} from "../../model/discipline.model";
+import {JournalModel} from "../../model/journal.model";
+import {DisciplineModel} from "../../model/discipline.model";
+import {LayerModel} from "../../model/layer.model";
+import {StatisticsModel} from "../../model/statistics.model";
+import {StudentModel} from "../../model/student.model";
 
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.css'],
-  providers: [TemplateService]
+  providers: [JournalService]
 })
 export class JournalComponent implements OnInit {
 
   private errorMessage: string;
-  private templates: Template[];
-  private template: Template;
-  private layerHistory: Layer[];
+  private journals: JournalModel[];
+  private journal: JournalModel;
+  private layerHistory: LayerModel[];
   private isSelected: boolean;
   private isLastLevel: boolean;
   private isNewLesson: boolean;
   private amountOfDays: number;
   private columnWidth: number;
-  private disciplines: Discipline[];
-  private discipline: Discipline;
+  private disciplines: DisciplineModel[];
+  private discipline: DisciplineModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private templateService: TemplateService) {
+              private journalService: JournalService) {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
     this.isNewLesson = null;
     this.columnWidth = 136;
-    this.disciplines = [ new Discipline(), new Discipline(), new Discipline()];
+    this.disciplines = [ new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
     this.disciplines[0].name = "SDsadsadasdas";
     this.disciplines[1].name = "SDsadsadasdas";
     this.disciplines[2].name = "SDsadsadasdas";
@@ -45,11 +45,11 @@ export class JournalComponent implements OnInit {
 
   ngOnInit() {
 
-    this.templateService.getMyTemplates()
+    this.journalService.getMyTemplates()
       .subscribe(
         templates => {
-          this.templates = templates;
-          console.log(this.templates);
+          this.journals = templates;
+          console.log(this.journals);
         },
         error => this.errorMessage = <any>error
       );
@@ -60,10 +60,10 @@ export class JournalComponent implements OnInit {
     this.amountOfDays = screenResolution / -this.columnWidth;
   }
 
-  private selectTemplate(template: Template){
-    this.template = template;
+  private selectJournal(template: JournalModel){
+    this.journal = template;
     console.log(template);
-    this.layerHistory.push(this.template.layer);
+    this.layerHistory.push(this.journal.layer);
     this.isSelected = true;
   }
 
@@ -80,7 +80,7 @@ export class JournalComponent implements OnInit {
     return layer.students;
   }
 
-  private selectLayer(layer: Layer) {
+  private selectLayer(layer: LayerModel) {
     if(!isNullOrUndefined(layer.layers)) {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
@@ -89,7 +89,7 @@ export class JournalComponent implements OnInit {
     }
   }
 
-  private setDiscipline(discipline: Discipline){
+  private setDiscipline(discipline: DisciplineModel){
     this.discipline = discipline;
   }
 
@@ -98,15 +98,15 @@ export class JournalComponent implements OnInit {
       if(isNullOrUndefined(st.statistics)){
         st.statistics = [];
       }
-      let x = new Statistics();
+      let x = new StatisticsModel();
       st.statistics.push(x);
     }
   }
 
-  private setAbsent(student: Student){
+  private setAbsent(student: StudentModel){
     let stat = student.statistics.slice(-1)[0];
-    stat.status.isAbsent = !stat.status.isAbsent;
-    stat.status.mark = stat.status.isAbsent == true ? "H" : null;
+    stat.status.isThere = !stat.status.isThere;
+    stat.status.mark = stat.status.isThere == true ? "H" : null;
   }
 
   private goUp(){
@@ -120,13 +120,13 @@ export class JournalComponent implements OnInit {
     this.isNewLesson = null;
   }
 
-  private getTemplate(id: number){
-    return this.templates[id];
+  private getJournal(id: number){
+    return this.journals[id];
   }
 
-  private isAbsent(student: Student){
+  private isThere(student: StudentModel){
     let stat = student.statistics.slice(-1)[0];
-    return stat.status.isAbsent;
+    return stat.status.isThere;
   }
 
   private getLastStatistics(){
@@ -138,10 +138,10 @@ export class JournalComponent implements OnInit {
     return [];
   }
 
-  private getStatusForSomeDate(statistics: Statistics){
+  private getStatusForSomeDate(statistics: StatisticsModel){
     console.log(statistics);
     if(isNullOrUndefined(statistics.status.mark)){
-      if(statistics.status.isAbsent == false){
+      if(statistics.status.isThere == false){
         return "-";
       }else{
         return "H";
@@ -160,7 +160,7 @@ export class JournalComponent implements OnInit {
     }
   }
 
-  private getStatisticsForLastFewDays(student: Student){
+  private getStatisticsForLastFewDays(student: StudentModel){
     if(isNullOrUndefined(student.statistics)){
       return [];
     }
@@ -188,11 +188,11 @@ export class JournalComponent implements OnInit {
 
   private saveTemplate() {
 
-    this.templateService.saveTemplate(this.template)
+    this.journalService.saveJournal(this.journal)
       .subscribe(
         template => {
           console.log(template);
-          this.template = template;
+          this.journal = template;
           this.gotoJournalPage();
         },
         error => this.errorMessage = <any>error

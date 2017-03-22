@@ -1,31 +1,20 @@
 package com.smartjournal.controller;
 
-import com.smartjournal.model.Journal;
-import com.smartjournal.service.impl.TemplateServiceImpl;
+import com.smartjournal.service.impl.JournalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
 public class ProfileController {
 
-    private final TemplateServiceImpl templateService;
+    private final JournalServiceImpl templateService;
 
     @Autowired
-    public ProfileController(TemplateServiceImpl templateService) {
+    public ProfileController(JournalServiceImpl templateService) {
 
         this.templateService = templateService;
     }
 
-    @RequestMapping(path = "/myTemplates")
-    public ResponseEntity getMyTemplates(){
-
-        List<Journal> journals = templateService.findAll();
-        return new ResponseEntity(journals, HttpStatus.OK);
-    }
 }

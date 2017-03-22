@@ -1,46 +1,46 @@
 import {Component, OnInit} from "@angular/core";
-import {Template} from "../../model/template.model";
-import {Layer} from "../../model/layer.model";
+import {LayerModel} from "../../model/layer.model";
 import {isNullOrUndefined} from "util";
-import {TemplateService} from "../../service/template.service";
+import {JournalService} from "../../service/journal.service";
 import {Router} from "@angular/router";
 import {Constrains} from "../../constraints";
 import {Location} from "@angular/common";
+import {JournalModel} from "../../model/journal.model";
 
 @Component({
-  selector: 'app-template-builder',
-  templateUrl: './template-builder.component.html',
-  styleUrls: ['./template-builder.component.css'],
-  providers: [TemplateService]
+  selector: 'app-journal-builder',
+  templateUrl: './journal-builder.component.html',
+  styleUrls: ['./journal-builder.component.css'],
+  providers: [JournalService]
 })
-export class TemplateBuilderComponent implements OnInit {
+export class JournalBuilderComponent implements OnInit {
 
-  private template: Template;
-  private layer: Layer;
-  private layerHistory: Layer[];
+  private journal: JournalModel;
+  private layer: LayerModel;
+  private layerHistory: LayerModel[];
   private errorMessage: string;
   private isNamed: boolean;
 
-  constructor(private templateService: TemplateService,
+  constructor(private journalService: JournalService,
               private location: Location,
               private router: Router) {
-    this.template = new Template();
-    this.layer = new Layer();
+    this.journal = new JournalModel();
+    this.layer = new LayerModel();
     this.layerHistory = [];
     this.isNamed = false;
   }
 
   ngOnInit() {
-    this.template.layer = new Layer();
-    this.layerHistory.push(this.template.layer);
+    this.journal.layer = new LayerModel();
+    this.layerHistory.push(this.journal.layer);
   }
 
   private addLayer() {
 
     let layer = this.layerHistory.slice(-1)[0];
 
-    if (isNullOrUndefined(this.template.layer)) {
-      this.template.layer = new Layer();
+    if (isNullOrUndefined(this.journal.layer)) {
+      this.journal.layer = new LayerModel();
     }
 
     if ((!isNullOrUndefined(this.layer.layerName) || this.layer.layerName != "") &&
@@ -50,11 +50,11 @@ export class TemplateBuilderComponent implements OnInit {
       }
       this.layer.layers = [];
       layer.layers.push(this.layer);
-      this.layer = new Layer();
+      this.layer = new LayerModel();
     }
   }
 
-  private selectLayer(layer: Layer) {
+  private selectLayer(layer: LayerModel) {
     this.layerHistory.push(layer);
   }
 
@@ -72,21 +72,21 @@ export class TemplateBuilderComponent implements OnInit {
     }
   }
 
-  private saveTemplate() {
+  private saveJournal() {
 
-    this.templateService.createTemplate(this.template)
+    this.journalService.createJournal(this.journal)
       .subscribe(
-        template => {
-          this.template = template;
-          this.gotoViewTemplate(this.template.id);
+        journal => {
+          this.journal = journal;
+          this.gotoViewJournal(this.journal.id);
         },
         error => this.errorMessage = <any>error
       );
   }
 
   private enterName() {
-    if (this.template.templateName != null &&
-      this.template.templateName != "") {
+    if (this.journal.journalName != null &&
+      this.journal.journalName != "") {
       this.isNamed = true;
     }
   }
@@ -95,8 +95,8 @@ export class TemplateBuilderComponent implements OnInit {
     this.isNamed = false;
   }
 
-  private gotoViewTemplate(id: number): void {
-    let link = [Constrains.viewTemplatePage, id];
+  private gotoViewJournal(id: number): void {
+    let link = [Constrains.viewJournalPage, id];
     this.router.navigate(link);
   }
 

@@ -13,7 +13,7 @@ public class SignUpDTO implements Serializable {
 
     private String lastName;
 
-    private String email;
+    private String login;
 
     private String post;
 

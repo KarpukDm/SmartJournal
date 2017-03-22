@@ -11,4 +11,8 @@ public class AccountServiceImpl extends AbstractServiceImpl<Account, Long, Accou
     public AccountServiceImpl(AccountRepository repository) {
         super(repository);
     }
+
+    public Account findOneUserByLoginAndPassword(String email, String password){
+        return this.repository.findOneUserByLoginAndPassword(email, password);
+    }
 }

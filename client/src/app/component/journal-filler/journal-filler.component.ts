@@ -1,43 +1,43 @@
 import {Component, OnInit} from "@angular/core";
-import {Template} from "../../model/template.model";
-import {Layer} from "../../model/layer.model";
 import {Router, ActivatedRoute, Params} from "@angular/router";
-import {TemplateService} from "../../service/template.service";
+import {JournalService} from "../../service/journal.service";
 import {isNullOrUndefined} from "util";
 import {Constrains} from "../../constraints";
-import {Student} from "../../model/student.model";
+import {StudentModel} from "../../model/student.model";
+import {JournalModel} from "../../model/journal.model";
+import {LayerModel} from "../../model/layer.model";
 
 @Component({
-  selector: 'app-template-filler',
-  templateUrl: './template-filler.component.html',
-  styleUrls: ['./template-filler.component.css'],
-  providers: [TemplateService]
+  selector: 'app-journal-filler',
+  templateUrl: './journal-filler.component.html',
+  styleUrls: ['./journal-filler.component.css'],
+  providers: [JournalService]
 })
-export class TemplateFillerComponent implements OnInit {
+export class JournalFillerComponent implements OnInit {
 
   private errorMessage: string;
-  private template: Template;
-  private layerHistory: Layer[];
+  private journal: JournalModel;
+  private layerHistory: LayerModel[];
   private isLastLevel: boolean;
-  private student: Student;
+  private student: StudentModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private templateService: TemplateService) {
+              private journalService: JournalService) {
     this.layerHistory = [];
     this.isLastLevel = false;
-    this.student = new Student();
+    this.student = new StudentModel();
   }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.templateService.getTemplatesById(id)
+      this.journalService.getJournalById(id)
         .subscribe(
-          template => {
-            this.template = template;
-            console.log(this.template);
-            this.layerHistory.push(this.template.layer);
+          journal => {
+            this.journal = journal;
+            console.log(this.journal);
+            this.layerHistory.push(this.journal.layer);
           },
           error => this.errorMessage = <any>error
         );
@@ -48,7 +48,7 @@ export class TemplateFillerComponent implements OnInit {
   private addStudent(){
     let layer = this.layerHistory.slice(-1)[0];
     layer.students.push(this.student);
-    this.student = new Student();
+    this.student = new StudentModel();
   }
 
   private getStudents(){
@@ -56,7 +56,7 @@ export class TemplateFillerComponent implements OnInit {
     return layer.students;
   }
 
-  private selectLayer(layer: Layer) {
+  private selectLayer(layer: LayerModel) {
     if(!isNullOrUndefined(layer.layers)) {
       if(layer.layers.length == 0){
         this.isLastLevel = true;
@@ -85,21 +85,24 @@ export class TemplateFillerComponent implements OnInit {
     }
   }
 
-  private saveTemplate(){
-
-    this.templateService.createTemplate(this.template)
+  private saveJournal(){
+    console.log(this.journal);
+    this.journalService.saveJournal(this.journal)
       .subscribe(
-        template => {
-          console.log(template);
-          this.template = template;
-          this.gotoViewTemplate(this.template.id);
+        journal => {
+          this.journal = journal;
+          console.log(journal);
+          console.log(this.journal.id);
+          console.log(this.journal.journalName);
+          this.gotoViewJournal(this.journal.id);
         },
         error => this.errorMessage = <any>error
       );
   }
 
-  private gotoViewTemplate(id: number): void {
-    let link = [Constrains.viewTemplatePage, id];
+  private gotoViewJournal(id: number): void {
+    console.log(id);
+    let link = [Constrains.viewJournalPage, id];
     this.router.navigate(link);
   }
 
