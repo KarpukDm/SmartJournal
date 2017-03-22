@@ -3,7 +3,7 @@ import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
-import {User} from "../model/user.model";
+import {UserModel} from "../model/user.model";
 import {SignUpModel} from "../model/sign-up.model";
 
 @Injectable()
@@ -19,7 +19,7 @@ export class SignUpService {
     this.signUpURL = Constrains.baseURL + Constrains.signUpApi;
   }
 
-  signUp(signUpModel: SignUpModel): Observable<User> {
+  signUp(signUpModel: SignUpModel): Observable<UserModel> {
     return this.http
       .post(this.signUpURL, JSON.stringify(signUpModel), {headers: this.headers})
       .map(SignUpService.extractData)

@@ -1,11 +1,12 @@
-import {Statistics} from "./statistics.model";
-export class Student {
+import {StatisticsModel} from "./statistics.model";
+
+export class StudentModel {
 
   id: number;
 
   name: string;
 
-  statistics: Statistics[];
+  statistics: StatisticsModel[];
 
   constructor(){
     this.statistics = [];

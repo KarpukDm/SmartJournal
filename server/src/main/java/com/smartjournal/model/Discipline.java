@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,4 +20,7 @@ public class Discipline implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany
+    private List<Journal> journals;
 }

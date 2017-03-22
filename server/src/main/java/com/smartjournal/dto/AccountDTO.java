@@ -7,17 +7,9 @@ import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SignUpDTO implements Serializable {
-
-    private String firstName;
-
-    private String lastName;
+public class AccountDTO implements Serializable {
 
     private String login;
 
-    private String post;
-
     private String password;
-
-    private String repeatedPassword;
 }

@@ -1,16 +1,19 @@
 package com.smartjournal.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.smartjournal.model.Journal;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ObserverDTO implements Serializable {
+public class JournalDTO implements Serializable {
 
-    private String id;
+    private Long id;
 
-    private String name;
+    private String journalName;
+
+    private Journal.Layer layer;
+
 }
-

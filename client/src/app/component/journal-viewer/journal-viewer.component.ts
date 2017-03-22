@@ -1,27 +1,27 @@
 import {Component, OnInit} from "@angular/core";
 import {Params, ActivatedRoute, Router} from "@angular/router";
-import {TemplateService} from "../../service/template.service";
-import {Template} from "../../model/template.model";
+import {JournalService} from "../../service/journal.service";
 import {isNullOrUndefined} from "util";
-import {Layer} from "../../model/layer.model";
 import {Constrains} from "../../constraints";
+import {JournalModel} from "../../model/journal.model";
+import {LayerModel} from "../../model/layer.model";
 
 @Component({
-  selector: 'app-template-viewer',
-  templateUrl: './template-viewer.component.html',
-  styleUrls: ['./template-viewer.component.css'],
-  providers: [TemplateService]
+  selector: 'app-journal-viewer',
+  templateUrl: './journal-viewer.component.html',
+  styleUrls: ['./journal-viewer.component.css'],
+  providers: [JournalService]
 })
-export class TemplateViewerComponent implements OnInit {
+export class JournalViewerComponent implements OnInit {
 
   private errorMessage: string;
-  private template: Template;
-  private layerHistory: Layer[];
+  private journal: JournalModel;
+  private layerHistory: LayerModel[];
   private isLastLevel: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private templateService: TemplateService) {
+              private journalService: JournalService) {
     this.layerHistory = [];
     this.isLastLevel = false;
   }
@@ -29,12 +29,12 @@ export class TemplateViewerComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.templateService.getTemplatesById(id)
+      this.journalService.getJournalById(id)
         .subscribe(
-          template => {
-            this.template = template;
-            console.log(this.template);
-            this.layerHistory.push(this.template.layer);
+          journal => {
+            this.journal = journal;
+            console.log(this.journal);
+            this.layerHistory.push(this.journal.layer);
           },
           error => this.errorMessage = <any>error
         );
@@ -42,7 +42,7 @@ export class TemplateViewerComponent implements OnInit {
 
   }
 
-  private selectLayer(layer: Layer) {
+  private selectLayer(layer: LayerModel) {
     if(!isNullOrUndefined(layer.layers)) {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
@@ -69,13 +69,13 @@ export class TemplateViewerComponent implements OnInit {
     return layer.students;
   }
 
-  private gotoEditTemplate(): void {
-    let link = [Constrains.editTemplatePage, this.template.id];
+  private gotoEditJournal(): void {
+    let link = [Constrains.editJournalPage, this.journal.id];
     this.router.navigate(link);
   }
 
-  private gotoFillTemplate(): void {
-    let link = [Constrains.fillTemplatePage, this.template.id];
+  private gotoFillJournal(): void {
+    let link = [Constrains.fillJournalPage, this.journal.id];
     this.router.navigate(link);
   }
 

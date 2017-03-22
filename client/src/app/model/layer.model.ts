@@ -1,13 +1,14 @@
-import {Student} from "./student.model";
-export class Layer {
+import {StudentModel} from "./student.model";
+
+export class LayerModel {
 
   layerName: string;
 
   layerType: string;
 
-  layers: Layer[];
+  layers: LayerModel[];
 
-  students: Student[];
+  students: StudentModel[];
 
   constructor(){
     this.students = [];

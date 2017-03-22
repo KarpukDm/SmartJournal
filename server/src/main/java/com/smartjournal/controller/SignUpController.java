@@ -1,8 +1,8 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.dto.SignUpDTO;
-import com.smartjournal.model.User;
-import com.smartjournal.service.impl.UserServiceImpl;
+import com.smartjournal.model.Account;
+import com.smartjournal.service.impl.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,24 +16,24 @@ import org.springframework.web.context.request.async.DeferredResult;
 @RequestMapping("api/signUp")
 public class SignUpController {
 
-    private final UserServiceImpl userService;
+    private final AccountServiceImpl accountService;
 
     @Autowired
-    public SignUpController(UserServiceImpl userService) {
+    public SignUpController(AccountServiceImpl accountService) {
 
-        this.userService = userService;
+        this.accountService = accountService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public DeferredResult signUp(@RequestBody SignUpDTO signUpDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
-        User user = new User();
-        user.setEmail(signUpDTO.getEmail());
-        user.setPassword(signUpDTO.getPassword());
-        userService.save(user);
+        Account account = new Account();
+        account.setLogin(signUpDTO.getLogin());
+        account.setPassword(signUpDTO.getPassword());
+        accountService.save(account);
 
-        deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
+        deferredResult.setResult(new ResponseEntity(account, HttpStatus.OK));
 
         return deferredResult;
     }

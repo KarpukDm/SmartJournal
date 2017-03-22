@@ -2,7 +2,7 @@ package com.smartjournal.controller;
 
 import com.smartjournal.config.SmartJournalProperties;
 import com.smartjournal.dto.LoginDTO;
-import com.smartjournal.model.User;
+import com.smartjournal.model.Account;
 import com.smartjournal.util.SecurityUtils;
 import com.smartjournal.util.SmartJournalUsernamePasswordAuthToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +53,9 @@ public class AuthenticateController {
             request.getSession().setMaxInactiveInterval(smartJournalProperties.getSessionTimeout()); //1800 = 30 min;
         }*/
 
-        User user = SecurityUtils.getCurrentUser();
-        if (user != null) {
-            deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
+        Account account = SecurityUtils.getCurrentUser();
+        if (account != null) {
+            deferredResult.setResult(new ResponseEntity(account, HttpStatus.OK));
         }else{
             deferredResult.setResult(new ResponseEntity(HttpStatus.UNAUTHORIZED));
         }

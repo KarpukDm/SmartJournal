@@ -1,31 +1,28 @@
-import {Discipline} from "./discipline.model";
-import {Observer} from "./observer.model";
-export class Statistics {
+import {DisciplineModel} from "./discipline.model";
 
-  discipline: Discipline;
+export class StatisticsModel {
 
-  observer: Observer;
+  discipline: DisciplineModel;
 
   date: string;
 
-  status: Status;
+  status: StatusModel;
 
   constructor(){
-    this.discipline = new Discipline();
-    this.observer = new Observer();
-    this.status = new Status();
+    this.discipline = new DisciplineModel();
+    this.status = new StatusModel();
     let date = new Date();
     this.date = ('0' + date.getDate()).slice(-2) + "." + ('0' + (date.getMonth() + 1)).slice(-2) + "." + date.getFullYear();
   }
 }
 
-class Status {
+class StatusModel {
 
-  isAbsent: boolean;
+  isThere: boolean;
 
   mark: string;
 
   constructor(){
-    this.isAbsent = false;
+    this.isThere = false;
   }
 }

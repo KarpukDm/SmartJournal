@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {User} from "../../model/user.model";
+import {UserModel} from "../../model/user.model";
 import {SignUpService} from "../../service/sign-up.service";
 import {SignUpModel} from "../../model/sign-up.model";
 import {LoginService} from "../../service/login.service";
@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
 
   private password: string;
 
-  private user: User;
+  private user: UserModel;
 
   constructor(private signUpService: SignUpService,
               private loginService: LoginService,

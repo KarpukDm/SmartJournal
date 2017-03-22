@@ -11,8 +11,6 @@ public class StatisticsDTO implements Serializable{
 
     private DisciplineDTO discipline;
 
-    private ObserverDTO observer;
-
     private Status status;
 
     private String date;

@@ -16,7 +16,7 @@
             {{getSelectedLayer()}}
           </button>
 
-          <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveTemplate()"
+          <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveJournal()"
                   class="btn brn-success">
             Save
           </button>
@@ -37,8 +37,8 @@
           <div class="alert alert-success" role="alert">Journals:</div>
 
           <div class="list-group">
-            <template ngFor let-t [ngForOf]="templates">
-              <a (click)="selectTemplate(t)" class="list-group-item">{{t.templateName}}</a>
+            <template ngFor let-t [ngForOf]="journals">
+              <a (click)="selectJournal(t)" class="list-group-item">{{t.journalName}}</a>
             </template>
           </div>
 
@@ -105,18 +105,18 @@
 
               <tbody>
               <tr *ngFor="let l of getStudents()">
-                <td [class.absent]="isAbsent(l) == true">
+                <td [class.absent]="isThere(l) == true">
                   <button (click)="setAbsent(l)" class="name btn btn-default">
                     {{l.name}}
                   </button>
                 </td>
-                <td [class.absent]="isAbsent(l) == true" class="td-column"
+                <td [class.absent]="isThere(l) == true" class="td-column"
                     *ngFor="let st of getStatisticsForLastFewDays(l)">
                   {{getStatusForSomeDate(st)}}
                 </td>
-                <td [class.absent]="isAbsent(l) == true" class="td-column">
+                <td [class.absent]="isThere(l) == true" class="td-column">
                   <div>
-                    <input [readonly]="isAbsent(l) == true" class="mark" type="text"
+                    <input [readonly]="isThere(l) == true" class="mark" type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
                   </div>
                 </td>

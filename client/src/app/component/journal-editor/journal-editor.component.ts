@@ -1,51 +1,51 @@
 import {Component, OnInit} from "@angular/core";
-import {Layer} from "../../model/layer.model";
-import {Template} from "../../model/template.model";
-import {TemplateService} from "../../service/template.service";
+import {LayerModel} from "../../model/layer.model";
+import {JournalService} from "../../service/journal.service";
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {isNullOrUndefined} from "util";
 import {Constrains} from "../../constraints";
+import {JournalModel} from "../../model/journal.model";
 
 @Component({
-  selector: 'app-template-editor',
-  templateUrl: './template-editor.component.html',
-  styleUrls: ['./template-editor.component.css'],
-  providers: [TemplateService]
+  selector: 'app-journal-editor',
+  templateUrl: './journal-editor.component.html',
+  styleUrls: ['./journal-editor.component.css'],
+  providers: [JournalService]
 })
-export class TemplateEditorComponent implements OnInit {
+export class JournalEditorComponent implements OnInit {
 
   private errorMessage: string;
-  private template: Template;
-  private layerHistory: Layer[];
+  private journal: JournalModel;
+  private layerHistory: LayerModel[];
   private isEdit: boolean;
-  private editedLayer: Layer;
+  private editedLayer: LayerModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private templateService: TemplateService) {
+              private journalService: JournalService) {
     this.layerHistory = [];
-    this.template = new Template();
+    this.journal = new JournalModel();
     this.isEdit = false;
-    this.editedLayer = new Layer();
+    this.editedLayer = new LayerModel();
   }
 
   ngOnInit() {
-    console.log(this.template);
+    console.log(this.journal);
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.templateService.getTemplatesById(id)
+      this.journalService.getJournalById(id)
         .subscribe(
-          template => {
-            this.template = template;
-            console.log(this.template);
-            this.layerHistory.push(this.template.layer);
+          journal => {
+            this.journal = journal;
+            console.log(this.journal);
+            this.layerHistory.push(this.journal.layer);
           },
           error => this.errorMessage = <any>error
         );
     });
   }
 
-  private selectLayer(layer: Layer) {
+  private selectLayer(layer: LayerModel) {
     if(!isNullOrUndefined(layer.layers)) {
       this.layerHistory.push(layer);
     }
@@ -65,27 +65,27 @@ export class TemplateEditorComponent implements OnInit {
     }
   }
 
-  private edit(layer: Layer){
+  private edit(layer: LayerModel){
     this.isEdit = true;
     this.editedLayer = layer;
   }
 
-  private saveTemplate(){
+  private saveJournal(){
 
-    this.templateService.createTemplate(this.template)
+    this.journalService.createJournal(this.journal)
       .subscribe(
-        template => {
-          this.template = template;
-          console.log(this.template);
-          this.gotoViewTemplate(this.template.id);
+        journal => {
+          this.journal = journal;
+          console.log(this.journal);
+          this.gotoViewJournal(this.journal.id);
         },
         error => this.errorMessage = <any>error
       );
   }
 
-  private gotoViewTemplate(id: number): void {
+  private gotoViewJournal(id: number): void {
     console.log(id);
-    let link = [Constrains.viewTemplatePage, id];
+    let link = [Constrains.viewJournalPage, id];
     this.router.navigate(link);
   }
 

@@ -5,10 +5,6 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./component/app/app.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
-import {TemplateBuilderComponent} from "./component/template-builder/template-builder.component";
-import {TemplateViewerComponent} from "./component/template-viewer/template-viewer.component";
-import {TemplateEditorComponent} from "./component/template-editor/template-editor.component";
-import {TemplateFillerComponent} from "./component/template-filler/template-filler.component";
 import {VerticalMenuComponent} from "./component/menu/vertical-menu/vertical-menu.component";
 import {HorizontalMenuComponent} from "./component/menu/horizontal-menu/horizontal-menu.component";
 import {JournalComponent} from "./component/journal/journal.component";
@@ -16,14 +12,18 @@ import {ProfileComponent} from "./component/profile/profile.component";
 import {LoginComponent} from "./component/login/login.component";
 import {SignUpComponent} from "./component/sign-up/sign-up.component";
 import {ModalComponent} from "./component/modal/modal.component";
+import {JournalBuilderComponent} from "./component/journal-builder/journal-builder.component";
+import {JournalViewerComponent} from "./component/journal-viewer/journal-viewer.component";
+import {JournalFillerComponent} from "./component/journal-filler/journal-filler.component";
+import {JournalEditorComponent} from "./component/journal-editor/journal-editor.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateBuilderComponent,
-    TemplateViewerComponent,
-    TemplateEditorComponent,
-    TemplateFillerComponent,
+    JournalBuilderComponent,
+    JournalViewerComponent,
+    JournalEditorComponent,
+    JournalFillerComponent,
     VerticalMenuComponent,
     HorizontalMenuComponent,
     JournalComponent,
