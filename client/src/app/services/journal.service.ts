@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {JournalModel} from "../models/journal.model";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
-import {type} from "os";
 
 @Injectable()
 export class JournalService {
