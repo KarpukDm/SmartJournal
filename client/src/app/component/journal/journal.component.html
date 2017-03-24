@@ -37,9 +37,9 @@
           <div class="alert alert-success" role="alert">Journals:</div>
 
           <div class="list-group">
-            <template ngFor let-t [ngForOf]="journals">
+            <ng-template ngFor let-t [ngForOf]="journals">
               <a (click)="selectJournal(t)" class="list-group-item">{{t.journalName}}</a>
-            </template>
+            </ng-template>
           </div>
 
         </div>
