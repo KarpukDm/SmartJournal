@@ -13,10 +13,9 @@ export class UserAction {
     };
   }
 
-  static logout(data): Action {
+  static logout(): Action {
     return {
-      type: UserAction.LOGOUT,
-      payload: data
+      type: UserAction.LOGOUT
     };
   }
 }

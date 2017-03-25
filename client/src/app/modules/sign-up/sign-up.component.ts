@@ -21,6 +21,8 @@ export class SignUpComponent implements OnInit {
 
   private password: string;
 
+  private repeatedPassword: string;
+
   private user: UserModel;
 
   constructor(private signUpService: SignUpService,
@@ -33,7 +35,7 @@ export class SignUpComponent implements OnInit {
 
   private signUp() {
     console.log(this.login);
-    this.signUpService.signUp(new SignUpModel(this.login, this.password))
+    this.signUpService.signUp(new SignUpModel(this.login, this.password, this.repeatedPassword))
       .subscribe(
         user => {
           console.log(user);

@@ -3,7 +3,7 @@ import {MenuElementModel} from "../menu-element.model";
 import {Constrains} from "../../../constraints";
 import {LoginService} from "../../../services/login.service";
 import {Store} from "@ngrx/store";
-import {AUTHORIZED, IUserState} from "../../../reducers/user.reducer";
+import {AUTHORIZED, UserState} from "../../../reducers/user.reducer";
 
 @Component({
   selector: 'app-horizontal-menu',
@@ -16,14 +16,15 @@ export class HorizontalMenuComponent implements OnInit {
   private isAuthorize: boolean;
 
   constructor(private loginService: LoginService,
-              private store: Store<IUserState>) {
+              private store: Store<any>) {
   }
 
   ngOnInit() {
     this.isAuthorize = false;
     this.store
-      .map(x => x.state)
+      .select(x => x.userReducer)
       .subscribe((x) => {
+      console.log(x);
         this.isAuthorize = x === AUTHORIZED;
         this.horizontalMenu = [];
         if (!this.isAuthorize) {

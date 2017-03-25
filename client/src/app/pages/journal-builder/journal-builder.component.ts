@@ -6,6 +6,9 @@ import {JournalService} from "../../services/journal.service";
 import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {Constrains} from "../../constraints";
+import {go} from "@ngrx/router-store";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../app.state";
 
 @Component({
   selector: 'app-journal-builder',
@@ -23,7 +26,8 @@ export class JournalBuilderComponent implements OnInit {
 
   constructor(private journalService: JournalService,
               private location: Location,
-              private router: Router) {
+              private router: Router,
+              private store: Store<AppState>) {
     this.journal = new JournalModel();
     this.layer = new LayerModel();
     this.layerHistory = [];
@@ -31,6 +35,8 @@ export class JournalBuilderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(go([Constrains.createJournalPage]));
+
     this.journal.layer = new LayerModel();
     this.layerHistory.push(this.journal.layer);
   }

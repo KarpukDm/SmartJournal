@@ -1,7 +1,7 @@
 import {Action} from "@ngrx/store";
 import {AuthService} from "../services/auth.service";
 
-export interface IUserState {
+export interface UserState {
   state: string;
 }
 

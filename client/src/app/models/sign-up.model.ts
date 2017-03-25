@@ -4,9 +4,12 @@ export class SignUpModel {
 
   private password: string;
 
-  constructor(login: string, password: string){
+  private repeatedPassword: string;
+
+  constructor(login: string, password: string, repeatedPassword: string){
     this.login = login;
     this.password = password;
+    this.repeatedPassword = repeatedPassword;
   }
 
 }

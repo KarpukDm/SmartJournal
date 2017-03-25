@@ -6,6 +6,9 @@ import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {StudentModel} from "../../models/student.model";
 import {Constrains} from "../../constraints";
+import {Store} from "@ngrx/store";
+import {go} from "@ngrx/router-store";
+import {AppState} from "../../app.state";
 
 @Component({
   selector: 'app-journal-filler',
@@ -23,13 +26,15 @@ export class JournalFillerComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private journalService: JournalService) {
+              private journalService: JournalService,
+              private store: Store<AppState>) {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.student = new StudentModel();
   }
 
   ngOnInit() {
+    this.store.dispatch(go([Constrains.fillJournalPage]));
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.journalService.getJournalById(id)

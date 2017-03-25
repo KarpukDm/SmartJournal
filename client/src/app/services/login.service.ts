@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
 import {LoginModel} from "../models/login.model";
-import {IUserState} from "../reducers/user.reducer";
+import {UserState} from "../reducers/user.reducer";
 import {Store} from "@ngrx/store";
 import {UserAction} from "../actions/user.action";
 
@@ -20,7 +20,7 @@ export class LoginService {
   });
 
   constructor(private http: Http,
-              private store: Store<IUserState>) {
+              private store: Store<UserState>) {
     this.loginURL = Constrains.baseURL + Constrains.loginApi;
     this.logoutURL = Constrains.baseURL + Constrains.logoutApi;
     this.tokenName = 'x-auth-token';

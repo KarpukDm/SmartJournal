@@ -9,7 +9,7 @@ import {JournalService} from "./services/journal.service";
 import {LoginService} from "./services/login.service";
 import {SignUpService} from "./services/sign-up.service";
 import {ComponentsLibraryModule} from "./components/components-library.module";
-import {RouterStoreModule} from "@ngrx/router-store";
+import {routerReducer, RouterStoreModule} from "@ngrx/router-store";
 import {StoreModule} from "@ngrx/store";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./services/auth.service";
@@ -25,7 +25,7 @@ import {userReducer} from "./reducers/user.reducer";
     HttpModule,
     RouterModule.forRoot(appRoutes),
     ComponentsLibraryModule,
-    StoreModule.provideStore({state: userReducer}),
+    StoreModule.provideStore({routerReducer, userReducer}),
     RouterStoreModule.connectRouter()
   ],
   providers: [

@@ -5,6 +5,9 @@ import {JournalService} from "../../services/journal.service";
 import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {Constrains} from "../../constraints";
+import {go} from "@ngrx/router-store";
+import {Store} from "@ngrx/store";
+import {AppState} from "app/app.state";
 
 @Component({
   selector: 'app-journal-editor',
@@ -22,7 +25,8 @@ export class JournalEditorComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private journalService: JournalService) {
+              private journalService: JournalService,
+              private store: Store<AppState>) {
     this.layerHistory = [];
     this.journal = new JournalModel();
     this.isEdit = false;
@@ -30,6 +34,7 @@ export class JournalEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(go([Constrains.editJournalPage]));
     console.log(this.journal);
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
