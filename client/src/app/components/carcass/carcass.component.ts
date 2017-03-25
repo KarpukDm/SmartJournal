@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-carcass',
@@ -10,17 +10,20 @@ export class CarcassComponent implements OnInit {
 
   private isVisible: boolean;
 
-  private pages: string[];
+  private publicPages: string[];
 
-  constructor(private router: Router) {
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit() {
 
-    this.pages = ['/login', '/signUp'];
+    this.publicPages = ['/login', '/signUp'];
 
-    console.log(this.router.url);
-    this.isVisible = true;
-    console.log(this.isVisible );
+    this.store
+      .map(x => x.router)
+      .filter(x => x.path)
+      .subscribe(x => {
+        this.isVisible = !this.publicPages.includes(x.path);
+      });
   }
 }

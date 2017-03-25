@@ -5,7 +5,8 @@ import {JournalService} from "../../services/journal.service";
 import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {Constrains} from "../../constraints";
-import {AppState} from "../../app.state";
+import {Store} from "@ngrx/store";
+import { go, replace, search, show, back, forward } from '@ngrx/router-store';
 
 @Component({
   selector: 'app-journal-viewer',
@@ -23,13 +24,13 @@ export class JournalViewerComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private journalService: JournalService,
-              private store: AppState) {
+              private store: Store<any>) {
     this.layerHistory = [];
     this.isLastLevel = false;
   }
 
   ngOnInit() {
-    this.store.router.path = this.router.url;
+    this.store.dispatch(go([Constrains.viewJournalPage]));
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.journalService.getJournalById(id)

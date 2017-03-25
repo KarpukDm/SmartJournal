@@ -8,18 +8,6 @@ import {JournalComponent} from "../../pages/journal/journal.component";
 
 export const smartJournalRoutes: Routes = [
   { path: '', component: ProfileComponent },
-  { path: 'journal', component: JournalComponent,  children: [
-    { path: 'create', component: JournalBuilderComponent },
-    { path: 'view/:id', component: JournalViewerComponent },
-    { path: 'edit/:id', component: JournalEditorComponent },
-    { path: 'fill/:id', component: JournalFillerComponent },
-  ]},
-  { path: 'profile', component: ProfileComponent },
-];
-
-/*
-export const smartJournalRoutes: Routes = [
-  { path: '', component: ProfileComponent },
   { path: 'journal', component: JournalComponent },
   { path: 'journal/create', component: JournalBuilderComponent },
   { path: 'journal/view/:id', component: JournalViewerComponent },
@@ -27,4 +15,3 @@ export const smartJournalRoutes: Routes = [
   { path: 'journal/fill/:id', component: JournalFillerComponent },
   { path: 'profile', component: ProfileComponent },
 ];
-*/

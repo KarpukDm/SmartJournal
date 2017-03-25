@@ -8,7 +8,8 @@ import {StatisticsModel} from "../../models/statistics.model";
 import {StudentModel} from "../../models/student.model";
 import {Constrains} from "../../constraints";
 import {JournalService} from "../../services/journal.service";
-import {AppState} from "../../app.state";
+import { go, replace, search, show, back, forward } from '@ngrx/router-store';
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-journal',
@@ -33,7 +34,7 @@ export class JournalComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private journalService: JournalService,
-              private store: AppState) {
+              private store: Store<any>) {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
@@ -47,7 +48,7 @@ export class JournalComponent implements OnInit {
 
   ngOnInit() {
 
-    this.store.router.path = this.router.url;
+    this.store.dispatch(go([Constrains.journalPage]));
 
     this.journalService.getMyTemplates()
       .subscribe(
