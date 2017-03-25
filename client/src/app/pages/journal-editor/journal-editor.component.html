@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="col-md-6">
+        <div class="alert alert-info" role="alert">Layers list</div>
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Length</th>
+            <th>Edit</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let l of getLayers()">
+            <td (click)="selectLayer(l)">{{l.layerType}}</td>
+            <td (click)="selectLayer(l)">{{l.layerName}}</td>
+            <td (click)="selectLayer(l)">{{l.layers.length}}</td>
+            <td>
+              <button (click)="edit(l)" class="glyphicon glyphicon-pencil"></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button (click)="goUp()"
+                class="btn glyphicon glyphicon-arrow-up">
+        </button>
+
+        <button (click)="saveJournal()" class="btn btn-primary pull-right">
+          Save journal
+        </button>
+      </div>
+
+      <div class="col-md-6">
+        <div class="alert alert-success" role="alert">Editing</div>
+
+        <div class="input-group col-md-12 input-offset">
+          <input class="form-control" [(ngModel)]="editedLayer.layerName" type="text" id="layerName"
+                 placeholder="Type">
+        </div>
+
+        <div class="input-group col-md-12 input-offset">
+          <input class="form-control" [(ngModel)]="editedLayer.layerType" type="text" id="layerType"
+                 placeholder="Name">
+        </div>
+
+        <!--  <button (click)="addLayer()"
+                  class="btn btn-success pull-right">
+            Add as new layer
+          </button>-->
+
+      </div>
+
+    </div>
+  </div>
+</div>

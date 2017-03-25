@@ -5,7 +5,7 @@ export class Constrains {
   public static get viewJournalPage(): string { return "journal/view/"; }
   public static get editJournalPage(): string { return "journal/edit/"; }
   public static get fillJournalPage(): string { return "journal/fill/"; }
-  public static get myJournalsPage(): string { return "myJournals"; }
+  public static get myJournalsPage(): string { return "journal"; }
   public static get profilePage(): string { return "profile"; }
   public static get journalPage(): string { return "journal"; }
   public static get signUpPage(): string { return "signUp"; }
@@ -17,5 +17,6 @@ export class Constrains {
   public static get findJournalApi(): string { return "api/journal"; }
   public static get signUpApi(): string { return "api/signUp"; }
   public static get loginApi(): string { return "api/login"; }
+  public static get logoutApi(): string { return "api/logout"; }
 
 }
