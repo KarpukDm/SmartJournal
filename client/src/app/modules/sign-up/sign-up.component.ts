@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
 
   private errorMessage: string;
 
-  private email: string;
+  private login: string;
 
   private password: string;
 
@@ -32,13 +32,14 @@ export class SignUpComponent implements OnInit {
   }
 
   private signUp() {
-    this.signUpService.signUp(new SignUpModel(this.email, this.password))
+    console.log(this.login);
+    this.signUpService.signUp(new SignUpModel(this.login, this.password))
       .subscribe(
         user => {
           console.log(user);
           this.user = user;
           if (this.user) {
-            this.loginService.login(new LoginModel(this.email, this.password))
+            this.loginService.login(new LoginModel(this.login, this.password))
               .subscribe(x => {
                 if(x){
                   this.gotoProfile();

@@ -4,6 +4,7 @@ import {LoginService} from "../../services/login.service";
 import {UserModel} from "../../models/user.model";
 import {LoginModel} from "../../models/login.model";
 import {Constrains} from "../../constraints";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   private password: string;
 
   private account: UserModel;
+
+  token: Observable<string>;
 
   constructor(private loginService: LoginService,
               private router: Router) { }

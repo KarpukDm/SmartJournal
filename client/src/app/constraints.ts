@@ -17,5 +17,6 @@ export class Constrains {
   public static get findJournalApi(): string { return "api/journal"; }
   public static get signUpApi(): string { return "api/signUp"; }
   public static get loginApi(): string { return "api/login"; }
+  public static get logoutApi(): string { return "api/logout"; }
 
 }

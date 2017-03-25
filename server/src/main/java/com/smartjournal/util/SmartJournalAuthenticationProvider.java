@@ -27,11 +27,11 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String login = (String) authentication.getPrincipal();
+        String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
         try {
-            Account account = accountService.findOneUserByLoginAndPassword(login, password);
+            Account account = accountService.findOneUserByLoginAndPassword(username, password);
 
             if (authentication.getCredentials() == null || account == null) {
                 throw new BadCredentialsException("No pre-authenticated credentials found in request.");
@@ -41,7 +41,7 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
 
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
 
-            return new UsernamePasswordAuthenticationToken(login, password, grantedAuthorities);
+            return new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
         } catch (Exception e) {
             throw new BadCredentialsException("Login is incorrect", e);
         }

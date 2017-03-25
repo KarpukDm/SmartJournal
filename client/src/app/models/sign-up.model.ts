@@ -4,8 +4,8 @@ export class SignUpModel {
 
   private password: string;
 
-  constructor(email: string, password: string){
-    this.login = email;
+  constructor(login: string, password: string){
+    this.login = login;
     this.password = password;
   }
 

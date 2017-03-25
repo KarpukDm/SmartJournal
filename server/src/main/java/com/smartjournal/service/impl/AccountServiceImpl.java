@@ -12,7 +12,7 @@ public class AccountServiceImpl extends AbstractServiceImpl<Account, Long, Accou
         super(repository);
     }
 
-    public Account findOneUserByLoginAndPassword(String email, String password){
-        return this.repository.findOneUserByLoginAndPassword(email, password);
+    public Account findOneUserByLoginAndPassword(String login, String password){
+        return this.repository.findOneUserByLoginAndPassword(login, password);
     }
 }

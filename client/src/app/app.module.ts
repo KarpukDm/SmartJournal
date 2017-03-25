@@ -9,8 +9,11 @@ import {JournalService} from "./services/journal.service";
 import {LoginService} from "./services/login.service";
 import {SignUpService} from "./services/sign-up.service";
 import {ComponentsLibraryModule} from "./components/components-library.module";
-import {RouterStoreModule, routerReducer} from "@ngrx/router-store";
+import {RouterStoreModule} from "@ngrx/router-store";
 import {StoreModule} from "@ngrx/store";
+import {AuthGuard} from "./guards/auth.guard";
+import {AuthService} from "./services/auth.service";
+import {userReducer} from "./reducers/user.reducer";
 
 @NgModule({
   declarations: [
@@ -22,13 +25,15 @@ import {StoreModule} from "@ngrx/store";
     HttpModule,
     RouterModule.forRoot(appRoutes),
     ComponentsLibraryModule,
-    StoreModule.provideStore({ router: routerReducer }),
+    StoreModule.provideStore({state: userReducer}),
     RouterStoreModule.connectRouter()
   ],
   providers: [
     JournalService,
     LoginService,
-    SignUpService
+    SignUpService,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

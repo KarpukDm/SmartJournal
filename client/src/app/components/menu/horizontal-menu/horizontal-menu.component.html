@@ -2,4 +2,5 @@
   <li *ngFor="let m of getHorizontalMenu()">
     <a href={{m.link}}>{{m.name}}</a>
   </li>
+  <li *ngIf="isAuthorize"><a href="" (click)="logout()">Logout</a></li>
 </ul>

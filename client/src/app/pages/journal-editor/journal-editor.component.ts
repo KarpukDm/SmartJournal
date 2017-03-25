@@ -1,12 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
 import {JournalService} from "../../services/journal.service";
 import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {Constrains} from "../../constraints";
-import { go, replace, search, show, back, forward } from '@ngrx/router-store';
-import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-journal-editor',
@@ -24,8 +22,7 @@ export class JournalEditorComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private journalService: JournalService,
-              private store: Store<any>) {
+              private journalService: JournalService) {
     this.layerHistory = [];
     this.journal = new JournalModel();
     this.isEdit = false;
@@ -33,7 +30,6 @@ export class JournalEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(go([Constrains.editJournalPage]));
     console.log(this.journal);
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
