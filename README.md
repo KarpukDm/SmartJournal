@@ -1,4 +1,4 @@
-#SmartJournal 
+# SmartJournal 
  This service for checking attendance of students and for keeping statistics on each student.
 
 # Client

@@ -7,7 +7,7 @@ import {ProfileComponent} from "../../pages/profile/profile.component";
 import {JournalComponent} from "../../pages/journal/journal.component";
 
 export const smartJournalRoutes: Routes = [
-  { path: '', component: ProfileComponent },
+  { path: '', redirectTo: 'profile' },
   { path: 'journal', component: JournalComponent },
   { path: 'journal/create', component: JournalBuilderComponent },
   { path: 'journal/view/:id', component: JournalViewerComponent },

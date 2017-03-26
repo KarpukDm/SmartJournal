@@ -21,33 +21,12 @@ public class Journal implements Serializable {
     @Column(name = "journal_name")
     private String journalName;
 
-    @Column(name = "layout")
+    @OneToOne(cascade = CascadeType.ALL)
     private Layer layer;
 
-    @Data
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Layer implements Serializable {
-
-        @Column(name = "layerName")
-        private String layerName;
-
-        @Column(name = "layerType")
-        private String layerType;
-
-        @Column(name = "layers")
-        private List<Layer> layers;
-
-        @Column(name = "students")
-        private List<Student> students;
-
-    }
-
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Account> accounts;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Discipline discipline;
-
-    @OneToMany
-    private List<Student> students;
 }

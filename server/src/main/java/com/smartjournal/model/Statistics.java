@@ -17,19 +17,10 @@ public class Statistics implements Serializable{
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "status")
-    private Status status;
-
     @Column(name = "date")
     private String date;
 
-    @Table
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private static class Status implements Serializable {
-
-        private Boolean isThere;
-
-        private Integer mark;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Status status;
 
 }

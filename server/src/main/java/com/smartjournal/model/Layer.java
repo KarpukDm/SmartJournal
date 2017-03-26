@@ -11,16 +11,22 @@ import java.util.List;
 @Entity
 @Table
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Discipline implements Serializable {
+public class Layer implements Serializable {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "layerName")
+    private String layerName;
+
+    @Column(name = "layerType")
+    private String layerType;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Journal> journals;
+    private List<Layer> layers;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Student> students;
 }
