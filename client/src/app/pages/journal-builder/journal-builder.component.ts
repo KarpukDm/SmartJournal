@@ -13,8 +13,7 @@ import {AppState} from "../../app.state";
 @Component({
   selector: 'app-journal-builder',
   templateUrl: './journal-builder.component.html',
-  styleUrls: ['./journal-builder.component.css'],
-  providers: [JournalService]
+  styleUrls: ['./journal-builder.component.css']
 })
 export class JournalBuilderComponent implements OnInit {
 

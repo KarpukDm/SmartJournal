@@ -12,8 +12,7 @@ import {AppState} from "app/app.state";
 @Component({
   selector: 'app-journal-editor',
   templateUrl: './journal-editor.component.html',
-  styleUrls: ['./journal-editor.component.css'],
-  providers: [JournalService]
+  styleUrls: ['./journal-editor.component.css']
 })
 export class JournalEditorComponent implements OnInit {
 

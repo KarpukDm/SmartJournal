@@ -18,12 +18,12 @@ public class Schedule implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Account> accounts;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Journal journal;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Discipline discipline;
 }

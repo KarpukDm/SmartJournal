@@ -21,9 +21,9 @@ public class Student implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Journal journal;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Statistics> statistics;
 }

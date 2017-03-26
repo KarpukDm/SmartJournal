@@ -24,9 +24,6 @@ public class Account implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany
-    private List<Journal> journals;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Schedule schedule;
 }

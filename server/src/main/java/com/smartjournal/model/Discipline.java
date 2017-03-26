@@ -21,6 +21,6 @@ public class Discipline implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Journal> journals;
 }

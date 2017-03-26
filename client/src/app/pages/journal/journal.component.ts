@@ -15,8 +15,7 @@ import {AppState} from "app/app.state";
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
-  styleUrls: ['./journal.component.css'],
-  providers: [JournalService]
+  styleUrls: ['./journal.component.css']
 })
 export class JournalComponent implements OnInit {
 
@@ -192,7 +191,7 @@ export class JournalComponent implements OnInit {
     return layer.layerName + ": " + this.discipline.name;
   }
 
-  private saveTemplate() {
+  private saveJournal() {
 
     this.journalService.saveJournal(this.journal)
       .subscribe(
