@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class SecurityUtils {
+public final class SecurityUtils {
 
     private SecurityUtils() {
     }

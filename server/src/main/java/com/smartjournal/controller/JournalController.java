@@ -6,7 +6,11 @@ import com.smartjournal.service.impl.JournalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,12 +21,12 @@ public class JournalController {
     private final JournalServiceImpl journalService;
 
     @Autowired
-    public JournalController(JournalServiceImpl journalService) {
+    public JournalController(final JournalServiceImpl journalService) {
         this.journalService = journalService;
     }
 
     @RequestMapping(path = {"/create", "/save"}, method = RequestMethod.POST)
-    public ResponseEntity createTemplate(@RequestBody(required = false) JournalDTO journalDTO) {
+    public ResponseEntity createTemplate(final @RequestBody(required = false) JournalDTO journalDTO) {
 
         Journal journal = new Journal();
         journal.setId(journalDTO.getId());
@@ -35,14 +39,14 @@ public class JournalController {
     }
 
     @RequestMapping
-    public ResponseEntity findTemplateById(@RequestParam(name = "id") Long id){
+    public ResponseEntity findTemplateById(final @RequestParam(name = "id") Long id) {
 
         Journal journal = journalService.findOne(id);
         return new ResponseEntity(journal, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/my")
-    public ResponseEntity getMyJournals(){
+    public ResponseEntity getMyJournals() {
 
         List<Journal> journals = journalService.findAll();
         return new ResponseEntity(journals, HttpStatus.OK);

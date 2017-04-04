@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StatisticsServiceImpl extends AbstractServiceImpl<Statistics, Long, StatisticsRepository> {
 
-    public StatisticsServiceImpl(StatisticsRepository repository) {
+    public StatisticsServiceImpl(final StatisticsRepository repository) {
         super(repository);
     }
 }

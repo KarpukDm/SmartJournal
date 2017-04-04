@@ -20,26 +20,26 @@ import javax.servlet.http.HttpServletResponse;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public final static String AUTHORIZATION_HEADER = "x-auth-token";
+    public static final String AUTHORIZATION_HEADER = "x-auth-token";
 
     private final SmartJournalAuthenticationProvider smartJournalAuthenticationProvider;
 
     @Autowired
-    public SecurityConfig(SmartJournalAuthenticationProvider smartJournalAuthenticationProvider) {
+    public SecurityConfig(final SmartJournalAuthenticationProvider smartJournalAuthenticationProvider) {
         this.smartJournalAuthenticationProvider = smartJournalAuthenticationProvider;
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(smartJournalAuthenticationProvider).eraseCredentials(false);
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(final WebSecurity web) throws Exception {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .headers().frameOptions().sameOrigin()

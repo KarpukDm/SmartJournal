@@ -20,7 +20,7 @@ public abstract class AbstractServiceImpl<T, ID extends Serializable,
     protected final Repository repository;
 
     @Autowired
-    public AbstractServiceImpl(Repository repository) {
+    public AbstractServiceImpl(final Repository repository) {
         this.repository = repository;
     }
 
@@ -30,17 +30,17 @@ public abstract class AbstractServiceImpl<T, ID extends Serializable,
     }
 
     @Override
-    public void delete(ID id) {
+    public void delete(final ID id) {
         repository.delete(id);
     }
 
     @Override
-    public void delete(Iterable<? extends T> entities) {
+    public void delete(final Iterable<? extends T> entities) {
         repository.delete(entities);
     }
 
     @Override
-    public void delete(T entity) {
+    public void delete(final T entity) {
         repository.delete(entity);
     }
 
@@ -55,12 +55,12 @@ public abstract class AbstractServiceImpl<T, ID extends Serializable,
     }
 
     @Override
-    public void deleteInBatch(Iterable<T> entities) {
+    public void deleteInBatch(final Iterable<T> entities) {
         repository.deleteInBatch(entities);
     }
 
     @Override
-    public boolean exists(ID id) {
+    public boolean exists(final ID id) {
         return repository.exists(id);
     }
 
@@ -70,24 +70,24 @@ public abstract class AbstractServiceImpl<T, ID extends Serializable,
     }
 
     @Override
-    public Iterable<T> findAll(Iterable<ID> ids) {
+    public Iterable<T> findAll(final Iterable<ID> ids) {
 
         return repository.findAll();
     }
 
     @Override
-    public Page<T> findAll(Pageable pageable) {
+    public Page<T> findAll(final Pageable pageable) {
 
         return repository.findAll(pageable);
     }
 
     @Override
-    public List<T> findAll(Sort sort) {
+    public List<T> findAll(final Sort sort) {
         return repository.findAll(sort);
     }
 
     @Override
-    public T findOne(ID id) {
+    public T findOne(final ID id) {
         return repository.findOne(id);
     }
 
@@ -97,17 +97,17 @@ public abstract class AbstractServiceImpl<T, ID extends Serializable,
     }
 
     @Override
-    public <S extends T> List<S> save(Iterable<S> entities) {
+    public <S extends T> List<S> save(final Iterable<S> entities) {
         return repository.save(entities);
     }
 
     @Override
-    public <S extends T> S save(S entity) {
+    public <S extends T> S save(final S entity) {
         return repository.save(entity);
     }
 
     @Override
-    public T saveAndFlush(T entity) {
+    public T saveAndFlush(final T entity) {
         return repository.saveAndFlush(entity);
     }
 }
