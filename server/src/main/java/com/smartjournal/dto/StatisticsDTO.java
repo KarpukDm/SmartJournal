@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StatisticsDTO implements Serializable{
+public class StatisticsDTO implements Serializable {
 
     private DisciplineDTO discipline;
 

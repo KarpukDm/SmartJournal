@@ -21,12 +21,12 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
     private final AccountServiceImpl accountService;
 
     @Autowired
-    public SmartJournalAuthenticationProvider(AccountServiceImpl accountService) {
+    public SmartJournalAuthenticationProvider(final AccountServiceImpl accountService) {
         this.accountService = accountService;
     }
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
@@ -48,7 +48,7 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
     }
 
     @Override
-    public boolean supports(Class<?> aClass) {
+    public boolean supports(final Class<?> aClass) {
         return SmartJournalUsernamePasswordAuthToken.class.isAssignableFrom(aClass);
     }
 }

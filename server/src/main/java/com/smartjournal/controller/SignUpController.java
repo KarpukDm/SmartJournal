@@ -19,13 +19,13 @@ public class SignUpController {
     private final AccountServiceImpl accountService;
 
     @Autowired
-    public SignUpController(AccountServiceImpl accountService) {
+    public SignUpController(final AccountServiceImpl accountService) {
 
         this.accountService = accountService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public DeferredResult signUp(@RequestBody SignUpDTO signUpDTO) {
+    public DeferredResult signUp(final @RequestBody SignUpDTO signUpDTO) {
 
         DeferredResult deferredResult = new DeferredResult();
         Account account = new Account();

@@ -11,7 +11,8 @@ public class SmartJournalProperties {
 
     private Integer rememberMeSessionTimeout = 2592000;
 
-    public SmartJournalProperties(Integer sessionTimeout, Integer rememberMeSessionTimeout) {
+    public SmartJournalProperties(final Integer sessionTimeout,
+                                  final Integer rememberMeSessionTimeout) {
         this.sessionTimeout = sessionTimeout;
         this.rememberMeSessionTimeout = rememberMeSessionTimeout;
     }
@@ -23,7 +24,7 @@ public class SmartJournalProperties {
         return sessionTimeout;
     }
 
-    public void setSessionTimeout(Integer sessionTimeout) {
+    public void setSessionTimeout(final Integer sessionTimeout) {
         this.sessionTimeout = sessionTimeout;
     }
 
@@ -31,7 +32,7 @@ public class SmartJournalProperties {
         return rememberMeSessionTimeout;
     }
 
-    public void setRememberMeSessionTimeout(Integer rememberMeSessionTimeout) {
+    public void setRememberMeSessionTimeout(final Integer rememberMeSessionTimeout) {
         this.rememberMeSessionTimeout = rememberMeSessionTimeout;
     }
 }

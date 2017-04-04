@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl extends AbstractServiceImpl<Account, Long, AccountRepository> {
 
-    public AccountServiceImpl(AccountRepository repository) {
+    public AccountServiceImpl(final AccountRepository repository) {
         super(repository);
     }
 
-    public Account findOneUserByLoginAndPassword(String login, String password){
+    public Account findOneUserByLoginAndPassword(final String login,
+                                                 final String password) {
         return this.repository.findOneUserByLoginAndPassword(login, password);
     }
 }

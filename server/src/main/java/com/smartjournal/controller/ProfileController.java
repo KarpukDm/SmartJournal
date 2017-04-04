@@ -12,7 +12,7 @@ public class ProfileController {
     private final JournalServiceImpl templateService;
 
     @Autowired
-    public ProfileController(JournalServiceImpl templateService) {
+    public ProfileController(final JournalServiceImpl templateService) {
 
         this.templateService = templateService;
     }

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 public class JournalServiceImpl extends AbstractServiceImpl<Journal, Long, JournalRepository> {
 
 
-    public JournalServiceImpl(JournalRepository repository) {
+    public JournalServiceImpl(final JournalRepository repository) {
         super(repository);
     }
 
-    public Journal findOne(Long id){
+    public Journal findOne(final Long id){
         return repository.findOne(id);
     }
 
-    public Journal save(Journal journal){
+    public Journal save(final Journal journal){
         return repository.save(journal);
     }
 }

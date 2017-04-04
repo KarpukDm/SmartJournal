@@ -29,13 +29,15 @@ public class AuthenticateController {
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticateController(SmartJournalProperties smartJournalProperties, AuthenticationManager authenticationManager) {
+    public AuthenticateController(final SmartJournalProperties smartJournalProperties,
+                                  final AuthenticationManager authenticationManager) {
         this.smartJournalProperties = smartJournalProperties;
         this.authenticationManager = authenticationManager;
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public DeferredResult login(@RequestBody LoginDTO loginDTO, HttpServletRequest request) {
+    public DeferredResult login(final @RequestBody LoginDTO loginDTO,
+                                final HttpServletRequest request) {
 
         DeferredResult deferredResult = new DeferredResult();
 
@@ -56,7 +58,7 @@ public class AuthenticateController {
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
             deferredResult.setResult(new ResponseEntity(account, HttpStatus.OK));
-        }else{
+        } else {
             deferredResult.setResult(new ResponseEntity(HttpStatus.UNAUTHORIZED));
         }
 
@@ -64,7 +66,7 @@ public class AuthenticateController {
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
-    public ResponseEntity logout(HttpServletRequest request) {
+    public ResponseEntity logout(final HttpServletRequest request) {
 
         request.getSession().invalidate();
 
