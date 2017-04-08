@@ -57,7 +57,7 @@ public class AuthenticateController {
 
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
-            deferredResult.setResult(new ResponseEntity(account, HttpStatus.OK));
+            deferredResult.setResult(ResponseEntity.ok(account));
         } else {
             deferredResult.setResult(new ResponseEntity(HttpStatus.UNAUTHORIZED));
         }
