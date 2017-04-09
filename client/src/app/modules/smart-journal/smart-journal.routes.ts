@@ -5,6 +5,7 @@ import {JournalEditorComponent} from "../../pages/journal-editor/journal-editor.
 import {JournalFillerComponent} from "../../pages/journal-filler/journal-filler.component";
 import {ProfileComponent} from "../../pages/profile/profile.component";
 import {JournalComponent} from "../../pages/journal/journal.component";
+import {MyTemplatesComponent} from "../../pages/my-templates/my-templates.component";
 
 export const smartJournalRoutes: Routes = [
   { path: '', redirectTo: 'profile' },
@@ -13,5 +14,6 @@ export const smartJournalRoutes: Routes = [
   { path: 'journal/view/:id', component: JournalViewerComponent },
   { path: 'journal/edit/:id', component: JournalEditorComponent },
   { path: 'journal/fill/:id', component: JournalFillerComponent },
+  { path: 'myJournals', component: MyTemplatesComponent },
   { path: 'profile', component: ProfileComponent },
 ];

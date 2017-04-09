@@ -1,7 +1,7 @@
 package com.smartjournal.util;
 
 import com.smartjournal.model.Account;
-import com.smartjournal.service.impl.AccountServiceImpl;
+import com.smartjournal.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,10 +18,10 @@ import java.util.List;
 @Component
 public class SmartJournalAuthenticationProvider implements AuthenticationProvider {
 
-    private final AccountServiceImpl accountService;
+    private final AccountService accountService;
 
     @Autowired
-    public SmartJournalAuthenticationProvider(final AccountServiceImpl accountService) {
+    public SmartJournalAuthenticationProvider(final AccountService accountService) {
         this.accountService = accountService;
     }
 

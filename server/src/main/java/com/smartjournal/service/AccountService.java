@@ -1,19 +1,24 @@
-package com.smartjournal.service.impl;
+package com.smartjournal.service;
 
 import com.smartjournal.model.Account;
 import com.smartjournal.repository.AccountRepository;
-import com.smartjournal.service.common.impl.AbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountServiceImpl extends AbstractServiceImpl<Account, Long, AccountRepository> {
+public class AccountService {
 
-    public AccountServiceImpl(final AccountRepository repository) {
-        super(repository);
+    private final AccountRepository repository;
+
+    public AccountService(AccountRepository repository) {
+        this.repository = repository;
     }
 
     public Account findOneUserByLoginAndPassword(final String login,
                                                  final String password) {
         return this.repository.findOneUserByLoginAndPassword(login, password);
+    }
+
+    public Account save(Account account) {
+        return repository.save(account);
     }
 }

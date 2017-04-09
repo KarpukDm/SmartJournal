@@ -2,7 +2,7 @@ package com.smartjournal.controller;
 
 import com.smartjournal.dto.SignUpDTO;
 import com.smartjournal.model.Account;
-import com.smartjournal.service.impl.AccountServiceImpl;
+import com.smartjournal.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import org.springframework.web.context.request.async.DeferredResult;
 @RequestMapping("api/signUp")
 public class SignUpController {
 
-    private final AccountServiceImpl accountService;
+    private final AccountService accountService;
 
     @Autowired
-    public SignUpController(final AccountServiceImpl accountService) {
+    public SignUpController(final AccountService accountService) {
 
         this.accountService = accountService;
     }
