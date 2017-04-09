@@ -1,6 +1,6 @@
 package com.smartjournal.controller;
 
-import com.smartjournal.service.impl.JournalServiceImpl;
+import com.smartjournal.service.JournalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/api")
 public class ProfileController {
 
-    private final JournalServiceImpl templateService;
+    private final JournalService templateService;
 
     @Autowired
-    public ProfileController(final JournalServiceImpl templateService) {
+    public ProfileController(final JournalService templateService) {
 
         this.templateService = templateService;
     }

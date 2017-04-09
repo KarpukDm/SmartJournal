@@ -1,0 +1,58 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <div *ngIf="isSelected == false" class="col-md-12">
+
+        <div class="alert alert-success" role="alert">My journals:</div>
+
+        <div class="list-group">
+          <ng-template ngFor let-t [ngForOf]="journals">
+            <a (click)="selectJournal(t)" class="list-group-item">{{t.journalName}}</a>
+          </ng-template>
+        </div>
+
+      </div>
+
+      <div *ngIf="isSelected == true" class="col-md-12">
+
+        <div class="alert alert-info" role="alert">{{journal.journalName}}</div>
+
+        <div>
+          <div *ngIf="isLastLevel == false">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Length</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+                <td>{{l.layerType}}</td>
+                <td>{{l.layerName}}</td>
+                <td>{{l.layers.length}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <button *ngIf="isSelected == true" (click)="goUp()"
+              class="btn glyphicon glyphicon-arrow-up">
+      </button>
+
+    </div>
+
+    <div *ngIf="isSelected == true" class="col-md-8">
+      <div class="alert alert-success" role="alert">Statistics</div>
+    </div>
+
+  </div>
+
+</div>

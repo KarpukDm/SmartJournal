@@ -32,7 +32,7 @@ public class Journal implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Layer layer;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Account> accounts;
 
     @ManyToOne(cascade = CascadeType.ALL)
