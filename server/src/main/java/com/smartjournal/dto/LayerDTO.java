@@ -10,6 +10,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LayerDTO {
 
+    private Long id;
+
     private String layerName;
 
     private String layerType;

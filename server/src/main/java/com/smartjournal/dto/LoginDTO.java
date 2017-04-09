@@ -7,6 +7,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginDTO {
 
+    private Long id;
+
     private String login;
 
     private String password;

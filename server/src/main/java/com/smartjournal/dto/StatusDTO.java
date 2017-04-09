@@ -7,6 +7,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StatusDTO {
 
+    private Long id;
+
     private Boolean isThere;
 
     private Integer mark;
