@@ -5,12 +5,14 @@ import {HorizontalMenuComponent} from "./menu/horizontal-menu/horizontal-menu.co
 import {ModalComponent} from "./modal/modal.component";
 import {FormsModule} from "@angular/forms";
 import {CarcassComponent} from "./carcass/carcass.component";
+import {MultipleValueAxesComponent} from "./statistics/multiple-value-axes/multiple-value-axes.component";
 
 export const DIRECTIVES = [
   VerticalMenuComponent,
   HorizontalMenuComponent,
   ModalComponent,
-  CarcassComponent
+  CarcassComponent,
+  MultipleValueAxesComponent,
 ];
 
 @NgModule({
@@ -19,7 +21,7 @@ export const DIRECTIVES = [
     FormsModule
   ],
   declarations: [
-    ...DIRECTIVES
+    ...DIRECTIVES,
   ],
   exports: [
     ...DIRECTIVES

@@ -40,7 +40,7 @@ export class JournalComponent implements OnInit {
     this.isSelected = false;
     this.isNewLesson = null;
     this.columnWidth = 136;
-    this.disciplines = [ new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
+    this.disciplines = [new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
     this.disciplines[0].name = "SDsadsadasdas";
     this.disciplines[1].name = "SDsadsadasdas";
     this.disciplines[2].name = "SDsadsadasdas";
@@ -65,7 +65,7 @@ export class JournalComponent implements OnInit {
     this.amountOfDays = screenResolution / -this.columnWidth;
   }
 
-  private selectJournal(template: JournalModel){
+  private selectJournal(template: JournalModel) {
     this.journal = template;
     console.log(template);
     this.layerHistory.push(this.journal.layer);
@@ -74,50 +74,51 @@ export class JournalComponent implements OnInit {
 
   private getLayers() {
     if (!isNullOrUndefined(this.layerHistory) && this.layerHistory.length > 0) {
-      if(!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
+      if (!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
   }
 
-  private getStudents(){
+  private getStudents() {
     let layer = this.layerHistory.slice(-1)[0];
     return layer.students;
   }
 
   private selectLayer(layer: LayerModel) {
-    if(!isNullOrUndefined(layer.layers)) {
+    if (!isNullOrUndefined(layer.layers)) {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
-      if(this.isLastLevel == true){
+      if (this.isLastLevel == true) {
       }
     }
   }
 
-  private setDiscipline(discipline: DisciplineModel){
+  private setDiscipline(discipline: DisciplineModel) {
     this.discipline = discipline;
   }
 
-  private createNewRecord(){
-    for(let st of this.getStudents()){
-      if(isNullOrUndefined(st.statistics)){
+  private createNewRecord() {
+    for (let st of this.getStudents()) {
+      if (isNullOrUndefined(st.statistics)) {
         st.statistics = [];
       }
       let x = new StatisticsModel();
+      x.journalId = this.journal.id;
       st.statistics.push(x);
     }
   }
 
-  private setAbsent(student: StudentModel){
+  private setAbsent(student: StudentModel) {
     let stat = student.statistics.slice(-1)[0];
     stat.status.isThere = !stat.status.isThere;
     stat.status.mark = stat.status.isThere == true ? "H" : null;
   }
 
-  private goUp(){
-    if(this.layerHistory.length > 1) {
+  private goUp() {
+    if (this.layerHistory.length > 1) {
       this.layerHistory.pop();
-    }else{
+    } else {
       this.isSelected = false;
       this.discipline = null;
     }
@@ -125,52 +126,52 @@ export class JournalComponent implements OnInit {
     this.isNewLesson = null;
   }
 
-  private getJournal(id: number){
+  private getJournal(id: number) {
     return this.journals[id];
   }
 
-  private isThere(student: StudentModel){
+  private isThere(student: StudentModel) {
     let stat = student.statistics.slice(-1)[0];
     return stat.status.isThere;
   }
 
-  private getLastStatistics(){
+  private getLastStatistics() {
     let layer = this.layerHistory.slice(-1)[0];
-    if(!isNullOrUndefined(layer.students) && (layer.students.length > 0)
-    && !isNullOrUndefined(layer.students[0].statistics)) {
+    if (!isNullOrUndefined(layer.students) && (layer.students.length > 0)
+      && !isNullOrUndefined(layer.students[0].statistics)) {
       return layer.students[0].statistics.slice(this.amountOfDays);
     }
     return [];
   }
 
-  private getStatusForSomeDate(statistics: StatisticsModel){
+  private getStatusForSomeDate(statistics: StatisticsModel) {
     console.log(statistics);
-    if(isNullOrUndefined(statistics.status.mark)){
-      if(statistics.status.isThere == false){
+    if (isNullOrUndefined(statistics.status.mark)) {
+      if (statistics.status.isThere == false) {
         return "-";
-      }else{
+      } else {
         return "H";
       }
-    }else{
+    } else {
       return statistics.status.mark.toString();
     }
   }
 
-  private setFlagIsNewLesson(flag: boolean){
+  private setFlagIsNewLesson(flag: boolean) {
     console.log(flag);
     this.isNewLesson = flag;
 
-    if(this.isNewLesson || this.getLastStatistics().length == 0){
+    if (this.isNewLesson || this.getLastStatistics().length == 0) {
       this.createNewRecord(); // remove later
     }
   }
 
-  private getStatisticsForLastFewDays(student: StudentModel){
-    if(isNullOrUndefined(student.statistics)){
+  private getStatisticsForLastFewDays(student: StudentModel) {
+    if (isNullOrUndefined(student.statistics)) {
       return [];
     }
     let statistics = student.statistics.slice(this.amountOfDays);
-    if(!isNullOrUndefined(statistics)) {
+    if (!isNullOrUndefined(statistics)) {
       if (statistics.length > 1) {
         statistics.pop();
       } else {
@@ -186,7 +187,7 @@ export class JournalComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  private getSelectedLayer(){
+  private getSelectedLayer() {
     let layer = this.layerHistory.slice(-1)[0];
     return layer.layerName + ": " + this.discipline.name;
   }

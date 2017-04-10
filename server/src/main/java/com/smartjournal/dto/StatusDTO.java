@@ -11,5 +11,5 @@ public class StatusDTO {
 
     private Boolean isThere;
 
-    private Integer mark;
+    private String mark;
 }
