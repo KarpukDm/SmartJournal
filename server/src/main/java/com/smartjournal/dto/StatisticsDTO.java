@@ -15,4 +15,6 @@ public class StatisticsDTO {
 
     private String date;
 
+    private Long journalId;
+
 }

@@ -93,7 +93,7 @@
               </div>
             </app-modal>
 
-            <table *ngIf="isNewLesson != null" class="table table-hover">
+            <table *ngIf="null!=isNewLesson" class="table table-hover">
               <thead>
               <tr>
                 <th>Name</th>
@@ -105,18 +105,18 @@
 
               <tbody>
               <tr *ngFor="let l of getStudents()">
-                <td [class.absent]="isThere(l) == true">
+                <td [class.absent]="isThere(l) != true">
                   <button (click)="setAbsent(l)" class="name btn btn-default">
                     {{l.name}}
                   </button>
                 </td>
-                <td [class.absent]="isThere(l) == true" class="td-column"
+                <td [class.absent]="isThere(l) != true" class="td-column"
                     *ngFor="let st of getStatisticsForLastFewDays(l)">
                   {{getStatusForSomeDate(st)}}
                 </td>
-                <td [class.absent]="isThere(l) == true" class="td-column">
+                <td [class.absent]="isThere(l) != true" class="td-column">
                   <div>
-                    <input [readonly]="isThere(l) == true" class="mark" type="text"
+                    <input [readonly]="isThere(l) != true" class="mark" type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
                   </div>
                 </td>

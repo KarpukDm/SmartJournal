@@ -24,7 +24,7 @@ nbdist/
 .nb-gradle/
 /*/target/
 
-**.js
+#**.js
 **.map
 **/node_modules
 **/jspm_packages

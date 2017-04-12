@@ -18,5 +18,6 @@ export class Constrains {
   public static get signUpApi(): string { return "api/signUp"; }
   public static get loginApi(): string { return "api/login"; }
   public static get logoutApi(): string { return "api/logout"; }
+  public static get getAverageScore(): string { return "api/statistics/averageScore"; }
 
 }

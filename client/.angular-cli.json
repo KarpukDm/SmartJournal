@@ -9,6 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "amcharts",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -20,11 +21,16 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "amcharts/css/export.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "amcharts/js/amcharts.js",
+        "amcharts/js/light.js",
+        "amcharts/js/serial.js",
+        "amcharts/js/export.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

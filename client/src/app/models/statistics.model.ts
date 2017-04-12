@@ -8,6 +8,8 @@ export class StatisticsModel {
 
   status: StatusModel;
 
+  journalId: number;
+
   constructor(){
     this.discipline = new DisciplineModel();
     this.status = new StatusModel();
@@ -23,6 +25,6 @@ class StatusModel {
   mark: string;
 
   constructor(){
-    this.isThere = false;
+    this.isThere = true;
   }
 }
