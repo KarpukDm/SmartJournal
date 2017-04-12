@@ -14,6 +14,7 @@ import {StoreModule} from "@ngrx/store";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./services/auth.service";
 import {userReducer} from "./reducers/user.reducer";
+import {StatisticsService} from "./services/statistics.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {userReducer} from "./reducers/user.reducer";
     LoginService,
     SignUpService,
     AuthGuard,
-    AuthService
+    AuthService,
+    StatisticsService
   ],
   bootstrap: [AppComponent]
 })

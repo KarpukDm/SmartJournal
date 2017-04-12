@@ -112,7 +112,7 @@ export class JournalComponent implements OnInit {
   private setAbsent(student: StudentModel) {
     let stat = student.statistics.slice(-1)[0];
     stat.status.isThere = !stat.status.isThere;
-    stat.status.mark = stat.status.isThere == true ? "H" : null;
+    stat.status.mark = stat.status.isThere == false ? "H" : null;
   }
 
   private goUp() {
@@ -147,7 +147,7 @@ export class JournalComponent implements OnInit {
   private getStatusForSomeDate(statistics: StatisticsModel) {
     console.log(statistics);
     if (isNullOrUndefined(statistics.status.mark)) {
-      if (statistics.status.isThere == false) {
+      if (statistics.status.isThere == true) {
         return "-";
       } else {
         return "H";
