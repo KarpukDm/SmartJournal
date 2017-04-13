@@ -11,6 +11,8 @@ import {JournalService} from "../../services/journal.service";
 import {go} from "@ngrx/router-store";
 import {Store} from "@ngrx/store";
 import {AppState} from "app/app.state";
+import {AverageScoreModel} from "../../components/statistics/types/average-score.model";
+import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-journal',

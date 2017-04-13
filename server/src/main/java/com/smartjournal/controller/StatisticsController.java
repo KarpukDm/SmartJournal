@@ -27,7 +27,7 @@ public class StatisticsController {
         List<AverageScore> averageScores = new ArrayList<>();
 
         for(int i = 0; i < 20; i++){
-            averageScores.add(new AverageScore("21-10-" + String.valueOf(1900 + i), (double) new Random().nextInt(10)));
+            averageScores.add(new AverageScore("05.08." + String.valueOf(2000 + i), (double) new Random().nextInt(10)));
         }
 
         return averageScores;

@@ -8,6 +8,8 @@ import {isNullOrUndefined} from "util";
 import {LayerModel} from "../../models/layer.model";
 import {Constrains} from "../../constraints";
 import {go} from "@ngrx/router-store";
+import {StatisticsService} from "../../services/statistics.service";
+import {AverageScoreModel} from "../../components/statistics/types/average-score.model";
 
 @Component({
   selector: 'app-my-templates',
@@ -22,14 +24,17 @@ export class MyTemplatesComponent implements OnInit {
   private isLastLevel: boolean;
   private journal: JournalModel;
   private isSelected: boolean;
+  private averageScores: AverageScoreModel[];
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private journalService: JournalService,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              private statisticsService: StatisticsService) {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
+    this.averageScores = [];
   }
 
   ngOnInit() {
@@ -60,6 +65,8 @@ export class MyTemplatesComponent implements OnInit {
       this.isLastLevel = layer.layers.length == 0;
       if(this.isLastLevel == true){
       }
+
+      this.updateStatistics();
     }
   }
 
@@ -77,6 +84,24 @@ export class MyTemplatesComponent implements OnInit {
       this.isSelected = false;
     }
     this.isLastLevel = false;
+  }
+
+  private updateStatistics() {
+    this.statisticsService.getAverageScore()
+      .subscribe(x => {
+        console.log(x);
+        this.averageScores = x;
+      })
+  }
+
+  private gotoFillJournal(id: number): void {
+    let link = [Constrains.fillJournalPage, id];
+    this.router.navigate(link);
+  }
+
+  private gotoEditJournal(id: number): void {
+    let link = [Constrains.editJournalPage, id];
+    this.router.navigate(link);
   }
 
 }
