@@ -10,7 +10,13 @@
 
         <div class="list-group">
           <ng-template ngFor let-t [ngForOf]="journals">
-            <a (click)="selectJournal(t)" class="list-group-item">{{t.journalName}}</a>
+            <a (click)="selectJournal(t)" class="list-group-item">
+              {{t.journalName}}
+              <div class="pull-right">
+                <a (click)="gotoFillJournal(t.id)">(fill)</a>
+                <a (click)="gotoEditJournal(t.id)">(edit)</a>
+              </div>
+            </a>
           </ng-template>
         </div>
 
@@ -51,7 +57,7 @@
 
     <div *ngIf="isSelected == true" class="col-md-7">
       <div class="alert alert-success" role="alert">Statistics</div>
-      <multiple-value-axes>
+      <multiple-value-axes [averageScores]="averageScores">
 
       </multiple-value-axes>
     </div>
