@@ -15,6 +15,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./services/auth.service";
 import {userReducer} from "./reducers/user.reducer";
 import {StatisticsService} from "./services/statistics.service";
+import {studentInfoReducer} from "./reducers/sudent-info.reducer";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {StatisticsService} from "./services/statistics.service";
     HttpModule,
     RouterModule.forRoot(appRoutes),
     ComponentsLibraryModule,
-    StoreModule.provideStore({routerReducer, userReducer}),
+    StoreModule.provideStore({routerReducer, userReducer, studentInfoReducer}),
     RouterStoreModule.connectRouter()
   ],
   providers: [

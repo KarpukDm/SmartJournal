@@ -6,6 +6,7 @@
 
       <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info"
            role="alert">
+
         <div class="align-center">
           <button *ngIf="isSelected == true" (click)="goUp()"
                   class="btn glyphicon glyphicon-arrow-up">
@@ -13,7 +14,7 @@
 
           <button *ngIf="isSelected == true && isLastLevel == true"
                   class="btn btn-primary">
-            {{getSelectedLayer()}}
+            {{discipline.name}}
           </button>
 
           <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveJournal()"
@@ -100,6 +101,8 @@
                 <th *ngFor="let st of getLastStatistics()">
                   {{st.date}}
                 </th>
+                <th>H</th>
+                <th>AVG</th>
               </tr>
               </thead>
 
@@ -118,6 +121,16 @@
                   <div>
                     <input [readonly]="isThere(l) != true" class="mark" type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+                  </div>
+                </td>
+                <td class="td-column stat-h">
+                  <div>
+                    {{getPassesNumber(l)}}
+                  </div>
+                </td>
+                <td class="td-column stat-avg">
+                  <div>
+                    {{getAVG(l)}}
                   </div>
                 </td>
               </tr>

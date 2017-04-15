@@ -13,6 +13,7 @@ import {Store} from "@ngrx/store";
 import {AppState} from "app/app.state";
 import {AverageScoreModel} from "../../components/statistics/types/average-score.model";
 import {StatisticsService} from "../../services/statistics.service";
+import {GET_INFO} from "../../reducers/sudent-info.reducer";
 
 @Component({
   selector: 'app-journal',
@@ -36,12 +37,12 @@ export class JournalComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private journalService: JournalService,
-              private store: Store<AppState>) {
+              private store: Store<any>) {
     this.layerHistory = [];
     this.isLastLevel = false;
     this.isSelected = false;
     this.isNewLesson = null;
-    this.columnWidth = 136;
+    this.columnWidth = 150;
     this.disciplines = [new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
     this.disciplines[0].name = "SDsadsadasdas";
     this.disciplines[1].name = "SDsadsadasdas";
@@ -92,6 +93,7 @@ export class JournalComponent implements OnInit {
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
       if (this.isLastLevel == true) {
+        this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
       }
     }
   }
@@ -189,9 +191,42 @@ export class JournalComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  private getSelectedLayer() {
-    let layer = this.layerHistory.slice(-1)[0];
-    return layer.layerName + ": " + this.discipline.name;
+  private getInfo() {
+    let info: string[] = [];
+    for (let i of this.layerHistory) {
+      if (i && i.layerName && i.layerType) {
+        info.push(i.layerType + ": " + i.layerName);
+      }
+    }
+
+    return info;
+  }
+
+  private getPassesNumber(student: StudentModel) {
+    let counter: number = 0;
+    for (let i of student.statistics) {
+      if (!i.status.isThere) {
+        counter++;
+      }
+    }
+    return counter;
+  }
+
+  private getAVG(student: StudentModel) {
+    let avg: number = 0;
+    let counter: number = 0;
+    for (let i of student.statistics) {
+      if (i.status.mark && i.status.mark != 'H') {
+        avg += Number(i.status.mark);
+        counter++;
+      }
+    }
+
+    if (counter == 0) {
+      return "-"
+    }
+
+    return avg / counter;
   }
 
   private saveJournal() {

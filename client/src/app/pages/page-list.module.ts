@@ -8,7 +8,7 @@ import {JournalViewerComponent} from "./journal-viewer/journal-viewer.component"
 import {ProfileComponent} from "./profile/profile.component";
 import {JournalComponent} from "./journal/journal.component";
 import {ComponentsLibraryModule} from "../components/components-library.module";
-import { MyTemplatesComponent } from './my-templates/my-templates.component';
+import { MyJournalsComponent } from './my-journals/my-journals.component';
 
 export const DIRECTIVES = [
   JournalComponent,
@@ -17,7 +17,7 @@ export const DIRECTIVES = [
   JournalFillerComponent,
   JournalViewerComponent,
   ProfileComponent,
-  MyTemplatesComponent
+  MyJournalsComponent
 ];
 
 @NgModule({

@@ -12,11 +12,11 @@ import {StatisticsService} from "../../services/statistics.service";
 import {AverageScoreModel} from "../../components/statistics/types/average-score.model";
 
 @Component({
-  selector: 'app-my-templates',
-  templateUrl: './my-templates.component.html',
-  styleUrls: ['./my-templates.component.css']
+  selector: 'my-templates',
+  templateUrl: './my-journals.component.html',
+  styleUrls: ['./my-journals.component.css']
 })
-export class MyTemplatesComponent implements OnInit {
+export class MyJournalsComponent implements OnInit {
 
   private errorMessage: string;
   private journals: JournalModel[];

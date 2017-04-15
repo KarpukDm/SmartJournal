@@ -4,3 +4,10 @@ export class DisciplineModel {
 
   name: string;
 }
+
+export class DisciplineTypeModel {
+
+  id: number;
+
+  name: string;
+}

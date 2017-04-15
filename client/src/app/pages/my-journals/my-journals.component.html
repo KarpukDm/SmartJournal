@@ -13,8 +13,8 @@
             <a (click)="selectJournal(t)" class="list-group-item">
               {{t.journalName}}
               <div class="pull-right">
-                <a (click)="gotoFillJournal(t.id)">(fill)</a>
-                <a (click)="gotoEditJournal(t.id)">(edit)</a>
+                (<a (click)="gotoFillJournal(t.id)">fill</a>)
+                (<a (click)="gotoEditJournal(t.id)">edit</a>)
               </div>
             </a>
           </ng-template>

@@ -1,0 +1,7 @@
+<nav class="navbar navbar-default navbar-fixed-side" *ngIf="info && info.length != 0">
+  <ul class="nav nav-list bs-docs-sidenav">
+    <li *ngFor="let m of info">
+      <a href="#">{{m}}</a>
+    </li>
+  </ul>
+</nav>

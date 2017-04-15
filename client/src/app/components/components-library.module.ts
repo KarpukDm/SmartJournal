@@ -6,6 +6,7 @@ import {ModalComponent} from "./modal/modal.component";
 import {FormsModule} from "@angular/forms";
 import {CarcassComponent} from "./carcass/carcass.component";
 import {MultipleValueAxesComponent} from "./statistics/multiple-value-axes/multiple-value-axes.component";
+import {LessonInfoComponent} from './lesson-info/lesson-info.component';
 
 export const DIRECTIVES = [
   VerticalMenuComponent,
@@ -13,6 +14,7 @@ export const DIRECTIVES = [
   ModalComponent,
   CarcassComponent,
   MultipleValueAxesComponent,
+  LessonInfoComponent
 ];
 
 @NgModule({

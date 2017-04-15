@@ -1,52 +1,60 @@
-.absent{
+.absent {
   background-color: #f4f4f4;
 }
 
-.mark{
+.stat-h {
+  background-color: #ffe5cd;
+}
+
+.stat-avg {
+  background-color: #eeffe8;
+}
+
+.mark {
   height: 30px;
   width: 30px;
   text-align: center;
   font-size: 18pt;
 }
 
-.td-column-left{
+.td-column-left {
   text-align: left;
 }
 
-.td-column{
+.td-column {
   text-align: center;
   width: 30px;
 }
 
-.name{
+.name {
   width: 150px;
 }
 
-.mark{
+.mark {
   font-size: 12pt;
 }
 
-.today-column{
+.today-column {
   text-align: right;
 }
 
-.menu-button{
+.menu-button {
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.menu-info{
+.menu-info {
   margin-top: -10px;
 }
 
-.template-top{
+.template-top {
   text-align: center;
 }
 
-.layer-type-name{
+.layer-type-name {
   font-size: 14pt;
 }
 
-.align-center{
+.align-center {
   text-align: center;
 }
