@@ -47,7 +47,7 @@ public class DisciplineController {
 
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
-            discipline.setAccount(new ArrayList<>(Collections.singletonList(account)));
+            discipline.setAccount(account);
         }
 
         discipline = disciplineService.save(discipline);
