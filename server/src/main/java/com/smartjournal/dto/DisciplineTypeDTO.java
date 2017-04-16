@@ -9,7 +9,7 @@ public class DisciplineTypeDTO {
 
     private String id;
 
-    private String type;
+    private String name;
 
     private Integer currentCounter;
 

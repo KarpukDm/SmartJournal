@@ -30,6 +30,6 @@ public class Discipline implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Layer> journals;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     private Account account;
 }

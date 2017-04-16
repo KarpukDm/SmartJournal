@@ -37,7 +37,7 @@ export class DisciplineCreatorComponent implements OnInit {
 
   save(){
     this.discipline.disciplineType = this.disciplineTypes;
-
+    console.log(this.discipline);
     this.disciplineService.saveJournal(this.discipline)
       .subscribe(x => {
 
