@@ -33,6 +33,7 @@ export class JournalComponent implements OnInit {
   private columnWidth: number;
   private disciplines: DisciplineModel[];
   private discipline: DisciplineModel;
+  private editedStatistics: StatisticsModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -65,7 +66,7 @@ export class JournalComponent implements OnInit {
     this.layerHistory = [];
     let screenResolution = window.screen.availWidth;
     console.log(screenResolution);
-    this.amountOfDays = screenResolution / -this.columnWidth;
+    this.amountOfDays = screenResolution / - this.columnWidth - 1 ;
   }
 
   private selectJournal(template: JournalModel) {
@@ -149,7 +150,6 @@ export class JournalComponent implements OnInit {
   }
 
   private getStatusForSomeDate(statistics: StatisticsModel) {
-    console.log(statistics);
     if (isNullOrUndefined(statistics.status.mark)) {
       if (statistics.status.isThere == true) {
         return "-";
@@ -170,6 +170,19 @@ export class JournalComponent implements OnInit {
     }
   }
 
+  private editMark(statistics: StatisticsModel) {
+    this.editedStatistics = statistics;
+  }
+
+  private saveStatistics(){
+    this.editedStatistics = null;
+  }
+
+  private eraseH(){
+    this.editedStatistics.status.isThere = true;
+    this.editedStatistics.status.mark = null;
+  }
+
   private getStatisticsForLastFewDays(student: StudentModel) {
     if (isNullOrUndefined(student.statistics)) {
       return [];
@@ -182,7 +195,6 @@ export class JournalComponent implements OnInit {
         statistics = [];
       }
     }
-    console.log(statistics);
     return statistics;
   }
 
@@ -236,7 +248,6 @@ export class JournalComponent implements OnInit {
         template => {
           console.log(template);
           this.journal = template;
-          this.gotoJournalPage();
         },
         error => this.errorMessage = <any>error
       );
