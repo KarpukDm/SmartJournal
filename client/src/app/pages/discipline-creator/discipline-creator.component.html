@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="col-md-3">
+
+        <div class="alert alert-info" role="alert">Lesson's type and number of hours</div>
+
+        <div class="col-md-12 margin-div">
+          <input class="form-control col-md-12" type="text" id="name"
+                 placeholder="Discipline name" [(ngModel)]="discipline.name">
+        </div>
+
+        <ng-container *ngFor="let i of disciplineTypes">
+          <div class="col-md-12 margin-div">
+            <input class="form-control col-md-9" type="text" id="type"
+                   placeholder="Lesson type" [(ngModel)]="i.name">
+          </div>
+
+        </ng-container>
+
+        <div class="col-md-3 margin-div">
+          <button (click)="addDisciplineType()" class="name btn btn-warning">
+            Add type
+          </button>
+        </div>
+
+        <div class="col-md-3 margin-div pull-right">
+          <button (click)="save()" class="name btn btn-primary">
+            Save
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

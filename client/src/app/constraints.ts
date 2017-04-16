@@ -10,6 +10,8 @@ export class Constrains {
   public static get journalPage(): string { return "journal"; }
   public static get signUpPage(): string { return "signUp"; }
   public static get loginPage(): string { return "login"; }
+  public static get addDisciplinesPage(): string { return "discipline/create"; }
+  public static get myDisciplinesPage(): string { return "discipline/my"; }
 
   public static get createJournalApi(): string { return "api/journal/create"; }
   public static get getMyJournalsApi(): string { return "api/journal/my"; }
@@ -19,5 +21,7 @@ export class Constrains {
   public static get loginApi(): string { return "api/login"; }
   public static get logoutApi(): string { return "api/logout"; }
   public static get getAverageScore(): string { return "api/statistics/averageScore"; }
+  public static get myDisciplinesApi(): string { return "api/discipline/my"; }
+  public static get saveDisciplinesApi(): string { return "api/discipline/save"; }
 
 }

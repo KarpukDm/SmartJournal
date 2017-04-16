@@ -95,6 +95,7 @@ export class JournalComponent implements OnInit {
       this.isLastLevel = layer.layers.length == 0;
       if (this.isLastLevel == true) {
         this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
+        this.setFlagIsNewLesson(false);
       }
     }
   }
@@ -238,7 +239,7 @@ export class JournalComponent implements OnInit {
       return "-"
     }
 
-    return avg / counter;
+    return (avg / counter).toFixed(2);
   }
 
   private saveJournal() {

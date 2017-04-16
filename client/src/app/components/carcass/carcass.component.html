@@ -37,12 +37,11 @@
 <div class="container-fluid">
   <div class="row">
     <div *ngIf="isAuthorized && !isPublicPage" class="col-sm-3 col-lg-2">
-      <nav class="navbar navbar-default navbar-fixed-side">
-        <!-- normal collapsible navbar markup -->
-        <app-vertical-menu></app-vertical-menu>
-      </nav>
+
+      <app-vertical-menu></app-vertical-menu>
 
       <students-info></students-info>
+
     </div>
     <div class="col-sm-9 col-lg-10">
       <!-- your page content -->

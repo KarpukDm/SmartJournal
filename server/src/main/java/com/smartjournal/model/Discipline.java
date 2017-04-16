@@ -21,9 +21,15 @@ public class Discipline implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private DisciplineType disciplineType;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<DisciplineType> disciplineType;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Journal> journals;
+    private List<Lesson> lessons;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Layer> journals;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 }

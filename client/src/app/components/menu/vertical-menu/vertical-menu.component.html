@@ -1,5 +1,15 @@
+<nav class="navbar navbar-default navbar-fixed-side">
 <ul class="nav nav-list bs-docs-sidenav">
-  <li *ngFor="let m of getVerticalMenu()">
+  <li *ngFor="let m of group1">
     <a href="{{m.link}}">{{m.name}}</a>
   </li>
 </ul>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-side">
+<ul class="nav nav-list bs-docs-sidenav">
+  <li *ngFor="let m of group2">
+    <a href="{{m.link}}">{{m.name}}</a>
+  </li>
+</ul>
+</nav>

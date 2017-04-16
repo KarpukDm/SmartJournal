@@ -16,6 +16,7 @@ import {AuthService} from "./services/auth.service";
 import {userReducer} from "./reducers/user.reducer";
 import {StatisticsService} from "./services/statistics.service";
 import {studentInfoReducer} from "./reducers/sudent-info.reducer";
+import {DisciplineService} from "./services/discipline.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {studentInfoReducer} from "./reducers/sudent-info.reducer";
     SignUpService,
     AuthGuard,
     AuthService,
-    StatisticsService
+    StatisticsService,
+    DisciplineService
   ],
   bootstrap: [AppComponent]
 })

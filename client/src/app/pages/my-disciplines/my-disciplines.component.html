@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="col-md-3">
+        <div class="alert alert-info" role="alert">My disciplines:</div>
+        <div class="list-group">
+          <ng-template ngFor let-t [ngForOf]="disciplines">
+            <a (click)="selectDiscipline(t)" class="list-group-item">
+              {{t.name}}
+            </a>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+
+        <div class="alert alert-warning" role="alert">Lesson's type and number of hours</div>
+
+        <ng-container *ngFor="let i of discipline.disciplineType">
+          <div class="col-md-9 margin-div">
+            <input class="form-control col-md-9" type="text" id="type"
+                   placeholder="Lesson type" [(ngModel)]="i.name">
+          </div>
+
+          <div class="col-md-3 margin-div">
+            <input class="form-control col-md-3" type="text" id="hoursCount"
+                   placeholder="h" [(ngModel)]="i.hoursNumber">
+          </div>
+
+          <div class="col-md-3 margin-div">
+            <button (click)="addDisciplineType()" class="name btn btn-primary">
+              Save
+            </button>
+          </div>
+        </ng-container>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <div *ngIf="isSelected == false" class="col-md-12">
+
+          <div class="alert alert-success" role="alert">My journals:</div>
+
+          <div class="list-group">
+            <ng-template ngFor let-t [ngForOf]="journals">
+              <a (click)="selectJournal(t)" class="list-group-item">
+                {{t.journalName}}
+              </a>
+            </ng-template>
+          </div>
+
+        </div>
+
+        <div *ngIf="isSelected == true" class="col-md-12">
+
+          <div class="alert alert-success" role="alert">{{journal.journalName}}</div>
+
+          <div>
+            <div *ngIf="isLastLevel == false">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Name</th>
+                  <th>Length</th>
+                  <th>Select</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)">
+                  <td>{{l.layerType}}</td>
+                  <td>{{l.layerName}}</td>
+                  <td>{{l.layers.length}}</td>
+                  <td>
+                    <button class="name btn btn-success">
+                      Choose this {{l.layerType}}
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <button *ngIf="isSelected == true" (click)="goUp()"
+                class="btn glyphicon glyphicon-arrow-up">
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
