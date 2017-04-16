@@ -1,4 +1,5 @@
 import {DisciplineModel} from "./discipline.model";
+import {LessonModel} from "./lesson.model";
 
 export class StatisticsModel {
 
@@ -9,6 +10,8 @@ export class StatisticsModel {
   date: string;
 
   status: StatusModel;
+
+  lesson: LessonModel;
 
   journalId: number;
 

@@ -1,6 +1,7 @@
 package com.smartjournal.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.smartjournal.model.Lesson;
 import lombok.Data;
 
 @Data
@@ -16,5 +17,7 @@ public class StatisticsDTO {
     private String date;
 
     private Long journalId;
+
+    private Lesson lesson;
 
 }

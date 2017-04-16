@@ -3,7 +3,7 @@ import {MenuElementModel} from "../menu-element.model";
 import {Constrains} from "../../../constraints";
 import {LoginService} from "../../../services/login.service";
 import {Store} from "@ngrx/store";
-import {AUTHORIZED, UserState} from "../../../reducers/user.reducer";
+import {AUTHORIZED} from "../../../reducers/user.reducer";
 
 @Component({
   selector: 'app-horizontal-menu',

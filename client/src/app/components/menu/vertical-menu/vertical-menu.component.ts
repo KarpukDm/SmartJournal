@@ -9,21 +9,23 @@ import {Constrains} from "../../../constraints";
 })
 export class VerticalMenuComponent implements OnInit {
 
-  private verticalMenu: MenuElementModel[];
+  private group1: MenuElementModel[];
+
+  private group2: MenuElementModel[];
 
   constructor() {
-    this.verticalMenu = [];
+    this.group1 = [];
+    this.group2 = [];
   }
 
   ngOnInit() {
-    this.verticalMenu.push(new MenuElementModel("Profile", Constrains.profilePage));
-    this.verticalMenu.push(new MenuElementModel("Journal", Constrains.journalPage));
-    this.verticalMenu.push(new MenuElementModel("My journals", Constrains.myJournalsPage));
-    this.verticalMenu.push(new MenuElementModel("Create journal", Constrains.createJournalPage));
-  }
+    this.group1.push(new MenuElementModel("Profile", Constrains.profilePage));
+    this.group1.push(new MenuElementModel("Journal", Constrains.journalPage));
+    this.group1.push(new MenuElementModel("My journals", Constrains.myJournalsPage));
+    this.group1.push(new MenuElementModel("My disciplines", Constrains.myDisciplinesPage));
 
-  private getVerticalMenu(){
-    return this.verticalMenu;
+    this.group2.push(new MenuElementModel("Create journal", Constrains.createJournalPage));
+    this.group2.push(new MenuElementModel("Add disciplines", Constrains.addDisciplinesPage));
   }
 
 }

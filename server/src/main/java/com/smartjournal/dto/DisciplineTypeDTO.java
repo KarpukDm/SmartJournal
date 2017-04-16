@@ -11,5 +11,7 @@ public class DisciplineTypeDTO {
 
     private String type;
 
-    private Integer counter;
+    private Integer currentCounter;
+
+    private Integer hoursNumber;
 }
