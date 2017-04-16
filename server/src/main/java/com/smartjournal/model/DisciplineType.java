@@ -18,8 +18,8 @@ public class DisciplineType implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "currentCounter")
     private Integer currentCounter;

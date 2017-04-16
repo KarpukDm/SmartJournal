@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/disciplines")
+@RequestMapping("api/discipline")
 public class DisciplineController {
 
     private final DisciplineService disciplineService;
