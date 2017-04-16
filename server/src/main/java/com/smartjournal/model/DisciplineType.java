@@ -5,25 +5,19 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Entity
 @Table
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Discipline implements Serializable {
+public class DisciplineType implements Serializable {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    private String type;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private DisciplineType disciplineType;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Journal> journals;
+    private Integer counter;
 }

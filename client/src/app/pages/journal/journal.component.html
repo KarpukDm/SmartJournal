@@ -6,21 +6,31 @@
 
       <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info"
            role="alert">
-        <div class="align-center">
-          <button *ngIf="isSelected == true" (click)="goUp()"
-                  class="btn glyphicon glyphicon-arrow-up">
-          </button>
 
-          <button *ngIf="isSelected == true && isLastLevel == true"
-                  class="btn btn-primary">
-            {{getSelectedLayer()}}
-          </button>
+        <div>
+          <div class="align-center">
+            <button *ngIf="isSelected == true" (click)="goUp()"
+                    class="btn glyphicon glyphicon-arrow-up">
+            </button>
 
-          <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveJournal()"
-                  class="btn brn-success">
-            Save
-          </button>
+            <button *ngIf="isSelected == true && isLastLevel == true"
+                    class="btn btn-primary">
+              {{discipline.name}}
+            </button>
+
+            <button *ngIf="isSelected == true && isLastLevel == true" (click)="saveJournal()"
+                    class="btn btn-success">
+              Save
+            </button>
+
+            <button *ngIf="isSelected == true && isLastLevel == true" (click)="createNewRecord()"
+                    class="btn btn-warning pull-right">
+              New lesson
+            </button>
+          </div>
+
         </div>
+
       </div>
 
       <div *ngIf="isSelected == false" class="col-md-12">
@@ -100,6 +110,8 @@
                 <th *ngFor="let st of getLastStatistics()">
                   {{st.date}}
                 </th>
+                <th>H</th>
+                <th>AVG</th>
               </tr>
               </thead>
 
@@ -111,18 +123,62 @@
                   </button>
                 </td>
                 <td [class.absent]="isThere(l) != true" class="td-column"
-                    *ngFor="let st of getStatisticsForLastFewDays(l)">
+                    *ngFor="let st of getStatisticsForLastFewDays(l)" (click)="editMark(st)" [class.absent]="editedStatistics === st">
                   {{getStatusForSomeDate(st)}}
                 </td>
                 <td [class.absent]="isThere(l) != true" class="td-column">
                   <div>
-                    <input [readonly]="isThere(l) != true" class="mark" type="text"
+                    <input [readonly]="isThere(l) != true"
+                           class="mark"
+                           type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
+                  </div>
+                </td>
+                <td class="td-column stat-h">
+                  <div>
+                    {{getPassesNumber(l)}}
+                  </div>
+                </td>
+                <td class="td-column stat-avg">
+                  <div>
+                    {{getAVG(l)}}
                   </div>
                 </td>
               </tr>
               </tbody>
             </table>
+
+            <app-modal *ngIf="editedStatistics != null">
+              <div id="myModal1" class="modal fade in" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content col-md-4 align-center">
+                    <div class="modal-header">
+                      <button type="button" class="close" (click)="saveStatistics()" data-dismiss="modal">&times;
+                      </button>
+                      <h4 class="modal-title">Edit the mark</h4>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" *ngIf="!editedStatistics.status.isThere" (click)="eraseH()"
+                              class="btn btn-primary">Erase the "H"
+                      </button>
+
+                      <div *ngIf="editedStatistics.status.isThere">
+                        <input class="mark"
+                               type="text"
+                               [(ngModel)]="editedStatistics.status.mark">
+                        <button type="button" class="btn btn-primary" (click)="saveStatistics()"
+                                data-dismiss="modal">Save
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </app-modal>
+
           </div>
         </div>
       </div>

@@ -2,6 +2,8 @@ import {DisciplineModel} from "./discipline.model";
 
 export class StatisticsModel {
 
+  id: number;
+
   discipline: DisciplineModel;
 
   date: string;
@@ -19,6 +21,8 @@ export class StatisticsModel {
 }
 
 class StatusModel {
+
+  id: number;
 
   isThere: boolean;
 

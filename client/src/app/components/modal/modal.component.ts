@@ -10,16 +10,12 @@ declare var $: any;
 export class ModalComponent implements OnInit {
 
   modalEl = null;
-  id: string = uniqueId('modal_');
+  public id: string = uniqueId('modal_');
 
   constructor(private _rootNode: ElementRef) {}
 
   open() {
     this.modalEl.modal('show');
-  }
-
-  close() {
-    this.modalEl.modal('hide');
   }
 
   ngOnInit() {
