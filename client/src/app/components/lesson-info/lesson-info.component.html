@@ -1,7 +1,9 @@
-<nav class="navbar navbar-default navbar-fixed-side" *ngIf="info && info.length != 0">
+<div *ngIf="info && info.length != 0" class="alert alert-info" role="alert">Lesson information:</div>
+
+<nav class="navbar navbar-brand navbar-fixed-side" *ngIf="info && info.length != 0">
   <ul class="nav nav-list bs-docs-sidenav">
     <li *ngFor="let m of info">
-      <a href="#">{{m}}</a>
+      <a>{{m}}</a>
     </li>
   </ul>
 </nav>
