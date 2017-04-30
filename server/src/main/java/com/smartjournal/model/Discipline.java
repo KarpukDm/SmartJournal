@@ -22,7 +22,7 @@ public class Discipline implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<DisciplineType> disciplineType;
+    private List<DisciplineType> disciplineTypes;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Lesson> lessons;

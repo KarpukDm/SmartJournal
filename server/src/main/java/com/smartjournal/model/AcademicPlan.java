@@ -5,28 +5,25 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
 @Table
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Lesson implements Serializable {
+public class AcademicPlan implements Serializable{
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
-    private String date;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Discipline discipline;
 
-    @Column(name = "theme")
-    private String theme;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Layer layer;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "lessonType")
-    private String lessonType;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 }

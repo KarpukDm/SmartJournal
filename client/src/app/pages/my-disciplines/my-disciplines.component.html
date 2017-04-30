@@ -17,7 +17,7 @@
 
         <div class="alert alert-warning" role="alert">Lesson's type and number of hours</div>
 
-        <ng-container *ngFor="let i of discipline.disciplineType">
+        <ng-container *ngFor="let i of discipline.disciplineTypes">
           <div class="col-md-9 margin-div">
             <input class="form-control col-md-9" type="text" id="type"
                    placeholder="Lesson type" [(ngModel)]="i.name">

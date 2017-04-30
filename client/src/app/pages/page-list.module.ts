@@ -8,9 +8,10 @@ import {JournalViewerComponent} from "./journal-viewer/journal-viewer.component"
 import {ProfileComponent} from "./profile/profile.component";
 import {JournalComponent} from "./journal/journal.component";
 import {ComponentsLibraryModule} from "../components/components-library.module";
-import { MyJournalsComponent } from './my-journals/my-journals.component';
-import { DisciplineCreatorComponent } from './discipline-creator/discipline-creator.component';
-import { MyDisciplinesComponent } from './my-disciplines/my-disciplines.component';
+import {MyJournalsComponent} from './my-journals/my-journals.component';
+import {DisciplineCreatorComponent} from './discipline-creator/discipline-creator.component';
+import {AcademicPlanComponent} from './academic-plan/academic-plan.component';
+import {MyDisciplinesComponent} from "./my-disciplines/my-disciplines.component";
 
 export const DIRECTIVES = [
   JournalComponent,
@@ -21,7 +22,8 @@ export const DIRECTIVES = [
   ProfileComponent,
   MyJournalsComponent,
   DisciplineCreatorComponent,
-  MyDisciplinesComponent
+  MyDisciplinesComponent,
+  AcademicPlanComponent
 ];
 
 @NgModule({

@@ -35,6 +35,11 @@ export class MyDisciplinesComponent implements OnInit {
     this.isSelected = false;
     this.disciplineTypes = [];
     this.store.dispatch(go([Constrains.myDisciplinesPage]));
+  }
+
+  ngOnInit() {
+    this.discipline = new DisciplineModel();
+    this.disciplineTypes.push(new DisciplineTypeModel());
 
     this.journalService.getMyTemplates()
       .subscribe(
@@ -53,11 +58,6 @@ export class MyDisciplinesComponent implements OnInit {
         },
         error => this.errorMessage = <any>error
       );
-  }
-
-  ngOnInit() {
-    this.discipline = new DisciplineModel();
-    this.disciplineTypes.push(new DisciplineTypeModel());
   }
 
   addDisciplineType() {

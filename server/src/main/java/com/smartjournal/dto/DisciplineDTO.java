@@ -15,7 +15,7 @@ public class DisciplineDTO {
 
     private String name;
 
-    private List<DisciplineTypeDTO> disciplineType;
+    private List<DisciplineTypeDTO> disciplineTypes;
 
     private List<LayerDTO> journals;
 

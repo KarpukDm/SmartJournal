@@ -27,7 +27,7 @@ export class DisciplineCreatorComponent implements OnInit {
   ngOnInit() {
     this.discipline = new DisciplineModel();
     this.disciplineTypes = [];
-    this.discipline.disciplineType = [];
+    this.discipline.disciplineTypes = [];
     this.disciplineTypes.push(new DisciplineTypeModel());
   }
 
@@ -36,7 +36,7 @@ export class DisciplineCreatorComponent implements OnInit {
   }
 
   save(){
-    this.discipline.disciplineType = this.disciplineTypes;
+    this.discipline.disciplineTypes = this.disciplineTypes;
     console.log(this.discipline);
     this.disciplineService.saveJournal(this.discipline)
       .subscribe(x => {
