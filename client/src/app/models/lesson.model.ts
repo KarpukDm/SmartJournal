@@ -2,6 +2,12 @@ export class LessonModel {
 
   id: number;
 
-  themeName: string;
+  date: string;
+
+  theme: string;
+
+  description: string;
+
+  lessonType: string;
 
 }

@@ -1,0 +1,163 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="col-md-3">
+        <div class="alert alert-info" role="alert">My disciplines:</div>
+        <div class="list-group">
+          <ng-template ngFor let-t [ngForOf]="disciplines">
+            <a (click)="selectDiscipline(t)" class="list-group-item" [class.absent]="t === this.discipline">
+              {{t.name}}
+            </a>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="col-md-4" *ngIf="isSelectDiscipline">
+
+        <div *ngIf="isSelected == false" class="col-md-12">
+
+          <div class="alert alert-success" role="alert">My journals:</div>
+
+          <div class="list-group">
+            <ng-template ngFor let-t [ngForOf]="journals">
+              <a (click)="selectJournal(t)" class="list-group-item">
+                {{t.journalName}}
+              </a>
+            </ng-template>
+          </div>
+
+        </div>
+
+        <div *ngIf="isSelected == true" class="col-md-12">
+
+          <div class="alert alert-success" role="alert">Journal: {{journal.journalName}}</div>
+
+          <div>
+            <div *ngIf="isLastLevel == false">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Name</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let l of getLayers()" (click)="selectLayer(l)" [class.absent]="l === this.selectedLayer">
+                  <td>{{l.layerType}}</td>
+                  <td>{{l.layerName}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <button *ngIf="isSelected == true" (click)="goUp()"
+                class="btn glyphicon glyphicon-arrow-up">
+        </button>
+
+      </div>
+
+      <div class="col-md-5" *ngIf="isSelectLayer">
+        <div class="alert alert-warning" role="alert">Academic plan</div>
+
+        <div class="list-group">
+          <ng-template ngFor let-t [ngForOf]="lessons">
+            <a class="list-group-item">
+              {{t.date}}: {{t.theme}}
+              <button (click)="more(t)" class="pull-right">more</button>
+            </a>
+          </ng-template>
+        </div>
+
+        <div class="lesson-block">
+          <div class="form-group col-md-3">
+            <input class="form-control" [(ngModel)]="lesson.date" type="text" id="date"
+                   placeholder="Date">
+          </div>
+
+          <div class="col-md-5">
+            <select class="form-control" name="cars">
+              <ng-container *ngFor="let t of discipline.disciplineTypes">
+                <option (click)="selectLessonType(t.name)" value="{{t.name}}">{{t.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="lesson.theme" type="text" id="theme"
+                   placeholder="Theme">
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Description" [(ngModel)]="lesson.description" rows="5"
+                      id="description"></textarea>
+          </div>
+        </div>
+
+        <app-modal *ngIf="lessonForEdit != null">
+
+          <div id="myModal" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+
+                <div class="modal-header">
+
+                  <div class="alert alert-success" role="alert">More information:</div>
+
+                  <div class="lesson-block">
+
+                    <div class="form-group col-md-3">
+                      <input class="form-control" [(ngModel)]="lessonForEdit.date" type="text" id="date2"
+                             placeholder="Date">
+                    </div>
+
+                    <div class="col-md-5">
+                      <select class="form-control" name="cars">
+                        <ng-container *ngFor="let t of discipline.disciplineTypes">
+                          <option (click)="selectLessonType(t.name)" value="{{t.name}}">{{t.name}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <input class="form-control" [(ngModel)]="lessonForEdit.theme" type="text" id="theme2"
+                             placeholder="Theme">
+                    </div>
+
+                    <div class="form-group">
+            <textarea class="form-control" placeholder="Description" [(ngModel)]="lessonForEdit.description" rows="5"
+                      id="description2"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button (click)="saveLesson()" type="button" class="btn btn-primary"
+                          data-dismiss="modal">Save
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </app-modal>
+
+        <button (click)="addLessonPlan()"
+                class="btn glyphicon glyphicon-plus-sign">
+        </button>
+
+        <button (click)="save()"
+                class="btn btn-success pull-right">Save
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

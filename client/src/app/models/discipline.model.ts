@@ -6,7 +6,7 @@ export class DisciplineModel {
 
   name: string;
 
-  disciplineType: DisciplineTypeModel[];
+  disciplineTypes: DisciplineTypeModel[];
 
   lessons: LessonModel[];
 

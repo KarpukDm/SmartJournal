@@ -12,6 +12,7 @@ export class Constrains {
   public static get loginPage(): string { return "login"; }
   public static get addDisciplinesPage(): string { return "discipline/create"; }
   public static get myDisciplinesPage(): string { return "discipline/my"; }
+  public static get createAcademicPlanPage(): string { return "academicPlan"; }
 
   public static get createJournalApi(): string { return "api/journal/create"; }
   public static get getMyJournalsApi(): string { return "api/journal/my"; }
@@ -23,5 +24,6 @@ export class Constrains {
   public static get getAverageScore(): string { return "api/statistics/averageScore"; }
   public static get myDisciplinesApi(): string { return "api/discipline/my"; }
   public static get saveDisciplinesApi(): string { return "api/discipline/save"; }
+  public static get createAcademicPlanApi(): string { return "api/academicPlan/save"; }
 
 }

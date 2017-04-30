@@ -1,0 +1,10 @@
+.absent {
+  background-color: #f4f4f4;
+}
+
+.lesson-block {
+  border: solid lightgray;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f4f4f4;
+}
