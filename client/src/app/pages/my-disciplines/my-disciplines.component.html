@@ -27,13 +27,13 @@
             <input class="form-control col-md-3" type="text" id="hoursCount"
                    placeholder="h" [(ngModel)]="i.hoursNumber">
           </div>
-
-          <div class="col-md-3 margin-div">
-            <button (click)="addDisciplineType()" class="name btn btn-primary">
-              Save
-            </button>
-          </div>
         </ng-container>
+
+        <div class="col-md-3 margin-div" *ngIf="discipline.id">
+          <button (click)="addDisciplineType()" class="name btn btn-primary">
+            Save
+          </button>
+        </div>
 
       </div>
 

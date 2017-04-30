@@ -45,9 +45,9 @@ export class JournalComponent implements OnInit {
     this.isNewLesson = null;
     this.columnWidth = 150;
     this.disciplines = [new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
-    this.disciplines[0].name = "SDsadsadasdas";
-    this.disciplines[1].name = "SDsadsadasdas";
-    this.disciplines[2].name = "SDsadsadasdas";
+    this.disciplines[0].name = "Математика";
+    this.disciplines[1].name = "Информатика";
+    this.disciplines[2].name = "Физкультура";
   }
 
   ngOnInit() {
