@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 @RestController
 @RequestMapping("api/discipline")
 public class DisciplineController {
@@ -35,9 +31,12 @@ public class DisciplineController {
     @RequestMapping(value = "/my", method = RequestMethod.GET)
     public ResponseEntity getMyDisciplines() {
 
-        List<Discipline> disciplines = disciplineService.getMyDisciplines();
+        Account account = SecurityUtils.getCurrentUser();
+        if (account != null) {
+            return ResponseEntity.ok(account.getDisciplines());
+        }
 
-        return ResponseEntity.ok(disciplines);
+        return ResponseEntity.notFound().build();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -47,7 +46,7 @@ public class DisciplineController {
 
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
-            discipline.setAccount(account);
+            account.getDisciplines().add(discipline);
         }
 
         discipline = disciplineService.save(discipline);

@@ -18,12 +18,13 @@ public class AcademicPlan implements Serializable{
     @Column(name = "id")
     private Long id;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
+
     @OneToOne(cascade = CascadeType.MERGE)
     private Discipline discipline;
 
     @OneToOne(cascade = CascadeType.MERGE)
     private Layer layer;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Lesson> lessons;
 }

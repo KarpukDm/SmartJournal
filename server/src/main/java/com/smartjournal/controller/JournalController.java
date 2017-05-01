@@ -9,15 +9,11 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("api/journal")
@@ -40,7 +36,17 @@ public class JournalController {
         Journal journal = mapper.map(journalDTO, Journal.class);
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
-            journal.setAccounts(new ArrayList<>(Collections.singletonList(account)));
+            if (journal.getAccounts() == null) {
+                journal.setAccounts(Collections.singletonList(account));
+            } else {
+                int counter = (int) journal.getAccounts().stream()
+                        .filter(x -> Objects.equals(x.getId(), account.getId()))
+                        .count();
+
+                if (counter == 0) {
+                    journal.getAccounts().add(account);
+                }
+            }
         }
 
         journal = journalService.save(journal);
