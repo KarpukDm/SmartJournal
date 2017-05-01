@@ -11,4 +11,6 @@ public class LessonDTO {
     private String description;
 
     private String lessonType;
+
+    private boolean isComplete;
 }

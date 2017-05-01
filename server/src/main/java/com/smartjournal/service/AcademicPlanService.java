@@ -4,6 +4,9 @@ import com.smartjournal.model.AcademicPlan;
 import com.smartjournal.repository.AcademicPlanRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AcademicPlanService {
 
@@ -15,5 +18,11 @@ public class AcademicPlanService {
 
     public AcademicPlan save(AcademicPlan academicPlan){
         return repository.save(academicPlan);
+    }
+
+    public List<AcademicPlan> findAllByDiscipline(Long id) {
+        return repository.findAll().stream()
+                .filter(x -> x.getDiscipline().getId().equals(id))
+                .collect(Collectors.toList());
     }
 }

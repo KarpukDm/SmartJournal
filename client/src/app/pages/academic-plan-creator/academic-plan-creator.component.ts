@@ -15,10 +15,10 @@ import {AcademicPlanService} from "../../services/academic-plan.service";
 
 @Component({
   selector: 'academic-plan',
-  templateUrl: './academic-plan.component.html',
-  styleUrls: ['./academic-plan.component.css']
+  templateUrl: './academic-plan-creator.component.html',
+  styleUrls: ['./academic-plan-creator.component.css']
 })
-export class AcademicPlanComponent implements OnInit {
+export class AcademicPlanCreatorComponent implements OnInit {
 
   private academicPlan: AcademicPlanModel;
 
@@ -151,6 +151,8 @@ export class AcademicPlanComponent implements OnInit {
     this.academicPlan.lessons = this.lessons;
     this.academicPlan.layer = this.selectedLayer;
     this.academicPlan.discipline = this.discipline;
+
+    console.log(this.academicPlan);
 
     this.academicPlanService.saveAcademicPlan(this.academicPlan)
       .subscribe(x => {

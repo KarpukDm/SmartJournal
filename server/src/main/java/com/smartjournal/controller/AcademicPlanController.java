@@ -5,10 +5,7 @@ import com.smartjournal.model.AcademicPlan;
 import com.smartjournal.service.AcademicPlanService;
 import org.dozer.DozerBeanMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/academicPlan")
@@ -32,5 +29,11 @@ public class AcademicPlanController {
         academicPlan = academicPlanService.save(academicPlan);
 
         return ResponseEntity.ok(academicPlan);
+    }
+
+    @RequestMapping(value = "/getByDisciplineId")
+    public ResponseEntity getAcademicPlanByDisciplineId(final @RequestParam(name = "id", required = false) Long id) {
+
+        return ResponseEntity.ok(academicPlanService.findAllByDiscipline(id));
     }
 }

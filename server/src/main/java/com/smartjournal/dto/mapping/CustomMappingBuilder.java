@@ -27,5 +27,7 @@ public class CustomMappingBuilder extends BeanMappingBuilder {
         mapping(StudentDTO.class, Student.class, TypeMappingOptions.oneWay());
 
         mapping(AcademicPlanDTO.class, AcademicPlan.class, TypeMappingOptions.oneWay());
+
+        mapping(GroupInfoDTO.class, GroupInfo.class, TypeMappingOptions.oneWay());
     }
 }
