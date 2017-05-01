@@ -1,4 +1,5 @@
 import {StudentModel} from "./student.model";
+import {GroupInfoModel} from "./group-info.model";
 
 export class LayerModel {
 
@@ -10,8 +11,11 @@ export class LayerModel {
 
   students: StudentModel[];
 
+  groupInfo: GroupInfoModel[];
+
   constructor(){
     this.students = [];
     this.layers = [];
+    this.groupInfo = [];
   }
 }

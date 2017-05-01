@@ -10,4 +10,6 @@ export class LessonModel {
 
   lessonType: string;
 
+  isComplete: boolean;
+
 }

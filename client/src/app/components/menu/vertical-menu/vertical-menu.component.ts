@@ -21,6 +21,7 @@ export class VerticalMenuComponent implements OnInit {
   ngOnInit() {
     this.group1.push(new MenuElementModel("Profile", Constrains.profilePage));
     this.group1.push(new MenuElementModel("Journal", Constrains.journalPage));
+    this.group1.push(new MenuElementModel("My academic plans", Constrains.myAcademicPlansPage));
     this.group1.push(new MenuElementModel("Statistics", Constrains.myJournalsPage));
 
     this.group2.push(new MenuElementModel("Create journal", Constrains.createJournalPage));

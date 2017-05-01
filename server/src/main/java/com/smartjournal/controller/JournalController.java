@@ -1,9 +1,12 @@
 package com.smartjournal.controller;
 
 import com.smartjournal.dto.JournalDTO;
+import com.smartjournal.dto.LayerDTO;
 import com.smartjournal.model.Account;
 import com.smartjournal.model.Journal;
+import com.smartjournal.model.Layer;
 import com.smartjournal.service.JournalService;
+import com.smartjournal.service.LayerService;
 import com.smartjournal.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +24,20 @@ public class JournalController {
 
     private final JournalService journalService;
 
+    private final LayerService layerService;
+
     private final DozerBeanMapper mapper;
 
     @Autowired
     public JournalController(final JournalService journalService,
+                             final LayerService layerService,
                              final DozerBeanMapper mapper) {
         this.journalService = journalService;
+        this.layerService = layerService;
         this.mapper = mapper;
     }
 
-    @RequestMapping(path = {"/create", "/save"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/create"}, method = RequestMethod.POST)
     public ResponseEntity createTemplate(final @RequestBody(required = false) JournalDTO journalDTO) {
 
         Journal journal = mapper.map(journalDTO, Journal.class);
@@ -52,6 +59,15 @@ public class JournalController {
         journal = journalService.save(journal);
 
         return ResponseEntity.ok(journal);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ResponseEntity saveJournal(final @RequestBody LayerDTO layerDTO) {
+        Layer layer = mapper.map(layerDTO, Layer.class);
+
+        layer = layerService.save(layer);
+
+        return ResponseEntity.ok(layer);
     }
 
     @RequestMapping

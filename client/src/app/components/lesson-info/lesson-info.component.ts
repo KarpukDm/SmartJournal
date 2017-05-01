@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
+import {GroupInfoModel} from "../../models/group-info.model";
 
 @Component({
   selector: 'students-info',
@@ -8,9 +9,9 @@ import {Store} from "@ngrx/store";
 })
 export class LessonInfoComponent implements OnInit {
 
-  @Input() info: string[];
+  @Input() info: GroupInfoModel[];
 
-  @Input() lessonInfo: string[];
+  @Input() lessonInfo: GroupInfoModel[];
 
   constructor(private store: Store<any>) { }
 

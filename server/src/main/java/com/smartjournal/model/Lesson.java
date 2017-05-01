@@ -29,4 +29,7 @@ public class Lesson implements Serializable {
     @Column(name = "lessonType")
     private String lessonType;
 
+    @Column(name = "isComplete")
+    private boolean isComplete;
+
 }

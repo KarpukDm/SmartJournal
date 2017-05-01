@@ -1,6 +1,7 @@
 package com.smartjournal.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.smartjournal.model.GroupInfo;
 import com.smartjournal.model.Student;
 import lombok.Data;
 
@@ -18,5 +19,7 @@ public class LayerDTO {
 
     private List<LayerDTO> layers;
 
-    private List<Student> students;
+    private List<StudentDTO> students;
+
+    private List<GroupInfoDTO> groupInfo;
 }

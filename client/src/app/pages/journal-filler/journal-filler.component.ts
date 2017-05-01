@@ -91,7 +91,7 @@ export class JournalFillerComponent implements OnInit {
 
   private saveJournal(){
     console.log(this.journal);
-    this.journalService.saveJournal(this.journal)
+    this.journalService.createJournal(this.journal)
       .subscribe(
         journal => {
           this.journal = journal;

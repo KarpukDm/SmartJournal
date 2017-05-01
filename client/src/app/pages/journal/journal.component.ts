@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
-import {JournalModel} from "../../models/journal.model";
 import {LayerModel} from "../../models/layer.model";
 import {DisciplineModel} from "../../models/discipline.model";
 import {StatisticsModel} from "../../models/statistics.model";
@@ -10,10 +9,11 @@ import {Constrains} from "../../constraints";
 import {JournalService} from "../../services/journal.service";
 import {go} from "@ngrx/router-store";
 import {Store} from "@ngrx/store";
-import {AppState} from "app/app.state";
-import {AverageScoreModel} from "../../components/statistics/types/average-score.model";
-import {StatisticsService} from "../../services/statistics.service";
 import {GET_INFO} from "../../reducers/sudent-info.reducer";
+import {DisciplineService} from "../../services/discipline.service";
+import {AcademicPlanModel} from "../../models/academic-plan.model";
+import {AcademicPlanService} from "../../services/academic-plan.service";
+import {GroupInfoModel} from "../../models/group-info.model";
 
 @Component({
   selector: 'app-journal',
@@ -23,85 +23,71 @@ import {GET_INFO} from "../../reducers/sudent-info.reducer";
 export class JournalComponent implements OnInit {
 
   private errorMessage: string;
-  private journals: JournalModel[];
-  private journal: JournalModel;
-  private layerHistory: LayerModel[];
   private isSelected: boolean;
-  private isLastLevel: boolean;
   private isNewLesson: boolean;
   private amountOfDays: number;
   private columnWidth: number;
   private disciplines: DisciplineModel[];
   private discipline: DisciplineModel;
   private editedStatistics: StatisticsModel;
+  private academicPlans: AcademicPlanModel[];
+  private layer: LayerModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private disciplineService: DisciplineService,
+              private academicPlanService: AcademicPlanService,
               private journalService: JournalService,
               private store: Store<any>) {
-    this.layerHistory = [];
-    this.isLastLevel = false;
     this.isSelected = false;
     this.isNewLesson = null;
     this.columnWidth = 150;
-    this.disciplines = [new DisciplineModel(), new DisciplineModel(), new DisciplineModel()];
-    this.disciplines[0].name = "Математика";
-    this.disciplines[1].name = "Информатика";
-    this.disciplines[2].name = "Физкультура";
+    this.disciplines = [];
   }
 
   ngOnInit() {
 
     this.store.dispatch(go([Constrains.journalPage]));
 
-    this.journalService.getMyTemplates()
+    this.disciplineService.getMyDisciplines()
       .subscribe(
-        templates => {
-          this.journals = templates;
-          console.log(this.journals);
+        disciplines => {
+          this.disciplines = disciplines;
+          console.log(this.disciplines);
         },
         error => this.errorMessage = <any>error
       );
 
-    this.layerHistory = [];
     let screenResolution = window.screen.availWidth;
     console.log(screenResolution);
-    this.amountOfDays = screenResolution / - this.columnWidth - 1 ;
-  }
-
-  private selectJournal(template: JournalModel) {
-    this.journal = template;
-    console.log(template);
-    this.layerHistory.push(this.journal.layer);
-    this.isSelected = true;
-  }
-
-  private getLayers() {
-    if (!isNullOrUndefined(this.layerHistory) && this.layerHistory.length > 0) {
-      if (!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
-        return this.layerHistory.slice(-1)[0].layers;
-      }
-    }
+    this.amountOfDays = screenResolution / -this.columnWidth - 1;
   }
 
   private getStudents() {
-    let layer = this.layerHistory.slice(-1)[0];
-    return layer.students;
+    return this.layer.students;
   }
 
   private selectLayer(layer: LayerModel) {
+    this.layer = layer;
     if (!isNullOrUndefined(layer.layers)) {
-      this.layerHistory.push(layer);
-      this.isLastLevel = layer.layers.length == 0;
-      if (this.isLastLevel == true) {
-        this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
-        this.setFlagIsNewLesson(false);
-      }
+      this.isSelected = true;
+      this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
+      this.setFlagIsNewLesson(false);
     }
   }
 
   private setDiscipline(discipline: DisciplineModel) {
     this.discipline = discipline;
+
+    console.log(discipline);
+    this.academicPlanService.getAcademicPlanByDisciplineId(discipline.id)
+      .subscribe(
+        academicPlans => {
+          this.academicPlans = academicPlans;
+          console.log(this.academicPlans);
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
   private createNewRecord() {
@@ -110,7 +96,6 @@ export class JournalComponent implements OnInit {
         st.statistics = [];
       }
       let x = new StatisticsModel();
-      x.journalId = this.journal.id;
       st.statistics.push(x);
     }
   }
@@ -122,18 +107,9 @@ export class JournalComponent implements OnInit {
   }
 
   private goUp() {
-    if (this.layerHistory.length > 1) {
-      this.layerHistory.pop();
-    } else {
-      this.isSelected = false;
-      this.discipline = null;
-    }
-    this.isLastLevel = false;
+    this.isSelected = false;
+    this.discipline = null;
     this.isNewLesson = null;
-  }
-
-  private getJournal(id: number) {
-    return this.journals[id];
   }
 
   private isThere(student: StudentModel) {
@@ -142,7 +118,7 @@ export class JournalComponent implements OnInit {
   }
 
   private getLastStatistics() {
-    let layer = this.layerHistory.slice(-1)[0];
+    let layer = this.layer;
     if (!isNullOrUndefined(layer.students) && (layer.students.length > 0)
       && !isNullOrUndefined(layer.students[0].statistics)) {
       return layer.students[0].statistics.slice(this.amountOfDays);
@@ -175,11 +151,11 @@ export class JournalComponent implements OnInit {
     this.editedStatistics = statistics;
   }
 
-  private saveStatistics(){
+  private saveStatistics() {
     this.editedStatistics = null;
   }
 
-  private eraseH(){
+  private eraseH() {
     this.editedStatistics.status.isThere = true;
     this.editedStatistics.status.mark = null;
   }
@@ -205,14 +181,16 @@ export class JournalComponent implements OnInit {
   }
 
   private getInfo() {
-    let info: string[] = [];
-    for (let i of this.layerHistory) {
-      if (i && i.layerName && i.layerType) {
-        info.push(i.layerType + ": " + i.layerName);
-      }
-    }
 
-    return info;
+    let groupInfo: GroupInfoModel[] = [];
+    groupInfo = this.layer.groupInfo;
+
+    let x = new GroupInfoModel();
+    x.info = this.layer.layerType + ": " + this.layer.layerName;
+
+    groupInfo.push(x);
+
+    return this.layer.groupInfo;
   }
 
   private getPassesNumber(student: StudentModel) {
@@ -244,11 +222,11 @@ export class JournalComponent implements OnInit {
 
   private saveJournal() {
 
-    this.journalService.saveJournal(this.journal)
+    this.journalService.saveJournal(this.layer)
       .subscribe(
-        template => {
-          console.log(template);
-          this.journal = template;
+        layer => {
+          console.log(layer);
+          this.layer = layer;
         },
         error => this.errorMessage = <any>error
       );

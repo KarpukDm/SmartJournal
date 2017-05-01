@@ -30,4 +30,7 @@ public class Layer implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Student> students;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<GroupInfo> groupInfo;
+
 }

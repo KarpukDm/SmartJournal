@@ -9,6 +9,7 @@ import {Constrains} from "../../constraints";
 import {go} from "@ngrx/router-store";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../app.state";
+import {GroupInfoModel} from "../../models/group-info.model";
 
 @Component({
   selector: 'app-journal-builder',
@@ -54,6 +55,18 @@ export class JournalBuilderComponent implements OnInit {
         layer.layers = [];
       }
       this.layer.layers = [];
+
+      let info: GroupInfoModel[] = [];
+      for(let i of this.layerHistory) {
+        if(!isNullOrUndefined(i.layerType) && !isNullOrUndefined(i.layerName)){
+          const x = new GroupInfoModel();
+          x.info = i.layerType + ": " + i.layerName;
+          info.push(x);
+        }
+      }
+
+      this.layer.groupInfo = info;
+
       layer.layers.push(this.layer);
       this.layer = new LayerModel();
     }
@@ -78,6 +91,8 @@ export class JournalBuilderComponent implements OnInit {
   }
 
   private saveJournal() {
+
+    console.log(this.journal);
 
     this.journalService.createJournal(this.journal)
       .subscribe(
