@@ -26,4 +26,7 @@ public class Statistics implements Serializable{
     @OneToOne(cascade = CascadeType.ALL)
     private Status status;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Lesson lesson;
+
 }

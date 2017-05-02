@@ -20,4 +20,6 @@ public class StatisticsDTO {
 
     private Lesson lesson;
 
+
+
 }

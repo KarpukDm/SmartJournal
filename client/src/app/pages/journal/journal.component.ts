@@ -14,6 +14,7 @@ import {DisciplineService} from "../../services/discipline.service";
 import {AcademicPlanModel} from "../../models/academic-plan.model";
 import {AcademicPlanService} from "../../services/academic-plan.service";
 import {GroupInfoModel} from "../../models/group-info.model";
+import {LessonModel} from "../../models/lesson.model";
 
 @Component({
   selector: 'app-journal',
@@ -31,7 +32,13 @@ export class JournalComponent implements OnInit {
   private discipline: DisciplineModel;
   private editedStatistics: StatisticsModel;
   private academicPlans: AcademicPlanModel[];
+  private academicPlan: AcademicPlanModel;
   private layer: LayerModel;
+  private lessons: LessonModel[];
+
+  private lessonIndex: number;
+  private isShowTheme: boolean;
+  private st: StatisticsModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -43,6 +50,9 @@ export class JournalComponent implements OnInit {
     this.isNewLesson = null;
     this.columnWidth = 150;
     this.disciplines = [];
+    this.academicPlan = new AcademicPlanModel();
+    this.lessonIndex = 0;
+    this.isShowTheme = false;
   }
 
   ngOnInit() {
@@ -67,9 +77,13 @@ export class JournalComponent implements OnInit {
     return this.layer.students;
   }
 
-  private selectLayer(layer: LayerModel) {
-    this.layer = layer;
-    if (!isNullOrUndefined(layer.layers)) {
+  private selectAcademicPlan(academicPlan: AcademicPlanModel) {
+    this.layer = academicPlan.layer;
+    this.lessons = academicPlan.lessons;
+    console.log(academicPlan);
+    console.log(this.lessons);
+
+    if (!isNullOrUndefined(this.layer.layers)) {
       this.isSelected = true;
       this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
       this.setFlagIsNewLesson(false);
@@ -90,14 +104,26 @@ export class JournalComponent implements OnInit {
       );
   }
 
+  private showTheme(st: StatisticsModel) {
+    console.log("!!!");
+    this.st = st;
+    this.isShowTheme = !this.isShowTheme;
+  }
+
   private createNewRecord() {
     for (let st of this.getStudents()) {
       if (isNullOrUndefined(st.statistics)) {
         st.statistics = [];
       }
       let x = new StatisticsModel();
-      st.statistics.push(x);
+      console.log(this.lessons);
+      if (this.lessonIndex < this.lessons.length) {
+        x.lesson = this.lessons[this.lessonIndex];
+        console.log(x.lesson);
+        st.statistics.push(x);
+      }
     }
+    this.lessonIndex++;
   }
 
   private setAbsent(student: StudentModel) {
@@ -119,6 +145,7 @@ export class JournalComponent implements OnInit {
 
   private getLastStatistics() {
     let layer = this.layer;
+    console.log(this.lessons);
     if (!isNullOrUndefined(layer.students) && (layer.students.length > 0)
       && !isNullOrUndefined(layer.students[0].statistics)) {
       return layer.students[0].statistics.slice(this.amountOfDays);
