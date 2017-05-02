@@ -3,6 +3,7 @@ package com.smartjournal.controller;
 import com.smartjournal.dto.DisciplineDTO;
 import com.smartjournal.model.Account;
 import com.smartjournal.model.Discipline;
+import com.smartjournal.service.AccountService;
 import com.smartjournal.service.DisciplineService;
 import com.smartjournal.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
@@ -19,12 +20,16 @@ public class DisciplineController {
 
     private final DisciplineService disciplineService;
 
+    private final AccountService accountService;
+
     private final DozerBeanMapper mapper;
 
     @Autowired
     public DisciplineController(final DisciplineService disciplineService,
+                                final AccountService accountService,
                                 final DozerBeanMapper mapper) {
         this.disciplineService = disciplineService;
+        this.accountService = accountService;
         this.mapper = mapper;
     }
 
@@ -50,6 +55,8 @@ public class DisciplineController {
         }
 
         discipline = disciplineService.save(discipline);
+
+        accountService.save(account);
 
         return ResponseEntity.ok(discipline);
     }

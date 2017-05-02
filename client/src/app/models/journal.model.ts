@@ -1,4 +1,5 @@
 import {LayerModel} from "./layer.model";
+import {AccountModel} from "./account.model";
 
 export class JournalModel {
 
@@ -7,6 +8,8 @@ export class JournalModel {
   journalName: string;
 
   layer: LayerModel;
+
+  accounts: AccountModel[];
 
   constructor(){
     this.layer = new LayerModel();

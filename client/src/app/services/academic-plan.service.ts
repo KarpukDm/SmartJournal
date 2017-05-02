@@ -24,6 +24,7 @@ export class AcademicPlanService {
   }
 
   public saveAcademicPlan(academicPlan: AcademicPlanModel) {
+    console.log(academicPlan);
     return this.http
       .post(this.saveAcademicPlanURL, JSON.stringify(academicPlan), {headers: this.prepareHeaders()})
       .map(this.extractData)

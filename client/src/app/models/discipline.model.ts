@@ -1,5 +1,3 @@
-import {LessonModel} from "./lesson.model";
-import {UserModel} from "./user.model";
 export class DisciplineModel {
 
   id: number;
@@ -8,9 +6,6 @@ export class DisciplineModel {
 
   disciplineTypes: DisciplineTypeModel[];
 
-  lessons: LessonModel[];
-
-  account: UserModel;
 }
 
 export class DisciplineTypeModel {

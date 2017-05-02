@@ -3,6 +3,7 @@ package com.smartjournal.dto.mapping;
 import com.smartjournal.dto.*;
 import com.smartjournal.model.*;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.TypeMappingOption;
 import org.dozer.loader.api.TypeMappingOptions;
 
 public class CustomMappingBuilder extends BeanMappingBuilder {
@@ -29,5 +30,7 @@ public class CustomMappingBuilder extends BeanMappingBuilder {
         mapping(AcademicPlanDTO.class, AcademicPlan.class, TypeMappingOptions.oneWay());
 
         mapping(GroupInfoDTO.class, GroupInfo.class, TypeMappingOptions.oneWay());
+
+        mapping(LessonDTO.class, Lesson.class, TypeMappingOptions.oneWay());
     }
 }

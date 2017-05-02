@@ -17,9 +17,4 @@ public class DisciplineDTO {
 
     private List<DisciplineTypeDTO> disciplineTypes;
 
-    private List<LayerDTO> journals;
-
-    private List<LessonDTO> lessons;
-
-    private Account account;
 }

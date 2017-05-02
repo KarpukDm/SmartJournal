@@ -21,7 +21,7 @@ public class Journal implements Serializable {
     @Column(name = "journal_name")
     private String journalName;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Account> accounts;
 
     @OneToOne(cascade = CascadeType.ALL)

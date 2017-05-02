@@ -40,7 +40,21 @@ public class JournalController {
     @RequestMapping(path = {"/create"}, method = RequestMethod.POST)
     public ResponseEntity createTemplate(final @RequestBody(required = false) JournalDTO journalDTO) {
 
-        Journal journal = mapper.map(journalDTO, Journal.class);
+        Journal journal2 = mapper.map(journalDTO, Journal.class);
+
+        Journal journal = new Journal();
+        if (journal2.getId() != null) {
+            journal = journalService.findOne(journal2.getId());
+        }
+
+        if (journal == null) {
+            journal = new Journal();
+        }
+
+        journal.setJournalName(journal2.getJournalName());
+        journal.setAccounts(journal2.getAccounts());
+        journal.setLayer(journal2.getLayer());
+
         Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
             if (journal.getAccounts() == null) {
