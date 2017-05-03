@@ -1,10 +1,13 @@
 package com.smartjournal.controller;
 
+import com.smartjournal.dto.AcademicPlanDTO;
 import com.smartjournal.dto.JournalDTO;
 import com.smartjournal.dto.LayerDTO;
+import com.smartjournal.model.AcademicPlan;
 import com.smartjournal.model.Account;
 import com.smartjournal.model.Journal;
 import com.smartjournal.model.Layer;
+import com.smartjournal.service.AcademicPlanService;
 import com.smartjournal.service.JournalService;
 import com.smartjournal.service.LayerService;
 import com.smartjournal.util.SecurityUtils;
@@ -24,16 +27,16 @@ public class JournalController {
 
     private final JournalService journalService;
 
-    private final LayerService layerService;
+    private final AcademicPlanService academicPlanService;
 
     private final DozerBeanMapper mapper;
 
     @Autowired
     public JournalController(final JournalService journalService,
-                             final LayerService layerService,
+                             final AcademicPlanService academicPlanService,
                              final DozerBeanMapper mapper) {
         this.journalService = journalService;
-        this.layerService = layerService;
+        this.academicPlanService = academicPlanService;
         this.mapper = mapper;
     }
 
@@ -76,12 +79,12 @@ public class JournalController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity saveJournal(final @RequestBody LayerDTO layerDTO) {
-        Layer layer = mapper.map(layerDTO, Layer.class);
+    public ResponseEntity saveJournal(final @RequestBody AcademicPlanDTO academicPlanDTO) {
+        AcademicPlan academicPlan = mapper.map(academicPlanDTO, AcademicPlan.class);
 
-        layer = layerService.save(layer);
+        academicPlan = academicPlanService.save(academicPlan);
 
-        return ResponseEntity.ok(layer);
+        return ResponseEntity.ok(academicPlan);
     }
 
     @RequestMapping

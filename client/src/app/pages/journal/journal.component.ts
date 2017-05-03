@@ -13,8 +13,8 @@ import {GET_INFO} from "../../reducers/sudent-info.reducer";
 import {DisciplineService} from "../../services/discipline.service";
 import {AcademicPlanModel} from "../../models/academic-plan.model";
 import {AcademicPlanService} from "../../services/academic-plan.service";
-import {GroupInfoModel} from "../../models/group-info.model";
 import {LessonModel} from "../../models/lesson.model";
+import {GroupInfoModel} from "../../models/group-info.model";
 
 @Component({
   selector: 'app-journal',
@@ -36,9 +36,8 @@ export class JournalComponent implements OnInit {
   private layer: LayerModel;
   private lessons: LessonModel[];
 
-  private lessonIndex: number;
   private isShowTheme: boolean;
-  private st: StatisticsModel;
+  private lesson: LessonModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -51,7 +50,6 @@ export class JournalComponent implements OnInit {
     this.columnWidth = 150;
     this.disciplines = [];
     this.academicPlan = new AcademicPlanModel();
-    this.lessonIndex = 0;
     this.isShowTheme = false;
   }
 
@@ -80,6 +78,7 @@ export class JournalComponent implements OnInit {
   private selectAcademicPlan(academicPlan: AcademicPlanModel) {
     this.layer = academicPlan.layer;
     this.lessons = academicPlan.lessons;
+    this.academicPlan = academicPlan;
     console.log(academicPlan);
     console.log(this.lessons);
 
@@ -104,26 +103,41 @@ export class JournalComponent implements OnInit {
       );
   }
 
-  private showTheme(st: StatisticsModel) {
+  private showTheme(lesson: LessonModel) {
     console.log("!!!");
-    this.st = st;
+    this.lesson = lesson;
     this.isShowTheme = !this.isShowTheme;
   }
 
   private createNewRecord() {
+
+    let flag: boolean;
+    for (let l of this.academicPlan.lessons) {
+      flag = l.completeFlag;
+    }
+    if (flag) {
+      return;
+    }
+
+    let lessonStatistics: StatisticsModel[] = [];
     for (let st of this.getStudents()) {
       if (isNullOrUndefined(st.statistics)) {
         st.statistics = [];
       }
       let x = new StatisticsModel();
       console.log(this.lessons);
-      if (this.lessonIndex < this.lessons.length) {
-        x.lesson = this.lessons[this.lessonIndex];
-        console.log(x.lesson);
-        st.statistics.push(x);
+      st.statistics.push(x);
+      lessonStatistics.push(x);
+    }
+
+    console.log(this.academicPlan.lessons);
+    for (let l of this.academicPlan.lessons) {
+      if (!l.completeFlag) {
+        l.completeFlag = true;
+        l.statistics = lessonStatistics;
+        break;
       }
     }
-    this.lessonIndex++;
   }
 
   private setAbsent(student: StudentModel) {
@@ -143,13 +157,21 @@ export class JournalComponent implements OnInit {
     return stat.status.isThere;
   }
 
-  private getLastStatistics() {
-    let layer = this.layer;
-    console.log(this.lessons);
-    if (!isNullOrUndefined(layer.students) && (layer.students.length > 0)
-      && !isNullOrUndefined(layer.students[0].statistics)) {
-      return layer.students[0].statistics.slice(this.amountOfDays);
+  private getLastLessons() {
+
+    console.log(this.academicPlan.lessons);
+
+    if (!isNullOrUndefined(this.academicPlan.lessons)) {
+      let lessons: LessonModel[] = [];
+
+      for (let i of this.academicPlan.lessons) {
+        if (i.completeFlag) {
+          lessons.push(i);
+        }
+      }
+      return lessons.slice(this.amountOfDays);
     }
+
     return [];
   }
 
@@ -169,7 +191,7 @@ export class JournalComponent implements OnInit {
     console.log(flag);
     this.isNewLesson = flag;
 
-    if (this.isNewLesson || this.getLastStatistics().length == 0) {
+    if (this.isNewLesson || this.getLastLessons().length == 0) {
       this.createNewRecord(); // remove later
     }
   }
@@ -210,14 +232,15 @@ export class JournalComponent implements OnInit {
   private getInfo() {
 
     let groupInfo: GroupInfoModel[] = [];
-    groupInfo = this.layer.groupInfo;
-
+    for (let i of this.layer.groupInfo) {
+        groupInfo.push(i);
+    }
     let x = new GroupInfoModel();
     x.info = this.layer.layerType + ": " + this.layer.layerName;
 
     groupInfo.push(x);
 
-    return this.layer.groupInfo;
+    return groupInfo;
   }
 
   private getPassesNumber(student: StudentModel) {
@@ -249,11 +272,13 @@ export class JournalComponent implements OnInit {
 
   private saveJournal() {
 
-    this.journalService.saveJournal(this.layer)
+    console.log(this.academicPlan);
+
+    this.journalService.saveJournal(this.academicPlan)
       .subscribe(
-        layer => {
-          console.log(layer);
-          this.layer = layer;
+        academicPlan => {
+          console.log(academicPlan);
+          this.academicPlan = academicPlan;
         },
         error => this.errorMessage = <any>error
       );

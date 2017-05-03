@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,7 +30,10 @@ public class Lesson implements Serializable {
     @Column(name = "lessonType")
     private String lessonType;
 
-    @Column(name = "isComplete")
-    private boolean isComplete;
+    @Column(name = "completeFlag")
+    private boolean completeFlag;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Statistics> statistics;
 
 }

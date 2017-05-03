@@ -1,3 +1,5 @@
+import {StatisticsModel} from "./statistics.model";
+
 export class LessonModel {
 
   id: number;
@@ -10,6 +12,8 @@ export class LessonModel {
 
   lessonType: string;
 
-  isComplete: boolean;
+  completeFlag: boolean;
+
+  statistics: StatisticsModel[];
 
 }

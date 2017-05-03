@@ -1,7 +1,11 @@
 package com.smartjournal.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.smartjournal.model.Statistics;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -17,5 +21,7 @@ public class LessonDTO {
 
     private String lessonType;
 
-    private boolean isComplete;
+    private boolean completeFlag;
+
+    private List<Statistics> statistics;
 }

@@ -5,6 +5,7 @@ import {JournalModel} from "../models/journal.model";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
 import {LayerModel} from "../models/layer.model";
+import {AcademicPlanModel} from "../models/academic-plan.model";
 
 @Injectable()
 export class JournalService {
@@ -35,10 +36,10 @@ export class JournalService {
       .catch(this.handleError);
   }
 
-  saveJournal(layer: LayerModel): Observable<LayerModel> {
-    console.log(layer);
+  saveJournal(academicPlan: AcademicPlanModel): Observable<AcademicPlanModel> {
+    console.log(academicPlan);
     return this.http
-      .post(this.saveJournalURL, JSON.stringify(layer), {headers: this.prepareHeaders()})
+      .post(this.saveJournalURL, JSON.stringify(academicPlan), {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

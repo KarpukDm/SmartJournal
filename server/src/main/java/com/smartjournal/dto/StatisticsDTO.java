@@ -18,8 +18,4 @@ public class StatisticsDTO {
 
     private Long journalId;
 
-    private Lesson lesson;
-
-
-
 }

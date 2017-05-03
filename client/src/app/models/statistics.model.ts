@@ -11,8 +11,6 @@ export class StatisticsModel {
 
   status: StatusModel;
 
-  lesson: LessonModel;
-
   journalId: number;
 
   constructor(){

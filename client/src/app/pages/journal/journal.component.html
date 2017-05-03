@@ -84,7 +84,7 @@
               </div>
             </app-modal>
 
-            <app-modal *ngIf="isShowTheme && st.lesson && st.lesson.theme">
+            <app-modal *ngIf="isShowTheme && lesson && lesson.theme">
               <div id="theme" class="modal fade in" role="dialog">
                 <div class="modal-dialog">
 
@@ -93,9 +93,9 @@
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" (click)="showTheme()">&times;
                       </button>
-                      Theme: {{st.lesson.theme}}
+                      Theme: {{lesson.theme}}
                       <br>
-                      Description: {{st.lesson.description}}
+                      Description: {{lesson.description}}
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="close" data-dismiss="modal" (click)="showTheme()">Close
@@ -111,9 +111,9 @@
               <thead>
               <tr>
                 <th>Name</th>
-                <th *ngFor="let st of getLastStatistics()" (click)="showTheme(st)">
+                <th *ngFor="let st of getLastLessons()" (click)="showTheme(st)">
 
-                  {{st.date}}
+                  {{st.statistics[0].date}}
 
                 </th>
                 <th>H</th>
