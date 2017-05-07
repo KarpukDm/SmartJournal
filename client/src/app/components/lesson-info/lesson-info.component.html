@@ -11,7 +11,7 @@
   <div class="panel-heading">Lesson information</div>
   <div class="panel-body">
     <h4 *ngFor="let m of lessonInfo">
-      <a>{{m.info}}</a>
+      <a (click)="selectLessonType(m.info)">{{m.info}}</a>
     </h4>
   </div>
 </div>

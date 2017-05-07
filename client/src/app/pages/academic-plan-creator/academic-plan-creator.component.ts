@@ -79,6 +79,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
       this.lessons.push(this.lesson);
       console.log(this.lesson);
       this.lesson = new LessonModel();
+      this.lesson.lessonType = this.discipline.disciplineTypes[0].name;
     }
   }
 

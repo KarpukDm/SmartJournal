@@ -19,6 +19,7 @@ import {studentInfoReducer} from "./reducers/sudent-info.reducer";
 import {DisciplineService} from "./services/discipline.service";
 import {AcademicPlanService} from "./services/academic-plan.service";
 import {ProfileService} from "./services/profile.service";
+import {lessonTypeReducer} from "./reducers/lesson-type.reducer";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {ProfileService} from "./services/profile.service";
     HttpModule,
     RouterModule.forRoot(appRoutes),
     ComponentsLibraryModule,
-    StoreModule.provideStore({routerReducer, userReducer, studentInfoReducer}),
+    StoreModule.provideStore({routerReducer, userReducer, studentInfoReducer, lessonTypeReducer}),
     RouterStoreModule.connectRouter()
   ],
   providers: [

@@ -40,6 +40,8 @@ export class JournalComponent implements OnInit {
   private isShowTheme: boolean;
   private lesson: LessonModel;
 
+  private selectedLessonType: string;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private disciplineService: DisciplineService,
@@ -70,6 +72,14 @@ export class JournalComponent implements OnInit {
     let screenResolution = window.screen.availWidth;
     console.log(screenResolution);
     this.amountOfDays = screenResolution / -this.columnWidth - 1;
+
+    this.store
+      .select(x => x.lessonTypeReducer)
+      .map(x => x)
+      .subscribe((x) => {
+        console.log(x);
+        this.selectedLessonType = x;
+      });
   }
 
   private getStudents() {
@@ -133,6 +143,11 @@ export class JournalComponent implements OnInit {
 
     console.log(this.academicPlan.lessons);
     for (let l of this.academicPlan.lessons) {
+
+      for(let st of lessonStatistics) {
+        st.lessonType = l.lessonType;
+      }
+
       if (!l.completeFlag) {
         l.completeFlag = true;
         l.statistics = lessonStatistics;

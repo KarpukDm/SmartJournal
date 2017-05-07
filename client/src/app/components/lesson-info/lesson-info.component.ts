@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GroupInfoModel} from "../../models/group-info.model";
+import {DisciplineTypeModel} from "../../models/discipline.model";
+import {SELECT} from "../../reducers/lesson-type.reducer";
 
 @Component({
   selector: 'students-info',
@@ -13,7 +15,10 @@ export class LessonInfoComponent implements OnInit {
 
   @Input() lessonInfo: GroupInfoModel[];
 
-  constructor(private store: Store<any>) { }
+  private lessonType: DisciplineTypeModel;
+
+  constructor(private store: Store<any>) {
+  }
 
   ngOnInit() {
     this.groupInfo = [];
@@ -27,7 +32,13 @@ export class LessonInfoComponent implements OnInit {
         this.groupInfo = x[0];
         this.lessonInfo = x[1];
       });
+  }
 
+  private selectLessonType(lessonType: string) {
+    console.log(lessonType);
+    let type = lessonType.split(':')[0];
+    console.log(type);
+    this.store.dispatch({type: SELECT, payload: type});
   }
 
 }

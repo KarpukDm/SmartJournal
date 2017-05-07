@@ -62,3 +62,7 @@
 .theme {
   width: 3000px;
 }
+
+.selected-lesson-type {
+  background-color: #c0c8f4;
+}

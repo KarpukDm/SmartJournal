@@ -43,7 +43,8 @@
           <div class="alert alert-info" role="alert">Disciplines:</div>
 
           <div class="list-group">
-            <a *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="list-group-item" [class.absent]="d === discipline">
+            <a *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="list-group-item"
+               [class.absent]="d === discipline">
               {{d.name}}
             </a>
           </div>
@@ -122,7 +123,8 @@
               <thead>
               <tr>
                 <th>Name</th>
-                <th *ngFor="let st of getLastLessons()" (click)="showTheme(st)">
+                <th *ngFor="let st of getLastLessons()" (click)="showTheme(st)"
+                    [class.selected-lesson-type]="selectedLessonType === st.lessonType">
 
                   {{st.statistics[0].date}}
 
@@ -141,6 +143,7 @@
                 </td>
                 <td [class.absent]="isThere(l) != true" class="td-column"
                     *ngFor="let st of getStatisticsForLastFewDays(l)" (click)="editMark(st)"
+                    [class.selected-lesson-type]="selectedLessonType === st.lessonType"
                     [class.absent]="editedStatistics === st">
                   {{getStatusForSomeDate(st)}}
                 </td>
