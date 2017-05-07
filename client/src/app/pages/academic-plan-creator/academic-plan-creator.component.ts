@@ -99,6 +99,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
       this.isLastLevel = layer.layers.length == 0;
       console.log(layer);
     } else {
+      this.lesson.lessonType = this.discipline.disciplineTypes[0].name;
       this.academicPlanService.getAcademicPlanByDisciplineIdAndLayerId(this.discipline.id, this.selectedLayer.id)
         .subscribe(
           academicPlan => {
