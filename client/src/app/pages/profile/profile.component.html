@@ -1,3 +1,7 @@
-<p>
-  profile works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngIf="profileName">
+      <h2>Welcome to Smart Journal, {{profileName}}</h2>
+    </div>
+  </div>
+</div>

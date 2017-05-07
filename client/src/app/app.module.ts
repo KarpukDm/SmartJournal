@@ -18,6 +18,7 @@ import {StatisticsService} from "./services/statistics.service";
 import {studentInfoReducer} from "./reducers/sudent-info.reducer";
 import {DisciplineService} from "./services/discipline.service";
 import {AcademicPlanService} from "./services/academic-plan.service";
+import {ProfileService} from "./services/profile.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {AcademicPlanService} from "./services/academic-plan.service";
     AuthService,
     StatisticsService,
     DisciplineService,
-    AcademicPlanService
+    AcademicPlanService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

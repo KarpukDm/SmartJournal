@@ -88,9 +88,9 @@
           </div>
 
           <div class="col-md-5">
-            <select class="form-control" name="cars">
+            <select class="form-control" name="cars" [(ngModel)]="lesson.lessonType">
               <ng-container *ngFor="let t of discipline.disciplineTypes">
-                <option (click)="selectLessonType(t.name)" value="{{t.name}}">{{t.name}}</option>
+                <option (click)="selectLessonType(t.name)" [ngValue]="t.name">{{t.name}}</option>
               </ng-container>
             </select>
           </div>
@@ -126,9 +126,9 @@
                     </div>
 
                     <div class="col-md-5">
-                      <select class="form-control" name="cars">
+                      <select class="form-control" name="cars" [(ngModel)]="lessonForEdit.lessonType">
                         <ng-container *ngFor="let t of discipline.disciplineTypes">
-                          <option (click)="selectLessonType(t.name)" value="{{t.name}}">{{t.name}}</option>
+                          <option (click)="selectLessonType(t.name)" [ngValue]="t.name">{{t.name}}</option>
                         </ng-container>
                       </select>
                     </div>

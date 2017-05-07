@@ -244,6 +244,10 @@ export class JournalComponent implements OnInit {
     return groupInfo;
   }
 
+  private getLessonInfo() {
+
+  }
+
   private getPassesNumber(student: StudentModel) {
     let counter: number = 0;
     for (let i of student.statistics) {
