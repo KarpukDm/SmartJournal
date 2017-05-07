@@ -22,7 +22,7 @@ export class VerticalMenuComponent implements OnInit {
     this.group1.push(new MenuElementModel("Profile", Constrains.profilePage));
     this.group1.push(new MenuElementModel("Journal", Constrains.journalPage));
     this.group1.push(new MenuElementModel("My academic plans", Constrains.myAcademicPlansPage));
-    this.group1.push(new MenuElementModel("Statistics", Constrains.myJournalsPage));
+    this.group1.push(new MenuElementModel("Statistics", Constrains.statistics));
 
     this.group2.push(new MenuElementModel("Create journal", Constrains.createJournalPage));
     this.group2.push(new MenuElementModel("Add disciplines", Constrains.addDisciplinesPage));

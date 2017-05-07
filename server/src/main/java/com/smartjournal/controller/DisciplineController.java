@@ -36,7 +36,7 @@ public class DisciplineController {
     @RequestMapping(value = "/my", method = RequestMethod.GET)
     public ResponseEntity getMyDisciplines() {
 
-        Account account = SecurityUtils.getCurrentUser();
+        final Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
             return ResponseEntity.ok(account.getDisciplines());
         }
@@ -49,12 +49,12 @@ public class DisciplineController {
 
         Discipline discipline = mapper.map(disciplineDTO, Discipline.class);
 
-        Account account = SecurityUtils.getCurrentUser();
-        if (account != null) {
-            account.getDisciplines().add(discipline);
-        }
-
         discipline = disciplineService.save(discipline);
+
+        final Account account = SecurityUtils.getCurrentUser();
+        if (account != null) {
+            account.addDiscipline(discipline);
+        }
 
         accountService.save(account);
 

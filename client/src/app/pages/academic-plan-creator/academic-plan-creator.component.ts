@@ -60,15 +60,6 @@ export class AcademicPlanCreatorComponent implements OnInit {
 
   ngOnInit() {
 
-    this.journalService.getMyTemplates()
-      .subscribe(
-        templates => {
-          this.journals = templates;
-          console.log(this.journals);
-        },
-        error => this.errorMessage = <any>error
-      );
-
     this.disciplineService.getMyDisciplines()
       .subscribe(
         disciplines => {
@@ -83,6 +74,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
     if (!isNullOrUndefined(this.lesson["date"]) && this.lesson["date"] !== ""
       && !isNullOrUndefined(this.lesson["theme"]) && this.lesson["theme"] !== ""
       && !isNullOrUndefined(this.lesson["description"]) && this.lesson["description"] !== "") {
+      console.log(this.lessons);
       this.lessons.push(this.lesson);
       this.lesson = new LessonModel();
     }
@@ -110,6 +102,11 @@ export class AcademicPlanCreatorComponent implements OnInit {
           academicPlan => {
             this.academicPlan = academicPlan;
             this.lessons = this.academicPlan.lessons;
+            console.log(this.lessons);
+            if (isNullOrUndefined(this.lessons)) {
+              this.lessons = [];
+              console.log(this.lessons);
+            }
             console.log(this.academicPlan);
           },
           error => this.errorMessage = <any>error
@@ -125,8 +122,16 @@ export class AcademicPlanCreatorComponent implements OnInit {
   }
 
   private selectDiscipline(discipline: DisciplineModel) {
-    this.isSelectDiscipline = true;
-    this.discipline = discipline;
+    this.journalService.getMyTemplates()
+      .subscribe(
+        journals => {
+          this.journals = journals;
+          console.log(this.journals);
+          this.isSelectDiscipline = true;
+          this.discipline = discipline;
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
   private goUp() {
@@ -167,10 +172,15 @@ export class AcademicPlanCreatorComponent implements OnInit {
       .subscribe(x => {
         console.log(x);
         this.academicPlan = new AcademicPlanModel();
+        this.layerHistory = [];
+        this.isLastLevel = false;
+        this.isSelected = false;
+        this.selectedLayer = new LayerModel();
+        this.isSelectDiscipline = false;
+        this.isSelectLayer = false;
         this.lessons = [];
         this.lesson = new LessonModel();
         this.discipline = new DisciplineModel();
-        this.selectedLayer = new LayerModel();
       })
   }
 

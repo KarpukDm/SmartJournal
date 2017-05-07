@@ -33,6 +33,7 @@ public class AcademicPlanService {
         return repository.findAll().stream()
                 .filter(x -> x.getDiscipline().getId().equals(disciplineId)
                         && x.getLayer().getId().equals(layerId))
-                .collect(toList()).get(0);
+                .findFirst()
+                .orElse(new AcademicPlan());
     }
 }

@@ -3,11 +3,7 @@ package com.smartjournal.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -17,7 +13,8 @@ import java.io.Serializable;
 public class Status implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "status", strategy= GenerationType.TABLE)
+    @TableGenerator(name = "status")
     @Column(name = "id")
     private Long id;
 

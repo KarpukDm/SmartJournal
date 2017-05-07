@@ -19,6 +19,6 @@ public class AccountService {
     }
 
     public Account save(Account account) {
-        return repository.save(account);
+        return repository.saveAndFlush(account);
     }
 }

@@ -13,7 +13,8 @@ import java.io.Serializable;
 public class Schedule implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "schedule", strategy=GenerationType.TABLE)
+    @TableGenerator(name = "schedule")
     @Column(name = "id")
     private Long id;
 

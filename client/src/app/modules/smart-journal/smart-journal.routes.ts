@@ -18,7 +18,7 @@ export const smartJournalRoutes: Routes = [
   { path: 'journal/view/:id', component: JournalViewerComponent },
   { path: 'journal/edit/:id', component: JournalEditorComponent },
   { path: 'journal/fill/:id', component: JournalFillerComponent },
-  { path: 'myJournals', component: MyJournalsComponent },
+  { path: 'statistics', component: MyJournalsComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'discipline/create', component: DisciplineCreatorComponent },
   { path: 'discipline/my', component: MyDisciplinesComponent },

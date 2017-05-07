@@ -5,7 +5,7 @@ export class Constrains {
   public static get viewJournalPage(): string { return "journal/view/"; }
   public static get editJournalPage(): string { return "journal/edit/"; }
   public static get fillJournalPage(): string { return "journal/fill/"; }
-  public static get myJournalsPage(): string { return "myJournals"; }
+  public static get statistics(): string { return "statistics"; }
   public static get profilePage(): string { return "profile"; }
   public static get journalPage(): string { return "journal"; }
   public static get signUpPage(): string { return "signUp"; }

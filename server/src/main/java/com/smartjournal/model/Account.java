@@ -14,7 +14,8 @@ import java.util.List;
 public class Account implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "account", strategy=GenerationType.TABLE)
+    @TableGenerator(name = "account")
     @Column(name = "id")
     private Long id;
 
@@ -29,5 +30,9 @@ public class Account implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<AcademicPlan> academicPlans;
+
+    public void addDiscipline(final Discipline discipline) {
+        disciplines.add(discipline);
+    }
 
 }

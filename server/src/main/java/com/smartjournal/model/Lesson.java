@@ -14,7 +14,8 @@ import java.util.List;
 public class Lesson implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "lesson", strategy=GenerationType.TABLE)
+    @TableGenerator(name = "lesson")
     @Column(name = "id")
     private Long id;
 

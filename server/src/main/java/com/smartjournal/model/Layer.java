@@ -14,7 +14,8 @@ import java.util.List;
 public class Layer implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "layer", strategy=GenerationType.TABLE)
+    @TableGenerator(name = "layer")
     @Column(name = "id")
     private Long id;
 

@@ -13,7 +13,8 @@ import java.io.Serializable;
 public class Statistics implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "statistics", strategy=GenerationType.TABLE)
+    @TableGenerator(name = "statistics")
     @Column(name = "id")
     private Long id;
 

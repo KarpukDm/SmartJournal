@@ -1,6 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+
+    <div class="col-md-12" *ngIf="disciplines === null || disciplines.length === 0">
+      <h3>No disciplines found. <a href="/discipline/create">Create</a></h3>
+    </div>
+
+    <div class="col-md-12" *ngIf="disciplines !== null && disciplines.length !== 0">
 
       <div *ngIf="isSelected == false" class="alert alert-warning" role="alert">Select discipline and journal</div>
 
@@ -38,7 +43,9 @@
           <div class="alert alert-info" role="alert">Disciplines:</div>
 
           <div class="list-group">
-            <a *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="list-group-item"> {{d.name}}</a>
+            <a *ngFor="let d of disciplines" (click)="setDiscipline(d)" class="list-group-item" [class.absent]="d === discipline">
+              {{d.name}}
+            </a>
           </div>
 
         </div>
@@ -46,7 +53,11 @@
         <div class="col-md-6" *ngIf="discipline != null">
           <div class="alert alert-success" role="alert">Journals:</div>
 
-          <div class="list-group">
+          <div *ngIf="academicPlans == null || academicPlans.length === 0">
+            No journals found for this discipline.
+          </div>
+
+          <div class="list-group" *ngIf="academicPlans != null">
             <ng-template ngFor let-t [ngForOf]="academicPlans">
               <a (click)="selectAcademicPlan(t)" class="list-group-item">{{t.layer.layerType}}:
                 {{t.layer.layerName}}</a>
@@ -190,5 +201,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>

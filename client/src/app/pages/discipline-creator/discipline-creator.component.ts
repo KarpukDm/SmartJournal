@@ -1,14 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {DisciplineModel, DisciplineTypeModel} from "../../models/discipline.model";
-import {JournalModel} from "../../models/journal.model";
-import {LayerModel} from "../../models/layer.model";
-import {AppState} from "../../app.state";
-import {Store} from "@ngrx/store";
-import {JournalService} from "../../services/journal.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Constrains} from "../../constraints";
-import {go} from "@ngrx/router-store";
-import {isNullOrUndefined} from "util";
 import {DisciplineService} from "../../services/discipline.service";
 
 @Component({
@@ -35,12 +26,14 @@ export class DisciplineCreatorComponent implements OnInit {
     this.disciplineTypes.push(new DisciplineTypeModel());
   }
 
-  save(){
+  save() {
     this.discipline.disciplineTypes = this.disciplineTypes;
     console.log(this.discipline);
     this.disciplineService.saveJournal(this.discipline)
-      .subscribe(x => {
-
+      .subscribe(() => {
+        this.discipline = new DisciplineModel();
+        this.disciplineTypes = [];
+        this.addDisciplineType();
       });
   }
 

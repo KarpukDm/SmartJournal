@@ -39,7 +39,7 @@ export class MyJournalsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.store.dispatch(go([Constrains.myJournalsPage]));
+    this.store.dispatch(go([Constrains.statistics]));
 
     this.journalService.getMyTemplates()
       .subscribe(
