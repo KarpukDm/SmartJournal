@@ -1,16 +1,16 @@
-<div *ngIf="info && info.length != 0" class="panel panel-primary">
+<div *ngIf="groupInfo && groupInfo.length != 0" class="panel panel-primary">
   <div class="panel-heading">Group information</div>
   <div class="panel-body">
-    <h4 *ngFor="let m of info">
+    <h4 *ngFor="let m of groupInfo">
       <a>{{m.info}}</a>
     </h4>
   </div>
 </div>
 
-<div *ngIf="info && info.length != 0" class="panel panel-primary">
+<div *ngIf="lessonInfo && lessonInfo.length != 0" class="panel panel-primary">
   <div class="panel-heading">Lesson information</div>
   <div class="panel-body">
-    <h4 *ngFor="let m of info">
+    <h4 *ngFor="let m of lessonInfo">
       <a>{{m.info}}</a>
     </h4>
   </div>

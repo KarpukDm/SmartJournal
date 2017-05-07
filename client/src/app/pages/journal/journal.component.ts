@@ -139,6 +139,8 @@ export class JournalComponent implements OnInit {
         break;
       }
     }
+
+    this.store.dispatch({type: GET_INFO, payload: this.getInfo()});
   }
 
   private setAbsent(student: StudentModel) {
@@ -232,6 +234,8 @@ export class JournalComponent implements OnInit {
 
   private getInfo() {
 
+    let info: GroupInfoModel[][] = [];
+
     let groupInfo: GroupInfoModel[] = [];
     for (let i of this.layer.groupInfo) {
       groupInfo.push(i);
@@ -241,11 +245,29 @@ export class JournalComponent implements OnInit {
 
     groupInfo.push(x);
 
-    return groupInfo;
-  }
+    let lessonInfo: GroupInfoModel[] = [];
 
-  private getLessonInfo() {
+    for (let type of this.discipline.disciplineTypes) {
+      let commonCounter = 0;
+      let completeCounter = 0;
+      for (let l of this.academicPlan.lessons) {
+        if (l.lessonType === type.name) {
+          commonCounter++;
+          if (l.completeFlag) {
+            completeCounter++;
+          }
+        }
+      }
 
+      let lesson = new GroupInfoModel();
+      lesson.info = type.name + ": " + completeCounter + "/" + commonCounter;
+      lessonInfo.push(lesson);
+    }
+
+    info.push(groupInfo);
+    info.push(lessonInfo);
+
+    return info;
   }
 
   private getPassesNumber(student: StudentModel) {

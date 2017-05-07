@@ -9,14 +9,14 @@ import {GroupInfoModel} from "../../models/group-info.model";
 })
 export class LessonInfoComponent implements OnInit {
 
-  @Input() info: GroupInfoModel[];
+  @Input() groupInfo: GroupInfoModel[];
 
   @Input() lessonInfo: GroupInfoModel[];
 
   constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.info = [];
+    this.groupInfo = [];
     this.lessonInfo = [];
 
     this.store
@@ -24,7 +24,8 @@ export class LessonInfoComponent implements OnInit {
       .map(x => x)
       .subscribe((x) => {
         console.log(x);
-        this.info = x;
+        this.groupInfo = x[0];
+        this.lessonInfo = x[1];
       });
 
   }
