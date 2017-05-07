@@ -3,6 +3,8 @@ import {GroupInfoModel} from "./group-info.model";
 
 export class LayerModel {
 
+  id: number;
+
   layerName: string;
 
   layerType: string;

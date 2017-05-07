@@ -32,8 +32,15 @@ public class AcademicPlanController {
     }
 
     @RequestMapping(value = "/getByDisciplineId")
-    public ResponseEntity getAcademicPlanByDisciplineId(final @RequestParam(name = "id", required = false) Long id) {
+    public ResponseEntity getAcademicPlanByDisciplineId(final @RequestParam(name = "id") Long id) {
 
         return ResponseEntity.ok(academicPlanService.findAllByDiscipline(id));
+    }
+
+    @RequestMapping(value = "/getByDisciplineIdAndLayerId")
+    public ResponseEntity getAcademicPlanByDisciplineIdAndLayerId(final @RequestParam(name = "disciplineId") Long disciplineId,
+                                                                  final @RequestParam(name = "layerId") Long layerId) {
+
+        return ResponseEntity.ok(academicPlanService.findAllByDisciplineAndLayer(disciplineId, layerId));
     }
 }

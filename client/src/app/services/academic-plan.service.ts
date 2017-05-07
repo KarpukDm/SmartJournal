@@ -10,10 +10,12 @@ export class AcademicPlanService {
 
   private saveAcademicPlanURL: string;
   private getAcademicPlanByDisciplineIdURL: string;
+  private getAcademicPlanByDisciplineIdAndLayerIdURL: string;
 
   constructor(private http: Http) {
     this.saveAcademicPlanURL = Constrains.baseURL + Constrains.createAcademicPlanApi;
     this.getAcademicPlanByDisciplineIdURL = Constrains.baseURL + Constrains.getAcademicPlanByDisciplineIdApi;
+    this.getAcademicPlanByDisciplineIdAndLayerIdURL = Constrains.baseURL + Constrains.getAcademicPlanByDisciplineIdAndLayerIdApi;
   }
 
   prepareHeaders() {
@@ -37,6 +39,17 @@ export class AcademicPlanService {
     params.set('id', "  " + id);
     console.log(params);
     return this.http.get(this.getAcademicPlanByDisciplineIdURL, {search: params, headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAcademicPlanByDisciplineIdAndLayerId(disciplineId: number, layerId: number): Observable<AcademicPlanModel> {
+    console.log(disciplineId);
+    let params = new URLSearchParams();
+    params.set('disciplineId', "  " + disciplineId);
+    params.set('layerId', "  " + layerId);
+    console.log(params);
+    return this.http.get(this.getAcademicPlanByDisciplineIdAndLayerIdURL, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

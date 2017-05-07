@@ -27,5 +27,6 @@ export class Constrains {
   public static get saveDisciplinesApi(): string { return "api/discipline/save"; }
   public static get createAcademicPlanApi(): string { return "api/academicPlan/save"; }
   public static get getAcademicPlanByDisciplineIdApi(): string { return "api/academicPlan/getByDisciplineId"; }
+  public static get getAcademicPlanByDisciplineIdAndLayerIdApi(): string { return "api/academicPlan/getByDisciplineIdAndLayerId"; }
 
 }

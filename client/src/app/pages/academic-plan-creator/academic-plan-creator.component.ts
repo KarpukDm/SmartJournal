@@ -103,8 +103,17 @@ export class AcademicPlanCreatorComponent implements OnInit {
       this.isSelectLayer = false;
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
-      if (this.isLastLevel == true) {
-      }
+      console.log(layer);
+    } else {
+      this.academicPlanService.getAcademicPlanByDisciplineIdAndLayerId(this.discipline.id, this.selectedLayer.id)
+        .subscribe(
+          academicPlan => {
+            this.academicPlan = academicPlan;
+            this.lessons = this.academicPlan.lessons;
+            console.log(this.academicPlan);
+          },
+          error => this.errorMessage = <any>error
+        );
     }
   }
 
