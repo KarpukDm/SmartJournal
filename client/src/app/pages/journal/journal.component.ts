@@ -15,6 +15,7 @@ import {AcademicPlanModel} from "../../models/academic-plan.model";
 import {AcademicPlanService} from "../../services/academic-plan.service";
 import {LessonModel} from "../../models/lesson.model";
 import {GroupInfoModel} from "../../models/group-info.model";
+import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-journal',
@@ -233,7 +234,7 @@ export class JournalComponent implements OnInit {
 
     let groupInfo: GroupInfoModel[] = [];
     for (let i of this.layer.groupInfo) {
-        groupInfo.push(i);
+      groupInfo.push(i);
     }
     let x = new GroupInfoModel();
     x.info = this.layer.layerType + ": " + this.layer.layerName;
@@ -268,6 +269,13 @@ export class JournalComponent implements OnInit {
     }
 
     return (avg / counter).toFixed(2);
+  }
+
+  private updateCell(st: StatisticsModel) {
+    console.log("!!!!!!!!!!!!!!!!!");
+    this.journalService.updateCell(st)
+      .subscribe(() => {
+      });
   }
 
   private saveJournal() {

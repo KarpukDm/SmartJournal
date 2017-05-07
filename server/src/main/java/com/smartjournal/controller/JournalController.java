@@ -2,14 +2,11 @@ package com.smartjournal.controller;
 
 import com.smartjournal.dto.AcademicPlanDTO;
 import com.smartjournal.dto.JournalDTO;
-import com.smartjournal.dto.LayerDTO;
-import com.smartjournal.model.AcademicPlan;
-import com.smartjournal.model.Account;
-import com.smartjournal.model.Journal;
-import com.smartjournal.model.Layer;
+import com.smartjournal.dto.StatisticsDTO;
+import com.smartjournal.model.*;
 import com.smartjournal.service.AcademicPlanService;
 import com.smartjournal.service.JournalService;
-import com.smartjournal.service.LayerService;
+import com.smartjournal.service.StatisticsService;
 import com.smartjournal.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +26,18 @@ public class JournalController {
 
     private final AcademicPlanService academicPlanService;
 
+    private final StatisticsService statisticsService;
+
     private final DozerBeanMapper mapper;
 
     @Autowired
     public JournalController(final JournalService journalService,
                              final AcademicPlanService academicPlanService,
+                             final StatisticsService statisticsService,
                              final DozerBeanMapper mapper) {
         this.journalService = journalService;
         this.academicPlanService = academicPlanService;
+        this.statisticsService = statisticsService;
         this.mapper = mapper;
     }
 
@@ -85,6 +86,15 @@ public class JournalController {
         academicPlan = academicPlanService.save(academicPlan);
 
         return ResponseEntity.ok(academicPlan);
+    }
+
+    @RequestMapping(value = "/updateCell", method = RequestMethod.POST)
+    public ResponseEntity saveJournal(final @RequestBody StatisticsDTO statisticsDTO) {
+        Statistics statistics = mapper.map(statisticsDTO, Statistics.class);
+
+        statistics = statisticsService.save(statistics);
+
+        return ResponseEntity.ok(statistics);
     }
 
     @RequestMapping

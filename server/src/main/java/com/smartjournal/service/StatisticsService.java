@@ -15,6 +15,10 @@ public class StatisticsService {
         this.repository = repository;
     }
 
+    public Statistics save(Statistics statistics) {
+        return repository.save(statistics);
+    }
+
     public List<Statistics> getStatisticsById(Long id) {
 
         return null;

@@ -147,6 +147,7 @@
                 <td [class.absent]="isThere(l) != true" class="td-column">
                   <div>
                     <input [readonly]="isThere(l) != true"
+                           (change)="updateCell(l.statistics[l.statistics.length - 1])"
                            class="mark"
                            type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">

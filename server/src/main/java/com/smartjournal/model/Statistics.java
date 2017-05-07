@@ -24,7 +24,7 @@ public class Statistics implements Serializable{
     @Column(name = "journalId")
     private Long journalId;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     private Status status;
 
 }

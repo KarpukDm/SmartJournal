@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers, Response, URLSearchParams} from "@angular/http";
+import {Headers, Http, Response, URLSearchParams} from "@angular/http";
 import {Observable} from "rxjs";
 import {JournalModel} from "../models/journal.model";
 import {Constrains} from "../constraints";
 import "../rxjs-extensions";
-import {LayerModel} from "../models/layer.model";
 import {AcademicPlanModel} from "../models/academic-plan.model";
+import {StatisticsModel} from "../models/statistics.model";
 
 @Injectable()
 export class JournalService {
@@ -14,12 +14,14 @@ export class JournalService {
   private saveJournalURL: string;
   private findJournalURL: string;
   private getMyJournalsURL: string;
+  private updateCellURL: string;
 
   constructor(private http: Http) {
     this.createJournalURL = Constrains.baseURL + Constrains.createJournalApi;
     this.saveJournalURL = Constrains.baseURL + Constrains.saveJournalApi;
     this.findJournalURL = Constrains.baseURL + Constrains.findJournalApi;
     this.getMyJournalsURL = Constrains.baseURL + Constrains.getMyJournalsApi;
+    this.updateCellURL = Constrains.baseURL + Constrains.updateCellApi;
   }
 
   prepareHeaders() {
@@ -49,6 +51,13 @@ export class JournalService {
     params.set('type', type);
 
     return this.http.get(this.findJournalURL, {search: params, headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  updateCell(st: StatisticsModel) {
+    return this.http
+      .post(this.updateCellURL, JSON.stringify(st), {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
