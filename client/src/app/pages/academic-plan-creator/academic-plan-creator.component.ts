@@ -32,6 +32,8 @@ export class AcademicPlanCreatorComponent implements OnInit {
   private isSelected: boolean;
   private selectedLayer: LayerModel;
 
+  private choosedLayer: LayerModel;
+
   private isSelectDiscipline: boolean;
   private isSelectLayer: boolean;
 
@@ -78,6 +80,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
       console.log(this.lessons);
       this.lessons.push(this.lesson);
       console.log(this.lesson);
+      console.log(this.academicPlan);
       this.lesson = new LessonModel();
       this.lesson.lessonType = this.discipline.disciplineTypes[0].name;
     }
@@ -92,24 +95,25 @@ export class AcademicPlanCreatorComponent implements OnInit {
   }
 
   private selectLayer(layer: LayerModel) {
+    console.log(layer);
+    this.choosedLayer = layer;
     this.selectedLayer = layer;
+    console.log(this.selectedLayer);
     this.isSelectLayer = true;
     if (layer.layers.length != 0) {
       this.isSelectLayer = false;
       this.layerHistory.push(layer);
       this.isLastLevel = layer.layers.length == 0;
-      console.log(layer);
     } else {
       this.lesson.lessonType = this.discipline.disciplineTypes[0].name;
       this.academicPlanService.getAcademicPlanByDisciplineIdAndLayerId(this.discipline.id, this.selectedLayer.id)
         .subscribe(
           academicPlan => {
             this.academicPlan = academicPlan;
+            this.selectedLayer = this.academicPlan.layer;
             this.lessons = this.academicPlan.lessons;
-            console.log(this.lessons);
             if (isNullOrUndefined(this.lessons)) {
               this.lessons = [];
-              console.log(this.lessons);
             }
             console.log(this.academicPlan);
           },
@@ -120,7 +124,6 @@ export class AcademicPlanCreatorComponent implements OnInit {
 
   private selectJournal(template: JournalModel) {
     this.journal = template;
-    console.log(template);
     this.layerHistory.push(this.journal.layer);
     this.isSelected = true;
   }
@@ -131,7 +134,6 @@ export class AcademicPlanCreatorComponent implements OnInit {
       .subscribe(
         journals => {
           this.journals = journals;
-          console.log(this.journals);
           this.isSelectDiscipline = true;
           this.discipline = discipline;
         },
@@ -150,7 +152,6 @@ export class AcademicPlanCreatorComponent implements OnInit {
 
   private getLessons() {
     this.lessons.push(new LessonModel());
-    console.log("!");
     return this.lessons;
   }
 
@@ -167,16 +168,15 @@ export class AcademicPlanCreatorComponent implements OnInit {
   }
 
   save() {
+    console.log(this.academicPlan);
     this.academicPlan.lessons = this.lessons;
-    this.academicPlan.layer = this.selectedLayer;
+    this.academicPlan.layer = isNullOrUndefined(this.selectedLayer) ? this.choosedLayer : this.selectedLayer;
     this.academicPlan.discipline = this.discipline;
 
     console.log(this.academicPlan);
 
     this.academicPlanService.saveAcademicPlan(this.academicPlan)
       .subscribe(x => {
-        console.log(x);
-        this.academicPlan = new AcademicPlanModel();
         this.layerHistory = [];
         this.isLastLevel = false;
         this.isSelected = false;

@@ -17,4 +17,6 @@ public class AcademicPlanDTO {
 
     private List<LessonDTO> lessons;
 
+    private Long currentLayerId;
+
 }

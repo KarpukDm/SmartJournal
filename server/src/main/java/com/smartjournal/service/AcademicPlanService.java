@@ -5,6 +5,7 @@ import com.smartjournal.repository.AcademicPlanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -30,10 +31,19 @@ public class AcademicPlanService {
     }
 
     public AcademicPlan findAllByDisciplineAndLayer(final Long disciplineId, final Long layerId) {
-        return repository.findAll().stream()
-                .filter(x -> x.getDiscipline().getId().equals(disciplineId)
-                        && x.getLayer().getId().equals(layerId))
-                .findFirst()
-                .orElse(new AcademicPlan());
+
+        List<AcademicPlan> academicPlans = repository.findAll().stream()
+                .filter(x -> x.getDiscipline().getId().equals(disciplineId))
+                .collect(toList());
+
+        for (AcademicPlan academicPlan : academicPlans) {
+            if (academicPlan.getCurrentLayerId() != null && Objects.equals(layerId, academicPlan.getCurrentLayerId())) {
+                return academicPlan;
+            } else if (Objects.equals(layerId, academicPlan.getLayer().getId())) {
+                return academicPlan;
+            }
+        }
+
+        return new AcademicPlan();
     }
 }

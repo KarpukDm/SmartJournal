@@ -12,6 +12,8 @@ export class AcademicPlanModel {
 
   lessons: LessonModel[];
 
+  currentLayerId: number;
+
   constructor() {
     this.discipline = new DisciplineModel();
     this.layer = new LayerModel();

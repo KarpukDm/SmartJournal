@@ -14,10 +14,12 @@ import java.util.List;
 public class AcademicPlan implements Serializable{
 
     @Id
-    @GeneratedValue(generator = "academicPlan", strategy=GenerationType.TABLE)
-    @TableGenerator(name = "academicPlan")
+    @GeneratedValue
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "currentLayerId")
+    private Long currentLayerId;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Lesson> lessons;
@@ -25,7 +27,7 @@ public class AcademicPlan implements Serializable{
     @OneToOne(cascade = CascadeType.MERGE)
     private Discipline discipline;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     private Layer layer;
 
 }

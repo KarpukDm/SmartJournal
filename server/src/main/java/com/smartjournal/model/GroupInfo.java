@@ -12,8 +12,7 @@ import javax.persistence.*;
 public class GroupInfo {
 
     @Id
-    @GeneratedValue(generator = "groupInfo", strategy=GenerationType.TABLE)
-    @TableGenerator(name = "groupInfo")
+    @GeneratedValue
     @Column(name = "id")
     private Long id;
 
