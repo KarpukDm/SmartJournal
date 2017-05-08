@@ -19,7 +19,7 @@ public class DisciplineService {
         return repository.save(discipline);
     }
 
-    public List<Discipline> getMyDisciplines() {
-        return repository.findAll();
+    public List<Discipline> getMyDisciplines(Long id) {
+        return repository.findAllByAccountId(id);
     }
 }

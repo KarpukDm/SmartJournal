@@ -9,7 +9,7 @@ public class StatusDTO {
 
     private Long id;
 
-    private Boolean isThere;
+    private Integer isThere;
 
     private String mark;
 }

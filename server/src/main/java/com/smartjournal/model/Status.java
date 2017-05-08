@@ -19,7 +19,7 @@ public class Status implements Serializable {
     private Long id;
 
     @Column
-    private Boolean isThere;
+    private Integer isThere;
 
     @Column
     private String mark;

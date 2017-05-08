@@ -15,7 +15,5 @@ public class AccountDTO {
 
     private String password;
 
-    private List<DisciplineDTO> disciplines;
-
     private List<AcademicPlanDTO> academicPlans;
 }

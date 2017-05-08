@@ -126,6 +126,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
   }
 
   private selectDiscipline(discipline: DisciplineModel) {
+    this.selectedLayer = null;
     this.journalService.getMyTemplates()
       .subscribe(
         journals => {

@@ -27,11 +27,11 @@ class StatusModel {
 
   id: number;
 
-  isThere: boolean;
+  isThere: number;
 
   mark: string;
 
   constructor(){
-    this.isThere = true;
+    this.isThere = 1;
   }
 }

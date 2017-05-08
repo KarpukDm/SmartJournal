@@ -24,6 +24,9 @@ public class Statistics implements Serializable{
     @Column(name = "journalId")
     private Long journalId;
 
+    @Column(name = "lessonType")
+    private String lessonType;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Status status;
 

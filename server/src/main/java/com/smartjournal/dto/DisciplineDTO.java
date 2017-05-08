@@ -15,6 +15,8 @@ public class DisciplineDTO {
 
     private String name;
 
+    private Long accountId;
+
     private List<DisciplineTypeDTO> disciplineTypes;
 
 }

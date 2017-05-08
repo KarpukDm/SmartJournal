@@ -15,7 +15,9 @@ export class LessonInfoComponent implements OnInit {
 
   @Input() lessonInfo: GroupInfoModel[];
 
-  private lessonType: DisciplineTypeModel;
+  private isSelected: boolean;
+
+  private lessonType: string;
 
   constructor(private store: Store<any>) {
   }
@@ -35,9 +37,19 @@ export class LessonInfoComponent implements OnInit {
   }
 
   private selectLessonType(lessonType: string) {
-    console.log(lessonType);
     let type = lessonType.split(':')[0];
-    console.log(type);
+
+    if (lessonType === this.lessonType) {
+      this.isSelected = true;
+      type = null;
+    }
+
+    this.lessonType = this.isSelected ? null : lessonType;
+
+    if (this.lessonType == null) {
+      this.isSelected = false;
+    }
+
     this.store.dispatch({type: SELECT, payload: type});
   }
 

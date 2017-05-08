@@ -107,6 +107,8 @@
                       </button>
                       Theme: {{lesson.theme}}
                       <br>
+                      Lesson type: {{lesson.lessonType}}
+                      <br>
                       Description: {{lesson.description}}
                     </div>
                     <div class="modal-footer">
@@ -136,21 +138,21 @@
 
               <tbody>
               <tr *ngFor="let l of getStudents()">
-                <td [class.absent]="isThere(l) != true">
+                <td [class.absent]="isThere(l) === 0">
                   <button (click)="setAbsent(l)" class="name btn btn-default">
                     {{l.name}}
                   </button>
                 </td>
-                <td [class.absent]="isThere(l) != true" class="td-column"
+                <td [class.absent]="isThere(l) === 0" class="td-column"
                     *ngFor="let st of getStatisticsForLastFewDays(l)" (click)="editMark(st)"
-                    [class.selected-lesson-type]="selectedLessonType === st.lessonType"
-                    [class.absent]="editedStatistics === st">
+                    [class.erased-h]="st.status.isThere === 2"
+                    [class.absent]="editedStatistics === st"
+                    [class.selected-lesson-type]="selectedLessonType === st.lessonType">
                   {{getStatusForSomeDate(st)}}
                 </td>
-                <td [class.absent]="isThere(l) != true" class="td-column">
+                <td [class.absent]="isThere(l) === 0" class="td-column">
                   <div>
-                    <input [readonly]="isThere(l) != true"
-                           (change)="updateCell(l.statistics[l.statistics.length - 1])"
+                    <input [readonly]="isThere(l) === 0"
                            class="mark"
                            type="text"
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
@@ -182,7 +184,7 @@
                       <h4 class="modal-title">Edit the mark</h4>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" *ngIf="!editedStatistics.status.isThere" (click)="eraseH()"
+                      <button type="button" *ngIf="editedStatistics.status.isThere === 0" (click)="eraseH()"
                               class="btn btn-primary">Erase the "H"
                       </button>
 

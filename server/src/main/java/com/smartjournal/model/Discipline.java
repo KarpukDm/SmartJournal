@@ -22,6 +22,9 @@ public class Discipline implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "accountId")
+    private Long accountId;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<DisciplineType> disciplineTypes;
 

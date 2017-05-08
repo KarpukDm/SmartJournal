@@ -4,6 +4,8 @@ export class DisciplineModel {
 
   name: string;
 
+  accountId: number;
+
   disciplineTypes: DisciplineTypeModel[];
 
 }

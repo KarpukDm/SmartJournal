@@ -38,7 +38,7 @@ public class DisciplineController {
 
         final Account account = SecurityUtils.getCurrentUser();
         if (account != null) {
-            return ResponseEntity.ok(account.getDisciplines());
+            return ResponseEntity.ok(disciplineService.getMyDisciplines(account.getId()));
         }
 
         return ResponseEntity.notFound().build();
@@ -49,12 +49,13 @@ public class DisciplineController {
 
         Discipline discipline = mapper.map(disciplineDTO, Discipline.class);
 
-        discipline = disciplineService.save(discipline);
-
         final Account account = SecurityUtils.getCurrentUser();
+
         if (account != null) {
-            account.addDiscipline(discipline);
+            discipline.setAccountId(account.getId());
         }
+
+        discipline = disciplineService.save(discipline);
 
         accountService.save(account);
 

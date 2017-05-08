@@ -144,7 +144,7 @@ export class JournalComponent implements OnInit {
     console.log(this.academicPlan.lessons);
     for (let l of this.academicPlan.lessons) {
 
-      for(let st of lessonStatistics) {
+      for (let st of lessonStatistics) {
         st.lessonType = l.lessonType;
       }
 
@@ -160,8 +160,8 @@ export class JournalComponent implements OnInit {
 
   private setAbsent(student: StudentModel) {
     let stat = student.statistics.slice(-1)[0];
-    stat.status.isThere = !stat.status.isThere;
-    stat.status.mark = stat.status.isThere == false ? "H" : null;
+    stat.status.isThere = (stat.status.isThere + 1) % 2;
+    stat.status.mark = stat.status.isThere == 0 ? "H" : null;
   }
 
   private goUp() {
@@ -172,6 +172,9 @@ export class JournalComponent implements OnInit {
 
   private isThere(student: StudentModel) {
     let stat = student.statistics.slice(-1)[0];
+    if (stat.status.isThere === 2) {
+      console.log(stat.status.isThere);
+    }
     return stat.status.isThere;
   }
 
@@ -195,7 +198,7 @@ export class JournalComponent implements OnInit {
 
   private getStatusForSomeDate(statistics: StatisticsModel) {
     if (isNullOrUndefined(statistics.status.mark)) {
-      if (statistics.status.isThere == true) {
+      if (statistics.status.isThere == 1) {
         return "-";
       } else {
         return "H";
@@ -223,7 +226,7 @@ export class JournalComponent implements OnInit {
   }
 
   private eraseH() {
-    this.editedStatistics.status.isThere = true;
+    this.editedStatistics.status.isThere = 2;
     this.editedStatistics.status.mark = null;
   }
 
@@ -288,7 +291,7 @@ export class JournalComponent implements OnInit {
   private getPassesNumber(student: StudentModel) {
     let counter: number = 0;
     for (let i of student.statistics) {
-      if (!i.status.isThere) {
+      if (i.status.isThere === 0) {
         counter++;
       }
     }

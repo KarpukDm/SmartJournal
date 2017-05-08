@@ -26,13 +26,6 @@ public class Account implements Serializable {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Discipline> disciplines;
-
-    @OneToMany(cascade = CascadeType.ALL)
     private List<AcademicPlan> academicPlans;
-
-    public void addDiscipline(final Discipline discipline) {
-        disciplines.add(discipline);
-    }
 
 }
