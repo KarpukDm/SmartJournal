@@ -150,7 +150,8 @@
                     [class.selected-lesson-type]="selectedLessonType === st.lessonType">
                   {{getStatusForSomeDate(st)}}
                 </td>
-                <td [class.absent]="isThere(l) === 0" class="td-column">
+                <td [class.absent]="isThere(l) === 0" class="td-column"
+                    [class.selected-lesson-type]="selectedLessonType === academicPlan.lessons[academicPlan.lessons.length - 1].lessonType">
                   <div>
                     <input [readonly]="isThere(l) === 0"
                            class="mark"
