@@ -3,20 +3,32 @@ package com.smartjournal.controller;
 import com.smartjournal.dto.AcademicPlanDTO;
 import com.smartjournal.dto.JournalDTO;
 import com.smartjournal.dto.StatisticsDTO;
+import com.smartjournal.dto.StudentDTO;
 import com.smartjournal.model.*;
 import com.smartjournal.service.AcademicPlanService;
 import com.smartjournal.service.JournalService;
 import com.smartjournal.service.StatisticsService;
 import com.smartjournal.util.SecurityUtils;
+import org.apache.commons.io.IOUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/journal")
@@ -79,6 +91,16 @@ public class JournalController {
         return ResponseEntity.ok(journal);
     }
 
+    @RequestMapping(path = {"/update"}, method = RequestMethod.POST)
+    public ResponseEntity updateJournal(final @RequestBody(required = false) JournalDTO journalDTO) {
+
+        Journal journal = mapper.map(journalDTO, Journal.class);
+
+        journal = journalService.save(journal);
+
+        return ResponseEntity.ok(journal);
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity saveJournal(final @RequestBody AcademicPlanDTO academicPlanDTO) {
         AcademicPlan academicPlan = mapper.map(academicPlanDTO, AcademicPlan.class);
@@ -113,5 +135,21 @@ public class JournalController {
             return ResponseEntity.ok(journals);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
+    @RequestMapping(path = {"/upload"}, method = RequestMethod.POST)
+    public ResponseEntity updateJournal(@RequestParam(value = "uploadfiles", required = false) MultipartFile file) throws IOException {
+
+        ByteArrayInputStream stream = new ByteArrayInputStream(file.getBytes());
+        String myString = IOUtils.toString(stream, "UTF-8");
+
+        if (myString != null) {
+            List<StudentDTO> students = Arrays.stream(myString.split("\n"))
+                    .map(StudentDTO::new)
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(students);
+        }
+        return ResponseEntity.ok().build();
     }
 }

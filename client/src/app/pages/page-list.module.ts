@@ -3,7 +3,6 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {JournalBuilderComponent} from "./journal-builder/journal-builder.component";
 import {JournalEditorComponent} from "./journal-editor/journal-editor.component";
-import {JournalFillerComponent} from "./journal-filler/journal-filler.component";
 import {JournalViewerComponent} from "./journal-viewer/journal-viewer.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {JournalComponent} from "./journal/journal.component";
@@ -13,6 +12,7 @@ import {DisciplineCreatorComponent} from './discipline-creator/discipline-creato
 import {AcademicPlanCreatorComponent} from './academic-plan-creator/academic-plan-creator.component';
 import {MyDisciplinesComponent} from "./my-disciplines/my-disciplines.component";
 import { MyAcademicPlansComponent } from './my-academic-plans/my-academic-plans.component';
+import {JournalFillerComponent} from "./journal-filler/journal-filler.component";
 
 export const DIRECTIVES = [
   JournalComponent,

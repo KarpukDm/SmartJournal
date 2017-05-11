@@ -22,6 +22,7 @@ export class JournalFillerComponent implements OnInit {
   private layerHistory: LayerModel[];
   private isLastLevel: boolean;
   private student: StudentModel;
+  private attachmentFile: File;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -49,33 +50,38 @@ export class JournalFillerComponent implements OnInit {
 
   }
 
-  private addStudent(){
+  private addStudent() {
     let layer = this.layerHistory.slice(-1)[0];
     layer.students.push(this.student);
     this.student = new StudentModel();
   }
 
-  private getStudents(){
+  private pushStudent(student: StudentModel) {
+    let layer = this.layerHistory.slice(-1)[0];
+    layer.students.push(student);
+  }
+
+  private getStudents() {
     let layer = this.layerHistory.slice(-1)[0];
     return layer.students;
   }
 
   private selectLayer(layer: LayerModel) {
-    if(!isNullOrUndefined(layer.layers)) {
-      if(layer.layers.length == 0){
+    if (!isNullOrUndefined(layer.layers)) {
+      if (layer.layers.length == 0) {
         this.isLastLevel = true;
-        if(isNullOrUndefined(layer.students)) {
+        if (isNullOrUndefined(layer.students)) {
           layer.students = [];
         }
-      }else{
+      } else {
         this.isLastLevel = false;
       }
       this.layerHistory.push(layer);
     }
   }
 
-  private goUp(){
-    if(this.layerHistory.length > 1) {
+  private goUp() {
+    if (this.layerHistory.length > 1) {
       this.layerHistory.pop();
     }
     this.isLastLevel = false;
@@ -83,15 +89,15 @@ export class JournalFillerComponent implements OnInit {
 
   private getLayers() {
     if (!isNullOrUndefined(this.layerHistory) && this.layerHistory.length > 0) {
-      if(!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
+      if (!isNullOrUndefined(this.layerHistory.length > 0 && !isNullOrUndefined(this.layerHistory.slice(-1)[0].layers))) {
         return this.layerHistory.slice(-1)[0].layers;
       }
     }
   }
 
-  private saveJournal(){
+  private saveJournal() {
     console.log(this.journal);
-    this.journalService.createJournal(this.journal)
+    this.journalService.updateJournal(this.journal)
       .subscribe(
         journal => {
           this.journal = journal;
@@ -108,6 +114,36 @@ export class JournalFillerComponent implements OnInit {
     console.log(id);
     let link = [Constrains.viewJournalPage, id];
     this.router.navigate(link);
+  }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.attachmentFile = fileList[0];
+    }
+
+    console.log('Inside onSubmit2 :: AppComponent ');
+    // this.shared_service.share(value);
+
+    let file: File = this.attachmentFile;
+    let formData: FormData = new FormData();
+    formData.append('uploadfiles', file, file.name);
+
+    this.journalService.uploadFile(formData)
+      .subscribe(
+        response => {
+          const students: StudentModel[] = response;
+          if(students != null) {
+            for(let i of students) {
+              this.pushStudent(i);
+            }
+          }
+        },
+        error => {
+          console.log("ERROR :: register :: StudentRegisterComponent");
+          console.log(error);
+        }
+      );
   }
 
 }

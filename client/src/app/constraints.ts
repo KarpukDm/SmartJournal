@@ -30,5 +30,7 @@ export class Constrains {
   public static get getAcademicPlanByDisciplineIdAndLayerIdApi(): string { return "api/academicPlan/getByDisciplineIdAndLayerId"; }
   public static get updateCellApi(): string { return "api/journal/updateCell"}
   public static get getAccountApi(): string { return "api/profile/getAccount"}
+  public static get updateJournalApi(): string { return "api/journal/update"}
+  public static get uploadFileApi(): string { return "api/journal/upload"}
 
 }

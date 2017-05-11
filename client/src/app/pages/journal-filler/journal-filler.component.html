@@ -23,7 +23,9 @@
 
           <tbody>
           <tr *ngFor="let l of getStudents()">
-            <td>{{l.name}}</td>
+            <td style="background-color: #f4f4f4">
+              <input type="text" class="form-control" [(ngModel)]="l.name" placeholder="Student name">
+            </td>
           </tr>
           </tbody>
         </table>
@@ -47,9 +49,14 @@
         </tbody>
       </table>
 
-      <button (click)="goUp()"
-              class="btn glyphicon glyphicon-arrow-up">
-      </button>
+      <div class="col-md-4">
+        <button (click)="goUp()" class="col-md-4"
+                class="btn glyphicon glyphicon-arrow-up col-md-2">
+        </button>
+
+        <input class="col-md-8" *ngIf="isLastLevel == true" type="file" id="attachment2" (change)="fileChange($event)" placeholder="Upload file" accept=".txt,.csv,.doc,.docx" required><br/>
+
+      </div>
 
       <button (click)="saveJournal()" class="btn btn-primary pull-right">
         Save journal
