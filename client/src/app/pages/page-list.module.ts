@@ -11,7 +11,6 @@ import {MyJournalsComponent} from './my-journals/my-journals.component';
 import {DisciplineCreatorComponent} from './discipline-creator/discipline-creator.component';
 import {AcademicPlanCreatorComponent} from './academic-plan-creator/academic-plan-creator.component';
 import {MyDisciplinesComponent} from "./my-disciplines/my-disciplines.component";
-import { MyAcademicPlansComponent } from './my-academic-plans/my-academic-plans.component';
 import {JournalFillerComponent} from "./journal-filler/journal-filler.component";
 
 export const DIRECTIVES = [
@@ -24,8 +23,7 @@ export const DIRECTIVES = [
   MyJournalsComponent,
   DisciplineCreatorComponent,
   MyDisciplinesComponent,
-  AcademicPlanCreatorComponent,
-  MyAcademicPlansComponent
+  AcademicPlanCreatorComponent
 ];
 
 @NgModule({
