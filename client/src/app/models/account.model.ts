@@ -7,8 +7,6 @@ export class AccountModel {
 
   login: string;
 
-  password: string;
-
   disciplines: DisciplineModel[];
 
   academicPlans: AcademicPlanModel[];

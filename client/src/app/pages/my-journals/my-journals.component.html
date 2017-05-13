@@ -14,13 +14,14 @@
 
         <div class="list-group">
           <ng-template ngFor let-t [ngForOf]="journals">
-            <a (click)="selectJournal(t)" class="list-group-item">
+            <a (click)="selectJournal(t)" class="list-group-item col-xs-6">
               {{t.journalName}}
-              <div class="pull-right">
-                (<a (click)="gotoFillJournal(t.id)">fill</a>)
-                (<a (click)="gotoEditJournal(t.id)">edit</a>)
-              </div>
             </a>
+            <div class="col-xs-6">
+              <button class="btn btn-info" (click)="gotoFillJournal(t.id)">fill</button>
+              <button class="btn btn-warning" (click)="gotoEditJournal(t.id)">edit</button>
+              <button class="btn btn-success" (click)="shareJournal(t)">share</button>
+            </div>
           </ng-template>
         </div>
 
@@ -59,8 +60,30 @@
 
     </div>
 
+    <div *ngIf="sharedJournal != null" class="col-md-7">
+      <div class="alert alert-warning" role="alert">Users:</div>
+
+      <div class="form-group bs-component">
+        <input id="username" (keypress)="fetchUsers()" class="form-control" placeholder="Start typing a username"
+               [(ngModel)]="userName"
+               type="text">
+      </div>
+
+      <div class="list-group" *ngIf="users != null">
+        <a *ngFor="let d of users" (click)="pickUser(d)" class="list-group-item"
+           [class.absent]="isSelectedUser(d) == true">
+          {{d.login}}
+        </a>
+      </div>
+
+      <button class="btn btn-primary pull-right" *ngIf="sharedUsers != null && sharedUsers.length !== 0"
+              (click)="updatJournal()">Share
+      </button>
+
+    </div>
+
     <div *ngIf="isSelected == true" class="col-md-7">
-      <div class="alert alert-success" role="alert">Statistics</div>
+      <div class="alert alert-warning" role="alert">Statistics</div>
       <multiple-value-axes [averageScores]="averageScores">
 
       </multiple-value-axes>

@@ -20,6 +20,7 @@ import {DisciplineService} from "./services/discipline.service";
 import {AcademicPlanService} from "./services/academic-plan.service";
 import {ProfileService} from "./services/profile.service";
 import {lessonTypeReducer} from "./reducers/lesson-type.reducer";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,12 @@ import {lessonTypeReducer} from "./reducers/lesson-type.reducer";
     HttpModule,
     RouterModule.forRoot(appRoutes),
     ComponentsLibraryModule,
-    StoreModule.provideStore({routerReducer, userReducer, studentInfoReducer, lessonTypeReducer}),
+    StoreModule.provideStore({
+      routerReducer,
+      userReducer,
+      studentInfoReducer,
+      lessonTypeReducer
+    }),
     RouterStoreModule.connectRouter()
   ],
   providers: [
@@ -43,7 +49,8 @@ import {lessonTypeReducer} from "./reducers/lesson-type.reducer";
     StatisticsService,
     DisciplineService,
     AcademicPlanService,
-    ProfileService
+    ProfileService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

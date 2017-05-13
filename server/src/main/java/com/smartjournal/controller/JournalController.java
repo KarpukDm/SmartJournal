@@ -24,10 +24,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -95,6 +92,16 @@ public class JournalController {
     public ResponseEntity updateJournal(final @RequestBody(required = false) JournalDTO journalDTO) {
 
         Journal journal = mapper.map(journalDTO, Journal.class);
+
+        List<Account> accounts = new ArrayList<>();
+
+        for(Account account : journal.getAccounts()) {
+            if(!accounts.contains(account)) {
+                accounts.add(account);
+            }
+        }
+
+        journal.setAccounts(accounts);
 
         journal = journalService.save(journal);
 

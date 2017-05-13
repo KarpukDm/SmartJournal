@@ -15,7 +15,6 @@ import {AcademicPlanModel} from "../../models/academic-plan.model";
 import {AcademicPlanService} from "../../services/academic-plan.service";
 import {LessonModel} from "../../models/lesson.model";
 import {GroupInfoModel} from "../../models/group-info.model";
-import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-journal',

@@ -31,5 +31,7 @@ export class Constrains {
   public static get getAccountApi(): string { return "api/profile/getAccount"}
   public static get updateJournalApi(): string { return "api/journal/update"}
   public static get uploadFileApi(): string { return "api/journal/upload"}
+  public static get getUsersApi(): string { return "api/users/all"}
+  public static get getUsersByNameApi(): string { return "api/users"}
 
 }
