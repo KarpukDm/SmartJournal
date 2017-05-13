@@ -7,29 +7,27 @@
 
     <div class="col-md-12" *ngIf="disciplines !== null && disciplines.length !== 0">
 
-      <div *ngIf="isSelected == false" class="alert alert-warning" role="alert">Select discipline and journal</div>
-
       <div *ngIf="isSelected == true || isSelected == true && isLastLevel == true" class="alert alert-info"
            role="alert">
 
         <div>
           <div class="align-center">
             <button *ngIf="isSelected == true" (click)="goUp()"
-                    class="btn glyphicon glyphicon-arrow-up">
+                    class="btn btn-primary glyphicon glyphicon-arrow-up pull-left">
             </button>
 
             <button *ngIf="isSelected == true"
-                    class="btn btn-primary">
+                    class="btn btn-default">
               {{discipline.name}}
             </button>
 
             <button *ngIf="isSelected == true" (click)="saveJournal()"
-                    class="btn btn-success">
+                    class="btn btn-warning">
               Save
             </button>
 
             <button *ngIf="isSelected == true" (click)="createNewRecord()"
-                    class="btn btn-warning pull-right">
+                    class="btn btn-primary pull-right">
               New lesson
             </button>
           </div>
@@ -52,7 +50,7 @@
         </div>
 
         <div class="col-md-6" *ngIf="discipline != null">
-          <div class="alert alert-success" role="alert">Journals:</div>
+          <div class="alert alert-warning" role="alert">Journals:</div>
 
           <div *ngIf="academicPlans == null || academicPlans.length === 0">
             No academic plans found for this discipline.
@@ -97,23 +95,23 @@
             </app-modal>
 
             <app-modal *ngIf="isShowTheme && lesson && lesson.theme">
-              <div id="theme" class="modal fade in" role="dialog">
+              <div id="theme" class="modal fade in" role="dialog" (click)="showTheme()">
                 <div class="modal-dialog">
 
                   <!-- Modal content-->
                   <div class="modal-content col-md-8 align-center">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" (click)="showTheme()">&times;
-                      </button>
-                      Theme: {{lesson.theme}}
+                      <div class="pull-left">
+                        <b>Theme:</b> {{lesson.theme}}
+                      </div>
                       <br>
-                      Lesson type: {{lesson.lessonType}}
+                      <div class="pull-left">
+                        <b>Lesson type:</b> {{lesson.lessonType}}
+                      </div>
                       <br>
-                      Description: {{lesson.description}}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="close" data-dismiss="modal" (click)="showTheme()">Close
-                      </button>
+                      <div class="pull-left">
+                        <b>Description:</b> {{lesson.description}}
+                      </div>
                     </div>
                   </div>
 
@@ -143,15 +141,15 @@
                     {{l.name}}
                   </button>
                 </td>
-                <td [class.absent]="isThere(l) === 0" class="td-column"
+                <td [class.absent]="isThere(l) === 0" class="td-column lead"
                     *ngFor="let st of getStatisticsForLastFewDays(l)" (click)="editMark(st)"
-                    [class.erased-h]="st.status.isThere === 2"
+                    [class.success]="st.status.isThere === 2"
                     [class.absent]="editedStatistics === st"
-                    [class.selected-lesson-type]="selectedLessonType === st.lessonType">
+                    [class.info]="selectedLessonType === st.lessonType">
                   {{getStatusForSomeDate(st)}}
                 </td>
                 <td [class.absent]="isThere(l) === 0" class="td-column"
-                    [class.selected-lesson-type]="selectedLessonType === academicPlan.lessons[academicPlan.lessons.length - 1].lessonType">
+                    [class.info]="selectedLessonType === academicPlan.lessons[academicPlan.lessons.length - 1].lessonType">
                   <div>
                     <input [readonly]="isThere(l) === 0"
                            class="mark"
@@ -159,12 +157,12 @@
                            [(ngModel)]="l.statistics[l.statistics.length - 1].status.mark">
                   </div>
                 </td>
-                <td class="td-column stat-h">
+                <td class="td-column warning">
                   <div>
                     {{getPassesNumber(l)}}
                   </div>
                 </td>
-                <td class="td-column stat-avg">
+                <td class="td-column info">
                   <div>
                     {{getAVG(l)}}
                   </div>

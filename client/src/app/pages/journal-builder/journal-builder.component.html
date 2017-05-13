@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
       <div class="col-md-4">
-        <div class="alert alert-warning" role="alert">Please, enter the journal name</div>
+        <div class="alert alert-info" role="alert">Please, enter the journal name</div>
 
         <div class="input-group col-md-12 input-offset">
           <input class="form-control" [(ngModel)]="journal.journalName" type="text"
@@ -17,15 +17,15 @@
         </div>
 
         <div class="pull-right">
-          <button (click)="edit()" class="btn glyphicon glyphicon-pencil"></button>
+          <button (click)="edit()" class="btn btn-default glyphicon glyphicon-pencil"></button>
           <button (click)="enterName()"
-                  class="btn glyphicon glyphicon-ok">
+                  class="btn btn-default glyphicon glyphicon-ok">
           </button>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="alert alert-info" role="alert">Create new layer</div>
+        <div class="alert alert-warning" role="alert">Create new layer</div>
 
         <div class="input-group col-md-12 input-offset">
           <input class="form-control" [(ngModel)]="layer.layerType" type="text" id="layerType"
@@ -39,7 +39,7 @@
 
         <div class="pull-right">
           <button (click)="addLayer()"
-                  class="btn glyphicon glyphicon-plus-sign">
+                  class="btn btn-default glyphicon glyphicon-plus-sign">
           </button>
         </div>
       </div>

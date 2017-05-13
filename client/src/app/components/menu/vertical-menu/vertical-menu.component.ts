@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {MenuElementModel} from "../menu-element.model";
 import {Constrains} from "../../../constraints";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-vertical-menu',
@@ -13,7 +14,9 @@ export class VerticalMenuComponent implements OnInit {
 
   private group2: MenuElementModel[];
 
-  constructor() {
+  private activePage: string;
+
+  constructor(private store: Store<any>) {
     this.group1 = [];
     this.group2 = [];
   }
@@ -21,11 +24,19 @@ export class VerticalMenuComponent implements OnInit {
   ngOnInit() {
     this.group1.push(new MenuElementModel("Profile", Constrains.profilePage));
     this.group1.push(new MenuElementModel("Journal", Constrains.journalPage));
-    this.group1.push(new MenuElementModel("Statistics", Constrains.statistics));
+    this.group1.push(new MenuElementModel("Academic plan", Constrains.createAcademicPlanPage));
+    this.group1.push(new MenuElementModel("Add disciplines", Constrains.addDisciplinesPage));
+    this.group1.push(new MenuElementModel("Create journal", Constrains.createJournalPage));
+    this.group1.push(new MenuElementModel("Journal management", Constrains.statistics));
 
-    this.group2.push(new MenuElementModel("Create journal", Constrains.createJournalPage));
-    this.group2.push(new MenuElementModel("Add disciplines", Constrains.addDisciplinesPage));
-    this.group2.push(new MenuElementModel("Academic plan", Constrains.createAcademicPlanPage));
+    this.store
+      .select(x => x.routerReducer)
+      .map(x => x.path)
+      .subscribe(x => {
+        console.log(x);
+        this.activePage = x;
+        console.log(this.group1[0].link);
+      });
   }
 
 }

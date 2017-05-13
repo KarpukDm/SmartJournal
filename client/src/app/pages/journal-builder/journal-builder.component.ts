@@ -43,6 +43,14 @@ export class JournalBuilderComponent implements OnInit {
 
   private addLayer() {
 
+    if (isNullOrUndefined(this.layer.layerName) || this.layer.layerName == "") {
+      return;
+    }
+
+    if (isNullOrUndefined(this.layer.layerType) || this.layer.layerType == "") {
+      return;
+    }
+
     let layer = this.layerHistory.slice(-1)[0];
 
     if (isNullOrUndefined(this.journal.layer)) {
@@ -57,10 +65,10 @@ export class JournalBuilderComponent implements OnInit {
       this.layer.layers = [];
 
       let info: GroupInfoModel[] = [];
-      for(let i of this.layerHistory) {
-        if(!isNullOrUndefined(i.layerType) && !isNullOrUndefined(i.layerName)){
+      for (let i of this.layerHistory) {
+        if (!isNullOrUndefined(i.layerType) && !isNullOrUndefined(i.layerName)) {
           const x = new GroupInfoModel();
-          x.info = i.layerType + ": " + i.layerName;
+          x.info =i.layerType + ': ' + i.layerName;
           info.push(x);
         }
       }

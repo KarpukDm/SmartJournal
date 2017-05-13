@@ -26,7 +26,7 @@
 
         <div *ngIf="isSelected == false" class="col-md-12">
 
-          <div class="alert alert-success" role="alert">My journals:</div>
+          <div class="alert alert-warning" role="alert">My journals:</div>
 
           <div class="list-group">
             <ng-template ngFor let-t [ngForOf]="journals">
@@ -40,7 +40,7 @@
 
         <div *ngIf="isSelected == true" class="col-md-12">
 
-          <div class="alert alert-success" role="alert">Journal: {{journal.journalName}}</div>
+          <div class="alert alert-warning" role="alert">Journal: {{journal.journalName}}</div>
 
           <div>
             <div *ngIf="isLastLevel == false">
@@ -70,25 +70,22 @@
       </div>
 
       <div class="col-md-5" *ngIf="isSelectLayer && choosedLayer != null">
-        <div class="alert alert-warning" role="alert">Academic plan</div>
+        <div class="alert alert-success" role="alert">Academic plan</div>
 
         <div class="list-group">
           <ng-template ngFor let-t [ngForOf]="lessons">
             <a class="list-group-item">
-              {{t.date}}: {{t.theme}}
-              <button (click)="more(t)" class="pull-right">more</button>
+              <b>{{t.theme}}</b>
+              <button (click)="more(t)" class="btn-success pull-right">more</button>
             </a>
           </ng-template>
         </div>
 
         <div class="lesson-block">
-          <div class="form-group col-md-3">
-            <input class="form-control" [(ngModel)]="lesson.date" type="text" id="date"
-                   placeholder="Date">
-          </div>
 
-          <div class="col-md-5">
-            <select class="form-control" name="cars" [(ngModel)]="lesson.lessonType">
+          <div class="form-group">
+            <label class="control-label" for="lessonType">Lesson type</label>
+            <select id="lessonType" class="form-control" name="cars" [(ngModel)]="lesson.lessonType">
               <ng-container *ngFor="let t of discipline.disciplineTypes">
                 <option (click)="selectLessonType(t.name)" [ngValue]="t.name">{{t.name}}</option>
               </ng-container>
@@ -96,14 +93,16 @@
           </div>
 
           <div class="form-group">
-            <input class="form-control" [(ngModel)]="lesson.theme" type="text" id="theme"
-                   placeholder="Theme">
+            <label class="control-label" for="lessonTheme">Lesson theme</label>
+            <input id="lessonTheme" class="form-control" [(ngModel)]="lesson.theme" type="text">
           </div>
 
           <div class="form-group">
-            <textarea class="form-control" placeholder="Description" [(ngModel)]="lesson.description" rows="5"
-                      id="description"></textarea>
+            <label class="control-label" for="lessonDescription">Lesson description</label>
+            <textarea class="form-control" [(ngModel)]="lesson.description" rows="5"
+                      id="lessonDescription"></textarea>
           </div>
+
         </div>
 
         <app-modal *ngIf="lessonForEdit != null">
@@ -120,13 +119,10 @@
 
                   <div class="lesson-block">
 
-                    <div class="form-group col-md-3">
-                      <input class="form-control" [(ngModel)]="lessonForEdit.date" type="text" id="date2"
-                             placeholder="Date">
-                    </div>
 
-                    <div class="col-md-5">
-                      <select class="form-control" name="cars" [(ngModel)]="lessonForEdit.lessonType">
+                    <div class="form-group">
+                      <label class="control-label" for="lessonType1">Lesson type</label>
+                      <select id="lessonType1" class="form-control" name="cars" [(ngModel)]="lessonForEdit.lessonType">
                         <ng-container *ngFor="let t of discipline.disciplineTypes">
                           <option (click)="selectLessonType(t.name)" [ngValue]="t.name">{{t.name}}</option>
                         </ng-container>
@@ -134,19 +130,21 @@
                     </div>
 
                     <div class="form-group">
-                      <input class="form-control" [(ngModel)]="lessonForEdit.theme" type="text" id="theme2"
-                             placeholder="Theme">
+                      <label class="control-label" for="lessonTheme1">Lesson theme</label>
+                      <input id="lessonTheme1" class="form-control" [(ngModel)]="lessonForEdit.theme" type="text">
                     </div>
 
                     <div class="form-group">
-            <textarea class="form-control" placeholder="Description" [(ngModel)]="lessonForEdit.description" rows="5"
-                      id="description2"></textarea>
+                      <label class="control-label" for="lessonDescription1">Lesson description</label>
+                      <textarea class="form-control" [(ngModel)]="lessonForEdit.description" rows="5"
+                                id="lessonDescription1"></textarea>
                     </div>
+
                   </div>
                 </div>
 
                 <div class="modal-footer">
-                  <button (click)="saveLesson()" type="button" class="btn btn-primary"
+                  <button (click)="saveLesson()" type="button" class="btn btn-success"
                           data-dismiss="modal">Save
                   </button>
                 </div>

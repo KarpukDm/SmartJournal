@@ -73,8 +73,7 @@ export class AcademicPlanCreatorComponent implements OnInit {
   }
 
   addLessonPlan() {
-    if (!isNullOrUndefined(this.lesson["date"]) && this.lesson["date"] !== ""
-      && !isNullOrUndefined(this.lesson["theme"]) && this.lesson["theme"] !== ""
+    if (!isNullOrUndefined(this.lesson["theme"]) && this.lesson["theme"] !== ""
       && !isNullOrUndefined(this.lesson["description"]) && this.lesson["description"] !== ""
       && !isNullOrUndefined(this.lesson["lessonType"]) && this.lesson["lessonType"] !== "") {
       console.log(this.lessons);

@@ -1,15 +1,9 @@
-<nav class="navbar navbar-default navbar-fixed-side">
-  <ul class="nav nav-list bs-docs-sidenav">
-    <li *ngFor="let m of group1">
-      <a href="{{m.link}}">{{m.name}}</a>
-    </li>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-default navbar-fixed-side">
-  <ul class="nav nav-list bs-docs-sidenav">
-    <li *ngFor="let m of group2">
-      <a href="{{m.link}}">{{m.name}}</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-fixed-side">
+  <div class="bs-component">
+    <ul class="nav nav-pills nav-stacked">
+      <li *ngFor="let m of group1" [class.active]="'/' + m.link === activePage" class="menu-element">
+        <a href="{{m.link}}">{{m.name}}</a>
+      </li>
+    </ul>
+  </div>
 </nav>
