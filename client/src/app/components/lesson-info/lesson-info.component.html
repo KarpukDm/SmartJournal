@@ -1,5 +1,5 @@
 <div *ngIf="groupInfo && groupInfo.length != 0" class="panel panel-info">
-  <div class="panel-heading">Group information</div>
+  <div class="panel-heading">About group</div>
   <div class="panel-body">
     <h4 *ngFor="let m of groupInfo">
       <a>{{m.info}}</a>
@@ -8,7 +8,7 @@
 </div>
 
 <div *ngIf="lessonInfo && lessonInfo.length != 0" class="panel panel-info">
-  <div class="panel-heading">Lesson information</div>
+  <div class="panel-heading">About lesson</div>
   <div class="panel-body">
     <h4 *ngFor="let m of lessonInfo">
       <button class="btn col-md-12" style="margin-bottom: 5px;" (click)="selectLessonType(m.info)">{{m.info}}</button>
